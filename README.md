@@ -2,14 +2,28 @@
 
 This README outlines the details of collaborating on this Ember addon.
 
-## Installation
+## Usage
+
+* `npm install --save ember-moment`
+* `ember g ember-moment`
+
+```hbs
+{{moment date}}
+{{ago date}}
+```
+
+advance
+
+```hbs
+{{moment date <inputFormat> <outputFormat>}}
+{{ago date <inputFormat>}}
+```
+
+## Development
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
-
-## Running
-
 * `ember server`
 * Visit your app at http://localhost:4200.
 
