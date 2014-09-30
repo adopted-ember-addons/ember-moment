@@ -7,7 +7,7 @@ module('MomentHelper');
 var FAKE_HANDLEBARS_CONTEXT = {};
 
 test('one arg (date)', function() {
-  equal(moment(new Date(0), FAKE_HANDLEBARS_CONTEXT), '1969-12-31T19:00:00-05:00')
+  equal(moment(new Date(0), FAKE_HANDLEBARS_CONTEXT), '1969-12-31T19:00:00-05:00');
   equal(moment(new Date(60*60*24), FAKE_HANDLEBARS_CONTEXT), '1969-12-31T19:01:00-05:00');
 });
 
