@@ -1,6 +1,6 @@
 # Ember-moment
 
-[moment.js](momentjs.com) template helpers for ember
+[moment.js](momentjs.com) template helpers for ember [![Build Status](https://travis-ci.org/stefanpenner/ember-moment.svg?branch=master)](https://travis-ci.org/stefanpenner/ember-moment)
 
 ## Usage
 
