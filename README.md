@@ -1,6 +1,6 @@
 # Ember-moment
 
-moment template helpers for ember
+[moment.js](momentjs.com) template helpers for ember
 
 ## Usage
 
@@ -15,8 +15,8 @@ moment template helpers for ember
 advance
 
 ```hbs
-{{moment date <inputFormat> <outputFormat>}}
-{{ago date <inputFormat>}}
+{{moment date inputFormat outputFormat}}
+{{ago date inputFormat}}}
 ```
 
 ## Development
