@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { initialize } from 'ember-moment/initializers/ember-moment';
+import { initialize } from '../../../initializers/ember-moment';
 
 var container, application;
 
