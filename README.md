@@ -1,6 +1,6 @@
 # Ember-moment
 
-This README outlines the details of collaborating on this Ember addon.
+moment template helpers for ember
 
 ## Usage
 
