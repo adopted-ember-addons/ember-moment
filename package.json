@@ -1,6 +1,7 @@
 {
   "name": "ember-moment",
   "version": "0.1.0",
+  "description": "Moment.js template helpers for ember",
   "directories": {
     "doc": "doc",
     "test": "tests"
