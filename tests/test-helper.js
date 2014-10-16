@@ -5,7 +5,7 @@ import {
 
 setResolver(resolver);
 
-window. moment.tz.add([
+window.moment.tz.add([
   'America/New_York|EST EDT|50 40|0101|1Lz50 1zb0 Op0'
 ]);
 
