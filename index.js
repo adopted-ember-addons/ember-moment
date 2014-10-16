@@ -12,5 +12,4 @@ module.exports = {
     this._super.included(app);
     this.app.import(app.bowerDirectory + '/momentjs/moment.js');
   }
-
 };
