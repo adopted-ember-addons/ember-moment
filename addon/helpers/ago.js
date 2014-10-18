@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import momentjs from 'moment';
 
 function ago(value, maybeInput, maybeOutput) {
   var length = arguments.length;
@@ -13,7 +14,7 @@ function ago(value, maybeInput, maybeOutput) {
     output = maybeOutput;
   }
 
-  return window.moment(value, input).fromNow();
+  return momentjs(value, input).fromNow();
 }
 
 export {

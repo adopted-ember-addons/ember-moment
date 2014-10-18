@@ -4,12 +4,22 @@ var path = require('path');
 
 module.exports = {
   name: 'ember-moment',
-  blueprintsPath: function() {
+
+  blueprintsPath: function blueprintsPath() {
     return path.join(__dirname, 'blueprints');
   },
 
-  included: function(app) {
+  included: function included(app) {
+    this.app = app;
+
     this._super.included(app);
-    this.app.import(app.bowerDirectory + '/momentjs/moment.js');
+
+    app.import(app.bowerDirectory + '/moment/moment.js');
+
+    app.import(app.bowerDirectory + '/ember-cli-moment-shim/moment-shim.js', {
+      exports: {
+        moment: ['default']
+      }
+    });
   }
 };
