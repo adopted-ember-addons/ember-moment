@@ -19,6 +19,18 @@ advance
 {{ago date inputFormat}}}
 ```
 
+## Computed Macro
+
+```js
+import { moment, ago } from 'ember-moment/computed';
+
+export default Ember.Controller.extend({
+  date: new Date('2013-02-08T09:30:26'),
+  shortDate: moment('date', 'MM/DD/YYYY')
+  timeSince: ago('date', true)
+});
+```
+
 ## Development
 
 * `git clone` this repository

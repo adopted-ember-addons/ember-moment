@@ -1,20 +1,17 @@
 import Ember from 'ember';
-import momentjs from 'moment';
+import moment from 'moment';
 
-function ago(value, maybeInput, maybeOutput) {
+function ago(value, maybeInput) {
   var length = arguments.length;
-  var input, output;
+  var args = [value];
 
   if (length === 1) {
     throw new TypeError('Invalid Number of arguments, expected atleast 1');
-  } else if (length === 2 ) {
-    input = 'LLLL';
   } else if (length > 3) {
-    input  = maybeInput;
-    output = maybeOutput;
+    args.push(maybeInput);
   }
 
-  return momentjs(value, input).fromNow();
+  return moment.apply(this, args).fromNow();
 }
 
 export {
