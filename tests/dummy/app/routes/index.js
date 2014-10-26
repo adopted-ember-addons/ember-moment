@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function() {
-    return {
-      now: new Date(),
-      lastHour: new Date(new Date().valueOf() - (60*60*1000))
-    };
+  setupController: function (controller, model) {
+    this._super(controller, model);
+
+    setInterval(function () {
+      Ember.run(function () {
+        controller.set('date', new Date());
+      });
+    }, 1000);
   }
 });

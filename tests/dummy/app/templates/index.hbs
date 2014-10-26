@@ -15,10 +15,10 @@
 
 <hr>
 
-{{moment now 'LLLL' 'LL'}}
+{{moment now 'LL' 'LLLL'}}
 
 <code>
-  \{{moment now 'LLLL' 'LL'}}
+  \{{moment now 'LL' 'LLLL'}}
 </code>
 
 
@@ -37,4 +37,26 @@
 
 <code>
   \{{ago lastHour}}
+</code>
+
+<hr>
+
+{{computedDate}}
+<br />
+<code>
+  export default Ember.Controller.extend({<br />
+    date: new Date(), /* in the route I am looping this */ <br />
+    computedDate: moment('date', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+
+<hr>
+
+{{computedOneHourAgo}}
+<br />
+<code>
+  export default Ember.Controller.extend({<br />
+    lastHour: new Date(new Date().valueOf() - (60*60*1000)),<br />
+    computedOneHourAgo: ago('lastHour', 'MM/DD/YY hh:mm:ss')<br />
+  });
 </code>
