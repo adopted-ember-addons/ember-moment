@@ -6,14 +6,19 @@ function moment(value, maybeOutput, maybeInput) {
   var args = [];
   var output;
 
-  if (length === 1) {
-    throw new TypeError('Invalid Number of arguments, expected atleast 1');
+  if (length === 1 || length > 4) {
+    // there's one extra argument that handlebars adds to the end,
+    // which explains the difference in what we are checking and the error we are raising
+    throw new TypeError('Invalid Number of arguments, expected at least 1 and at most 3');
   }
 
   args.push(value);
 
   if (length === 2) {
-    args.push('LLLL');
+    output = 'LLLL';
+  }
+  else if (length === 3) {
+    output = maybeOutput;
   } else if (length > 3) {
     args.push(maybeInput);
     output = maybeOutput;
