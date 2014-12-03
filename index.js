@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 
 var path = require('path');
 
