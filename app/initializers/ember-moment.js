@@ -3,8 +3,10 @@ import { ago } from 'ember-moment/helpers/ago';
 import Ember from 'ember';
 
 export var initialize = function(/* container, app */) {
-  Ember.Handlebars.helper('moment', moment);
-  Ember.Handlebars.helper('ago', ago);
+  var helper = (Ember.HTMLBars || Ember.Handlebars).helper;
+
+  helper('moment', moment);
+  helper('ago', ago);
 };
 
 export default {
