@@ -1,5 +1,5 @@
-import { moment } from 'ember-moment/helpers/moment';
-import { ago } from 'ember-moment/helpers/ago';
+import moment from 'ember-moment/helpers/moment';
+import ago from 'ember-moment/helpers/ago';
 import Ember from 'ember';
 
 export var initialize = function(/* container, app */) {

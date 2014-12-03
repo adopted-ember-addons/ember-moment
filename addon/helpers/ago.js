@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-var makeBoundHelper = (Ember.HTMLBars || Ember.Handlebars).makeBoundHelper;
 var ago;
 
 if (Ember.HTMLBars) {
@@ -31,4 +30,4 @@ export {
   ago
 };
 
-export default makeBoundHelper(ago);
+export default ago;

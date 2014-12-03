@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import momentjs from 'moment';
 
-var makeBoundHelper = (Ember.HTMLBars || Ember.Handlebars).makeBoundHelper;
 var moment;
 
 if (Ember.HTMLBars) {
@@ -60,4 +59,4 @@ export {
   moment
 };
 
-export default makeBoundHelper(moment);
+export default moment;
