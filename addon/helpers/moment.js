@@ -54,9 +54,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-
-export {
-  moment
-};
-
 export default moment;

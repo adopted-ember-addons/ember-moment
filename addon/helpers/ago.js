@@ -26,8 +26,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export {
-  ago
-};
-
 export default ago;
