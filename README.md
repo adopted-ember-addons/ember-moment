@@ -15,7 +15,8 @@
 advance
 
 ```hbs
-{{moment date outputFormat inputFormat}}
+{{moment date outputFormat}}
+{{moment date inputFormat outputFormat}}
 {{ago date inputFormat}}}
 ```
 
