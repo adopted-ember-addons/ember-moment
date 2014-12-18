@@ -1,5 +1,6 @@
 import moment from 'ember-moment/helpers/moment';
 import ago from 'ember-moment/helpers/ago';
+import duration from 'ember-moment/helpers/duration';
 import Ember from 'ember';
 
 export var initialize = function(/* container, app */) {
@@ -7,6 +8,7 @@ export var initialize = function(/* container, app */) {
 
   helper('moment', moment);
   helper('ago', ago);
+  helper('duration', duration);
 };
 
 export default {

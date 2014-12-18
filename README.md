@@ -10,6 +10,7 @@
 ```hbs
 {{moment date}}
 {{ago date}}
+{{duration date}}
 ```
 
 advance
