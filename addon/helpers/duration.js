@@ -13,10 +13,6 @@ if (Ember.HTMLBars) {
   };
 } else {
   duration = function duration(value) {
-    if (Ember.isNone(value)) {
-      throw new TypeError('Invalid value');
-    }
-    
     return moment.duration(value).humanize();
   };
 }

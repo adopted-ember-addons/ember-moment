@@ -4,11 +4,13 @@ import moment from 'moment';
 var get = Ember.get;
 var emberComputed = Ember.computed;
 
-export default function computedDuration(date) {
-  var computed, momentArgs;
-  return computed = emberComputed(date, function () {
-    momentArgs = [get(this, date)];
-    
+export default function computedDuration(ms) {
+  var momentArgs, computed;
+
+  computed = emberComputed(ms, function () {
+    momentArgs = [get(this, ms)];
     return moment.duration(this, momentArgs).humanize();
-  }).readOnly();
+  });
+
+  return computed.property.apply(computed, momentArgs).readOnly();
 }
