@@ -10,7 +10,7 @@
 ```hbs
 {{moment date}}
 {{ago date}}
-{{duration date}}
+{{duration ms}}
 ```
 
 advance
@@ -18,6 +18,7 @@ advance
 ```hbs
 {{moment date outputFormat inputFormat}}
 {{ago date inputFormat}}}
+{{duration number units}}
 ```
 
 ## Computed Macro
