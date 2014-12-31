@@ -3,7 +3,7 @@ import date from '../helpers/date';
 import moment from 'moment';
 import { ago as computedAgo } from 'ember-moment/computed';
 
-module('momentComputed');
+module('agoComputed');
 
 var createSubject = function (attrs) {
   return Ember.Object.extend(Ember.$.extend({
