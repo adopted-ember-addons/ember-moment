@@ -18,13 +18,14 @@ export default function computedMoment(date, outputFormat, maybeInputFormat) {
   Ember.assert('More than one argument passed into moment computed', arguments.length > 1);
 
   var args = a_slice.call(arguments);
-  var computed, self, momentArgs, desc;
+  var computed;
 
   args.shift();
 
   return computed = emberComputed(date, function () {
-    self = this;
-    momentArgs = [get(this, date)];
+    var desc,
+        self = this,
+        momentArgs = [get(this, date)];
 
     var propertyValues = EnumerableUtils.map(args, function (arg) {
       desc = descriptorFor.call(self, arg);

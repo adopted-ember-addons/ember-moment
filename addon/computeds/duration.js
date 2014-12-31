@@ -8,9 +8,10 @@ var emberComputed = Ember.computed;
 export default function computedDuration(val, maybeUnits) {
   var numArgs = arguments.length;
   var args = [val];
-  var momentArgs, computed, desc, input;
 
-  computed = emberComputed(val, function () {
+  var computed = emberComputed(val, function () {
+    var momentArgs, desc, input;
+    
     momentArgs = [get(this, val)];
 
     if (numArgs > 1) {

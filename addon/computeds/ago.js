@@ -7,9 +7,9 @@ var emberComputed = Ember.computed;
 
 export default function computedAgo(date, maybeInputFormat) {
   var args = [date];
-  var momentArgs, computed, desc, input;
-
-  computed = emberComputed(date, function () {
+  
+  var computed = emberComputed(date, function () {
+    var momentArgs, desc, input;
     momentArgs = [get(this, date)];
 
     if (arguments.length > 1) {
