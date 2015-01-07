@@ -65,6 +65,41 @@
 
 <hr>
 
+{{duration 5000}}
+<code>
+  \{{duration 5000}}
+</code>
+
+<hr>
+
+{{duration 600000}}
+<code>
+  \{{duration 600000}}
+</code>
+
+<hr>
+
+{{duration 86400000}}
+<code>
+  \{{duration 86400000}}
+</code>
+
+<hr>
+
+{{duration '7.23:59:59'}}
+<code>
+  \{{duration '7.23:59:59'}}
+</code>
+
+<hr>
+
+{{duration 210 'days'}}
+<code>
+  \{{duration 210 'days'}}
+</code>
+
+<hr>
+
 {{computedDate}}
 <br />
 <code>
@@ -82,5 +117,16 @@
   export default Ember.Controller.extend({<br />
     lastHour: new Date(new Date().valueOf() - (60*60*1000)),<br />
     computedOneHourAgo: ago('lastHour', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+
+<hr>
+
+{{computedNumHours}}
+<br />
+<code>
+  export default Ember.Controller.extend({<br />
+    numHours: 822,<br />
+    computedNumHours: duration('numHours', 'hours'),<br />
   });
 </code>
