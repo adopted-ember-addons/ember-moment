@@ -4,8 +4,7 @@
 
 ## Usage
 
-* `npm install --save ember-moment`
-* `ember g ember-moment`
+* `ember install:addon ember-moment`
 
 ```hbs
 {{moment date}}
