@@ -23,9 +23,9 @@ export default function computedMoment(date, outputFormat, maybeInputFormat) {
   args.shift();
 
   return computed = emberComputed(date, function () {
-    var desc,
-        self = this,
-        momentArgs = [get(this, date)];
+    var self = this;
+    var momentArgs = [get(this, date)];
+    var desc;
 
     var propertyValues = EnumerableUtils.map(args, function (arg) {
       desc = descriptorFor.call(self, arg);

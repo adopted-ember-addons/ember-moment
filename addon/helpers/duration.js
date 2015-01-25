@@ -1,7 +1,18 @@
 import Ember from 'ember';
 import moment from 'moment';
+import MomentArguments from 'ember-moment/moment-arguments';
 
 var duration;
+
+function momentDuration (momentArgs) {
+  var args = [momentArgs.value];
+
+  if (typeof momentArgs.label !== 'undefined') {
+    args.push(momentArgs.label);
+  }
+
+  return moment.duration.apply(this, args).humanize();
+}
 
 if (Ember.HTMLBars) {
   duration = function duration(params) {
@@ -11,10 +22,20 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
-    return moment.duration.apply(this, params).humanize();
+    var momentArgs = params[0];
+
+    if (!(momentArgs instanceof MomentArguments)) {
+      var options = { value: params[0] };
+      if (params[1]) {
+        options.label = params[1];
+      }
+      momentArgs = new MomentArguments(options);
+    }
+
+    return momentDuration(momentArgs);
   };
 } else {
-  duration = function duration(arg1, arg2) {
+  duration = function duration(value, label) {
     var length = arguments.length;
 
     if (length === 1 || length > 3) {
@@ -23,13 +44,17 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
-    var args = [arg1];
+    var momentArgs = value;
 
-    if (length === 3) {
-      args.push(arg2);
+    if (!(momentArgs instanceof MomentArguments)) {
+      var options = { value: value };
+      if (length === 3) {
+        options.label = label;
+      }
+      momentArgs = new MomentArguments(options);
     }
 
-    return moment.duration.apply(this, args).humanize();
+    return momentDuration(momentArgs);
   };
 }
 
