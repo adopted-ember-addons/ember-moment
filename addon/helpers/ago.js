@@ -1,7 +1,18 @@
 import Ember from 'ember';
+import MomentArguments from 'ember-moment/moment-arguments';
 import moment from 'moment';
 
 var ago;
+
+function momentAgo (momentArgs) {
+  var args = [momentArgs.value];
+
+  if (typeof momentArgs.inputFormat !== 'undefined') {
+    args.push(momentArgs.inputFormat);
+  }
+
+  return moment.apply(this, args).fromNow();
+}
 
 if (Ember.HTMLBars) {
   ago = function ago(params) {
@@ -9,20 +20,38 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
 
-    return moment.apply(this, params).fromNow();
+    var momentArgs = params[0];
+
+    if (!(momentArgs instanceof MomentArguments)) {
+      var options = { value: params[0] };
+
+      if (params.length > 1) {
+        options.inputFormat = params[1];
+      }
+
+      momentArgs = new MomentArguments(options);
+    }
+
+    return momentAgo(momentArgs);
   };
 } else {
   ago = function ago(value, maybeInput) {
-    var length = arguments.length;
-    var args = [value];
+    var momentArgs = value;
 
-    if (length === 1) {
-      throw new TypeError('Invalid Number of arguments, expected at least 1');
-    } else if (length > 3) {
-      args.push(maybeInput);
+    if (!(momentArgs instanceof MomentArguments)) {
+      var options = { value: value };
+      var length = arguments.length;
+
+      if (length === 1) {
+        throw new TypeError('Invalid Number of arguments, expected at least 1');
+      } else if (length > 3) {
+        options.inputFormat = maybeInput;
+      }
+
+      momentArgs = new MomentArguments(options);
     }
 
-    return moment.apply(this, args).fromNow();
+    return momentAgo(momentArgs);
   };
 }
 
