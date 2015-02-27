@@ -4,8 +4,14 @@ import duration from 'ember-moment/helpers/duration';
 import Ember from 'ember';
 
 export var initialize = function(/* container, app */) {
-  var helper = (Ember.HTMLBars || Ember.Handlebars).helper;
-
+  var helper;
+  
+  if (Ember.HTMLBars) {
+      helper = Ember.HTMLBars._registerHelper;
+  } else {
+      helper = Ember.Handlebars.helper;
+  };
+ 
   helper('moment', moment);
   helper('ago', ago);
   helper('duration', duration);

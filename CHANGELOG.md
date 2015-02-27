@@ -1,3 +1,9 @@
+### 1.1.0
+
+* [ENHANCEMENT] HTMLBars support (backwards compat. with Handlebars)
+
+* [ENHANCEMENT] Adding duration helper with examples in the dummy app
+
 ### 1.0.0
 
 * [BREAKING ENHANCEMENT] The full `moment` Handlebars helper signature is now
