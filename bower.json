@@ -8,12 +8,12 @@
     "loader.js": "stefanpenner/loader.js#1.0.1",
     "ember-cli-moment-shim": "jasonmit/ember-cli-moment-shim#0.0.3",
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",
-    "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4",
+    "ember-cli-test-loader": "ember-cli/ember-cli-test-loader#0.1.1",
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
-    "ember-qunit": "0.1.8",
-    "ember-qunit-notifications": "0.0.4",
+    "ember-qunit": "0.2.8",
+    "ember-qunit-notifications": "0.0.7",
     "moment": "~2.8.4",
-    "qunit": "~1.15.0"
+    "qunit": "~1.17.1"
   },
   "devDependencies": {
     "moment-timezone": "~0.2.5"
