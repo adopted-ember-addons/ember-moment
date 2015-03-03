@@ -26,6 +26,7 @@ if (Ember.HTMLBars) {
 
     return momentjs.apply(this, args).format(output);
   };
+  moment = Ember.HTMLBars.makeBoundHelper(moment);
 } else {
   moment = function moment(value, maybeOutput, maybeInput) {
     var length = arguments.length;
