@@ -3,7 +3,11 @@
 
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-var app = new EmberAddon();
+var app = new EmberAddon({
+    vendorFiles: {
+        'handlebars.js': null
+    }
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -25,5 +29,7 @@ app.import(app.bowerDirectory + '/ember-cli-moment-shim/moment-shim.js', {
 });
 
 app.import(app.bowerDirectory + '/moment-timezone/moment-timezone.js');
+
+app.import(app.bowerDirectory + '/ember/ember-template-compiler.js');
 
 module.exports = app.toTree();
