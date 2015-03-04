@@ -1,3 +1,7 @@
+### 1.1.1
+
+* [BUGFIX] HTMLBars should use `makeBoundHelper`
+
 ### 1.1.0
 
 * [ENHANCEMENT] HTMLBars support (backwards compat. with Handlebars)
