@@ -4,7 +4,8 @@
 
 ## Usage
 
-* `ember install:addon ember-moment`
+* ember-cli < 0.2.3 `ember install:addon ember-moment`
+* ember-cli >= 0.2.3 `ember install ember-moment`
 
 ```hbs
 {{moment date}}
