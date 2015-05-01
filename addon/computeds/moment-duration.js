@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { descriptorFor } from './moment';
+import { descriptorFor } from './moment-format';
 
 var get = Ember.get;
 var emberComputed = Ember.computed;
@@ -11,7 +11,7 @@ export default function computedDuration(val, maybeUnits) {
 
   var computed = emberComputed(val, function () {
     var momentArgs, desc, input;
-    
+
     momentArgs = [get(this, val)];
 
     if (numArgs > 1) {

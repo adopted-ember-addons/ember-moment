@@ -1,9 +1,9 @@
-import moment from './computeds/moment';
-import ago from './computeds/ago';
-import duration from './computeds/duration';
+import momentFormat from './computeds/moment-format';
+import momentAgo from './computeds/moment-ago';
+import momentDuration from './computeds/moment-duration';
 
 export {
-  moment,
-  ago,
-  duration
+  momentFormat,
+  momentAgo,
+  momentDuration
 };
