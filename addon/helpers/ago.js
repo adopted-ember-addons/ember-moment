@@ -1,10 +1,11 @@
 import Ember from 'ember';
-import momentFormat from './moment-format';
+import moment from 'moment';
 
-var momentAgo;
+var ago;
+Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
 
 if (Ember.HTMLBars) {
-  momentAgo = function ago(params) {
+  ago = function ago(params) {
     if (params.length === 0) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
@@ -12,7 +13,7 @@ if (Ember.HTMLBars) {
     return moment.apply(this, params).fromNow();
   };
 } else {
-  momentAgo = function ago(value, maybeInput) {
+  ago = function ago(value, maybeInput) {
     var length = arguments.length;
     var args = [value];
 
@@ -26,4 +27,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export default momentAgo;
+export default ago;

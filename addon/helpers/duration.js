@@ -1,10 +1,11 @@
 import Ember from 'ember';
-import momentFormat from './moment-format';
+import moment from 'moment';
 
-var momentDuration;
+var duration;
+Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
 
 if (Ember.HTMLBars) {
-  momentDuration = function duration(params) {
+  duration = function duration(params) {
     var length = params.length;
 
     if (length === 0 || length > 2) {
@@ -14,7 +15,7 @@ if (Ember.HTMLBars) {
     return moment.duration.apply(this, params).humanize();
   };
 } else {
-  momentDuration = function duration(arg1, arg2) {
+  duration = function duration(arg1, arg2) {
     var length = arguments.length;
 
     if (length === 1 || length > 3) {
@@ -33,4 +34,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export default momentDuration;
+export default duration;
