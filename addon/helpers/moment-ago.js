@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-var ago;
+var momentAgo;
 
 if (Ember.HTMLBars) {
-  ago = function ago(params) {
+  momentAgo = function ago(params) {
     if (params.length === 0) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
@@ -12,7 +12,7 @@ if (Ember.HTMLBars) {
     return moment.apply(this, params).fromNow();
   };
 } else {
-  ago = function ago(value, maybeInput) {
+  momentAgo = function ago(value, maybeInput) {
     var length = arguments.length;
     var args = [value];
 
@@ -26,4 +26,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export default ago;
+export default momentAgo;

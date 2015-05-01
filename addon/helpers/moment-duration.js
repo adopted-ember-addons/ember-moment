@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-var duration;
+var momentDuration;
 
 if (Ember.HTMLBars) {
-  duration = function duration(params) {
+  momentDuration = function duration(params) {
     var length = params.length;
 
     if (length === 0 || length > 2) {
@@ -14,7 +14,7 @@ if (Ember.HTMLBars) {
     return moment.duration.apply(this, params).humanize();
   };
 } else {
-  duration = function duration(arg1, arg2) {
+  momentDuration = function duration(arg1, arg2) {
     var length = arguments.length;
 
     if (length === 1 || length > 3) {
@@ -33,4 +33,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export default duration;
+export default momentDuration;

@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import momentjs from 'moment';
 
-var moment;
+var momentFormat;
 
 if (Ember.HTMLBars) {
-  moment = function moment(params) {
+  momentFormat = function moment(params) {
     var length = params.length;
     var args = [];
     var output;
@@ -27,7 +27,7 @@ if (Ember.HTMLBars) {
     return momentjs.apply(this, args).format(output);
   };
 } else {
-  moment = function moment(value, maybeOutput, maybeInput) {
+  momentFormat = function moment(value, maybeOutput, maybeInput) {
     var length = arguments.length;
     var args = [];
     var output;
@@ -54,4 +54,4 @@ if (Ember.HTMLBars) {
   };
 }
 
-export default moment;
+export default momentFormat;
