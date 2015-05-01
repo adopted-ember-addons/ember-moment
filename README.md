@@ -8,28 +8,28 @@
 * ember-cli >= 0.2.3 `ember install ember-moment`
 
 ```hbs
-{{moment date}}
-{{ago date}}
-{{duration ms}}
+{{moment-format date}}
+{{moment-ago date}}
+{{moment-duration ms}}
 ```
 
 advance
 
 ```hbs
-{{moment date outputFormat inputFormat}}
-{{ago date inputFormat}}}
-{{duration number units}}
+{{moment-format date outputFormat inputFormat}}
+{{moment-ago date inputFormat}}}
+{{moment-duration number units}}
 ```
 
 ## Computed Macro
 
 ```js
-import { moment, ago } from 'ember-moment/computed';
+import { momentFormat, momentAgo } from 'ember-moment/computed';
 
 export default Ember.Controller.extend({
   date: new Date('2013-02-08T09:30:26'),
-  shortDate: moment('date', 'MM/DD/YYYY')
-  timeSince: ago('date', true)
+  shortDate: momentFormat('date', 'MM/DD/YYYY')
+  timeSince: momentAgo('date', true)
 });
 ```
 
