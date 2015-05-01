@@ -7,7 +7,7 @@ import duration from './computeds/duration';
 
 export {
     moment,
-    ago
+    ago,
     duration,
     momentFormat,
     momentAgo,
