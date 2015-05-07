@@ -2,7 +2,6 @@ import Ember from 'ember';
 import moment from 'moment';
 
 var duration;
-Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
 
 if (Ember.HTMLBars) {
   duration = function duration(params) {
@@ -12,6 +11,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
+    Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
     return moment.duration.apply(this, params).humanize();
   };
 } else {
@@ -30,6 +30,7 @@ if (Ember.HTMLBars) {
       args.push(arg2);
     }
 
+    Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
     return moment.duration.apply(this, args).humanize();
   };
 }

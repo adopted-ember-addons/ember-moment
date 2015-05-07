@@ -2,7 +2,6 @@ import Ember from 'ember';
 import momentjs from 'moment';
 
 var moment;
-Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
 
 if (Ember.HTMLBars) {
   moment = function moment(params) {
@@ -25,6 +24,7 @@ if (Ember.HTMLBars) {
       output = params[1];
     }
 
+    Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
     return momentjs.apply(this, args).format(output);
   };
 } else {
@@ -51,6 +51,7 @@ if (Ember.HTMLBars) {
       output = maybeOutput;
     }
 
+    Ember.deprecate("ember-moment: Template helpers have been renamed from 'moment', 'ago', 'duration' to 'moment-format', 'moment-ago' and 'moment-duration'");
     return momentjs.apply(this, args).format(output);
   };
 }
