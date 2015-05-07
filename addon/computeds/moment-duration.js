@@ -6,6 +6,7 @@ var get = Ember.get;
 var emberComputed = Ember.computed;
 
 export default function computedDuration(val, maybeUnits) {
+
   var numArgs = arguments.length;
   var args = [val];
 

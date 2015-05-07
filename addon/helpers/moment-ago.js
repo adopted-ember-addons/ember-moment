@@ -9,7 +9,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
 
-    return moment.apply(this, params).fromNow();
+    return momentFormat.apply(this, params).fromNow();
   };
 } else {
   momentAgo = function ago(value, maybeInput) {
@@ -22,7 +22,7 @@ if (Ember.HTMLBars) {
       args.push(maybeInput);
     }
 
-    return moment.apply(this, args).fromNow();
+    return momentFormat.apply(this, args).fromNow();
   };
 }
 

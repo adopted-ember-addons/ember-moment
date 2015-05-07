@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import date from '../helpers/date';
 import moment from 'moment';
-import { ago as computedAgo } from 'ember-moment/computed';
+import { momentAgo as computedAgo } from 'ember-moment/computed';
 
 module('agoComputed');
 

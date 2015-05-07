@@ -11,7 +11,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
-    return moment.duration.apply(this, params).humanize();
+    return momentFormat.duration.apply(this, params).humanize();
   };
 } else {
   momentDuration = function duration(arg1, arg2) {
@@ -29,7 +29,7 @@ if (Ember.HTMLBars) {
       args.push(arg2);
     }
 
-    return moment.duration.apply(this, args).humanize();
+    return momentFormat.duration.apply(this, args).humanize();
   };
 }
 
