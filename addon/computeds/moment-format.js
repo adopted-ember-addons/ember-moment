@@ -15,8 +15,6 @@ export function descriptorFor(propertyName) {
 }
 
 export default function computedMoment(date, outputFormat, maybeInputFormat) {
-  Ember.deprecate("ember-moment: Computed properties have been renamed from 'moment', 'ago', 'duration' to 'momentFormat', 'momentAgo' and 'momentDuration'");
-
   Ember.assert('More than one argument passed into moment computed', arguments.length > 1);
 
   var args = a_slice.call(arguments);

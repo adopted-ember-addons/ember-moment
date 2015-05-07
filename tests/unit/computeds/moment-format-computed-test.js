@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import date from '../helpers/date';
-import { moment as computedMoment } from 'ember-moment/computed';
+import { momentFormat as computedMoment } from 'ember-moment/computed';
 
 module('momentComputed');
 

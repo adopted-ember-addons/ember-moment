@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import date from '../helpers/date';
 import moment from 'moment';
-import { duration as computedDuration } from 'ember-moment/computed';
+import { momentDuration as computedDuration } from 'ember-moment/computed';
 
 module('durationComputed');
 

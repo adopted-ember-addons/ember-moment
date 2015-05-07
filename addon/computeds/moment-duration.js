@@ -1,12 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { descriptorFor } from './moment';
+import { descriptorFor } from './moment-format';
 
 var get = Ember.get;
 var emberComputed = Ember.computed;
 
 export default function computedDuration(val, maybeUnits) {
-  Ember.deprecate("ember-moment: Computed properties have been renamed from 'moment', 'ago', 'duration' to 'momentFormat', 'momentAgo' and 'momentDuration'");
 
   var numArgs = arguments.length;
   var args = [val];

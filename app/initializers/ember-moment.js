@@ -1,3 +1,6 @@
+import momentFormat from 'ember-moment/helpers/moment-format';
+import momentAgo from 'ember-moment/helpers/moment-ago';
+import momentDuration from 'ember-moment/helpers/moment-duration';
 import moment from 'ember-moment/helpers/moment';
 import ago from 'ember-moment/helpers/ago';
 import duration from 'ember-moment/helpers/duration';
@@ -14,9 +17,13 @@ export var initialize = function(/* container, app */) {
     registerHelper = Ember.Handlebars.helper;
   };
 
-  registerHelper('moment', moment);
-  registerHelper('ago', ago);
-  registerHelper('duration', duration);
+  registerHelper('moment-format', momentFormat);
+  registerHelper('moment-ago', momentAgo);
+  registerHelper('moment-duration', momentDuration);
+
+  registerHelper('moment', momentFormat);
+  registerHelper('ago', momentAgo);
+  registerHelper('duration', momentDuration);
 };
 
 export default {
