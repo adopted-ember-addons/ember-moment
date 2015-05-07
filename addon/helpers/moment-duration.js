@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import momentFormat from './moment-format';
+import moment from 'moment';
 
 var momentDuration;
 
@@ -11,7 +11,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
-    return momentFormat.duration.apply(this, params).humanize();
+    return moment.duration.apply(this, params).humanize();
   };
 } else {
   momentDuration = function duration(arg1, arg2) {
@@ -29,7 +29,7 @@ if (Ember.HTMLBars) {
       args.push(arg2);
     }
 
-    return momentFormat.duration.apply(this, args).humanize();
+    return moment.duration.apply(this, args).humanize();
   };
 }
 

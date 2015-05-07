@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import momentFormat from './moment-format';
+import moment from 'moment';
 
 var momentAgo;
 
@@ -9,7 +9,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
 
-    return momentFormat.apply(this, params).fromNow();
+    return moment.apply(this, params).fromNow();
   };
 } else {
   momentAgo = function ago(value, maybeInput) {
@@ -22,7 +22,7 @@ if (Ember.HTMLBars) {
       args.push(maybeInput);
     }
 
-    return momentFormat.apply(this, args).fromNow();
+    return moment.apply(this, args).fromNow();
   };
 }
 
