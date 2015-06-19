@@ -33,6 +33,19 @@ export default Ember.Controller.extend({
 });
 ```
 
+## Include Moment Timezone
+
+You can optionally include the Moment Timezone package in your `Brocfile.js` like so:
+
+```js
+var app = new EmberApp({
+  'ember-moment': {
+    // moment-timezone dataset to include.  Either 'all', '2010-2020', or 'none'.
+    'includeTimezone': 'all'
+  }
+});
+```
+
 ## Development
 
 * `git clone` this repository

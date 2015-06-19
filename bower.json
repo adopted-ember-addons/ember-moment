@@ -12,9 +12,7 @@
     "ember-qunit": "0.2.8",
     "ember-qunit-notifications": "0.0.7",
     "moment": "~2.8.4",
+    "moment-timezone": "~0.2.5",
     "qunit": "~1.17.1"
-  },
-  "devDependencies": {
-    "moment-timezone": "~0.2.5"
   }
 }
