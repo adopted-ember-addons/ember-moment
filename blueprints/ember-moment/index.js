@@ -9,5 +9,6 @@ module.exports = {
 
   afterInstall: function() {
     return this.addBowerPackageToProject('ember-cli-moment-shim');
+    return this.addBowerPackageToProject('moment-timezone');
   }
 };
