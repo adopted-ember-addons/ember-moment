@@ -2,10 +2,6 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  defaults['ember-moment'] = {
-    includeTimezone: 'all'
-  };
-
   var app = new EmberApp(defaults, {});
 
   /*
