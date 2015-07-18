@@ -1,11 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-var duration;
+let duration;
 
 if (Ember.HTMLBars) {
   duration = function duration(params) {
-    var length = params.length;
+    let length = params.length;
 
     if (length === 0 || length > 2) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
@@ -15,7 +15,7 @@ if (Ember.HTMLBars) {
   };
 } else {
   duration = function duration(arg1, arg2) {
-    var length = arguments.length;
+    let length = arguments.length;
 
     if (length === 1 || length > 3) {
       // there's one extra argument that handlebars adds to the end,
@@ -23,7 +23,7 @@ if (Ember.HTMLBars) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
     }
 
-    var args = [arg1];
+    let args = [arg1];
 
     if (length === 3) {
       args.push(arg2);

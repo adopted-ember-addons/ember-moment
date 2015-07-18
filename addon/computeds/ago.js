@@ -1,20 +1,19 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { descriptorFor } from './moment';
+import isDescriptor from '../utils/is-descriptor';
 
-var get = Ember.get;
-var emberComputed = Ember.computed;
+let get = Ember.get;
+let emberComputed = Ember.computed;
 
 export default function computedAgo(date, maybeInputFormat) {
-  var args = [date];
-  
-  var computed = emberComputed(date, function () {
-    var momentArgs, desc, input;
-    momentArgs = [get(this, date)];
+  let args = [date];
+
+  let computed = emberComputed(date, function () {
+    let momentArgs = [get(this, date)];
 
     if (arguments.length > 1) {
-      desc = descriptorFor.call(this, maybeInputFormat);
-      input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
+      let desc = isDescriptor(this[maybeInputFormat]);
+      let input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
 
       if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {
         computed.property(maybeInputFormat);
