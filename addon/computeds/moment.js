@@ -1,40 +1,28 @@
 import Ember from 'ember';
+import isDescriptor from '../utils/is-descriptor';
 import moment from 'moment';
 
-var get = Ember.get;
-var emberComputed = Ember.computed;
-var EnumerableUtils = Ember.EnumerableUtils;
-var a_slice = Array.prototype.slice;
-
-export function descriptorFor(propertyName) {
-  var meta = Ember.meta(this);
-
-  if (meta && meta.descs) {
-    return meta.descs[propertyName];
-  }
-}
+let { computed, EnumerableUtils, get, assert } = Ember;
+let a_slice = Array.prototype.slice;
 
 export default function computedMoment(date, outputFormat, maybeInputFormat) {
-  Ember.assert('More than one argument passed into moment computed', arguments.length > 1);
+  assert('More than one argument passed into moment computed', arguments.length > 1);
 
-  var args = a_slice.call(arguments);
-  var computed;
-
+  let args = a_slice.call(arguments);
+  let result;
   args.shift();
 
-  return computed = emberComputed(date, function () {
-    var desc,
-        self = this,
-        momentArgs = [get(this, date)];
+  return result = computed(date, function () {
+    let momentArgs = [get(this, date)];
 
-    var propertyValues = EnumerableUtils.map(args, function (arg) {
-      desc = descriptorFor.call(self, arg);
+    let propertyValues = EnumerableUtils.map(args, (arg) => {
+      let desc = isDescriptor(this[arg]);
 
-      if (desc && computed._dependentKeys.indexOf(arg) === -1) {
-        computed.property(arg);
+      if (desc && result._dependentKeys.indexOf(arg) === -1) {
+        result.property(arg);
       }
 
-      return desc ? get(self, arg) : arg;
+      return desc ? get(this, arg) : arg;
     });
 
     outputFormat = propertyValues[0];

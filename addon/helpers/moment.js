@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import momentjs from 'moment';
 
-var moment;
+let moment;
 
 if (Ember.HTMLBars) {
   moment = function moment(params) {
-    var length = params.length;
-    var args = [];
-    var output;
+    let length = params.length;
+    let args = [];
+    let output;
 
     if (length === 0 || length > 3) {
       throw new TypeError('Invalid Number of arguments, expected at least 1 and at most 3');
@@ -28,9 +28,9 @@ if (Ember.HTMLBars) {
   };
 } else {
   moment = function moment(value, maybeOutput, maybeInput) {
-    var length = arguments.length;
-    var args = [];
-    var output;
+    let length = arguments.length;
+    let args = [];
+    let output;
 
     if (length === 1 || length > 4) {
       // there's one extra argument that handlebars adds to the end,

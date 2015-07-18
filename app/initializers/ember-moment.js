@@ -3,8 +3,8 @@ import ago from 'ember-moment/helpers/ago';
 import duration from 'ember-moment/helpers/duration';
 import Ember from 'ember';
 
-export var initialize = function(/* container, app */) {
-  var registerHelper;
+export function initialize() {
+  let registerHelper;
 
   if (Ember.HTMLBars) {
     registerHelper = function (helperName, fn) {

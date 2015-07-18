@@ -1,21 +1,21 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { descriptorFor } from './moment';
+import isDescriptor from '../utils/is-descriptor';
 
-var get = Ember.get;
-var emberComputed = Ember.computed;
+let get = Ember.get;
+let emberComputed = Ember.computed;
 
 export default function computedDuration(val, maybeUnits) {
-  var numArgs = arguments.length;
-  var args = [val];
+  let numArgs = arguments.length;
+  let args = [val];
 
-  var computed = emberComputed(val, function () {
-    var momentArgs, desc, input;
-    
+  let computed = emberComputed(val, function () {
+    let momentArgs, desc, input;
+
     momentArgs = [get(this, val)];
 
     if (numArgs > 1) {
-      desc = descriptorFor.call(this, maybeUnits);
+      desc = isDescriptor(this[maybeUnits]);
       input = desc ? get(this, maybeUnits) : maybeUnits;
 
       if (desc && computed._dependentKeys.indexOf(maybeUnits) === -1) {

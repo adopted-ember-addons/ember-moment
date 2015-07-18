@@ -1,23 +1,23 @@
 import Ember from 'ember';
 import { initialize } from '../../../initializers/ember-moment';
 
-var container, application;
+let { Container, Application } = Ember;
+let container, application;
 
 module('EmberMomentInitializer', {
-  setup: function() {
-    Ember.run(function() {
-      container = new Ember.Container();
-      application = Ember.Application.create();
+  setup() {
+    Ember.run(() => {
+      container = new Container();
+      application = Application.create();
       application.deferReadiness();
     });
   }
 });
 
 // Replace this with your real tests.
-test('it works', function() {
+test('it works', (assert) => {
   initialize(container, application);
 
   // you would normally confirm the results of the initializer here
-  ok(true);
+  assert.ok(true);
 });
-
