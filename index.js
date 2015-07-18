@@ -2,7 +2,7 @@
 
 module.exports = {
   name: 'ember-moment',
-  included: function included(app) {
-    this._super.included(app);
+  included: function() {
+    this._super.included.apply(this, arguments);
   }
 };
