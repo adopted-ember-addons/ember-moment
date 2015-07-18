@@ -1,3 +1,20 @@
+### 2.0.0
+
+* 1.13.x support
+* moment and moment timezone are now pulled in from `ember-cli-moment-shim` instead of `ember-moment`
+* BREAKING: moved EmberApp's `ember-moment` configuration object to `config/environment.js` and renamed to `moment`.
+
+```js
+// config/environment.js
+module.exports = function(environment) {
+  var ENV = {
+    moment: {
+      includeTimezone: 'all'
+    }
+  };
+  return ENV;
+```
+
 ### 1.1.1
 
 * [BUGFIX] HTMLBars should use `makeBoundHelper`
@@ -11,9 +28,9 @@
 ### 1.0.0
 
 * [BREAKING ENHANCEMENT] The full `moment` Handlebars helper signature is now
-  
+
       `{{moment date outputFormat inputFormat}}`
-  
+
   to better reflect common usage pattern. You are usually passing a date as the first argument, which does not require specifying an inputFormat, and at the same time, you usually do want to specify an output format. [#12](https://github.com/stefanpenner/ember-moment/pull/12).
 
     Fixes case of passing both input and output formats, and changes default output format.

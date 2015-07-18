@@ -21,6 +21,13 @@ advance
 {{duration number units}}
 ```
 
+## ES6 Moment
+
+This addon provides the ability to import moment as an ES6 module.
+```js
+import moment from 'moment';
+```
+
 ## Computed Macro
 
 ```js
@@ -35,15 +42,20 @@ export default Ember.Controller.extend({
 
 ## Include Moment Timezone
 
-You can optionally include the Moment Timezone package in your `Brocfile.js` like so:
+You can optionally include the Moment Timezone package in your `config/environment.js` like so:
 
 ```js
-var app = new EmberApp({
-  'ember-moment': {
-    // moment-timezone dataset to include.  Either 'all', '2010-2020', or 'none'.
-    'includeTimezone': 'all'
-  }
-});
+// config.environment.js
+module.exports = function(environment) {
+  var ENV = {
+    moment: {
+      // Options:
+      // 'all' - all years, all timezones
+      // '2010-2020' - 2010-2020, all timezones
+      // 'none' - no data, just timezone API
+      includeTimezone: 'all'
+    }
+  };
 ```
 
 ## Development
