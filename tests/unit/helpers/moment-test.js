@@ -1,12 +1,17 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
+import { moduleFor, test } from 'ember-qunit';
 import moment from 'ember-moment/helpers/moment';
 import date from './date';
 import callHelper from '../../helpers/call-helper';
 import { initialize } from '../../../initializers/ember-moment';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-module('MomentHelper');
+moduleFor('ember-moment@helper:moment', {
+  beforeEach() {
+    initialize(this.container);
+  }
+});
 
 let FAKE_HANDLEBARS_CONTEXT = {};
 
@@ -28,8 +33,6 @@ test('three args (date, outputFormat, inputFormat)', (assert) => {
 });
 
 test('change date input and change is reflected by bound helper', (assert) => {
-  initialize();
-
   let context = Ember.Object.create({
     date: date(0)
   });

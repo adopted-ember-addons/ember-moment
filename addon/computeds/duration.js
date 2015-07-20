@@ -2,8 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 import isDescriptor from '../utils/is-descriptor';
 
-let get = Ember.get;
-let emberComputed = Ember.computed;
+const { get, computed:emberComputed } = Ember;
 
 export default function computedDuration(val, maybeUnits) {
   let numArgs = arguments.length;

@@ -2,8 +2,8 @@ import Ember from 'ember';
 import isDescriptor from '../utils/is-descriptor';
 import moment from 'moment';
 
-let { computed, EnumerableUtils, get, assert } = Ember;
-let a_slice = Array.prototype.slice;
+const { computed, EnumerableUtils, get, assert } = Ember;
+const a_slice = Array.prototype.slice;
 
 export default function computedMoment(date, outputFormat, maybeInputFormat) {
   assert('More than one argument passed into moment computed', arguments.length > 1);

@@ -5,8 +5,8 @@ let moment;
 
 if (Ember.HTMLBars) {
   moment = function moment(params) {
-    let length = params.length;
-    let args = [];
+    const length = params.length;
+    const args = [];
     let output;
 
     if (length === 0 || length > 3) {
@@ -28,8 +28,8 @@ if (Ember.HTMLBars) {
   };
 } else {
   moment = function moment(value, maybeOutput, maybeInput) {
-    let length = arguments.length;
-    let args = [];
+    const length = arguments.length;
+    const args = [];
     let output;
 
     if (length === 1 || length > 4) {

@@ -5,7 +5,7 @@ let duration;
 
 if (Ember.HTMLBars) {
   duration = function duration(params) {
-    let length = params.length;
+    const length = params.length;
 
     if (length === 0 || length > 2) {
       throw new TypeError('Invalid Number of arguments, expected 1 or 2');
@@ -15,7 +15,7 @@ if (Ember.HTMLBars) {
   };
 } else {
   duration = function duration(arg1, arg2) {
-    let length = arguments.length;
+    const length = arguments.length;
 
     if (length === 1 || length > 3) {
       // there's one extra argument that handlebars adds to the end,
