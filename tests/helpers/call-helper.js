@@ -10,13 +10,14 @@ if (Ember.HTMLBars) {
   callHelper = function(helper, args) {
     let params = args.slice(0, -1);
     let context = args[args.length - 1];
+    let fn = helper.compute || helper;
 
     if (Ember.Helper && Ember.Helper.detect(helper)) {
       let instance = helper.create();
       return instance.compute(params, context);
     }
 
-    return helper(params, context);
+    return fn(params, context);
   };
 } else {
   callHelper = function(helper, args) {

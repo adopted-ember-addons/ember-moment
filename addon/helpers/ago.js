@@ -10,7 +10,9 @@ function buildHelper(cb) {
     if (params.length === 0) {
       throw new TypeError('Invalid Number of arguments, expected at least 1');
     }
-    cb.apply(this, arguments);
+    if (typeof cb === 'function') {
+      cb.apply(this, arguments);
+    }
     return moment.apply(this, params).fromNow();
   };
 }
@@ -26,22 +28,8 @@ if (Ember.Helper) {
     })
   });
 }
-else if (Ember.HTMLBars) {
-  ago = buildHelper();
-}
 else {
-  ago = function legacyAgo(value, maybeInput) {
-    const length = arguments.length;
-    const args = [value];
-
-    if (length === 1) {
-      throw new TypeError('Invalid Number of arguments, expected at least 1');
-    } else if (length > 3) {
-      args.push(maybeInput);
-    }
-
-    return moment.apply(this, args).fromNow();
-  };
+  ago = Ember.HTMLBars.makeBoundHelper(buildHelper());
 }
 
 export default ago;
