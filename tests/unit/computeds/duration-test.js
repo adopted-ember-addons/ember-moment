@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { duration as computedDuration } from 'ember-moment/computed';
+import computedDuration from 'ember-moment/computeds/duration';
 
 module('durationComputed');
 

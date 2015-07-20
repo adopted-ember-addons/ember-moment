@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { ago as computedAgo } from 'ember-moment/computed';
+import computedAgo from 'ember-moment/computeds/ago';
 
 module('agoComputed');
 

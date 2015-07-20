@@ -2,6 +2,11 @@
 
 [moment.js](http://momentjs.com) template helpers for ember [![Build Status](https://travis-ci.org/stefanpenner/ember-moment.svg?branch=master)](https://travis-ci.org/stefanpenner/ember-moment)
 
+## Requirements
+* Ember >= 1.10
+  * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
+* HTMLBars
+
 ## Usage
 
 * ember-cli < 0.2.3 `ember install:addon ember-moment`
@@ -13,12 +18,20 @@
 {{duration ms}}
 ```
 
-advance
+### Advance
 
 ```hbs
 {{moment date outputFormat inputFormat}}
 {{ago date inputFormat}}
 {{duration number units}}
+```
+
+Recomputes the time ago every 1-second.  This is useful for "live" updating as time elapses.
+
+NOTE: This feature is only supported in Ember >= 1.13.0
+
+```hbs
+{{ago date interval=1000}}
 ```
 
 ## ES6 Moment
@@ -31,12 +44,25 @@ import moment from 'moment';
 ## Computed Macro
 
 ```js
-import { moment, ago } from 'ember-moment/computed';
+import computedDuration from 'ember-moment/computeds/duration';
+import computedMoment from 'ember-moment/computeds/moment';
+import computedAgo from 'ember-moment/computeds/ago';
 
 export default Ember.Controller.extend({
   date: new Date('2013-02-08T09:30:26'),
-  shortDate: moment('date', 'MM/DD/YYYY')
-  timeSince: ago('date', true)
+
+  // Takes on the behavior of moment().format()
+  // http://momentjs.com/docs/#/displaying/format/
+  shortDate: computedMoment('date', 'MM/DD/YYYY'),
+
+  // second parameter is what is passed on to the `fromNow` function
+  // in this case, `true` is used to display "ago"
+  // http://momentjs.com/docs/#/displaying/fromnow/
+  timeSince: computedAgo('date', true),
+
+  // duration units: seconds, minutes, hours, days, weeks, months, years
+  // http://momentjs.com/docs/#/durations/
+  computedNumHours: computedDuration(10, 'hours')
 });
 ```
 
@@ -46,8 +72,8 @@ You can optionally include the Moment Timezone package in your `config/environme
 
 ```js
 // config.environment.js
-module.exports = function(environment) {
-  var ENV = {
+module.exports = function(/* environment */) {
+  return {
     moment: {
       // Options:
       // 'all' - all years, all timezones
@@ -55,7 +81,8 @@ module.exports = function(environment) {
       // 'none' - no data, just timezone API
       includeTimezone: 'all'
     }
-  };
+  }
+};
 ```
 
 ## Development
