@@ -1,57 +1,27 @@
 import Ember from 'ember';
-import momentjs from 'moment';
+import moment from 'moment';
 
-let moment;
+function momentHelper(params) {
+  const length = params.length;
+  const args = [];
+  let output;
 
-if (Ember.HTMLBars) {
-  moment = function moment(params) {
-    let length = params.length;
-    let args = [];
-    let output;
+  if (length === 0 || length > 3) {
+    throw new TypeError('Invalid Number of arguments, expected at least 1 and at most 3');
+  }
 
-    if (length === 0 || length > 3) {
-      throw new TypeError('Invalid Number of arguments, expected at least 1 and at most 3');
-    }
+  args.push(params[0]);
 
-    args.push(params[0]);
+  if (length === 1) {
+    output = 'LLLL';
+  } else if (length === 2) {
+    output = params[1];
+  } else if (length > 2) {
+    args.push(params[2]);
+    output = params[1];
+  }
 
-    if (length === 1) {
-      output = 'LLLL';
-    } else if (length === 2) {
-      output = params[1];
-    } else if (length > 2) {
-      args.push(params[2]);
-      output = params[1];
-    }
-
-    return momentjs.apply(this, args).format(output);
-  };
-} else {
-  moment = function moment(value, maybeOutput, maybeInput) {
-    let length = arguments.length;
-    let args = [];
-    let output;
-
-    if (length === 1 || length > 4) {
-      // there's one extra argument that handlebars adds to the end,
-      // which explains the difference in what we are checking and the error we are raising
-      throw new TypeError('Invalid Number of arguments, expected at least 1 and at most 3');
-    }
-
-    args.push(value);
-
-    if (length === 2) {
-      output = 'LLLL';
-    }
-    else if (length === 3) {
-      output = maybeOutput;
-    } else if (length > 3) {
-      args.push(maybeInput);
-      output = maybeOutput;
-    }
-
-    return momentjs.apply(this, args).format(output);
-  };
+  return moment.apply(this, args).format(output);
 }
 
-export default moment;
+export default Ember.HTMLBars.makeBoundHelper(momentHelper);

@@ -1,14 +1,18 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import moment from 'ember-moment/helpers/moment';
+import { moduleFor, test } from 'ember-qunit';
 import date from './date';
 import callHelper from '../../helpers/call-helper';
-import { initialize } from '../../../initializers/ember-moment';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-module('MomentHelper');
+const FAKE_HANDLEBARS_CONTEXT = {};
 
-let FAKE_HANDLEBARS_CONTEXT = {};
+moduleFor('helper:moment', {
+  setup() {
+    this.container.register('view:basic', Ember.View);
+  }
+});
 
 test('one arg (date)', (assert) => {
   assert.equal(callHelper(moment, [date(date(0)), FAKE_HANDLEBARS_CONTEXT]), 'Wednesday, December 31, 1969 7:00 PM');
@@ -27,16 +31,14 @@ test('three args (date, outputFormat, inputFormat)', (assert) => {
   assert.equal(callHelper(moment, [date(date(0)),  'LLLL', 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'Wednesday, December 31, 1969 7:00 PM');
 });
 
-test('change date input and change is reflected by bound helper', (assert) => {
-  initialize();
-
+test('change date input and change is reflected by bound helper', function(assert) {
   let context = Ember.Object.create({
     date: date(0)
   });
 
-  let view = Ember.View.create({
+  let view = this.container.lookupFactory('view:basic').create({
     template: hbs`{{moment date}}`,
-    context:  context
+    context: context
   });
 
   runAppend(view);

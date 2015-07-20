@@ -1,36 +1,14 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-let duration;
+function durationHelper(params) {
+  const length = params.length;
 
-if (Ember.HTMLBars) {
-  duration = function duration(params) {
-    let length = params.length;
+  if (length === 0 || length > 2) {
+    throw new TypeError('Invalid Number of arguments, expected 1 or 2');
+  }
 
-    if (length === 0 || length > 2) {
-      throw new TypeError('Invalid Number of arguments, expected 1 or 2');
-    }
-
-    return moment.duration.apply(this, params).humanize();
-  };
-} else {
-  duration = function duration(arg1, arg2) {
-    let length = arguments.length;
-
-    if (length === 1 || length > 3) {
-      // there's one extra argument that handlebars adds to the end,
-      // which explains the difference in what we are checking and the error we are raising
-      throw new TypeError('Invalid Number of arguments, expected 1 or 2');
-    }
-
-    let args = [arg1];
-
-    if (length === 3) {
-      args.push(arg2);
-    }
-
-    return moment.duration.apply(this, args).humanize();
-  };
+  return moment.duration.apply(this, params).humanize();
 }
 
-export default duration;
+export default Ember.HTMLBars.makeBoundHelper(durationHelper);

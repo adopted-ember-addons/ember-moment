@@ -3,7 +3,7 @@ import callHelper from '../../helpers/call-helper';
 
 module('DurationHelper');
 
-let FAKE_HANDLEBARS_CONTEXT = {};
+const FAKE_HANDLEBARS_CONTEXT = {};
 
 test('one arg (ms)', (assert) => {
   assert.equal(callHelper(duration, [86400000, FAKE_HANDLEBARS_CONTEXT]), 'a day');
