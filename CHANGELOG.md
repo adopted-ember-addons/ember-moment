@@ -1,3 +1,11 @@
+### 3.0.0
+* Support to programmatically including moment i18n locale data via `includeLocales`
+* Removes support for Ember.Handlebars.helpers in favor of just supporting HTMLBars going forward
+* Removes `ember-moment/computed`.  Explicit full path import paths to avoid naming conflicts.
+  * `ember-moment/computeds/duration`
+  * `ember-moment/computeds/moment`
+  * `ember-moment/computeds/ago`
+
 ### 2.0.0
 
 * 1.13.x support
