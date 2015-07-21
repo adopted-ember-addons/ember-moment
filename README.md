@@ -85,6 +85,34 @@ module.exports = function(/* environment */) {
 };
 ```
 
+## Include moment locales for i18n support
+
+```js
+// config.environment.js
+module.exports = function(environment) {
+  return {
+    moment: {
+      // To cherry-pick specific locale support into your application.
+      // Full list of locales: https://github.com/moment/moment/tree/2.10.3/locale
+      includeLocales: ['es', 'fr-ca']
+    }
+  };
+```
+
+```js
+// app/routes/applicaton.js
+import moment from 'moment';
+
+export default Ember.Route.extend({
+  beforeModel() {
+    // sets the application locale to Spanish
+    moment.locale('es');
+  }
+});
+```
+
+Feature set of i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/
+
 ## Development
 
 * `git clone` this repository

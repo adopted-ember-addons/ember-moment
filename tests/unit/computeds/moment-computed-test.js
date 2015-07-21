@@ -1,8 +1,13 @@
 import Ember from 'ember';
-import date from '../helpers/date';
+import moment from 'moment';
+import date from '../../helpers/date';
 import computedMoment from 'ember-moment/computeds/moment';
 
-module('momentComputed');
+module('momentComputed', {
+  setup() {
+    moment.locale('en');
+  }
+});
 
 let { observer, computed } = Ember;
 let alias = computed.alias;

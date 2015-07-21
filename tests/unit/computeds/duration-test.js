@@ -1,7 +1,12 @@
 import Ember from 'ember';
+import moment from 'moment';
 import computedDuration from 'ember-moment/computeds/duration';
 
-module('durationComputed');
+module('durationComputed', {
+  setup() {
+    moment.locale('en');
+  }
+});
 
 function createSubject(attrs) {
   return Ember.Object.extend(Ember.$.extend(attrs, {})).create();
