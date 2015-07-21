@@ -1,6 +1,6 @@
 # Ember-moment
 [![npm Version][npm-badge]][npm]
-[![Build Status][travis-badge]][travis
+[![Build Status][travis-badge]][travis]
 
 [moment.js](http://momentjs.com) template helpers for ember
 
