@@ -1,5 +1,6 @@
 # Ember-moment
-[![Build Status](https://travis-ci.org/stefanpenner/ember-moment.svg?branch=master)](https://travis-ci.org/stefanpenner/ember-moment)
+[![npm Version][npm-badge]][npm]
+[![Build Status][travis-badge]][travis
 
 [moment.js](http://momentjs.com) template helpers for ember
 
@@ -132,3 +133,8 @@ Feature set of i18n support within moment can be found here:  http://momentjs.co
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+[npm]: https://www.npmjs.org/package/ember-moment
+[npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
+[travis]: https://travis-ci.org/stefanpenner/ember-moment
+[travis-badge]: https://img.shields.io/travis/stefanpenner/ember-moment.svg?branch=master&style=flat-square
