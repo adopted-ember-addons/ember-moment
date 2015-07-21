@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import ago from 'ember-moment/helpers/ago';
+import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
-import date from './date';
+import date from '../../helpers/date';
 import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
@@ -12,6 +13,7 @@ threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
 moduleFor('helper:ago', {
   setup() {
+    moment.locale('en');
     this.container.register('view:basic', Ember.View);
   }
 });

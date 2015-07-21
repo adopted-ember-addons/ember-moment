@@ -1,7 +1,12 @@
 import Ember from 'ember';
-import { ago as computedAgo } from 'ember-moment/computed';
+import moment from 'moment';
+import computedAgo from 'ember-moment/computeds/ago';
 
-module('agoComputed');
+module('agoComputed', {
+  setup() {
+    moment.locale('en');
+  }
+});
 
 function createSubject(attrs) {
   return Ember.Object.extend(Ember.$.extend({
