@@ -1,3 +1,6 @@
+### 3.0.1
+* Fixes regression in <= 1.12.0 where the helpers are not registered properly
+
 ### 3.0.0
 
 * Support to programmatically including moment i18n locale data via `includeLocales`
