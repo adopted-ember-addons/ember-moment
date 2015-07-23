@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+   this.route('index', { path: '/' });
+   this.route('smoke', { path: '/smoke' });
 });
 
 export default Router;
