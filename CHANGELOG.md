@@ -1,4 +1,11 @@
 ### 3.0.1
+
+* Smoke tests added
+* Fixing regression which broke 1.10.0
+* Added Ember 1.10.0 -> #release to the Travis CI matrix
+
+### 3.0.1
+
 * Fixes regression in <= 1.12.0 where the helpers are not registered properly
 
 ### 3.0.0
@@ -24,12 +31,12 @@
 ```js
 // config/environment.js
 module.exports = function(environment) {
-  var ENV = {
+  return {
     moment: {
       includeTimezone: 'all'
     }
-  };
-  return ENV;
+  }
+}
 ```
 
 ### 1.1.1

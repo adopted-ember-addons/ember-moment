@@ -1,10 +1,10 @@
 {
   "name": "ember-moment",
   "dependencies": {
-    "ember": "1.10.0",
+    "ember": "1.13.5",
     "ember-cli-test-loader": "ember-cli-test-loader#0.1.3",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
-    "ember-load-initializers": "ember-cli/ember-load-initializers#0.0.2",
+    "ember-load-initializers": "ember-cli/ember-load-initializers#0.1.5",
     "ember-qunit": "0.4.1",
     "ember-qunit-notifications": "0.0.7",
     "ember-resolver": "~0.1.18",
@@ -12,8 +12,5 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "moment-timezone": "~0.2.5",
     "qunit": "~1.17.1"
-  },
-  "resolutions": {
-    "ember": "release"
   }
 }
