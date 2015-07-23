@@ -29,7 +29,7 @@ if (Ember.Helper) {
   });
 }
 else {
-  ago = Ember.HTMLBars.makeBoundHelper(buildHelper());
+  ago = buildHelper();
 }
 
 export default ago;

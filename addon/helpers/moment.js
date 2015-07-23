@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import moment from 'moment';
 
 function momentHelper(params) {
@@ -24,4 +23,4 @@ function momentHelper(params) {
   return moment.apply(this, args).format(output);
 }
 
-export default Ember.HTMLBars.makeBoundHelper(momentHelper);
+export default momentHelper;
