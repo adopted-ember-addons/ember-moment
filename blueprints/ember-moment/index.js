@@ -8,6 +8,6 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addAddonToProject('ember-cli-moment-shim', '~0.4.0');
+    return this.addAddonToProject('ember-cli-moment-shim', '~0.5.0');
   }
 };
