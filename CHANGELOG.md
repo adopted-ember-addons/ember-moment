@@ -1,3 +1,7 @@
+### 3.1.0
+
+* Conditionally include all locales if `true` is passed to `includeLocales` option
+
 ### 3.0.2
 
 * Smoke tests added
