@@ -1,4 +1,4 @@
-### 3.0.1
+### 3.0.2
 
 * Smoke tests added
 * Fixing regression which broke 1.10.0
