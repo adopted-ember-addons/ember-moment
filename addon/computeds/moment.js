@@ -16,8 +16,7 @@ export default function computedMoment(date, outputFormat, maybeInputFormat) {
     let momentArgs = [get(this, date)];
 
     let propertyValues = EnumerableUtils.map(args, (arg) => {
-      let desc = isDescriptor(this[arg]);
-
+      let desc = isDescriptor.call(this, arg);
       if (desc && result._dependentKeys.indexOf(arg) === -1) {
         result.property(arg);
       }

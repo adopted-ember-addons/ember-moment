@@ -14,7 +14,7 @@ export default function computedDuration(val, maybeUnits) {
     momentArgs = [get(this, val)];
 
     if (numArgs > 1) {
-      desc = isDescriptor(this[maybeUnits]);
+      desc = isDescriptor.call(this, maybeUnits);
       input = desc ? get(this, maybeUnits) : maybeUnits;
 
       if (desc && computed._dependentKeys.indexOf(maybeUnits) === -1) {

@@ -11,7 +11,7 @@ export default function computedAgo(date, maybeInputFormat) {
     let momentArgs = [get(this, date)];
 
     if (arguments.length > 1) {
-      let desc = isDescriptor(this[maybeInputFormat]);
+      let desc = isDescriptor.call(this, maybeInputFormat);
       let input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
 
       if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {

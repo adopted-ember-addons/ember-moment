@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import moment from 'moment';
 
 function durationHelper(params) {
@@ -11,4 +10,4 @@ function durationHelper(params) {
   return moment.duration.apply(this, params).humanize();
 }
 
-export default Ember.HTMLBars.makeBoundHelper(durationHelper);
+export default durationHelper;
