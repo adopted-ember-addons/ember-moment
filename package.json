@@ -41,7 +41,9 @@
     "momentjs"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.0.0"
+    "broccoli-stew": "^0.3.4",
+    "ember-cli-babel": "^5.0.0",
+    "ember-cli-version-checker": "^1.1.4"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
