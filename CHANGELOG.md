@@ -1,6 +1,9 @@
 ### 3.2.0
 
-* Deprecate computed properties: `moment`, `ago`, `duration` in favor of `moment-format`, `moment-from-now`, `moment-duration`
+* Deprecate helpers: `moment`, `ago`, `duration` in favor of `moment-format`, `moment-from-now`, `moment-duration`
+* Deprecate computed property modules:
+  * `ember-moment/computeds/ago` -> `ember-moment/computeds/from-now`
+  * `ember-moment/computeds/moment` -> `ember-moment/computeds/format`
 
 ### 3.1.0
 
@@ -23,7 +26,7 @@
 * Removes `ember-moment/computed`.  Explicit full path import paths to avoid naming conflicts.
   * `ember-moment/computeds/duration`
   * `ember-moment/computeds/moment`
-  * `ember-moment/computeds/ago`
+  * `ember-moment/computeds/from-now`
 
 ### 2.0.1
 

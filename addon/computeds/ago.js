@@ -1,28 +1,6 @@
 import Ember from 'ember';
-import moment from 'moment';
-import isDescriptor from '../utils/is-descriptor';
+import momentFromNow from './from-now';
 
-const { get, computed:emberComputed } = Ember;
+Ember.deprecate('ember-moment: `ember-moment/computeds/ago` is deprecated in favor of `ember-moment/computeds/from-now`');
 
-export default function computedAgo(date, maybeInputFormat) {
-  let args = [date];
-
-  let computed = emberComputed(date, function () {
-    let momentArgs = [get(this, date)];
-
-    if (arguments.length > 1) {
-      let desc = isDescriptor.call(this, maybeInputFormat);
-      let input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
-
-      if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {
-        computed.property(maybeInputFormat);
-      }
-
-      momentArgs.push(input);
-    }
-
-    return moment.apply(this, momentArgs).fromNow();
-  });
-
-  return computed.property.apply(computed, args).readOnly();
-}
+export default momentFromNow;

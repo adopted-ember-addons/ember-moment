@@ -46,25 +46,25 @@ import moment from 'moment';
 ## Computed Macro
 
 ```js
-import computedDuration from 'ember-moment/computeds/duration';
-import computedMoment from 'ember-moment/computeds/moment';
-import computedAgo from 'ember-moment/computeds/ago';
+import momentDuration from 'ember-moment/computeds/duration';
+import momentFormat from 'ember-moment/computeds/format';
+import momentFromNow from 'ember-moment/computeds/from-now';
 
 export default Ember.Controller.extend({
   date: new Date('2013-02-08T09:30:26'),
 
   // Takes on the behavior of moment().format()
   // http://momentjs.com/docs/#/displaying/format/
-  shortDate: computedMoment('date', 'MM/DD/YYYY'),
+  shortDate: momentFormat('date', 'MM/DD/YYYY'),
 
   // second parameter is what is passed on to the `fromNow` function
   // in this case, `true` is used to display "ago"
   // http://momentjs.com/docs/#/displaying/fromnow/
-  timeSince: computedAgo('date', true),
+  timeSince: momentFromNow('date', true),
 
   // duration units: seconds, minutes, hours, days, weeks, months, years
   // http://momentjs.com/docs/#/durations/
-  computedNumHours: computedDuration(10, 'hours')
+  computedNumHours: momentDuration(10, 'hours')
 });
 ```
 
