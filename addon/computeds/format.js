@@ -2,7 +2,7 @@ import Ember from 'ember';
 import isDescriptor from '../utils/is-descriptor';
 import moment from 'moment';
 
-const { computed, EnumerableUtils, get, assert } = Ember;
+const { computed, get, assert } = Ember;
 const a_slice = Array.prototype.slice;
 
 export default function computedMoment(date, outputFormat, maybeInputFormat) {
@@ -15,7 +15,7 @@ export default function computedMoment(date, outputFormat, maybeInputFormat) {
   return result = computed(date, function () {
     let momentArgs = [get(this, date)];
 
-    let propertyValues = EnumerableUtils.map(args, (arg) => {
+    let propertyValues = args.map((arg) => {
       let desc = isDescriptor.call(this, arg);
       if (desc && result._dependentKeys.indexOf(arg) === -1) {
         result.property(arg);
