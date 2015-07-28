@@ -4,6 +4,7 @@
 * Deprecate computed property modules:
   * `ember-moment/computeds/ago` -> `ember-moment/computeds/from-now`
   * `ember-moment/computeds/moment` -> `ember-moment/computeds/format`
+* Removed EnumerableUtils.map
 
 ### 3.1.0
 
