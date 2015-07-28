@@ -38,7 +38,7 @@ NOTE: This feature is only supported in Ember >= 1.13.0
 
 ## Upgrading
 
-If your npm dep for ember-moment is not fixed on a version (ie, useing `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.
+If your npm dep for ember-moment is not fixed on a version (ie, using `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.
 
 Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrades.
 
