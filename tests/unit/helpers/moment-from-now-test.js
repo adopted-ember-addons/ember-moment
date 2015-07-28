@@ -3,7 +3,6 @@ import hbs from 'htmlbars-inline-precompile';
 import momentFromNow from 'ember-moment/helpers/moment-from-now';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
-import date from '../../helpers/date';
 import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
@@ -20,13 +19,13 @@ moduleFor('helper:moment-from-now', {
 });
 
 test('one arg (date)', (assert) => {
-  assert.equal(callHelper(momentFromNow, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), "3 days ago");
-  assert.equal(callHelper(momentFromNow, [date(),  FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(momentFromNow, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
+  assert.equal(callHelper(momentFromNow, [new Date(),  FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('two args (date, inputFormat)', (assert) => {
   assert.equal(callHelper(momentFromNow, [threeDaysAgo,  'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(momentFromNow, [date(),   'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(momentFromNow, [new Date(),   'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {
