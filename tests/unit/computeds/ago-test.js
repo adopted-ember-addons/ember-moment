@@ -23,6 +23,6 @@ test('Formatter - get', (assert) => {
 test('Formatter - get #2', (assert) => {
   const subject = createSubject();
   assert.equal(subject.get('ago'), 'an hour ago');
-	subject.set('date', new Date(new Date().valueOf() - (60*60*2000)));
-	assert.equal(subject.get('ago'), '2 hours ago');
+  subject.set('date', new Date(new Date().valueOf() - (60*60*2000)));
+  assert.equal(subject.get('ago'), '2 hours ago');
 });

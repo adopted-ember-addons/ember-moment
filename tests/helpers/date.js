@@ -3,5 +3,5 @@ window.moment.tz.add([
 ]);
 
 export default function (time) {
-	return window.moment(new Date(time)).tz('America/New_York');
+  return window.moment(new Date(time)).tz('America/New_York');
 }
