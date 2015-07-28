@@ -9,10 +9,6 @@
   * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
 * HTMLBars
 
-## Upgrading
-
-If your npm dep for ember-moment is not fixed on a version (ie, useing `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrades.
-
 ## Usage
 
 * ember-cli < 0.2.3 `ember install:addon ember-moment`
@@ -39,6 +35,12 @@ NOTE: This feature is only supported in Ember >= 1.13.0
 ```hbs
 {{moment-from-now date interval=1000}}
 ```
+
+## Upgrading
+
+If your npm dep for ember-moment is not fixed on a version (ie, useing `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.
+
+Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrades.
 
 ## ES6 Moment
 
