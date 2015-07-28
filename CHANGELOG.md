@@ -5,6 +5,8 @@
   * `ember-moment/computeds/ago` -> `ember-moment/computeds/from-now`
   * `ember-moment/computeds/moment` -> `ember-moment/computeds/format`
 * Removed EnumerableUtils.map
+* Updated ember-cli-moment-shim to 0.6.0
+  * moment is now brought in via bower instead of npm (https://github.com/jasonmit/ember-cli-moment-shim/issues/14#issuecomment-125455255)
 
 ### 3.1.0
 
