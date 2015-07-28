@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
-import ago from 'ember-moment/helpers/ago';
+import momentFromNow from 'ember-moment/helpers/moment-from-now';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
 import date from '../../helpers/date';
@@ -8,10 +8,11 @@ import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
 const FAKE_HANDLEBARS_CONTEXT = {};
+
 let threeDaysAgo = new Date();
 threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-moduleFor('helper:ago', {
+moduleFor('helper:moment-from-now', {
   setup() {
     moment.locale('en');
     this.container.register('view:basic', Ember.View);
@@ -19,13 +20,13 @@ moduleFor('helper:ago', {
 });
 
 test('one arg (date)', (assert) => {
-  assert.equal(callHelper(ago, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), "3 days ago");
-  assert.equal(callHelper(ago, [date(),  FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(momentFromNow, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), "3 days ago");
+  assert.equal(callHelper(momentFromNow, [date(),  FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('two args (date, inputFormat)', (assert) => {
-  assert.equal(callHelper(ago, [threeDaysAgo,  'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(ago, [date(),   'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(momentFromNow, [threeDaysAgo,  'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
+  assert.equal(callHelper(momentFromNow, [date(),   'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {
@@ -34,7 +35,7 @@ test('change date input and change is reflected by bound helper', function(asser
   });
 
   let view = this.container.lookupFactory('view:basic').create({
-    template: hbs`{{ago date}}`,
+    template: hbs`{{moment-from-now date}}`,
     context: context
   });
 

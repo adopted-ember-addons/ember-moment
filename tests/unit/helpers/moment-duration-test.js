@@ -1,5 +1,5 @@
 import moment from 'moment';
-import durationHelper from 'ember-moment/helpers/duration';
+import durationHelper from 'ember-moment/helpers/moment-duration';
 import callHelper from '../../helpers/call-helper';
 
 module('DurationHelper', {

@@ -15,17 +15,17 @@
 * ember-cli >= 0.2.3 `ember install ember-moment`
 
 ```hbs
-{{moment date}}
-{{ago date}}
-{{duration ms}}
+{{moment-format date}}
+{{moment-from-now date}}
+{{moment-duration ms}}
 ```
 
 ### Advance
 
 ```hbs
-{{moment date outputFormat inputFormat}}
-{{ago date inputFormat}}
-{{duration number units}}
+{{moment-format date outputFormat inputFormat}}
+{{moment-from-now date inputFormat}}
+{{moment-duration number units}}
 ```
 
 Recomputes the time ago every 1-second.  This is useful for "live" updating as time elapses.
@@ -33,7 +33,7 @@ Recomputes the time ago every 1-second.  This is useful for "live" updating as t
 NOTE: This feature is only supported in Ember >= 1.13.0
 
 ```hbs
-{{ago date interval=1000}}
+{{moment-from-now date interval=1000}}
 ```
 
 ## ES6 Moment
