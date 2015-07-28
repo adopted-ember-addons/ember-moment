@@ -9,6 +9,10 @@
   * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
 * HTMLBars
 
+## Upgrading
+
+If your npm dep for ember-moment is not fixed on a version (ie, useing `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrades.
+
 ## Usage
 
 * ember-cli < 0.2.3 `ember install:addon ember-moment`
