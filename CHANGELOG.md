@@ -1,3 +1,10 @@
+### 3.2.0
+
+* Deprecate helpers: `moment`, `ago`, `duration` in favor of `moment-format`, `moment-from-now`, `moment-duration`
+* Deprecate computed property modules:
+  * `ember-moment/computeds/ago` -> `ember-moment/computeds/from-now`
+  * `ember-moment/computeds/moment` -> `ember-moment/computeds/format`
+
 ### 3.1.0
 
 * Conditionally include all locales if `true` is passed to `includeLocales` option
@@ -19,7 +26,7 @@
 * Removes `ember-moment/computed`.  Explicit full path import paths to avoid naming conflicts.
   * `ember-moment/computeds/duration`
   * `ember-moment/computeds/moment`
-  * `ember-moment/computeds/ago`
+  * `ember-moment/computeds/from-now`
 
 ### 2.0.1
 
@@ -57,7 +64,7 @@ module.exports = function(environment) {
 
 * [BREAKING ENHANCEMENT] The full `moment` Handlebars helper signature is now
 
-      `{{moment date outputFormat inputFormat}}`
+      `{{moment-format date outputFormat inputFormat}}`
 
   to better reflect common usage pattern. You are usually passing a date as the first argument, which does not require specifying an inputFormat, and at the same time, you usually do want to specify an output format. [#12](https://github.com/stefanpenner/ember-moment/pull/12).
 

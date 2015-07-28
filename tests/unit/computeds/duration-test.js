@@ -18,8 +18,8 @@ test('Milliseconds - get', (assert) => {
     duration: computedDuration('ms')
   });
   assert.equal(subject.get('duration'), 'a few seconds');
-	subject.set('ms', 10800000);
-	assert.equal(subject.get('duration'), '3 hours');
+  subject.set('ms', 10800000);
+  assert.equal(subject.get('duration'), '3 hours');
 });
 
 test('Units - get', (assert) => {

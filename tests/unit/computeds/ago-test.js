@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import computedAgo from 'ember-moment/computeds/ago';
+import momentFromNow from 'ember-moment/computeds/from-now';
 
 module('agoComputed', {
   setup() {
@@ -11,7 +11,7 @@ module('agoComputed', {
 function createSubject(attrs) {
   return Ember.Object.extend(Ember.$.extend({
     date: new Date(new Date().valueOf() - (60*60*1000)),
-    ago: computedAgo('date')
+    ago: momentFromNow('date')
   }, attrs || {})).create();
 }
 
@@ -23,6 +23,6 @@ test('Formatter - get', (assert) => {
 test('Formatter - get #2', (assert) => {
   const subject = createSubject();
   assert.equal(subject.get('ago'), 'an hour ago');
-	subject.set('date', new Date(new Date().valueOf() - (60*60*2000)));
-	assert.equal(subject.get('ago'), '2 hours ago');
+  subject.set('date', new Date(new Date().valueOf() - (60*60*2000)));
+  assert.equal(subject.get('ago'), '2 hours ago');
 });

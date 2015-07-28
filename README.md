@@ -15,17 +15,17 @@
 * ember-cli >= 0.2.3 `ember install ember-moment`
 
 ```hbs
-{{moment date}}
-{{ago date}}
-{{duration ms}}
+{{moment-format date}}
+{{moment-from-now date}}
+{{moment-duration ms}}
 ```
 
 ### Advance
 
 ```hbs
-{{moment date outputFormat inputFormat}}
-{{ago date inputFormat}}
-{{duration number units}}
+{{moment-format date outputFormat inputFormat}}
+{{moment-from-now date inputFormat}}
+{{moment-duration number units}}
 ```
 
 Recomputes the time ago every 1-second.  This is useful for "live" updating as time elapses.
@@ -33,7 +33,7 @@ Recomputes the time ago every 1-second.  This is useful for "live" updating as t
 NOTE: This feature is only supported in Ember >= 1.13.0
 
 ```hbs
-{{ago date interval=1000}}
+{{moment-from-now date interval=1000}}
 ```
 
 ## ES6 Moment
@@ -46,25 +46,25 @@ import moment from 'moment';
 ## Computed Macro
 
 ```js
-import computedDuration from 'ember-moment/computeds/duration';
-import computedMoment from 'ember-moment/computeds/moment';
-import computedAgo from 'ember-moment/computeds/ago';
+import momentDuration from 'ember-moment/computeds/duration';
+import momentFormat from 'ember-moment/computeds/format';
+import momentFromNow from 'ember-moment/computeds/from-now';
 
 export default Ember.Controller.extend({
   date: new Date('2013-02-08T09:30:26'),
 
   // Takes on the behavior of moment().format()
   // http://momentjs.com/docs/#/displaying/format/
-  shortDate: computedMoment('date', 'MM/DD/YYYY'),
+  shortDate: momentFormat('date', 'MM/DD/YYYY'),
 
   // second parameter is what is passed on to the `fromNow` function
   // in this case, `true` is used to display "ago"
   // http://momentjs.com/docs/#/displaying/fromnow/
-  timeSince: computedAgo('date', true),
+  timeSince: momentFromNow('date', true),
 
   // duration units: seconds, minutes, hours, days, weeks, months, years
   // http://momentjs.com/docs/#/durations/
-  computedNumHours: computedDuration(10, 'hours')
+  computedNumHours: momentDuration(10, 'hours')
 });
 ```
 

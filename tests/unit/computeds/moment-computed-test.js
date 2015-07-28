@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 import date from '../../helpers/date';
-import computedMoment from 'ember-moment/computeds/moment';
+import momentFormat from 'ember-moment/computeds/format';
 
 module('momentComputed', {
   setup() {
@@ -15,7 +15,7 @@ let alias = computed.alias;
 function createSubject(attrs) {
   return Ember.Object.extend(Ember.$.extend({
     date: date(0),
-    shortDate: computedMoment('date', 'MM/DD')
+    shortDate: momentFormat('date', 'MM/DD')
   }, attrs || {})).create();
 }
 
@@ -39,7 +39,7 @@ test('Formatter - is computed handled', (assert) => {
   const subject = createSubject({
     _format: 'MM/DD',
     format: alias('_format'),
-    shortDate: computedMoment('date', 'format')
+    shortDate: momentFormat('date', 'format')
   });
   assert.equal(subject.get('shortDate'), '12/31');
   subject.set('_format', 'MM');
@@ -52,7 +52,7 @@ test('Observers trigger on date change', (assert) => {
   const subject = createSubject({
     _format: 'MM/DD',
     format: alias('_format'),
-    shortDate: computedMoment('date', 'format'),
+    shortDate: momentFormat('date', 'format'),
     shortDateChanged: observer('shortDate', () => {
       observeFired = true;
     })
