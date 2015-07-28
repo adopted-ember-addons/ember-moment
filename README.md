@@ -5,9 +5,9 @@
 [moment.js](http://momentjs.com) template helpers for ember
 
 ## Requirements
+* HTMLBars (see <= 2.0.0 for Handlebar support)
 * Ember >= 1.10
   * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
-* HTMLBars
 
 ## Usage
 
