@@ -16,7 +16,7 @@ export var helperFactory = function(cb) {
           throw new TypeError('Invalid Number of arguments, expected at least 1');
         }
         if (hash.interval) {
-          runLater(this, this.recompute, hash.interval);
+          runLater(this, this.recompute, parseInt(hash.interval, 10));
         }
         return moment.apply(this, params).fromNow();
       }
