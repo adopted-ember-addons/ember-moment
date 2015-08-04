@@ -1,3 +1,7 @@
+### 3.2.1
+
+* Removes deprecation warnings from Ember 1.13.6
+
 ### 3.2.0
 
 * Deprecate helpers: `moment`, `ago`, `duration` in favor of `moment-format`, `moment-from-now`, `moment-duration`
