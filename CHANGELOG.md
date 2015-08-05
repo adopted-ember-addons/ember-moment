@@ -1,3 +1,10 @@
+### 3.3.0
+
+* Adds toNow computed property macro
+* Adds moment-to-now htmlbar helper
+* Fixes documentation error around computed property macro argument order
+* Adds the ability to hide the prefix/suffix from toNow/fromNow helpers and computed property macro output
+
 ### 3.2.1
 
 * Removes deprecation warnings from Ember 1.13.6
