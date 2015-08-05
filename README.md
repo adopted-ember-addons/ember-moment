@@ -17,6 +17,7 @@
 ```hbs
 {{moment-format date}}
 {{moment-from-now date}}
+{{moment-to-now date}}
 {{moment-duration ms}}
 ```
 
@@ -24,7 +25,8 @@
 
 ```hbs
 {{moment-format date outputFormat inputFormat}}
-{{moment-from-now date inputFormat}}
+{{moment-from-now date}}
+{{moment-to-now date}}
 {{moment-duration number units}}
 ```
 
@@ -55,6 +57,7 @@ import moment from 'moment';
 import momentDuration from 'ember-moment/computeds/duration';
 import momentFormat from 'ember-moment/computeds/format';
 import momentFromNow from 'ember-moment/computeds/from-now';
+import momentToNow from 'ember-moment/computeds/to-now';
 
 export default Ember.Controller.extend({
   date: new Date('2013-02-08T09:30:26'),
@@ -63,10 +66,17 @@ export default Ember.Controller.extend({
   // http://momentjs.com/docs/#/displaying/format/
   shortDate: momentFormat('date', 'MM/DD/YYYY'),
 
-  // second parameter is what is passed on to the `fromNow` function
-  // in this case, `true` is used to display "ago"
+  // first param: date input
+  // second param: date format http://momentjs.com/docs/#/parsing/string-format/ (optional)
+  // third param: hide suffix (optional, false by default)
   // http://momentjs.com/docs/#/displaying/fromnow/
-  timeSince: momentFromNow('date', true),
+  timeSince: momentFromNow("12-25-1995", "MM-DD-YYYY", false), // -> output: "2 years ago"
+
+  // first param: date input
+  // second param: date format http://momentjs.com/docs/#/parsing/string-format/ (optional)
+  // third param: hide prefix (optional, false by default)
+  // http://momentjs.com/docs/#/displaying/tonow
+  computedNumHours: momentToNow("12-25-1995", "MM-DD-YYYY", false), // -> output: "in 20 years"
 
   // duration units: seconds, minutes, hours, days, weeks, months, years
   // http://momentjs.com/docs/#/durations/

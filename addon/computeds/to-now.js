@@ -4,7 +4,7 @@ import isDescriptor from '../utils/is-descriptor';
 
 const { get, computed:emberComputed } = Ember;
 
-export default function computedAgo(date, maybeInputFormat, maybeHideSuffix) {
+export default function computedAgo(date, maybeInputFormat, maybeHidePrefix) {
   let args = [date];
 
   let computed = emberComputed(date, function () {
@@ -21,7 +21,7 @@ export default function computedAgo(date, maybeInputFormat, maybeHideSuffix) {
       momentArgs.push(input);
     }
 
-    return moment.apply(this, momentArgs).fromNow(maybeHideSuffix);
+    return moment.apply(this, momentArgs).toNow(maybeHidePrefix);
   });
 
   return computed.property.apply(computed, args).readOnly();

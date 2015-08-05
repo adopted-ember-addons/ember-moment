@@ -13,6 +13,7 @@ function createSubject(attrs) {
 }
 
 test('Milliseconds - get', (assert) => {
+  assert.expect(2);
   const subject = createSubject({
     ms: 5000,
     duration: computedDuration('ms')
@@ -23,6 +24,7 @@ test('Milliseconds - get', (assert) => {
 });
 
 test('Units - get', (assert) => {
+  assert.expect(2);
   const subject = createSubject({
     numDays: 4,
     duration: computedDuration('numDays', 'days')

@@ -20,22 +20,26 @@ function createSubject(attrs) {
 }
 
 test('Formatter - get', (assert) => {
+  assert.expect(1);
   const subject = createSubject();
   assert.equal(subject.get('shortDate'), '12/31');
 });
 
 test('Date - set', (assert) => {
+  assert.expect(1);
   const subject = createSubject();
   subject.set('date', date('2013-02-08T09:30:26'));
   assert.equal(subject.get('shortDate'), '02/08');
 });
 
 test('Formatter - invalid date', (assert) => {
+  assert.expect(1);
   const subject = createSubject({ date: 'ZZZZZ' });
   assert.equal(subject.get('shortDate'), 'Invalid date');
 });
 
 test('Formatter - is computed handled', (assert) => {
+  assert.expect(2);
   const subject = createSubject({
     _format: 'MM/DD',
     format: alias('_format'),
@@ -47,6 +51,7 @@ test('Formatter - is computed handled', (assert) => {
 });
 
 test('Observers trigger on date change', (assert) => {
+  assert.expect(2);
   let observeFired = false;
 
   const subject = createSubject({
@@ -64,6 +69,7 @@ test('Observers trigger on date change', (assert) => {
 });
 
 test('Observers trigger on date change', (assert) => {
+  assert.expect(3);
   let observeFired = false;
 
   const subject = createSubject({

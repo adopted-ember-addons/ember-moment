@@ -11,11 +11,14 @@ module('DurationHelper', {
 const FAKE_HANDLEBARS_CONTEXT = {};
 
 test('one arg (ms)', (assert) => {
+  assert.expect(2);
   assert.equal(callHelper(durationHelper, [86400000, FAKE_HANDLEBARS_CONTEXT]), 'a day');
   assert.equal(callHelper(durationHelper, ['',  FAKE_HANDLEBARS_CONTEXT]), 'a few seconds');
 });
 
 test('one arg (object)', (assert) => {
+  assert.expect(1);
+
   const object = {
     seconds: 2,
     minutes: 2,
@@ -29,10 +32,12 @@ test('one arg (object)', (assert) => {
 });
 
 test('one arg (string)', (assert) => {
+  assert.expect(1);
   assert.equal(callHelper(durationHelper, ['23:59:59',  FAKE_HANDLEBARS_CONTEXT]), 'a day');
 });
 
 test('two args (value, units)', (assert) => {
+  assert.expect(2);
   assert.equal(callHelper(durationHelper, [1, 'minutes', FAKE_HANDLEBARS_CONTEXT]), 'a minute');
   assert.equal(callHelper(durationHelper, [24, 'hours',  FAKE_HANDLEBARS_CONTEXT]), 'a day');
 });
