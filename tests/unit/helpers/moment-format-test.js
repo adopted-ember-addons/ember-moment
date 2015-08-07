@@ -59,3 +59,17 @@ test('change date input and change is reflected by bound helper', function(asser
 
   runDestroy(view);
 });
+
+test('can inline a locale instead of using global locale', function(assert) {
+  assert.expect(1);
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-format date 'LLLL' locale='es'}}`,
+    context: {
+      date: date(date(0))
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'Miércoles, 31 de Diciembre de 1969 19:00');
+  runDestroy(view);
+});
