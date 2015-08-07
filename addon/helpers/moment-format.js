@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-function momentHelper(params) {
+function momentHelper(params, hash) {
   const length = params.length;
   const args = [];
   let output;
@@ -20,7 +20,11 @@ function momentHelper(params) {
     output = params[1];
   }
 
-  return moment.apply(this, args).format(output);
+  let time = moment(...args);
+  if (hash.locale) {
+    time = time.locale(hash.locale);
+  }
+  return time.format(output);
 }
 
 export default momentHelper;

@@ -1,10 +1,15 @@
+import Ember from 'ember';
+import { moduleFor, test } from 'ember-qunit';
 import moment from 'moment';
 import durationHelper from 'ember-moment/helpers/moment-duration';
 import callHelper from '../../helpers/call-helper';
+import hbs from 'htmlbars-inline-precompile';
+import { runAppend, runDestroy } from '../../helpers/run-append';
 
-module('DurationHelper', {
+moduleFor('helper:moment-duration', {
   setup() {
     moment.locale('en');
+    this.container.register('view:basic', Ember.View);
   }
 });
 
@@ -40,4 +45,18 @@ test('two args (value, units)', (assert) => {
   assert.expect(2);
   assert.equal(callHelper(durationHelper, [1, 'minutes', FAKE_HANDLEBARS_CONTEXT]), 'a minute');
   assert.equal(callHelper(durationHelper, [24, 'hours',  FAKE_HANDLEBARS_CONTEXT]), 'a day');
+});
+
+test('can inline a locale instead of using global locale', function(assert) {
+  assert.expect(1);
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-duration date locale='es'}}`,
+    context: {
+      date: 86400000
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'un día'); // note: that's not an `i` in día
+  runDestroy(view);
 });

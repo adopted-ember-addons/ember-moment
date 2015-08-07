@@ -119,7 +119,7 @@ module.exports = function(environment) {
   };
 ```
 
-### Include all locales
+### Include all locales into build
 
 ```js
 // config.environment.js
@@ -133,6 +133,8 @@ module.exports = function(environment) {
 
 ### Configure default runtime locale
 
+#### Globally
+
 ```js
 // app/routes/applicaton.js
 import moment from 'moment';
@@ -143,6 +145,17 @@ export default Ember.Route.extend({
     moment.locale('es');
   }
 });
+```
+
+#### Locally
+
+All helpers except a `locale` argument, which is a string.  This allows for overriding of the global locale.
+
+```hbs
+{{moment-format date locale='es'}}
+{{moment-duration date locale='es'}}
+{{moment-from-now date locale='es'}}
+{{moment-to-now date locale='es'}}
 ```
 
 Feature set of i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/

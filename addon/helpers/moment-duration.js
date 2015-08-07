@@ -1,13 +1,18 @@
 import moment from 'moment';
 
-function durationHelper(params) {
+function durationHelper(params, hash) {
   const length = params.length;
 
   if (length === 0 || length > 2) {
     throw new TypeError('Invalid Number of arguments, expected 1 or 2');
   }
 
-  return moment.duration.apply(this, params).humanize();
+  let time = moment.duration(...params);
+  if (hash.locale) {
+    time = time.locale(hash.locale);
+  }
+
+  return time.humanize();
 }
 
 export default durationHelper;

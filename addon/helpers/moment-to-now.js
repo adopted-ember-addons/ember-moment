@@ -4,10 +4,8 @@ import moment from 'moment';
 const { later:runLater } = Ember.run;
 
 export var helperFactory = function(cb) {
-  let toNow;
-
   if (Ember.Helper) {
-    toNow = Ember.Helper.extend({
+    return Ember.Helper.extend({
       compute: function(params, hash) {
         if (typeof cb === 'function') {
           cb();
@@ -18,22 +16,30 @@ export var helperFactory = function(cb) {
         if (hash.interval) {
           runLater(this, this.recompute, parseInt(hash.interval, 10));
         }
-        return moment.apply(this, params).toNow(hash.hidePrefix);
+
+        let time = moment(...params);
+        if (hash.locale) {
+          time = time.locale(hash.locale);
+        }
+        return time.toNow(hash.hidePrefix);
       }
     });
   }
-  else {
-    toNow = function(params, hash) {
-      if (typeof cb === 'function') {
-        cb();
-      }
-      if (params.length === 0) {
-        throw new TypeError('Invalid Number of arguments, expected at least 1');
-      }
-      return moment.apply(this, params).toNow(hash.hidePrefix);
-    };
-  }
-  return toNow;
+
+  return function momentToNow(params, hash) {
+    if (typeof cb === 'function') {
+      cb();
+    }
+    if (params.length === 0) {
+      throw new TypeError('Invalid Number of arguments, expected at least 1');
+    }
+
+    let time = moment(...params);
+    if (hash.locale) {
+      time = time.locale(hash.locale);
+    }
+    return time.toNow(hash.hidePrefix);
+  };
 };
 
 export default helperFactory();
