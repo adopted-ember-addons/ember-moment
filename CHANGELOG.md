@@ -1,3 +1,8 @@
+### 3.5.0
+
+* Support for 2.0.0-beta and canary
+* Upgrades dependencies
+
 ### 3.4.0
 
 * Adds `allow-empty` argument to helpers to prevent Invalid Date to be rendered when passed an empty value (null, undefined, or "")
