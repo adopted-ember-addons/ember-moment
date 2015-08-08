@@ -2,6 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import momentFormatHelper from 'ember-moment/helpers/moment-format';
+import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
 import { moduleFor, test } from 'ember-qunit';
 import date from '../../helpers/date';
 import callHelper from '../../helpers/call-helper';
@@ -9,11 +10,13 @@ import { runAppend, runDestroy } from '../../helpers/run-append';
 
 const FAKE_HANDLEBARS_CONTEXT = {};
 const subject = momentFormatHelper('LLLL');
+let registry;
 
 moduleFor('helper:moment-format', {
   setup() {
     moment.locale('en');
-    this.container.register('view:basic', Ember.View);
+    registry =  this.registry || this.container;
+    registry.register('view:basic', Ember.View);
   }
 });
 
@@ -87,5 +90,24 @@ test('can be called with null when allow-empty is set to true', function(assert)
 
   runAppend(view);
   assert.equal(view.$().text(), '');
+  runDestroy(view);
+});
+
+test('can be called using subexpression', function(assert) {
+  assert.expect(1);
+
+  registry.register('helper:get-format', makeBoundHelper(function() {
+    return 'L';
+  }));
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-format date (get-format 'global-format')}}`,
+    context: {
+      date: date(0)
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '12/31/1969');
   runDestroy(view);
 });

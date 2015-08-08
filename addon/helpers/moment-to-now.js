@@ -7,7 +7,7 @@ const { later:runLater } = Ember.run;
 export function helperFactory() {
   if (Ember.Helper) {
     return Ember.Helper.extend({
-      compute: computeFn((params, hash) => {
+      compute: computeFn(function(params, hash) {
         if (hash.interval) {
           runLater(this, this.recompute, parseInt(hash.interval, 10));
         }
@@ -21,7 +21,7 @@ export function helperFactory() {
     });
   }
 
-  return computeFn((params, hash) => {
+  return computeFn(function(params, hash) {
     let time = moment(...params);
     if (hash.locale) {
       time = time.locale(hash.locale);

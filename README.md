@@ -2,17 +2,22 @@
 [![npm Version][npm-badge]][npm]
 [![Build Status][travis-badge]][travis]
 
-[moment.js](http://momentjs.com) template helpers for ember
+[moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
 ## Requirements
-* HTMLBars (see <= 2.0.0 for Handlebar support)
-* Ember >= 1.10
+* Ember >= 1.10.0 (2.0-beta and canary also supported)
   * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
 
-## Usage
+## Installing
 
 * ember-cli < 0.2.3 `ember install:addon ember-moment`
 * ember-cli >= 0.2.3 `ember install ember-moment`
+
+## Upgrading
+
+It's advisable to run `ember g ember-moment` between upgrades as dependencies may have been added, removed, or upgraded between releases.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrading.
+
+## Usage
 
 ```hbs
 {{moment-format date}}
@@ -21,7 +26,7 @@
 {{moment-duration ms}}
 ```
 
-### Advance
+### Advance Usage
 
 ```hbs
 {{moment-format date outputFormat inputFormat}}
@@ -37,12 +42,6 @@ NOTE: This feature is only supported in Ember >= 1.13.0
 ```hbs
 {{moment-from-now date interval=1000}}
 ```
-
-## Upgrading
-
-If your npm dep for ember-moment is not fixed on a version (ie, using `~` or `^`) then you may be required to `ember g ember-moment` between versions as the default blueprint may have changed.
-
-Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrades.
 
 ## ES6 Moment
 

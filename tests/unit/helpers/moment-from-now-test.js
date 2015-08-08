@@ -11,7 +11,8 @@ const FAKE_HANDLEBARS_CONTEXT = {};
 moduleFor('helper:moment-from-now', {
   setup() {
     moment.locale('en');
-    this.container.register('view:basic', Ember.View);
+    const registry =  this.registry || this.container;
+    registry.register('view:basic', Ember.View);
   }
 });
 

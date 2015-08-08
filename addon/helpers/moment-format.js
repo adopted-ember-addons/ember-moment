@@ -2,7 +2,7 @@ import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 
 export default function helperFactory(globalOutputFormat = 'LLLL') {
-  return computeFn((params, hash) => {
+  return computeFn(function(params, hash) {
     const length = params.length;
 
     if (length > 3) {
