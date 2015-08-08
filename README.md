@@ -37,7 +37,7 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 
 Recomputes the time ago every 1-second.  This is useful for "live" updating as time elapses.
 
-NOTE: This feature is only supported in Ember >= 1.13.0
+*NOTE: This feature is only supported in Ember >= 1.13.0*
 
 ```hbs
 {{moment-from-now date interval=1000}}
