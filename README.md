@@ -90,7 +90,7 @@ You can optionally include the Moment Timezone package in your `config/environme
 
 ```js
 // config.environment.js
-module.exports = function(/* environment */) {
+module.exports = function() {
   return {
     moment: {
       // Options:
@@ -98,6 +98,21 @@ module.exports = function(/* environment */) {
       // '2010-2020' - 2010-2020, all timezones
       // 'none' - no data, just timezone API
       includeTimezone: 'all'
+    }
+  }
+};
+```
+
+## Global Default Format
+
+Your application may require a different moment format default other than `LLLL`.  Your application may want dates to be treated in the shorthand date form `L` by default.
+
+```js
+// config.environment.js
+module.exports = function() {
+  return {
+    moment: {
+      outputFormat: 'L'
     }
   }
 };
