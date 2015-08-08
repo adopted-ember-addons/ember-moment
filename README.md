@@ -175,6 +175,24 @@ All helpers except a `locale` argument, which is a string.  This allows for over
 
 Feature set of i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/
 
+## Frequently Asked Questions
+
+> `Invalid Date` is being rendered into the DOM, how do I avoid this?
+
+An invalid date string is being passed into momentjs and/or the [input string format](http://momentjs.com/docs/#/parsing/string-format/) was omitted.  For example, if you're using the `moment-format` you'll pass the input format as the 3rd argument:
+
+```hbs
+{{moment-format date outputFormat inputFormat}}
+```
+
+*NOTE: for all other helpers, the input format string is the second argument.*
+
+If you are knowingly passing null, undefined, or an empty string and want to ignore the output of `Invalid Date` then pass the option `allow-empty=true` to the helper (all helpers accept this property)
+
+```hbs
+{{moment-format date allow-empty=true}}
+````
+
 ## Development
 
 * `git clone` this repository

@@ -1,14 +1,16 @@
 import moment from 'moment';
+import computeFn from '../utils/compute-fn';
 
 export default function helperFactory(globalOutputFormat = 'LLLL') {
-  return function momentHelper(params, hash) {
+  return computeFn((params, hash) => {
     const length = params.length;
-    const args = [];
-    let output;
 
-    if (length === 0 || length > 3) {
-      throw new TypeError('ember-moment: Invalid Number of arguments, expected at least 1 and at most 3');
+    if (length > 3) {
+      throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 3');
     }
+
+    let output;
+    const args = [];
 
     args.push(params[0]);
 
@@ -27,5 +29,5 @@ export default function helperFactory(globalOutputFormat = 'LLLL') {
     }
 
     return time.format(output);
-  };
+  });
 }

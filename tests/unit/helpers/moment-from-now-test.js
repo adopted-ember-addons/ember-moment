@@ -68,3 +68,17 @@ test('can inline a locale instead of using global locale', function(assert) {
   assert.equal(view.$().text(), 'hace una hora');
   runDestroy(view);
 });
+
+test('can be called with null', function(assert) {
+  assert.expect(1);
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-from-now date allow-empty=true}}`,
+    context: {
+      date: null
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '');
+  runDestroy(view);
+});
