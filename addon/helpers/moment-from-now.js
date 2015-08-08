@@ -3,15 +3,12 @@ import moment from 'moment';
 
 const { later:runLater } = Ember.run;
 
-export var helperFactory = function(cb) {
+export function helperFactory() {
   if (Ember.Helper) {
     return Ember.Helper.extend({
-      compute: function(params, hash) {
-        if (typeof cb === 'function') {
-          cb();
-        }
+      compute(params, hash) {
         if (params.length === 0) {
-          throw new TypeError('Invalid Number of arguments, expected at least 1');
+          throw new TypeError('ember-moment: Invalid Number of arguments, expected at least 1');
         }
         if (hash.interval) {
           runLater(this, this.recompute, parseInt(hash.interval, 10));
@@ -26,11 +23,8 @@ export var helperFactory = function(cb) {
   }
 
   return function momentFromNow(params, hash) {
-    if (typeof cb === 'function') {
-      cb();
-    }
     if (params.length === 0) {
-      throw new TypeError('Invalid Number of arguments, expected at least 1');
+      throw new TypeError('ember-moment: Invalid Number of arguments, expected at least 1');
     }
     let time = moment(...params);
     if (hash.locale) {
@@ -38,6 +32,6 @@ export var helperFactory = function(cb) {
     }
     return time.fromNow(hash.hideSuffix);
   };
-};
+}
 
 export default helperFactory();

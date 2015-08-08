@@ -1,31 +1,34 @@
 import Ember from 'ember';
+import emberComputed from 'ember-new-computed';
 import moment from 'moment';
 import isDescriptor from '../utils/is-descriptor';
 
-const { get, computed:emberComputed } = Ember;
+const { get } = Ember;
 
-export default function computedDuration(val, maybeUnits) {
-  let numArgs = arguments.length;
-  let args = [val];
+function computedDuration(val, maybeUnits) {
+  const numArgs = arguments.length;
+  const args = [val];
 
-  let computed = emberComputed(val, function () {
-    let momentArgs, desc, input;
+  const computed = emberComputed(val, {
+    get() {
+      const momentArgs = [get(this, val)];
 
-    momentArgs = [get(this, val)];
+      if (numArgs > 1) {
+        const desc = isDescriptor.call(this, maybeUnits);
+        const input = desc ? get(this, maybeUnits) : maybeUnits;
 
-    if (numArgs > 1) {
-      desc = isDescriptor.call(this, maybeUnits);
-      input = desc ? get(this, maybeUnits) : maybeUnits;
+        if (desc && computed._dependentKeys.indexOf(maybeUnits) === -1) {
+          computed.property(maybeUnits);
+        }
 
-      if (desc && computed._dependentKeys.indexOf(maybeUnits) === -1) {
-        computed.property(maybeUnits);
+        momentArgs.push(input);
       }
 
-      momentArgs.push(input);
+      return moment.duration.apply(this, momentArgs).humanize();
     }
-
-    return moment.duration.apply(this, momentArgs).humanize();
   });
 
-  return computed.property.apply(computed, args).readOnly();
+  return computed.property.apply(computed, args);
 }
+
+export default computedDuration;
