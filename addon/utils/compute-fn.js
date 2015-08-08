@@ -9,7 +9,7 @@ export default function(cb) {
     const datetime = params[0];
 
     if ([null, '', undefined].indexOf(datetime) > -1 && (hash.allowEmpty || hash['allow-empty'])) {
-      Ember.Logger.warn('ember-moment: `null` was passed to moment-format');
+      Ember.Logger.warn('ember-moment: an empty value (null, undefined, or '') was passed to moment-format');
       return;
     }
 
