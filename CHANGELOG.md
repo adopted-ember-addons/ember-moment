@@ -1,3 +1,29 @@
+### 3.4.0
+
+* Adds `allow-empty` argument to helpers to prevent Invalid Date to be rendered when passed an empty value (null, undefined, or "")
+
+```hbs
+{{moment-format date allow-empty=true}}
+```
+
+* Adds `locale` argument to helpers to locally scope locale format to specific helpers
+
+```hbs
+{{moment-format date locale='es'}}
+```
+
+* Adds a global output format string option to config/environment
+
+```js
+module.exports = function() {
+  return {
+    moment: {
+      outputFormat: 'L' // overrides the `LLLL` that moment defaults to
+    }
+  }
+};
+```
+
 ### 3.3.0
 
 * Adds toNow computed property macro
