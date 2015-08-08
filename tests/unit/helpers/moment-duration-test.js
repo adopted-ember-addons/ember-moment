@@ -9,7 +9,8 @@ import { runAppend, runDestroy } from '../../helpers/run-append';
 moduleFor('helper:moment-duration', {
   setup() {
     moment.locale('en');
-    this.container.register('view:basic', Ember.View);
+    const registry =  this.registry || this.container;
+    registry.register('view:basic', Ember.View);
   }
 });
 
@@ -54,6 +55,7 @@ test('can be called with null', (assert) => {
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
+
   const view = this.container.lookupFactory('view:basic').create({
     template: hbs`{{moment-duration date locale='es'}}`,
     context: {

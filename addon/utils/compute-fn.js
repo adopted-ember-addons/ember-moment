@@ -13,6 +13,6 @@ export default function(cb) {
       return;
     }
 
-    return cb(...arguments);
+    return cb.apply(this, arguments);
   };
 }
