@@ -47,6 +47,11 @@ test('two args (value, units)', (assert) => {
   assert.equal(callHelper(durationHelper, [24, 'hours',  FAKE_HANDLEBARS_CONTEXT]), 'a day');
 });
 
+test('can be called with null', (assert) => {
+  assert.expect(1);
+  assert.equal(callHelper(durationHelper, [null, 'minutes', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds');
+});
+
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
   const view = this.container.lookupFactory('view:basic').create({

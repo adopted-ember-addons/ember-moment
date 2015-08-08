@@ -74,3 +74,18 @@ test('can inline a locale instead of using global locale', function(assert) {
   assert.equal(view.$().text(), 'Miércoles, 31 de Diciembre de 1969 19:00');
   runDestroy(view);
 });
+
+test('can be called with null when allow-empty is set to true', function(assert) {
+  assert.expect(1);
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-format null allow-empty=true}}`,
+    context: {
+      date: null
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '');
+  runDestroy(view);
+});

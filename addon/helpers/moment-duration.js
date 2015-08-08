@@ -1,10 +1,8 @@
 import moment from 'moment';
 
 function durationHelper(params, hash) {
-  const length = params.length;
-
-  if (length === 0 || length > 2) {
-    throw new TypeError('ember-moment: Invalid Number of arguments, expected 1 or 2');
+  if (params.length > 2) {
+    throw new TypeError('ember-moment: Invalid Number of arguments, at most 2');
   }
 
   let time = moment.duration(...params);
