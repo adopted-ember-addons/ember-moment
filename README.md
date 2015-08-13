@@ -26,7 +26,7 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-duration ms}}
 ```
 
-### Advance Usage
+### Advanced Usage
 
 ```hbs
 {{moment-format date outputFormat inputFormat}}
