@@ -1,3 +1,8 @@
+### 3.5.1
+
+* destroy interval timers on Helper destroy
+* work around issue with Ember.run.next blocking test helpers
+
 ### 3.5.0
 
 * Support for 2.0.0-beta and canary
