@@ -7,6 +7,7 @@ import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
 const FAKE_HANDLEBARS_CONTEXT = {};
+const subject = momentToNow('LLLL');
 
 moduleFor('helper:moment-to-now', {
   setup() {
@@ -20,14 +21,14 @@ test('one arg (date)', (assert) => {
   assert.expect(1);
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
-  assert.equal(callHelper(momentToNow, [addThreeDays, FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
+  assert.equal(callHelper(subject, [addThreeDays, FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
 });
 
 test('two args (date, inputFormat)', (assert) => {
   assert.expect(1);
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
-  assert.equal(callHelper(momentToNow, [addThreeDays, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
+  assert.equal(callHelper(subject, [addThreeDays, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {
