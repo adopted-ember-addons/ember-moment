@@ -5,7 +5,6 @@ import momentFromNow from 'ember-moment/computeds/from-now';
 
 export default Ember.Controller.extend({
   now: new Date(),
-  emptyDate: null,
   lastHour: new Date(new Date().valueOf() - (60*60*1000)),
   date: new Date(),
   numHours: 822,
