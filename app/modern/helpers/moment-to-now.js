@@ -3,5 +3,5 @@ import config from '../config/environment';
 import Helper from 'ember-moment/helpers/moment-to-now';
 
 export default Helper.extend({
-	globalAllowEmpty: Ember.get(config, 'moment.allowEmpty')
+  globalAllowEmpty: !!Ember.get(config, 'moment.allowEmpty')
 });

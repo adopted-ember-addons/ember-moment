@@ -4,11 +4,19 @@ import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
+let createView;
+
 moduleFor('helper:moment-to-now', {
   setup() {
-    moment.locale('en');
+    const container = this.container;
     const registry =  this.registry || this.container;
     registry.register('view:basic', Ember.View);
+
+    createView = function (opts) {
+      return container.lookupFactory('view:basic').create(opts);
+    };
+
+    moment.locale('en');
   }
 });
 
@@ -17,7 +25,7 @@ test('one arg (date)', function(assert) {
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-to-now date}}`,
     context: {
       date: addThreeDays
@@ -34,7 +42,7 @@ test('two args (date, inputFormat)', function(assert) {
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-to-now date format}}`,
     context: {
       format: 'LLLL',
@@ -54,7 +62,7 @@ test('change date input and change is reflected by bound helper', function(asser
     date: new Date(new Date().valueOf() - (60*60*1000))
   });
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-to-now date}}`,
     context: context
   });
@@ -74,7 +82,7 @@ test('change date input and change is reflected by bound helper', function(asser
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-to-now date locale='es'}}`,
     context: {
       date: new Date(new Date().valueOf() - (60*60*1000))
@@ -88,7 +96,7 @@ test('can inline a locale instead of using global locale', function(assert) {
 
 test('can be called with null', function(assert) {
   assert.expect(1);
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-to-now date allow-empty=true}}`,
     context: {
       date: null
@@ -97,5 +105,35 @@ test('can be called with null', function(assert) {
 
   runAppend(view);
   assert.equal(view.$().text(), '');
+  runDestroy(view);
+});
+
+test('can be called with null using global config option', function(assert) {
+  assert.expect(1);
+
+  const view = createView({
+    template: hbs`{{moment-to-now date}}`,
+    context: {
+      date: null
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '');
+  runDestroy(view);
+});
+
+test('unable to called with null overriding global config option', function(assert) {
+  assert.expect(1);
+
+  const view = createView({
+    template: hbs`{{moment-to-now date allow-empty=false}}`,
+    context: {
+      date: null
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'Invalid date');
   runDestroy(view);
 });

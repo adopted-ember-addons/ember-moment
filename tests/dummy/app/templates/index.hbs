@@ -1,5 +1,135 @@
+{{moment now}}
+
+<code>
+  \{{moment-format now}}
+</code>
+
+<hr>
+
+{{moment-format now 'LLLL' }}
+
+<code>
+  \{{moment-format now 'LLLL'}}
+</code>
+
+<hr>
+
+{{moment-format usIndependenceDay 'LLLL' }}
+
+<code>
+  \{{moment-format usIndependenceDay 'LLLL'}}
+</code>
+
+<hr>
+
+{{moment-format usIndependenceDay 'MMM DD, YYYY' }}
+
+<code>
+  \{{moment-format usIndependenceDay 'MMM DD, YYYY'}}
+</code>
+
+<hr>
+
+{{moment-format emptyDate allow-empty=true}}
+{{moment-to-now emptyDate allow-empty=true}}
+{{moment emptyDate allow-empty=true}}
+{{ago emptyDate allow-empty=true}}
+{{moment-from-now emptyDate allow-empty=true}}
+
+{{moment-format now 'LL' 'LLLL'}}
+
+<code>
+  \{{moment-format now 'LL' 'LLLL'}}
+</code>
+
+<hr>
+
+{{moment-from-now now}}
+
+<code>
+  \{{moment-from-now now}}
+</code>
+
+<hr>
+
 {{moment-from-now lastHour interval=1000}}
+
+<code>
+  \{{moment-from-now lastHour interval=1000}}
+</code>
+
+<hr>
+
+{{moment-from-now usIndependenceDay}}
+
+<code>
+  \{{moment-from-now usIndependenceDay}}
+</code>
+
+<hr>
+
+{{moment-duration 5000}}
+<code>
+  \{{moment-duration 5000}}
+</code>
+
+<hr>
+
+{{moment-duration 600000}}
+<code>
+  \{{moment-duration 600000}}
+</code>
+
+<hr>
+
+{{moment-duration 86400000}}
+<code>
+  \{{moment-duration 86400000}}
+</code>
+
+<hr>
+
+{{moment-duration '7.23:59:59'}}
+<code>
+  \{{moment-duration '7.23:59:59'}}
+</code>
+
+<hr>
+
+{{moment-duration 210 'days'}}
+<code>
+  \{{moment-duration 210 'days'}}
+</code>
+
+<hr>
+
+{{computedDate}}
 <br />
-{{moment-to-now lastHour interval=1000}}
+<code>
+  export default Ember.Controller.extend({<br />
+    date: new Date(), /* in the route I am looping this */ <br />
+    computedDate: moment('date', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+
+<hr>
+
+{{computedOneHourAgo}}
 <br />
-{{moment-duration 1000000}}
+<code>
+  export default Ember.Controller.extend({<br />
+    lastHour: new Date(new Date().valueOf() - (60*60*1000)),<br />
+    computedOneHourAgo: ago('lastHour', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+
+<hr>
+
+{{computedNumHours}}
+<br />
+<code>
+  export default Ember.Controller.extend({<br />
+    numHours: 822,<br />
+    computedNumHours: duration('numHours', 'hours'),<br />
+  });
+</code>

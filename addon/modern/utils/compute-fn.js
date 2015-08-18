@@ -14,7 +14,7 @@ export default function(cb) {
       allowEmpty = !!this.get('globalAllowEmpty');
     }
 
-    if ([null, '', undefined].indexOf(datetime) > -1 && allowEmpty) {
+    if (allowEmpty && [null, '', undefined].indexOf(datetime) > -1) {
       Ember.Logger.warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
       return;
     }

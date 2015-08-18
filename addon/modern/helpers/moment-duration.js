@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default Ember.Helper.extend({
   compute: function(params, hash) {
-    if (params.length > 2) {
+    if (!params || params && params.length > 2) {
       throw new TypeError('ember-moment: Invalid Number of arguments, at most 2');
     }
 

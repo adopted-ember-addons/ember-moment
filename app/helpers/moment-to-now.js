@@ -5,4 +5,4 @@ import config from '../config/environment';
 
 const helper = helperFactory(!!Ember.get(config, 'moment.allowEmpty'));
 
-export default makeBoundHelper(helperFactory);
+export default makeBoundHelper(helper);

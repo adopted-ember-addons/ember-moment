@@ -19,7 +19,7 @@ export default Ember.Helper.extend({
     args.push(params[0]);
 
     if (length === 1) {
-      output = this.globalOutputFormat;
+      output = this.get('globalOutputFormat');
     } else if (length === 2) {
       output = params[1];
     } else if (length > 2) {

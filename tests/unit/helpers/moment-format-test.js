@@ -6,20 +6,27 @@ import { moduleFor, test } from 'ember-qunit';
 import date from '../../helpers/date';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-let registry;
+let registry, createView;
 
 moduleFor('helper:moment-format', {
+  needs: ['helper:moment'],
   setup() {
-    moment.locale('en');
+    const container = this.container;
     registry =  this.registry || this.container;
     registry.register('view:basic', Ember.View);
+
+    createView = function (opts) {
+      return container.lookupFactory('view:basic').create(opts);
+    };
+
+    moment.locale('en');
   }
 });
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date}}`,
     context: {
       date: date(date(0))
@@ -34,7 +41,7 @@ test('one arg (date)', function(assert) {
 test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date format}}`,
     context: {
       format: 'MMMM D, YYYY',
@@ -47,11 +54,28 @@ test('two args (date, inputFormat)', function(assert) {
   runDestroy(view);
 });
 
-test('three args (date, inputFormat, outputFormat)', function(assert) {
+test('three args (date, outputFormat, inputFormat)', function(assert) {
   assert.expect(1);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date outputFormat inputFormat}}`,
+    context: {
+      inputFormat: 'M/D/YY',
+      outputFormat: 'MMMM D, YYYY',
+      date: '5/3/10'
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'May 3, 2010');
+  runDestroy(view);
+});
+
+test('(DEPRECATED) three args (date, outputFormat, inputFormat)', function(assert) {
+  assert.expect(1);
+
+  const view = createView({
+    template: hbs`{{moment date outputFormat inputFormat}}`,
     context: {
       inputFormat: 'M/D/YY',
       outputFormat: 'MMMM D, YYYY',
@@ -70,7 +94,7 @@ test('change date input and change is reflected by bound helper', function(asser
     date: date(0)
   });
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date}}`,
     context: context
   });
@@ -90,7 +114,7 @@ test('change date input and change is reflected by bound helper', function(asser
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date 'LLLL' locale='es'}}`,
     context: {
       date: date(date(0))
@@ -105,7 +129,7 @@ test('can inline a locale instead of using global locale', function(assert) {
 test('can be called with null when allow-empty is set to true', function(assert) {
   assert.expect(1);
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format null allow-empty=true}}`,
     context: {
       date: null
@@ -124,7 +148,7 @@ test('can be called using subexpression', function(assert) {
     return 'L';
   }));
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-format date (get-format 'global-format')}}`,
     context: {
       date: date(0)

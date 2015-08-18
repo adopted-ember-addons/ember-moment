@@ -4,11 +4,20 @@ import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
+let createView;
+
 moduleFor('helper:moment-from-now', {
+  needs: ['helper:ago'],
   setup() {
-    moment.locale('en');
+    const container = this.container;
     const registry =  this.registry || this.container;
     registry.register('view:basic', Ember.View);
+
+    createView = function (opts) {
+      return container.lookupFactory('view:basic').create(opts);
+    };
+
+    moment.locale('en');
   }
 });
 
@@ -22,7 +31,7 @@ test('one arg (date)', function(assert) {
     date: threeDaysAgo
   });
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-from-now date}}`,
     context: context
   });
@@ -31,16 +40,34 @@ test('one arg (date)', function(assert) {
   assert.equal(view.$().text(), '3 days ago');
 });
 
-test('two args (format, date)', function(assert) {
+test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
 
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-  const view = this.container.lookupFactory('view:basic').create({
-    template: hbs`{{moment-from-now date format}}`,
+  const view = createView({
+    template: hbs`{{moment-from-now date inputFormat}}`,
     context: {
-      format: 'LLLL',
+      inputFormat: 'LLLL',
+      date: threeDaysAgo
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '3 days ago');
+});
+
+test('(DEPRECATED) ago two args (date, inputFormat)', function(assert) {
+  assert.expect(1);
+
+  const threeDaysAgo = new Date();
+  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+
+  const view = createView({
+    template: hbs`{{ago date inputFormat}}`,
+    context: {
+      inputFormat: 'LLLL',
       date: threeDaysAgo
     }
   });
@@ -55,7 +82,7 @@ test('change date input and change is reflected by bound helper', function(asser
     date: new Date(new Date().valueOf() - (60*60*1000))
   });
 
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-from-now date}}`,
     context: context
   });
@@ -75,7 +102,7 @@ test('change date input and change is reflected by bound helper', function(asser
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-from-now date locale='es'}}`,
     context: {
       date: new Date(new Date().valueOf() - (60*60*1000))
@@ -89,7 +116,7 @@ test('can inline a locale instead of using global locale', function(assert) {
 
 test('can be called with null', function(assert) {
   assert.expect(1);
-  const view = this.container.lookupFactory('view:basic').create({
+  const view = createView({
     template: hbs`{{moment-from-now date allow-empty=true}}`,
     context: {
       date: null

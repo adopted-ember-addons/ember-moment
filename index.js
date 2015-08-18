@@ -13,52 +13,45 @@ module.exports = {
     var checker = new VersionChecker(this);
     var dep = checker.for('ember', 'bower');
 
-    this.isModern = dep.gt('1.13.0');
+    this.isModern = dep.gt('2.0.0') || dep.satisfies('>= 1.13.0-0');
   },
 
   treeForApp: function(tree) {
     if (this.isModern) {
       [
         'initializers/legacy-register.js',
-        'helpers/moment-from-now.js',
-        'helpers/moment-to-now.js',
-        'helpers/moment-duration.js',
-        'helpers/moment-format.js'
+        'helpers/*.js'
       ].forEach(function(file) {
         tree = stew.rm(tree, file);
       });
 
-      tree = stew.mv(tree, 'modern/helpers/', 'helpers/');
+      tree = stew.mv(tree, 'modern/', '/');
+    } else {
+      tree = stew.rm(tree, 'modern');
     }
 
     return tree;
   },
 
-  treeForAddon: function() {
-    var tree = this._super.treeForAddon.apply(this, arguments);
-    var root = path.join('modules', 'ember-moment');
-
+  treeForAddon: function(tree) {
     if (this.isModern) {
       [
         'utils/compute-fn.js',
-        'helpers/moment-to-now.js',
-        'helpers/moment-from-now.js',
-        'helpers/moment-duration.js',
-        'helpers/moment-format.js'
+        'helpers/*.js',
+        'helpers/deprecated/*.js'
       ].forEach(function(file) {
-        tree = stew.rm(tree, path.join(root, file));
+        tree = stew.rm(tree, file);
       });
 
       [
-        ['modern/utils/compute-fn.js', 'utils/compute-fn.js'],
-        ['modern/helpers/*.js', 'helpers/']
+        ['modern/', '/']
       ].forEach(function(files) {
-        tree = stew.mv(tree, path.join(root, files[0]), path.join(root, files[1]));
+        tree = stew.mv(tree, files[0], files[1]);
       });
     } else {
-      tree = stew.rm(tree, path.join(root, 'modern'));
+      tree = stew.rm(tree, 'modern');
     }
 
-    return tree;
+    return this._super.treeForAddon.call(this, tree);
   }
 };
