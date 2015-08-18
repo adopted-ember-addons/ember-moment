@@ -1,8 +1,12 @@
-import Ember from 'ember';
 import deprecatedAgo from 'ember-moment/helpers/deprecated/ago';
 import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
 import config from '../config/environment';
 
-export const computeFn = deprecatedAgo(Ember.get(config, 'moment.allowEmpty'));
+const { get } = Ember;
 
-export default makeBoundHelper(computeFn);
+export default makeBoundHelper(
+  deprecatedAgo(
+    get(config, 'moment.outputFormat'),
+    !!get(config, 'moment.allowEmpty')
+  )
+);

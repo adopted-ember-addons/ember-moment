@@ -18,8 +18,8 @@ module.exports = function(environment) {
       // when it is created
     },
     moment: {
+      allowEmpty: true,
       outputFormat: 'LLLL',
-      allowEmpty: false,
       includeTimezone: 'all',
       includeLocales: ['es', 'fr-ca', 'fr']
     }

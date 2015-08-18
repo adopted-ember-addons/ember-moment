@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import momentToNowHelper from 'ember-moment/helpers/moment-to-now';
+import helperFactory from 'ember-moment/helpers/moment-to-now';
 import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
 import config from '../config/environment';
 
-export const computeFn = momentToNowHelper(Ember.get(config, 'moment.allowEmpty'));
+const { get } = Ember;
 
-export default makeBoundHelper(computeFn);
+export const helper = helperFactory(!!get(config, 'moment.allowEmpty'));
+export default makeBoundHelper(helper);

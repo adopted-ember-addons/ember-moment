@@ -1,13 +1,8 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
-import momentToNow from 'ember-moment/helpers/moment-to-now';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
-import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
-
-const FAKE_HANDLEBARS_CONTEXT = {};
-const subject = momentToNow('LLLL');
 
 moduleFor('helper:moment-to-now', {
   setup() {
@@ -17,18 +12,39 @@ moduleFor('helper:moment-to-now', {
   }
 });
 
-test('one arg (date)', (assert) => {
+test('one arg (date)', function(assert) {
   assert.expect(1);
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
-  assert.equal(callHelper(subject, [addThreeDays, FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-to-now date}}`,
+    context: {
+      date: addThreeDays
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'in 3 days');
+  runDestroy(view);
 });
 
-test('two args (date, inputFormat)', (assert) => {
+test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
   const addThreeDays = new Date();
   addThreeDays.setDate(addThreeDays.getDate() - 3);
-  assert.equal(callHelper(subject, [addThreeDays, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'in 3 days');
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-to-now date format}}`,
+    context: {
+      format: 'LLLL',
+      date: addThreeDays
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'in 3 days');
+  runDestroy(view);
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {

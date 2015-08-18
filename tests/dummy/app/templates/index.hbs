@@ -1,4 +1,4 @@
-{{moment-format now}}
+{{moment now}}
 
 <code>
   \{{moment-format now}}
@@ -30,6 +30,12 @@
 
 <hr>
 
+{{moment-format emptyDate allow-empty=true}}
+{{moment-to-now emptyDate allow-empty=true}}
+{{moment emptyDate allow-empty=true}}
+{{ago emptyDate allow-empty=true}}
+{{moment-from-now emptyDate allow-empty=true}}
+
 {{moment-format now 'LL' 'LLLL'}}
 
 <code>
@@ -38,58 +44,10 @@
 
 <hr>
 
-{{moment-format emptyDate allow-empty=true}}
-
-<code>
-  \{{moment-format emptyDate allow-empty=true}}
-</code>
-
-<hr>
-
-{{ago emptyDate allow-empty=true}}
-
-<code>
-  \{{ago emptyDate allow-empty=true}}
-</code>
-
-<hr>
-
-{{ago now}}
-
-<code>
-  \{{ago now}}
-</code>
-
-<hr>
-
-{{moment-to-now now}}
-
-<code>
-  \{{moment-to-now now}}
-</code>
-
-<hr>
-
-{{moment-to-now emptyDate allow-empty=true}}
-
-<code>
-  \{{moment-to-now emptyDate allow-empty=true}}
-</code>
-
-<hr>
-
 {{moment-from-now now}}
 
 <code>
   \{{moment-from-now now}}
-</code>
-
-<hr>
-
-{{moment-from-now emptyDate allow-empty=true}}
-
-<code>
-  \{{moment-from-now emptyDate allow-empty=true}}
 </code>
 
 <hr>
