@@ -1,4 +1,4 @@
-{{moment-format now}}
+{{moment now}}
 
 <code>
   \{{moment-format now}}
@@ -29,6 +29,12 @@
 </code>
 
 <hr>
+
+{{moment-format emptyDate allow-empty=true}}
+{{moment-to-now emptyDate allow-empty=true}}
+{{moment emptyDate allow-empty=true}}
+{{ago emptyDate allow-empty=true}}
+{{moment-from-now emptyDate allow-empty=true}}
 
 {{moment-format now 'LL' 'LLLL'}}
 

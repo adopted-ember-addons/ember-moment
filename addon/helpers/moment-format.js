@@ -1,7 +1,7 @@
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 
-export default function helperFactory(globalOutputFormat = 'LLLL') {
+export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEmpty = false) {
   return computeFn(function(params, hash) {
     const length = params.length;
 
@@ -29,5 +29,5 @@ export default function helperFactory(globalOutputFormat = 'LLLL') {
     }
 
     return time.format(output);
-  });
+  }, globalAllowEmpty);
 }

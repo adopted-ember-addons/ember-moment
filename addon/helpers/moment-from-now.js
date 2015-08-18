@@ -4,7 +4,7 @@ import computeFn from '../utils/compute-fn';
 
 const runBind = Ember.run.bind;
 
-export function helperFactory() {
+export default function helperFactory(globalAllowEmpty = false) {
   if (Ember.Helper) {
     return Ember.Helper.extend({
       compute: computeFn(function(params, hash) {
@@ -21,7 +21,7 @@ export function helperFactory() {
         }
 
         return time.fromNow(hash.hideSuffix);
-      }),
+      }, globalAllowEmpty),
       clearTimer() {
         clearTimeout(this.timer);
       },
@@ -40,7 +40,5 @@ export function helperFactory() {
     }
 
     return time.fromNow(hash.hideSuffix);
-  });
+  }, globalAllowEmpty);
 }
-
-export default helperFactory();

@@ -15,7 +15,7 @@ module.exports = {
     var checker = new VersionChecker(this);
     var dep = checker.for('ember', 'bower');
 
-    if (dep.satisfies('>= 1.13.0 || >= 2')) {
+    if (dep.gt('1.13.0')) {
       tree = stew.rm(tree, 'initializers/legacy-register.js');
     }
 

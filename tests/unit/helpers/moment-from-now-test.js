@@ -1,12 +1,8 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
-import momentFromNow from 'ember-moment/helpers/moment-from-now';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
-import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
-
-const FAKE_HANDLEBARS_CONTEXT = {};
 
 moduleFor('helper:moment-from-now', {
   setup() {
@@ -16,20 +12,41 @@ moduleFor('helper:moment-from-now', {
   }
 });
 
-test('one arg (date)', (assert) => {
-  assert.expect(2);
+test('one arg (date)', function(assert) {
+  assert.expect(1);
+
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  assert.equal(callHelper(momentFromNow, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(momentFromNow, [moment(), FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+
+  const context = Ember.Object.create({
+    date: threeDaysAgo
+  });
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-from-now date}}`,
+    context: context
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '3 days ago');
 });
 
-test('two args (date, inputFormat)', (assert) => {
-  assert.expect(2);
+test('two args (format, date)', function(assert) {
+  assert.expect(1);
+
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  assert.equal(callHelper(momentFromNow, [threeDaysAgo, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(momentFromNow, [moment(), 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+
+  const view = this.container.lookupFactory('view:basic').create({
+    template: hbs`{{moment-from-now date format}}`,
+    context: {
+      format: 'LLLL',
+      date: threeDaysAgo
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), '3 days ago');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {
