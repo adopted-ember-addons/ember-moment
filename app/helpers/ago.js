@@ -6,7 +6,6 @@ const { get } = Ember;
 
 export default makeBoundHelper(
   deprecatedAgo(
-    get(config, 'moment.outputFormat'),
     !!get(config, 'moment.allowEmpty')
   )
 );
