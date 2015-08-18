@@ -7,6 +7,7 @@ import callHelper from '../../helpers/call-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
 const FAKE_HANDLEBARS_CONTEXT = {};
+const subject = momentFromNow('LLLL');
 
 moduleFor('helper:moment-from-now', {
   setup() {
@@ -20,16 +21,16 @@ test('one arg (date)', (assert) => {
   assert.expect(2);
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  assert.equal(callHelper(momentFromNow, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(momentFromNow, [moment(), FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(subject, [threeDaysAgo, FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
+  assert.equal(callHelper(subject, [moment(), FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('two args (date, inputFormat)', (assert) => {
   assert.expect(2);
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  assert.equal(callHelper(momentFromNow, [threeDaysAgo, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
-  assert.equal(callHelper(momentFromNow, [moment(), 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
+  assert.equal(callHelper(subject, [threeDaysAgo, 'LLLL', FAKE_HANDLEBARS_CONTEXT]), '3 days ago');
+  assert.equal(callHelper(subject, [moment(), 'LLLL', FAKE_HANDLEBARS_CONTEXT]), 'a few seconds ago');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {

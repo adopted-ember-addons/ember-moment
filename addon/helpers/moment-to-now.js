@@ -4,10 +4,10 @@ import computeFn from '../utils/compute-fn';
 
 const runBind = Ember.run.bind;
 
-export function helperFactory() {
+export default function helperFactory(allowEmpty = false) {
   if (Ember.Helper) {
     return Ember.Helper.extend({
-      compute: computeFn(function(params, hash) {
+      compute: computeFn(allowEmpty, function(params, hash) {
         this.clearTimer();
 
         if (hash.interval) {
@@ -32,7 +32,7 @@ export function helperFactory() {
     });
   }
 
-  return computeFn(function(params, hash) {
+  return computeFn(allowEmpty, function(params, hash) {
     let time = moment(...params);
 
     if (hash.locale) {
@@ -43,4 +43,3 @@ export function helperFactory() {
   });
 }
 
-export default helperFactory();
