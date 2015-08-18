@@ -102,7 +102,9 @@ module.exports = function() {
 };
 ```
 
-## Global Default Format
+## Configuration Options
+
+### Global Default Output Format
 
 Your application may require a different moment format default other than `LLLL`.  Your application may want dates to be treated in the shorthand date form `L` by default.
 
@@ -117,9 +119,24 @@ module.exports = function() {
 };
 ```
 
-## i18n support
+### Global Allow Empty Dates
 
-### Cherry pick locales (optimal)
+If `null`, `undefined`, or an empty string as a date to any of the moment helpers then you you will `Invalid Date` in the output.  To avoid this issue globally, you can set the option `allowEmpty` which all of the helpers respect and will result in nothing being rendered instead of `Invalid Date`.
+
+```js
+// config.environment.js
+module.exports = function() {
+  return {
+    moment: {
+      allowEmpty: true // default: false
+    }
+  }
+};
+```
+
+### i18n support
+
+#### Cherry pick locales (optimal)
 
 ```js
 // config.environment.js
@@ -133,7 +150,7 @@ module.exports = function(environment) {
   };
 ```
 
-### Include all locales into build
+#### Include all locales into build
 
 ```js
 // config.environment.js
