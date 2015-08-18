@@ -1,3 +1,10 @@
+### 3.6.0
+
+* 2.0-beta + 2.0-canary supported again
+* test support for deprecated helpers
+* global allowEmpty configuration option
+* removes unused helper modules from builds (slimmer dists)
+
 ### 3.5.1
 
 * destroy interval timers on Helper destroy
