@@ -19,7 +19,6 @@ module.exports = function(environment) {
     },
     moment: {
       outputFormat: 'LLLL',
-      allowEmpty: false,
       includeTimezone: 'all',
       includeLocales: ['es', 'fr-ca', 'fr']
     }
