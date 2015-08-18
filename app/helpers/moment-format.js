@@ -4,6 +4,6 @@ import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
 import config from '../config/environment';
 
 const { get } = Ember;
+const helper = momentFormatHelper(get(config, 'moment.outputFormat'), !!get(config, 'moment.allowEmpty'));
 
-export const helper = momentFormatHelper(get(config, 'moment.outputFormat'), !!get(config, 'moment.allowEmpty'));
 export default makeBoundHelper(helper);
