@@ -1,3 +1,7 @@
+### 3.6.1
+
+* Bugfix global output format
+
 ### 3.6.0
 
 * 2.0-beta + 2.0-canary supported again
