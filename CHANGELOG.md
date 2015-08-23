@@ -1,3 +1,7 @@
+### 3.6.2
+
+* Warn on locale mismatch, silently ignore `en` locale since included by default in moment
+
 ### 3.6.1
 
 * Bugfix global output format
