@@ -88,7 +88,7 @@ export default Ember.Controller.extend({
 You can optionally include the Moment Timezone package in your `config/environment.js` like so:
 
 ```js
-// config.environment.js
+// config/environment.js
 module.exports = function() {
   return {
     moment: {
@@ -109,7 +109,7 @@ module.exports = function() {
 Your application may require a different moment format default other than `LLLL`.  Your application may want dates to be treated in the shorthand date form `L` by default.
 
 ```js
-// config.environment.js
+// config/environment.js
 module.exports = function() {
   return {
     moment: {
@@ -124,7 +124,7 @@ module.exports = function() {
 If `null`, `undefined`, or an empty string as a date to any of the moment helpers then you you will `Invalid Date` in the output.  To avoid this issue globally, you can set the option `allowEmpty` which all of the helpers respect and will result in nothing being rendered instead of `Invalid Date`.
 
 ```js
-// config.environment.js
+// config/environment.js
 module.exports = function() {
   return {
     moment: {
@@ -139,7 +139,7 @@ module.exports = function() {
 #### Cherry pick locales (optimal)
 
 ```js
-// config.environment.js
+// config/environment.js
 module.exports = function(environment) {
   return {
     moment: {
@@ -153,7 +153,7 @@ module.exports = function(environment) {
 #### Include all locales into build
 
 ```js
-// config.environment.js
+// config/environment.js
 module.exports = function(environment) {
   return {
     moment: {
