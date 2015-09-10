@@ -35,13 +35,16 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-duration number units}}
 ```
 
-Recomputes the time ago every 1-second.  This is useful for "live" updating as time elapses.
+### Live Updating of Displayed Time
+
+```hbs
+{{moment-from-now date interval=1000}} // interval is in ms
+```
+
+Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for "live" updating as time elapses.
 
 *NOTE: This feature is only supported in Ember >= 1.13.0*
 
-```hbs
-{{moment-from-now date interval=1000}}
-```
 
 ## ES6 Moment
 
