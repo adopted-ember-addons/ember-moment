@@ -1,4 +1,4 @@
-### 3.6.3
+### 3.6.3-3.6.4
 
 * Ember version detection incorrectly reported
 

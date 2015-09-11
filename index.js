@@ -12,10 +12,9 @@ module.exports = {
 
     var checker = new VersionChecker(this);
     var dep = checker.for('ember', 'bower');
-    var versionSplit = dep.version.split('.');
     var modern = false;
 
-    if (versionSplit[0] === '2' || dep.satisfies('>= 1.13.0-0')) {
+    if (dep.version && dep.version[0] === '2' || dep.satisfies('>= 1.13.0-0')) {
       modern = true;
     }
 
