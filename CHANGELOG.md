@@ -1,3 +1,7 @@
+### 3.6.3
+
+* Ember version detection incorrectly reported
+
 ### 3.6.2
 
 * Warn on locale mismatch, silently ignore `en` locale since included by default in moment
