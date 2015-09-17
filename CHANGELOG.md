@@ -1,3 +1,8 @@
+### Master
+
+* Introduce `{{moment-relative}}` helper to deal with dates that may or may not
+  be in the future / past.
+
 ### 3.6.3-3.6.4
 
 * Ember version detection incorrectly reported
