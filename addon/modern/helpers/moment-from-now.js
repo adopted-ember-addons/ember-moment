@@ -7,20 +7,20 @@ const runBind = Ember.run.bind;
 export default Ember.Helper.extend({
   globalAllowEmpty: false,
 
-  compute: computeFn(function(params, hash) {
+  compute: computeFn(function(params, { hideSuffix, interval, locale }) {
     this.clearTimer();
 
-    if (hash.interval) {
-      this.timer = setTimeout(runBind(this, this.recompute), parseInt(hash.interval, 10));
+    if (interval) {
+      this.timer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
     }
 
     let time = moment(...params);
 
-    if (hash.locale) {
-      time = time.locale(hash.locale);
+    if (locale) {
+      time = time.locale(locale);
     }
 
-    return time.fromNow(hash.hideSuffix);
+    return time.fromNow(hideSuffix);
   }),
 
   clearTimer() {

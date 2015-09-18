@@ -2,7 +2,7 @@ import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 
 export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEmpty = false) {
-  return computeFn(function(params, hash) {
+  return computeFn(function(params, { locale }) {
     const length = params.length;
 
     if (length > 3) {
@@ -24,8 +24,8 @@ export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEm
     }
 
     let time = moment(...args);
-    if (hash.locale) {
-      time = time.locale(hash.locale);
+    if (locale) {
+      time = time.locale(locale);
     }
 
     return time.format(output);
