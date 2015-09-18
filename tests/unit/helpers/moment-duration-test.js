@@ -1,30 +1,16 @@
-import Ember from 'ember';
-import { moduleFor, test } from 'ember-qunit';
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
+import moduleForHelper from '../../helpers/module-for-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
+import { test } from 'ember-qunit';
 
-let createView;
-
-moduleFor('helper:moment-duration', {
+moduleForHelper('moment-duration', {
   needs: ['helper:duration'],
-  setup() {
-    const container = this.container;
-    const registry =  this.registry || this.container;
-    registry.register('view:basic', Ember.View);
-
-    createView = function (opts) {
-      return container.lookupFactory('view:basic').create(opts);
-    };
-
-    moment.locale('en');
-  }
 });
 
 test('one arg (ms)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date}}`,
     context: {
       date: 86400000
@@ -39,7 +25,7 @@ test('one arg (ms)', function(assert) {
 test('one arg (empty string)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date}}`,
     context: {
       date: ''
@@ -54,7 +40,7 @@ test('one arg (empty string)', function(assert) {
 test('one arg (object)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date}}`,
     context: {
       date: {
@@ -77,7 +63,7 @@ test('one arg (object)', function(assert) {
 test('one arg (string)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date}}`,
     context: {
       date: '23:59:59'
@@ -92,7 +78,7 @@ test('one arg (string)', function(assert) {
 test('two args (value, units) - minute', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date unit}}`,
     context: {
       unit: 'minutes',
@@ -108,7 +94,7 @@ test('two args (value, units) - minute', function(assert) {
 test('two args (value, units) - day', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date unit}}`,
     context: {
       unit: 'day',
@@ -124,7 +110,7 @@ test('two args (value, units) - day', function(assert) {
 test('(DEPRECATED) two args (value, units) - day', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{duration date unit}}`,
     context: {
       unit: 'day',
@@ -140,7 +126,7 @@ test('(DEPRECATED) two args (value, units) - day', function(assert) {
 test('two args (value, units) - empty value', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date unit}}`,
     context: {
       unit: 'minutes',
@@ -156,7 +142,7 @@ test('two args (value, units) - empty value', function(assert) {
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-duration date locale='es'}}`,
     context: {
       date: 86400000
