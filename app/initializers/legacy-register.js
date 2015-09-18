@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import momentToNowHelper from '../helpers/moment-to-now';
 import momentFromNowHelper from '../helpers/moment-from-now';
+import momentRelativeHelper from '../helpers/moment-relative';
 import momentFormatHelper from '../helpers/moment-format';
 import momentDurationHelper from '../helpers/moment-duration';
 import deprecatedMomentHelper from '../helpers/moment';
@@ -14,6 +15,7 @@ export function initialize(container) {
 
   Ember.HTMLBars._registerHelper('moment-to-now', momentToNowHelper);
   Ember.HTMLBars._registerHelper('moment-from-now', momentFromNowHelper);
+  Ember.HTMLBars._registerHelper('moment-relative', momentRelativeHelper);
   Ember.HTMLBars._registerHelper('moment-format', momentFormatHelper);
   Ember.HTMLBars._registerHelper('moment-duration', momentDurationHelper);
 
