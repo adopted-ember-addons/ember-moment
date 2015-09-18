@@ -23,7 +23,6 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-format date}}
 {{moment-from-now date}}
 {{moment-to-now date}}
-{{moment-relative date}}
 {{moment-duration ms}}
 ```
 
@@ -33,7 +32,6 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-format date outputFormat inputFormat}}
 {{moment-from-now date}}
 {{moment-to-now date}}
-{{moment-relative date}}
 {{moment-duration number units}}
 ```
 
