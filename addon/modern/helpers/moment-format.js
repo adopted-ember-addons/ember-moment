@@ -6,7 +6,7 @@ export default Ember.Helper.extend({
   globalOutputFormat: 'LLLL',
   globalAllowEmpty: false,
 
-  compute: computeFn(function(params, hash) {
+  compute: computeFn(function(params, { locale }) {
     const length = params.length;
 
     if (length > 3) {
@@ -29,8 +29,8 @@ export default Ember.Helper.extend({
 
     let time = moment(...args);
 
-    if (hash.locale) {
-      time = time.locale(hash.locale);
+    if (locale) {
+      time = time.locale(locale);
     }
 
     return time.format(output);

@@ -7,7 +7,7 @@ import deprecatedMomentHelper from '../helpers/moment';
 import deprecatedDurationHelper from '../helpers/duration';
 import deprecatedAgoHelper from '../helpers/ago';
 
-export function initialize(container) {
+export function initialize() {
   if (!Ember.HTMLBars) {
     throw new Error('HTMLBars is required with this version of ember-moment.');
   }
