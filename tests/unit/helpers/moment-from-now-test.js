@@ -1,13 +1,11 @@
 import Ember from 'ember';
 import { test } from 'ember-qunit';
-import moduleForHelper from '../../helpers/module-for-helper';
 import hbs from 'htmlbars-inline-precompile';
+import moduleForHelper from '../../helpers/module-for-helper';
 import hoursFromNow from '../../helpers/hours-from-now';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-moduleForHelper('moment-from-now', {
-  needs: ['helper:ago'],
-});
+moduleForHelper('moment-from-now');
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
@@ -36,24 +34,6 @@ test('two args (date, inputFormat)', function(assert) {
 
   const view = this.createView({
     template: hbs`{{moment-from-now date inputFormat}}`,
-    context: {
-      inputFormat: 'LLLL',
-      date: threeDaysAgo
-    }
-  });
-
-  runAppend(view);
-  assert.equal(view.$().text(), '3 days ago');
-});
-
-test('(DEPRECATED) ago two args (date, inputFormat)', function(assert) {
-  assert.expect(1);
-
-  const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-
-  const view = this.createView({
-    template: hbs`{{ago date inputFormat}}`,
     context: {
       inputFormat: 'LLLL',
       date: threeDaysAgo

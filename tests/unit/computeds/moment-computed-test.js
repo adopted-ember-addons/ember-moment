@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
-import date from '../../helpers/date';
 import momentFormat from 'ember-moment/computeds/format';
+import date from '../../helpers/date';
 
 module('momentComputed', {
   setup() {

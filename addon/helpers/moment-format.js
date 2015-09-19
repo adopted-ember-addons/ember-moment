@@ -1,8 +1,12 @@
+import Ember from 'ember';
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 
-export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEmpty = false) {
-  return computeFn(function(params, { locale }) {
+export default Ember.Helper.extend({
+  globalOutputFormat: 'LLLL',
+  globalAllowEmpty: false,
+
+  compute: computeFn(function(params, { locale }) {
     const length = params.length;
 
     if (length > 3) {
@@ -15,7 +19,7 @@ export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEm
     args.push(params[0]);
 
     if (length === 1) {
-      output = globalOutputFormat;
+      output = this.globalOutputFormat;
     } else if (length === 2) {
       output = params[1];
     } else if (length > 2) {
@@ -24,10 +28,11 @@ export default function helperFactory(globalOutputFormat = 'LLLL', globalAllowEm
     }
 
     let time = moment(...args);
+
     if (locale) {
       time = time.locale(locale);
     }
 
     return time.format(output);
-  }, globalAllowEmpty);
-}
+  })
+});

@@ -1,11 +1,9 @@
 import hbs from 'htmlbars-inline-precompile';
-import moduleForHelper from '../../helpers/module-for-helper';
-import { runAppend, runDestroy } from '../../helpers/run-append';
 import { test } from 'ember-qunit';
+import { runAppend, runDestroy } from '../../helpers/run-append';
+import moduleForHelper from '../../helpers/module-for-helper';
 
-moduleForHelper('moment-duration', {
-  needs: ['helper:duration'],
-});
+moduleForHelper('moment-duration');
 
 test('one arg (ms)', function(assert) {
   assert.expect(1);
@@ -96,22 +94,6 @@ test('two args (value, units) - day', function(assert) {
 
   const view = this.createView({
     template: hbs`{{moment-duration date unit}}`,
-    context: {
-      unit: 'day',
-      date: 1
-    }
-  });
-
-  runAppend(view);
-  assert.equal(view.$().text(), 'a day');
-  runDestroy(view);
-});
-
-test('(DEPRECATED) two args (value, units) - day', function(assert) {
-  assert.expect(1);
-
-  const view = this.createView({
-    template: hbs`{{duration date unit}}`,
     context: {
       unit: 'day',
       date: 1

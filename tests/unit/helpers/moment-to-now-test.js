@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { test } from 'ember-qunit';
-import moduleForHelper from '../../helpers/module-for-helper';
 import hbs from 'htmlbars-inline-precompile';
+import moduleForHelper from '../../helpers/module-for-helper';
 import hoursFromNow from '../../helpers/hours-from-now';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 

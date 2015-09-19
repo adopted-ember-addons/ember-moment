@@ -1,5 +1,5 @@
 import Ember from 'ember';
-let { typeOf, Descriptor } = Ember;
+let { typeOf } = Ember;
 
 // credit: https://github.com/cibernox/ember-cpm/blob/master/addon/utils.js#L17-L20
 function isDescriptor(propertyName) {
@@ -10,8 +10,7 @@ function isDescriptor(propertyName) {
   }
 
   const prop = this[propertyName];
-  return typeOf(prop) === 'object' && (prop.constructor === Descriptor || // Ember < 1.11
-     prop.isDescriptor); // Ember >= 1.11.0
+  return typeOf(prop) === 'object' && prop.isDescriptor;
 }
 
 export default isDescriptor;
