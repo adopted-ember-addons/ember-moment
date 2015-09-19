@@ -1,32 +1,19 @@
 import Ember from 'ember';
-import moment from 'moment';
+import date from '../../helpers/date';
 import hbs from 'htmlbars-inline-precompile';
 import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
-import { moduleFor, test } from 'ember-qunit';
-import date from '../../helpers/date';
+import moduleForHelper from '../../helpers/module-for-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
+import { test } from 'ember-qunit';
 
-let registry, createView;
-
-moduleFor('helper:moment-format', {
+moduleForHelper('moment-format', {
   needs: ['helper:moment'],
-  setup() {
-    const container = this.container;
-    registry =  this.registry || this.container;
-    registry.register('view:basic', Ember.View);
-
-    createView = function (opts) {
-      return container.lookupFactory('view:basic').create(opts);
-    };
-
-    moment.locale('en');
-  }
 });
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date}}`,
     context: {
       date: date(date(0))
@@ -41,7 +28,7 @@ test('one arg (date)', function(assert) {
 test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date format}}`,
     context: {
       format: 'MMMM D, YYYY',
@@ -57,7 +44,7 @@ test('two args (date, inputFormat)', function(assert) {
 test('three args (date, outputFormat, inputFormat)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date outputFormat inputFormat}}`,
     context: {
       inputFormat: 'M/D/YY',
@@ -74,7 +61,7 @@ test('three args (date, outputFormat, inputFormat)', function(assert) {
 test('(DEPRECATED) three args (date, outputFormat, inputFormat)', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment date outputFormat inputFormat}}`,
     context: {
       inputFormat: 'M/D/YY',
@@ -94,7 +81,7 @@ test('change date input and change is reflected by bound helper', function(asser
     date: date(0)
   });
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date}}`,
     context: context
   });
@@ -114,7 +101,7 @@ test('change date input and change is reflected by bound helper', function(asser
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date 'LLLL' locale='es'}}`,
     context: {
       date: date(date(0))
@@ -129,7 +116,7 @@ test('can inline a locale instead of using global locale', function(assert) {
 test('can be called with null when allow-empty is set to true', function(assert) {
   assert.expect(1);
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format null allow-empty=true}}`,
     context: {
       date: null
@@ -144,11 +131,11 @@ test('can be called with null when allow-empty is set to true', function(assert)
 test('can be called using subexpression', function(assert) {
   assert.expect(1);
 
-  registry.register('helper:get-format', makeBoundHelper(function() {
+  this.registry.register('helper:get-format', makeBoundHelper(function() {
     return 'L';
   }));
 
-  const view = createView({
+  const view = this.createView({
     template: hbs`{{moment-format date (get-format 'global-format')}}`,
     context: {
       date: date(0)
