@@ -1,14 +1,11 @@
 import Ember from 'ember';
-import date from '../../helpers/date';
+import { test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import makeBoundHelper from 'ember-moment/utils/make-bound-helper';
+import date from '../../helpers/date';
 import moduleForHelper from '../../helpers/module-for-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
-import { test } from 'ember-qunit';
 
-moduleForHelper('moment-format', {
-  needs: ['helper:moment'],
-});
+moduleForHelper('moment-format');
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
@@ -46,23 +43,6 @@ test('three args (date, outputFormat, inputFormat)', function(assert) {
 
   const view = this.createView({
     template: hbs`{{moment-format date outputFormat inputFormat}}`,
-    context: {
-      inputFormat: 'M/D/YY',
-      outputFormat: 'MMMM D, YYYY',
-      date: '5/3/10'
-    }
-  });
-
-  runAppend(view);
-  assert.equal(view.$().text(), 'May 3, 2010');
-  runDestroy(view);
-});
-
-test('(DEPRECATED) three args (date, outputFormat, inputFormat)', function(assert) {
-  assert.expect(1);
-
-  const view = this.createView({
-    template: hbs`{{moment date outputFormat inputFormat}}`,
     context: {
       inputFormat: 'M/D/YY',
       outputFormat: 'MMMM D, YYYY',
@@ -131,7 +111,7 @@ test('can be called with null when allow-empty is set to true', function(assert)
 test('can be called using subexpression', function(assert) {
   assert.expect(1);
 
-  this.registry.register('helper:get-format', makeBoundHelper(function() {
+  this.registry.register('helper:get-format', Ember.Helper.helper(function() {
     return 'L';
   }));
 

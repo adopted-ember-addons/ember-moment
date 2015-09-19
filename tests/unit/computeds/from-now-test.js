@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import hoursFromNow from '../../helpers/hours-from-now';
 import moment from 'moment';
 import momentFromNow from 'ember-moment/computeds/from-now';
+import hoursFromNow from '../../helpers/hours-from-now';
 
 module('agoComputed', {
   setup() {

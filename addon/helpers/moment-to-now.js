@@ -1,8 +1,19 @@
+import Ember from 'ember';
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 
-export default function helperFactory(globalAllowEmpty = false) {
-  return computeFn(function(params, { hidePrefix, locale }) {
+const runBind = Ember.run.bind;
+
+export default Ember.Helper.extend({
+  globalAllowEmpty: false,
+
+  compute: computeFn(function(params, { hidePrefix, interval, locale }) {
+    this.clearTimer();
+
+    if (interval) {
+      this.timer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
+    }
+
     let time = moment(...params);
 
     if (locale) {
@@ -10,5 +21,14 @@ export default function helperFactory(globalAllowEmpty = false) {
     }
 
     return time.toNow(hidePrefix);
-  }, globalAllowEmpty);
-}
+  }),
+
+  clearTimer() {
+    clearTimeout(this.timer);
+  },
+
+  destroy() {
+    this.clearTimer();
+    this._super(...arguments);
+  }
+});
