@@ -5,8 +5,8 @@
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
 ## Requirements
-* Ember >= 1.10.0 (2.0-beta and canary also supported)
-  * If you need support for < Ember 1.10 please use ember-moment 1.x-2.x
+* Ember >= 1.10.0 (see installation instructions below)
+* Ember CLI
 
 ## Installing
 
