@@ -42,9 +42,7 @@
     "momentjs"
   ],
   "dependencies": {
-    "broccoli-stew": "^0.3.4",
     "ember-cli-babel": "^5.0.0",
-    "ember-cli-version-checker": "^1.1.4",
     "ember-new-computed": "^1.0.2"
   },
   "ember-addon": {
