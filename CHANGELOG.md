@@ -1,3 +1,7 @@
+### 4.0.1
+
+* Removes two unused npm deps
+
 ### 4.0.0
 
 * Removes support for legacy helpers
