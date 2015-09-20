@@ -1,4 +1,4 @@
-### 3.6.3-3.6.4
+### 4.0.0
 
 * Removes support for legacy helpers
 * Drops support for Ember < 1.13.0 (continue to use 3.x for < 1.13.0 support)
