@@ -3,7 +3,9 @@ import { test } from 'ember-qunit';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 import moduleForHelper from '../../helpers/module-for-helper';
 
-moduleForHelper('moment-duration');
+moduleForHelper('moment-duration', {
+  needs: ['service:moment']
+});
 
 test('one arg (ms)', function(assert) {
   assert.expect(1);

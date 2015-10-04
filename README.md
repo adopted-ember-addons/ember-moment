@@ -176,12 +176,10 @@ module.exports = function(environment) {
 
 ```js
 // app/routes/applicaton.js
-import moment from 'moment';
-
 export default Ember.Route.extend({
+  moment: Ember.inject.service(),
   beforeModel() {
-    // sets the application locale to Spanish
-    moment.locale('es');
+    this.set('moment.locale', 'es');
   }
 });
 ```

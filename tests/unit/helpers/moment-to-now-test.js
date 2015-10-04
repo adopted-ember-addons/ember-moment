@@ -5,7 +5,9 @@ import moduleForHelper from '../../helpers/module-for-helper';
 import hoursFromNow from '../../helpers/hours-from-now';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-moduleForHelper('moment-to-now');
+moduleForHelper('moment-to-now', {
+  needs: ['service:moment']
+});
 
 test('one arg (date)', function(assert) {
   assert.expect(1);

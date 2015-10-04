@@ -1,8 +1,8 @@
-import Ember from 'ember';
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
+import BaseHelper from './-base';
 
-export default Ember.Helper.extend({
+export default BaseHelper.extend({
   globalOutputFormat: 'LLLL',
   globalAllowEmpty: false,
 
@@ -28,6 +28,8 @@ export default Ember.Helper.extend({
     }
 
     let time = moment(...args);
+
+    locale = locale || this.get('moment.locale');
 
     if (locale) {
       time = time.locale(locale);

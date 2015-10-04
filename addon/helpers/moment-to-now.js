@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
+import BaseHelper from './-base';
 
 const runBind = Ember.run.bind;
 
-export default Ember.Helper.extend({
+export default BaseHelper.extend({
   globalAllowEmpty: false,
 
   compute: computeFn(function(params, { hidePrefix, interval, locale }) {
@@ -15,6 +16,8 @@ export default Ember.Helper.extend({
     }
 
     let time = moment(...params);
+
+    locale = locale || this.get('moment.locale');
 
     if (locale) {
       time = time.locale(locale);

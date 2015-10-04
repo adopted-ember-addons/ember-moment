@@ -4,6 +4,12 @@ import momentFormat from 'ember-moment/computeds/format';
 import momentFromNow from 'ember-moment/computeds/from-now';
 
 export default Ember.Controller.extend({
+  moment: Ember.inject.service(),
+  actions: {
+    changeLocale(locale) {
+      this.set('moment.locale', locale);
+    }
+  },
   emptyDate: null,
   now: new Date(),
   lastHour: new Date(new Date().valueOf() - (60*60*1000)),

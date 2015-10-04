@@ -5,7 +5,9 @@ import date from '../../helpers/date';
 import moduleForHelper from '../../helpers/module-for-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-moduleForHelper('moment-format');
+moduleForHelper('moment-format', {
+  needs: ['service:moment']
+});
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
