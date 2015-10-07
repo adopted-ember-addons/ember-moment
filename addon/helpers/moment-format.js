@@ -1,38 +1,34 @@
-import Ember from 'ember';
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
+import BaseHelper from './-base';
 
-export default Ember.Helper.extend({
+export default BaseHelper.extend({
   globalOutputFormat: 'LLLL',
   globalAllowEmpty: false,
 
-  compute: computeFn(function(params, { locale }) {
+  compute: computeFn(function(params, { locale, timeZone }) {
     const length = params.length;
 
     if (length > 3) {
       throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 3');
     }
 
-    let output;
+    let format;
     const args = [];
 
     args.push(params[0]);
 
     if (length === 1) {
-      output = this.globalOutputFormat;
+      format = this.globalOutputFormat;
     } else if (length === 2) {
-      output = params[1];
+      format = params[1];
     } else if (length > 2) {
       args.push(params[2]);
-      output = params[1];
+      format = params[1];
     }
 
-    let time = moment(...args);
+    let time = this.morphMoment(moment(...args), { locale, timeZone });
 
-    if (locale) {
-      time = time.locale(locale);
-    }
-
-    return time.format(output);
+    return time.format(format);
   })
 });

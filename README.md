@@ -170,34 +170,45 @@ module.exports = function(environment) {
   };
 ```
 
-### Configure default runtime locale
+### Configure default runtime locale/timeZone
 
-#### Globally
+#### Globally set locale
 
 ```js
 // app/routes/applicaton.js
-import moment from 'moment';
-
 export default Ember.Route.extend({
+  moment: Ember.inject.service(),
   beforeModel() {
-    // sets the application locale to Spanish
-    moment.locale('es');
+    this.get('moment').changeLocale('es');
+  }
+});
+```
+
+#### Globally set time zone
+
+```js
+// app/routes/applicaton.js
+export default Ember.Route.extend({
+  moment: Ember.inject.service(),
+  beforeModel() {
+    this.get('moment').changeTimeZone('America/Los_Angeles');
   }
 });
 ```
 
 #### Locally
 
-All helpers accept a `locale` argument, which is a string.  This allows for overriding of the global locale.
+All helpers accept a `locale` and `timeZone` argument, which is a string.  This allows for overriding of the global locale.
 
 ```hbs
-{{moment-format date locale='es'}}
-{{moment-duration date locale='es'}}
-{{moment-from-now date locale='es'}}
-{{moment-to-now date locale='es'}}
+{{moment-format date locale='es' timeZone='America/Los_Angeles'}}
+{{moment-duration date locale='es' timeZone='America/Los_Angeles' timeZone='America/Los_Angeles'}}
+{{moment-from-now date locale='es' timeZone='America/Los_Angeles'}}
+{{moment-to-now date locale='es' timeZone='America/Los_Angeles'}}
 ```
 
-Feature set of i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/
+Documentation on i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/
+Documentation on timezone within moment can be found here: http://momentjs.com/timezone/docs/
 
 ## Frequently Asked Questions
 

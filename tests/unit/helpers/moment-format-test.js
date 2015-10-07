@@ -5,7 +5,9 @@ import date from '../../helpers/date';
 import moduleForHelper from '../../helpers/module-for-helper';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
-moduleForHelper('moment-format');
+moduleForHelper('moment-format', {
+  needs: ['service:moment']
+});
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
@@ -90,6 +92,34 @@ test('can inline a locale instead of using global locale', function(assert) {
 
   runAppend(view);
   assert.equal(view.$().text(), 'Miércoles, 31 de Diciembre de 1969 19:00');
+  runDestroy(view);
+});
+
+test('can inline timeZone (New York)', function(assert) {
+  assert.expect(1);
+  const view = this.createView({
+    template: hbs`{{moment-format date 'LLLL' timeZone='America/New_York'}}`,
+    context: {
+      date: 0
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'Wednesday, December 31, 1969 7:00 PM');
+  runDestroy(view);
+});
+
+test('can inline timeZone (Los Angeles)', function(assert) {
+  assert.expect(1);
+  const view = this.createView({
+    template: hbs`{{moment-format date 'LLLL' timeZone='America/Los_Angeles'}}`,
+    context: {
+      date: 0
+    }
+  });
+
+  runAppend(view);
+  assert.equal(view.$().text(), 'Wednesday, December 31, 1969 4:00 PM');
   runDestroy(view);
 });
 

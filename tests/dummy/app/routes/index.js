@@ -1,9 +1,13 @@
 import Ember from 'ember';
-import moment from 'moment';
 
 export default Ember.Route.extend({
-  setupController: function (controller, model) {
-    moment.locale('en');
+  moment: Ember.inject.service(),
+
+  beforeModel() {
+    this.set('moment.locale', 'en');
+  },
+
+  setupController(controller, model) {
     this._super(controller, model);
 
     setInterval(function () {
