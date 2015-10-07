@@ -114,7 +114,7 @@ module.exports = function() {
 
 ### Global Default Output Format
 
-Your application may require a different moment format default other than `LLLL`.  Your application may want dates to be treated in the shorthand date form `L` by default.
+Your application may require a default format other than `LLLL`.  For example, you may want dates to fallback on the shorthand form `L` by default.
 
 ```js
 // config/environment.js
@@ -186,7 +186,7 @@ export default Ember.Route.extend({
 
 #### Locally
 
-All helpers except a `locale` argument, which is a string.  This allows for overriding of the global locale.
+All helpers accept a `locale` argument, which is a string.  This allows for overriding of the global locale.
 
 ```hbs
 {{moment-format date locale='es'}}
