@@ -1,3 +1,9 @@
+### 4.1.0
+
+* Adds support a `timeZone` argument on all helpers
+* Adds a service which contains two methods: `changeLocale` and `changeTimeZone`
+  * Invoking either of these methods will cause all helpers to rerender if a locale/timezone was not specified
+
 ### 4.0.1
 
 * Removes two unused npm deps
