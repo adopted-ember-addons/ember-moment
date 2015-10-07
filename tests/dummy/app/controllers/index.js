@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   moment: Ember.inject.service(),
   actions: {
     changeLocale(locale) {
-      this.set('moment.locale', locale);
+      this.get('moment').changeLocale(locale);
     }
   },
   emptyDate: null,

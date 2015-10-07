@@ -8,20 +8,14 @@ const runBind = Ember.run.bind;
 export default BaseHelper.extend({
   globalAllowEmpty: false,
 
-  compute: computeFn(function(params, { hideSuffix, interval, locale }) {
+  compute: computeFn(function(params, { hideSuffix, interval, locale, timeZone }) {
     this.clearTimer();
 
     if (interval) {
       this.timer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
     }
 
-    let time = moment(...params);
-
-    locale = locale || this.get('moment.locale');
-
-    if (locale) {
-      time = time.locale(locale);
-    }
+    let time = this.morphMoment(moment(...params), { locale, timeZone });
 
     return time.fromNow(hideSuffix);
   }),
