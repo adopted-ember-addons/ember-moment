@@ -11,8 +11,8 @@
 ## Installing
 
 ### >= Ember 1.13.0
-* ember-cli < 0.2.3 `ember install:addon ember-moment@4.0.0`
-* ember-cli >= 0.2.3 `ember install ember-moment@4.0.0`
+* ember-cli < 0.2.3 `ember install:addon ember-moment@4.1.0`
+* ember-cli >= 0.2.3 `ember install ember-moment@4.1.0`
 
 ### < Ember 1.13.0
 * ember-cli < 0.2.3 `ember install:addon ember-moment@3.6.4`
