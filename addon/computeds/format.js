@@ -36,7 +36,7 @@ function computedFormat(date, maybeOutputFormat, maybeInputFormat) {
       }
       else if (this.container) {
         const config = this.container.lookupFactory('config:environment');
-        maybeOutputFormat = get(config, 'moment.ouputFormat');
+        maybeOutputFormat = get(config, 'moment.outputFormat');
       }
 
       return moment.apply(this, momentArgs).format(maybeOutputFormat);
