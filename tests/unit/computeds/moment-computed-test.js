@@ -50,6 +50,29 @@ test('Formatter - is computed handled', (assert) => {
   assert.equal(subject.get('shortDate'), '12');
 });
 
+test('Formatter - outputFormat config option is respected', (assert) => {
+  assert.expect(2);
+
+  const subject = createSubject({
+    date: '2013-01-01',
+    shortDate: momentFormat('date'),
+
+    container: {
+      lookupFactory() {
+        return {
+          moment: {
+            outputFormat: 'YYYY'
+          }
+        };
+      }
+    }
+  });
+
+  assert.equal(subject.get('shortDate'), '2013');
+  subject.set('date', '2014-01-01');
+  assert.equal(subject.get('shortDate'), '2014');
+});
+
 test('Observers trigger on date change', (assert) => {
   assert.expect(2);
   let observeFired = false;
