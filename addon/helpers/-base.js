@@ -11,6 +11,10 @@ export default Ember.Helper.extend({
     this.recompute();
   }),
 
+  defaultFormatDidChange: Ember.observer('moment.defaultFormat', function() {
+    this.recompute();
+  }),
+
   morphMoment(time, { locale, timeZone }) {
     locale = locale || this.get('moment.locale');
 

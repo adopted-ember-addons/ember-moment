@@ -1,10 +1,26 @@
+Locale:
 <button {{action 'changeLocale' 'es'}}>ES</button>
 <button {{action 'changeLocale' 'fr'}}>FR</button>
 <button {{action 'changeLocale' 'en'}}>EN</button>
 
+<hr>
+Default Format:
+<button {{action 'changeDefaultFormat' 'LLLL'}}>LLLL</button>
+<button {{action 'changeDefaultFormat' 'DD.MM.YYYY'}}>DD.MM.YYYY</button>
+<button {{action 'changeDefaultFormat' 'LL'}}>LL</button>
+
+<hr>
+
 {{moment-format now 'LLLL'}}
 <code>
   \{{moment-format now 'LLLL'}}
+</code>
+
+<hr>
+
+{{moment-format now}}
+<code>
+  \{{moment-format now}}
 </code>
 
 <hr>

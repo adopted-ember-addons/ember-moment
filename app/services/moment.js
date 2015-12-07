@@ -6,6 +6,7 @@ const { computed } = Ember;
 export default Ember.Service.extend({
   _locale: null,
   _timeZone: null,
+  _defaultFormat: null,
 
   locale: computed({
     get() {
@@ -31,12 +32,26 @@ export default Ember.Service.extend({
     }
   }),
 
+  defaultFormat: computed({
+    get() {
+      return this.get('_defaultFormat');
+    },
+    set(propertyKey, defaultFormat) {
+      this.set('_defaultFormat', defaultFormat);
+      return defaultFormat;
+    }
+  }),
+
   changeLocale(locale) {
     this.set('locale', locale);
   },
 
   changeTimeZone(timeZone) {
     this.set('timeZone', timeZone);
+  },
+
+  changeDefaultFormat(defaultFormat) {
+    this.set('defaultFormat', defaultFormat);
   },
 
   moment() {

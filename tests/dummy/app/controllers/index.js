@@ -8,6 +8,9 @@ export default Ember.Controller.extend({
   actions: {
     changeLocale(locale) {
       this.get('moment').changeLocale(locale);
+    },
+    changeDefaultFormat(defaultFormat) {
+      this.get('moment').changeDefaultFormat(defaultFormat);
     }
   },
   emptyDate: null,
