@@ -1,9 +1,12 @@
+import Ember from "ember";
 import moment from 'moment';
 import computeFn from '../utils/compute-fn';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  globalOutputFormat: Ember.computed.oneWay("moment.defaultFormat"),
+  globalOutputFormat: Ember.computed("moment.defaultFormat", function() {
+    return this.get("moment.defaultFormat") || "LLLL";
+  }),
   globalAllowEmpty: false,
 
   compute: computeFn(function(params, { locale, timeZone }) {
