@@ -127,6 +127,19 @@ module.exports = function() {
 };
 ```
 
+If you need to change the default format during runtime, use the service API.  During so, will trigger the moment-format helper instances to re-render with the new default format.
+
+```js
+// app/controller/index.js
+export default Ember.Controller.extend({
+  moment: Ember.inject.service(),
+  actions: {
+    changeDefaultFormat() {
+      this.set('moment.defaultFormat', 'MM.DD.YYYY');
+    }
+  }
+})
+```
 ### Global Allow Empty Dates
 
 If `null`, `undefined`, or an empty string as a date to any of the moment helpers then you you will `Invalid Date` in the output.  To avoid this issue globally, you can set the option `allowEmpty` which all of the helpers respect and will result in nothing being rendered instead of `Invalid Date`.
