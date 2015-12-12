@@ -1,3 +1,9 @@
+### 4.2.0
+
+* Upgrade `ember-cli-moment-shim`
+* Add a `defaultFormat` property to the service, which `moment-format` helpers observer to recompute
+* BUGFIX: `outputFormat` typo on `config/environment.js` lookup led to it never being properly looked up
+
 ### 4.1.0
 
 * Adds support a `timeZone` argument on all helpers
