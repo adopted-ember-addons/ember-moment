@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
       this.get('moment').changeLocale(locale);
     },
     changeDefaultFormat(defaultFormat) {
-      this.get('moment').changeDefaultFormat(defaultFormat);
+      this.set('moment.defaultFormat', defaultFormat);
     }
   },
   emptyDate: null,
