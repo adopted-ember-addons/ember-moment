@@ -1,17 +1,11 @@
 import Ember from 'ember';
 
+const { observer } = Ember;
+
 export default Ember.Helper.extend({
   moment: Ember.inject.service(),
 
-  localeDidChange: Ember.observer('moment.locale', function() {
-    this.recompute();
-  }),
-
-  timeZoneDidChange: Ember.observer('moment.timeZone', function() {
-    this.recompute();
-  }),
-
-  defaultFormatDidChange: Ember.observer('moment.defaultFormat', function() {
+  localeOrTimeZoneChanged: observer('moment.locale', 'moment.timeZone', function() {
     this.recompute();
   }),
 

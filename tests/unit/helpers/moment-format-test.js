@@ -24,6 +24,30 @@ test('one arg (date)', function(assert) {
   runDestroy(view);
 });
 
+test('updating default format recomputes moment-format', function(assert) {
+  assert.expect(2);
+
+  const view = this.createView({
+    template: hbs`{{moment-format date}}`,
+    context: {
+      date: date(date(0))
+    }
+  });
+
+  const service = this.container.lookup('service:moment');
+  runAppend(view);
+
+  assert.equal(view.$().text(), 'Wednesday, December 31, 1969 7:00 PM');
+
+  Ember.run(() => {
+    service.set('defaultFormat', 'DD.MM.YYYY');
+    Ember.run.scheduleOnce('afterRender', () => {
+      assert.equal(view.$().text(), '31.12.1969');
+      runDestroy(view);
+    });
+  });
+});
+
 test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
 

@@ -1,44 +1,28 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { computed } = Ember;
+const { computed, Logger:logger } = Ember;
 
 export default Ember.Service.extend({
-  _locale: null,
   _timeZone: null,
-  _defaultFormat: null,
 
-  locale: computed({
-    get() {
-      return this.get('_locale');
-    },
-    set(propertyKey, locale) {
-      this.set('_locale', locale);
-      return locale;
-    }
-  }),
+  locale: null,
+  defaultFormat: 'LLLL',
 
-  timeZone: computed({
+  timeZone: computed('_timeZone', {
     get() {
       return this.get('_timeZone');
     },
-    set(propertyKey, timeZone) {
-      if (moment.tz) {
-        this.set('_timeZone', timeZone);
-        return timeZone;
-      } else {
-        Ember.Logger.warn('[ember-moment] attempted to set timezone, but moment-timezone unavailable.');
-      }
-    }
-  }),
 
-  defaultFormat: computed({
-    get() {
-      return this.get('_defaultFormat');
-    },
-    set(propertyKey, defaultFormat) {
-      this.set('_defaultFormat', defaultFormat);
-      return defaultFormat;
+    set(propertyKey, timeZone) {
+      if (!moment.tz) {
+        logger.warn('[ember-moment] attempted to set timezone, but moment-timezone unavailable.');
+        return;
+      }
+
+      this.set('_timeZone', timeZone);
+
+      return timeZone;
     }
   }),
 
@@ -50,14 +34,10 @@ export default Ember.Service.extend({
     this.set('timeZone', timeZone);
   },
 
-  changeDefaultFormat(defaultFormat) {
-    this.set('defaultFormat', defaultFormat);
-  },
-
   moment() {
     let time = moment(...arguments);
-    let locale = this.get('locale');
-    let timeZone = this.get('timeZone');
+    const locale = this.get('locale');
+    const timeZone = this.get('timeZone');
 
     if (locale) {
       time = time.locale(locale);
