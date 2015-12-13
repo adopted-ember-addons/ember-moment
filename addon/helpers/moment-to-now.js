@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import moment from 'moment';
+
 import computeFn from '../utils/compute-fn';
 import BaseHelper from './-base';
 
-const runBind = Ember.run.bind;
+const { bind:runBind } = Ember.run;
 
 export default BaseHelper.extend({
   globalAllowEmpty: false,

@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import moment from 'moment';
-import emberComputed from 'ember-new-computed';
+
 import isDescriptor from '../utils/is-descriptor';
 
-const { get, assert } = Ember;
+const { get, assert, computed:emberComputed } = Ember;
 const a_slice = Array.prototype.slice;
 
 function computedFormat(date, maybeOutputFormat, maybeInputFormat) {
