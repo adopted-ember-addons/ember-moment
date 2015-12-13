@@ -40,8 +40,7 @@
     "momentjs"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.0.0",
-    "ember-new-computed": "^1.0.2"
+    "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

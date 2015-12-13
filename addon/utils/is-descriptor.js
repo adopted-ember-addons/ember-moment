@@ -1,5 +1,6 @@
 import Ember from 'ember';
-let { typeOf } = Ember;
+
+const { typeOf } = Ember;
 
 // credit: https://github.com/cibernox/ember-cpm/blob/master/addon/utils.js#L17-L20
 function isDescriptor(propertyName) {
