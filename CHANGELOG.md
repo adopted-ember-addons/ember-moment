@@ -1,3 +1,9 @@
+### 4.2.1
+
+* Remove `ember-new-computed`
+* Remove use of an Ember global
+* Remove need for instance initializer
+
 ### 4.2.0
 
 * Upgrade `ember-cli-moment-shim`
