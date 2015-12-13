@@ -1,8 +1,7 @@
-import MomentService from 'ember-moment/services/moment';
+import Ember from 'ember';
 import config from '../config/environment';
-
-const { get } = Ember;
+import MomentService from 'ember-moment/services/moment';
 
 export default MomentService.extend({
-  defaultFormat: get(config, 'moment.outputFormat')
+  defaultFormat: Ember.get(config, 'moment.outputFormat')
 });
