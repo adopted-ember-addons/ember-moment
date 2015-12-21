@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { isBlank } = Ember;
+
 export default function(cb) {
   return function(params, hash) {
     if (!params || params && params.length === 0) {
@@ -9,14 +11,16 @@ export default function(cb) {
     const datetime = params[0];
 
     let allowEmpty = hash.allowEmpty || hash['allow-empty'];
-
-    if(allowEmpty === undefined || allowEmpty === null) {
+    if (allowEmpty === undefined || allowEmpty === null) {
       allowEmpty = !!this.get('globalAllowEmpty');
     }
 
-    if (allowEmpty && [null, '', undefined].indexOf(datetime) > -1) {
-      Ember.Logger.warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
-      return;
+    if (isBlank(datetime)) {
+      if (allowEmpty) {
+        return;
+      } else {
+        Ember.Logger.warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
+      }
     }
 
     return cb.apply(this, arguments);
