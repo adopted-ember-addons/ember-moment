@@ -5,18 +5,12 @@
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
 ## Requirements
-* Ember >= 1.10.0 (see installation instructions below)
+* Ember >= 1.13.0
 * Ember CLI
 
 ## Installing
 
-### >= Ember 1.13.0
-* ember-cli < 0.2.3 `ember install:addon ember-moment`
 * ember-cli >= 0.2.3 `ember install ember-moment`
-
-### < Ember 1.13.0
-* ember-cli < 0.2.3 `ember install:addon ember-moment@3.6.4`
-* ember-cli >= 0.2.3 `ember install ember-moment@3.6.4`
 
 ## Upgrading
 
