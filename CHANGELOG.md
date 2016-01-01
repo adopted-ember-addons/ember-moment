@@ -1,3 +1,7 @@
+### 5.0.1
+
+* Reduce size and complexity of computeds
+
 ### 5.0.0
 
 * Rewrote computeds to support literals as arguments
