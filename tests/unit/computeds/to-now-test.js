@@ -52,3 +52,24 @@ test('get literal', function(assert) {
 
   assert.equal(subject.get('ago'), 'in an hour');
 });
+
+test('get literal hide prefix', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    ago: momentToNow(hoursFromNow(-1), 'LLLL', true)
+  });
+
+  assert.equal(subject.get('ago'), 'an hour');
+});
+
+
+test('get literal with prefix', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    ago: momentToNow(hoursFromNow(-1), 'LLLL', false)
+  });
+
+  assert.equal(subject.get('ago'), 'in an hour');
+});

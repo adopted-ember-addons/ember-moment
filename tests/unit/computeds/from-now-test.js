@@ -51,3 +51,23 @@ test('get literal', function(assert) {
 
   assert.equal(subject.get('ago'), 'an hour ago');
 });
+
+test('get literal without suffix', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    ago: momentFromNow(hoursFromNow(-1), 'LLLL', true)
+  });
+
+  assert.equal(subject.get('ago'), 'an hour');
+});
+
+test('get literal with suffix', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    ago: momentFromNow(hoursFromNow(-1), 'LLLL', false)
+  });
+
+  assert.equal(subject.get('ago'), 'an hour ago');
+});
