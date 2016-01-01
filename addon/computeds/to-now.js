@@ -1,31 +1,27 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-import isDescriptor from '../utils/is-descriptor';
+import getDependentKeys from '../utils/get-dependent-keys';
+import getValue from '../utils/get-value';
 
-const { get, computed:emberComputed } = Ember;
+const { computed } = Ember;
 
-export default function computedAgo(date, maybeInputFormat, maybeHidePrefix) {
-  const args = [date];
+function toNowComputed(...args) {
+  const computedArgs = [].concat(getDependentKeys(args));
 
-  const computed = emberComputed(date, {
-    get() {
-      const momentArgs = [get(this, date)];
+  computedArgs.push(function() {
+    const momentArgs = args.map((arg) => getValue.call(this, arg));
 
-      if (arguments.length > 1) {
-        const desc = isDescriptor.call(this, maybeInputFormat);
-        const input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
+    let maybeHideSuffix;
 
-        if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {
-          computed.property(maybeInputFormat);
-        }
-
-        momentArgs.push(input);
-      }
-
-      return moment.apply(this, momentArgs).toNow(maybeHidePrefix);
+    if (momentArgs.length > 2) {
+      maybeHideSuffix = momentArgs.pop();
     }
+
+    return moment.apply(this, momentArgs).toNow(maybeHideSuffix);
   });
 
-  return computed.property.apply(computed, args).readOnly();
+  return computed.apply(this, computedArgs);
 }
+
+export default toNowComputed;

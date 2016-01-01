@@ -11,6 +11,7 @@ export default function(cb) {
     const datetime = params[0];
 
     let allowEmpty = hash.allowEmpty || hash['allow-empty'];
+
     if (allowEmpty === undefined || allowEmpty === null) {
       allowEmpty = !!this.get('globalAllowEmpty');
     }

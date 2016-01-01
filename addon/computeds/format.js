@@ -1,47 +1,41 @@
 import Ember from 'ember';
 import moment from 'moment';
+import getOwner from 'ember-getowner-polyfill';
 
-import isDescriptor from '../utils/is-descriptor';
+import getDependentKeys from '../utils/get-dependent-keys';
+import getValue from '../utils/get-value';
 
-const { get, assert, computed:emberComputed } = Ember;
-const a_slice = Array.prototype.slice;
+const CONFIG_KEY = 'config:environment';
 
-function computedFormat(date, maybeOutputFormat, maybeInputFormat) {
-  assert('At least one datetime argument required for moment computed', arguments.length);
+const { get, assert, computed } = Ember;
 
-  const args = a_slice.call(arguments);
-  let result;
-  args.shift();
+function formatComputed(...args) {
+  assert('At least one datetime argument required for moment computed', args.length);
 
-  return result = emberComputed(date, {
-    get() {
-      const momentArgs = [get(this, date)];
+  const computedArgs = [].concat(getDependentKeys(args));
 
-      const propertyValues = args.map((arg) => {
-        const desc = isDescriptor.call(this, arg);
-        if (desc && result._dependentKeys.indexOf(arg) === -1) {
-          result.property(arg);
-        }
+  computedArgs.push(function() {
+    const owner = getOwner(this);
+    const propertyValues = args.map((arg) => getValue.call(this, arg));
+    const momentArgs = [propertyValues[0]];
 
-        return desc ? get(this, arg) : arg;
-      });
+    let maybeOutputFormat = propertyValues[1];
 
-      if (propertyValues.length) {
-        maybeOutputFormat = propertyValues[0];
+    if (propertyValues.length > 2) {
+      momentArgs.push(propertyValues[2]);
+    }
+    else if (owner && owner.hasRegistration && owner.hasRegistration(CONFIG_KEY)) {
+      const config = owner.resolveRegistration(CONFIG_KEY);
 
-        if (propertyValues.length > 1) {
-          maybeInputFormat = propertyValues[1];
-          momentArgs.push(maybeInputFormat);
-        }
-      }
-      else if (this.container) {
-        const config = this.container.lookupFactory('config:environment');
+      if (config) {
         maybeOutputFormat = get(config, 'moment.outputFormat');
       }
-
-      return moment.apply(this, momentArgs).format(maybeOutputFormat);
     }
+
+    return moment.apply(this, momentArgs).format(maybeOutputFormat);
   });
+
+  return computed.apply(this, computedArgs);
 }
 
-export default computedFormat;
+export default formatComputed;

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-import computeFn from '../utils/compute-fn';
+import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 const { bind:runBind } = Ember.run;
@@ -16,9 +16,7 @@ export default BaseHelper.extend({
       this.timer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
     }
 
-    let time = this.morphMoment(moment(...params), { locale, timeZone });
-
-    return time.toNow(hidePrefix);
+    return this.morphMoment(moment(...params), { locale, timeZone }).toNow(hidePrefix);
   }),
 
   clearTimer() {

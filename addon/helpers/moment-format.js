@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-import computeFn from '../utils/compute-fn';
+import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 const { observer } = Ember;
@@ -34,8 +34,6 @@ export default BaseHelper.extend({
       format = params[1];
     }
 
-    let time = this.morphMoment(moment(...args), { locale, timeZone });
-
-    return time.format(format);
+    return this.morphMoment(moment(...args), { locale, timeZone }).format(format);
   })
 });

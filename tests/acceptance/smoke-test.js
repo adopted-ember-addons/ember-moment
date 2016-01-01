@@ -15,7 +15,7 @@ module('Acceptance: Smoke', {
   }
 });
 
-test('moment', (assert) => {
+test('moment', function(assert) {
   assert.expect(1);
   visit('/smoke');
   andThen(function() {
@@ -23,7 +23,7 @@ test('moment', (assert) => {
   });
 });
 
-test('ago', (assert) => {
+test('ago', function(assert) {
   assert.expect(1);
   visit('/smoke');
   andThen(function() {
@@ -31,7 +31,7 @@ test('ago', (assert) => {
   });
 });
 
-test('duration', (assert) => {
+test('duration', function(assert) {
   assert.expect(1);
   visit('/smoke');
   andThen(function() {

@@ -1,16 +1,19 @@
+// source: ember-cpm
+// https://github.com/cibernox/ember-cpm/blob/7b974567c92e45a815ee18c6cb62e3ba1fa99f1d/addon/utils.js#L17-L20
+
 import Ember from 'ember';
 
-const { typeOf } = Ember;
+const { typeOf, meta } = Ember;
 
-// credit: https://github.com/cibernox/ember-cpm/blob/master/addon/utils.js#L17-L20
 function isDescriptor(propertyName) {
-  const meta = Ember.meta(this);
+  const metaObj = meta(this) || {};
 
-  if (meta && meta.descs && meta.descs[propertyName]) {
+  if (typeof propertyName === 'string' && metaObj.descs && metaObj.descs[propertyName]) {
     return true;
   }
 
   const prop = this[propertyName];
+
   return typeOf(prop) === 'object' && prop.isDescriptor;
 }
 
