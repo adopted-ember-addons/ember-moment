@@ -1,3 +1,8 @@
+### 5.0.0
+
+* Rewrote computeds to support literals as arguments
+* Do not warn on missing date when allowEmpty
+
 ### 4.2.1
 
 * Remove `ember-new-computed`
