@@ -1,41 +1,30 @@
 import Ember from 'ember';
 import moment from 'moment';
 import getOwner from 'ember-getowner-polyfill';
-
-import getDependentKeys from '../utils/get-dependent-keys';
-import getValue from '../utils/get-value';
+import computed from './-base';
 
 const CONFIG_KEY = 'config:environment';
 
-const { get, assert, computed } = Ember;
+const { get, assert } = Ember;
 
-function formatComputed(...args) {
-  assert('At least one datetime argument required for moment computed', args.length);
+export default computed(function(params) {
+  assert('At least one datetime argument required for moment computed', params.length);
 
-  const computedArgs = [].concat(getDependentKeys(args));
+  const owner = getOwner(this);
+  const momentArgs = [params[0]];
 
-  computedArgs.push(function() {
-    const owner = getOwner(this);
-    const propertyValues = args.map((arg) => getValue.call(this, arg));
-    const momentArgs = [propertyValues[0]];
+  let maybeOutputFormat = params[1];
 
-    let maybeOutputFormat = propertyValues[1];
+  if (params.length > 2) {
+    momentArgs.push(params[2]);
+  }
+  else if (owner && owner.hasRegistration && owner.hasRegistration(CONFIG_KEY)) {
+    const config = owner.resolveRegistration(CONFIG_KEY);
 
-    if (propertyValues.length > 2) {
-      momentArgs.push(propertyValues[2]);
+    if (config) {
+      maybeOutputFormat = get(config, 'moment.outputFormat');
     }
-    else if (owner && owner.hasRegistration && owner.hasRegistration(CONFIG_KEY)) {
-      const config = owner.resolveRegistration(CONFIG_KEY);
+  }
 
-      if (config) {
-        maybeOutputFormat = get(config, 'moment.outputFormat');
-      }
-    }
-
-    return moment.apply(this, momentArgs).format(maybeOutputFormat);
-  });
-
-  return computed.apply(this, computedArgs);
-}
-
-export default formatComputed;
+  return moment.apply(this, momentArgs).format(maybeOutputFormat);
+});
