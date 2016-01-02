@@ -3,11 +3,11 @@ import moment from 'moment';
 import computed from './-base';
 
 export default computed((params) => {
-  let maybeHideSuffix;
+  let maybeHidePrefix;
 
   if (params.length > 2) {
-    maybeHideSuffix = params.pop();
+    maybeHidePrefix = params.pop();
   }
 
-  return moment(...params).toNow(maybeHideSuffix);
+  return moment(...params).toNow(maybeHidePrefix);
 });
