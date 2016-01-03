@@ -1,7 +1,8 @@
 import moment from 'moment';
-import computed from './-base';
 
-export default computed((params) => {
+import computedFactory from './-base';
+
+export default computedFactory(function fromNowComputed(params) {
   let maybeHideSuffix;
 
   if (params.length > 2) {

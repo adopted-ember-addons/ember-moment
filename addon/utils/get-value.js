@@ -21,7 +21,7 @@ function getValue(val) {
     const propVal = get(this, val);
 
     return  'undefined' === typeof propVal ? val : propVal;
-  } else if (isDescriptor.call(this, val)) {
+  } else if (isDescriptor(val)) {
     const funcName = val.func ?
       'func' : // Ember < 1.11
       '_getter'; // Ember >= 1.11

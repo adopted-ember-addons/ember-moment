@@ -3,7 +3,7 @@ import Ember from 'ember';
 import getValue from '../utils/get-value';
 import getDependentKeys from '../utils/get-dependent-keys';
 
-export default function factory(fn) {
+export default function computedFactory(fn) {
   return function(...args) {
     const computedArgs = [].concat(getDependentKeys(args));
 
@@ -13,6 +13,6 @@ export default function factory(fn) {
       return fn.call(this, params);
     });
 
-    return Ember.computed.apply(this, computedArgs);
+    return Ember.computed(...computedArgs);
   };
 }

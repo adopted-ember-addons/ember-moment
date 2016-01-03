@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-import computed from './-base';
+import computedFactory from './-base';
 
-export default computed((params) => {
+export default computedFactory(function toNowComputed(params) {
   let maybeHidePrefix;
 
   if (params.length > 2) {

@@ -3,18 +3,11 @@
 
 import Ember from 'ember';
 
-const { typeOf, meta } = Ember;
+const { typeOf, Descriptor } = Ember;
 
-function isDescriptor(propertyName) {
-  const metaObj = meta(this) || {};
-
-  if (typeof propertyName === 'string' && metaObj.descs && metaObj.descs[propertyName]) {
-    return true;
-  }
-
-  const prop = this[propertyName];
-
-  return typeOf(prop) === 'object' && prop.isDescriptor;
+function isDescriptor(prop) {
+  return typeOf(prop) === 'object' && (prop.constructor === Descriptor || // Ember < 1.11
+     prop.isDescriptor); // Ember >= 1.11.0
 }
 
 export default isDescriptor;
