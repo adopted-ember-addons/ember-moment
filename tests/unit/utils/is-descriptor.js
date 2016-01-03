@@ -13,7 +13,7 @@ test('it detects computeds', function(assert) {
     foo: Ember.computed.alias('bar')
   }).create();
 
-  assert.ok(isDescriptor.call(obj, 'foo'));
+  assert.ok(isDescriptor(obj.foo));
 });
 
 test('it does not detect non-computeds', function(assert) {
@@ -21,5 +21,5 @@ test('it does not detect non-computeds', function(assert) {
     foo: true
   }).create();
 
-  assert.equal(isDescriptor.call(obj, 'foo'), false);
+  assert.equal(isDescriptor(obj.foo), false);
 });

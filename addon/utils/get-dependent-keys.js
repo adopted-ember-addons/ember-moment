@@ -6,7 +6,7 @@ import isDescriptor from './is-descriptor';
 
 const { typeOf } = Ember;
 
-function getDependentPropertyKeys(argumentArr) {
+function getDependentKeys(argumentArr) {
   return argumentArr.reduce((out, item) => {
     switch (typeOf(item)) {
       case 'string':
@@ -29,4 +29,4 @@ function getDependentPropertyKeys(argumentArr) {
   }, []);
 }
 
-export default getDependentPropertyKeys;
+export default getDependentKeys;

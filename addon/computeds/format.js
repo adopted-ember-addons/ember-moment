@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import moment from 'moment';
 import getOwner from 'ember-getowner-polyfill';
-import computed from './-base';
+
+import computedFactory from './-base';
 
 const CONFIG_KEY = 'config:environment';
 
 const { get, assert } = Ember;
 
-export default computed(function(params) {
+export default computedFactory(function formatComputed(params) {
   assert('At least one datetime argument required for moment computed', params.length);
 
   const owner = getOwner(this);

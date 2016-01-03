@@ -115,7 +115,7 @@ test('can inline a locale instead of using global locale', function(assert) {
   });
 
   runAppend(view);
-  assert.equal(view.$().text(), 'Miércoles, 31 de Diciembre de 1969 19:00');
+  assert.equal(view.$().text(), 'miércoles, 31 de diciembre de 1969 19:00');
   runDestroy(view);
 });
 

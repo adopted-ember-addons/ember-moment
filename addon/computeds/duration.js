@@ -1,4 +1,7 @@
 import moment from 'moment';
-import computed from './-base';
 
-export default computed((params) => moment.duration(...params).humanize());
+import computedFactory from './-base';
+
+export default computedFactory(function durationComputed(params) {
+	return moment.duration(...params).humanize();
+});
