@@ -18,6 +18,8 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 
 ## Usage
 
+### Helpers
+
 ```hbs
 {{moment-format date}}
 {{moment-from-now date}}
@@ -25,7 +27,45 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-duration ms}}
 ```
 
-### Advanced Usage
+### Computed Property Macros
+
+Ships with the following computed property macros: `duration`, `humanize`, `locale`, `format`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
+
+[Full API Documentation](https://github.com/stefanpenner/ember-moment/wiki/Computed-Property-Macros)
+
+#### Moment & Format Computed
+
+Behaves like `moment()` and will return a moment object.  All arguments of the underlying API are supported.
+
+```js
+import momentComputed from 'ember-moment/computeds/moment';
+import format from 'ember-moment/computeds/format';
+
+export default Ember.Component.extend({
+  createdOn: new Date('01/02/2016'),
+  createdOnFormatted: format(momentComputed('createdOn'), 'MMMM DD, YYYY')
+});
+```
+
+#### i18n/Locale
+
+Locale takes a moment object and apply a locale to that instance
+
+```js
+import momentComputed from 'ember-moment/computeds/moment';
+import format from 'ember-moment/computeds/format';
+import locale from 'ember-moment/computeds/locale';
+
+export default Ember.Component.extend({
+  moment: Ember.inject.service(),
+  createdOn: new Date('01/02/2016'),
+  createdOnFormatted: format(locale(momentComputed('createdOn'), 'moment.locale'), 'MMMM DD, YYYY')
+});
+```
+
+## Advanced Usage
+
+### Helpers
 
 ```hbs
 {{moment-format date outputFormat inputFormat}}
@@ -48,41 +88,9 @@ Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for 
 ## ES6 Moment
 
 This addon provides the ability to import moment as an ES6 module.
+
 ```js
 import moment from 'moment';
-```
-
-## Computed Macro
-
-```js
-import momentDuration from 'ember-moment/computeds/duration';
-import momentFormat from 'ember-moment/computeds/format';
-import momentFromNow from 'ember-moment/computeds/from-now';
-import momentToNow from 'ember-moment/computeds/to-now';
-
-export default Ember.Controller.extend({
-  date: new Date('2013-02-08T09:30:26'),
-
-  // Takes on the behavior of moment().format()
-  // http://momentjs.com/docs/#/displaying/format/
-  shortDate: momentFormat('date', 'MM/DD/YYYY'),
-
-  // first param: date input
-  // second param: date format http://momentjs.com/docs/#/parsing/string-format/ (optional)
-  // third param: hide suffix (optional, false by default)
-  // http://momentjs.com/docs/#/displaying/fromnow/
-  timeSince: momentFromNow("12-25-1995", "MM-DD-YYYY", false), // -> output: "2 years ago"
-
-  // first param: date input
-  // second param: date format http://momentjs.com/docs/#/parsing/string-format/ (optional)
-  // third param: hide prefix (optional, false by default)
-  // http://momentjs.com/docs/#/displaying/tonow
-  computedNumHours: momentToNow("12-25-1995", "MM-DD-YYYY", false), // -> output: "in 20 years"
-
-  // duration units: seconds, minutes, hours, days, weeks, months, years
-  // http://momentjs.com/docs/#/durations/
-  computedNumHours: momentDuration(10, 'hours')
-});
 ```
 
 ## Include Moment Timezone

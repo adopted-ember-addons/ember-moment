@@ -2,7 +2,8 @@ import Ember from 'ember';
 import moment from 'moment';
 import getOwner from 'ember-getowner-polyfill';
 import { moduleFor, test } from 'ember-qunit';
-import momentFormat from 'ember-moment/computeds/format';
+import format from 'ember-moment/computeds/format';
+import momentComputed from 'ember-moment/computeds/moment';
 import date from '../../helpers/date';
 
 moduleFor('ember-moment@computed:format', {
@@ -15,10 +16,10 @@ moduleFor('ember-moment@computed:format', {
 const { observer, computed } = Ember;
 const { alias } = computed;
 
-function createSubject(attrs = {}) {
+function createSubject(attrs) {
   return getOwner(this).resolveRegistration('object:empty').extend(Ember.$.extend({
     date: date(0),
-    shortDate: momentFormat('date', 'MM/DD'),
+    shortDate: format('date', 'MM/DD'),
     container: this.container,
     registry: this.registry
   }, attrs)).create();
@@ -29,7 +30,18 @@ test('get value as dependent key, format as dependent key', function(assert) {
 
   const subject = createSubject.call(this, {
     dateFormat: 'MM/DD',
-    shortDate: momentFormat('date', 'dateFormat')
+    shortDate: format('date', 'dateFormat')
+  });
+
+  assert.equal(subject.get('shortDate'), '12/31');
+});
+
+test('composition with moment computed: get value as dependent key, format as dependent key', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    dateFormat: 'MM/DD',
+    shortDate: format(momentComputed('date'), 'dateFormat')
   });
 
   assert.equal(subject.get('shortDate'), '12/31');
@@ -45,7 +57,7 @@ test('get literal', function(assert) {
   assert.expect(1);
 
   const subject = createSubject.call(this, {
-    shortDate: momentFormat(date(0), 'MM/DD')
+    shortDate: format(date(0), 'MM/DD')
   });
 
   assert.equal(subject.get('shortDate'), '12/31');
@@ -57,7 +69,7 @@ test('single argument supported', function(assert) {
   const timestamp = date(0);
 
   const subject = createSubject.call(this, {
-    shortDate: momentFormat(timestamp)
+    shortDate: format(timestamp)
   });
 
   assert.equal(subject.get('shortDate'), moment(timestamp).format());
@@ -81,7 +93,19 @@ test('is computed handled', function(assert) {
   const subject = createSubject.call(this, {
     _format: 'MM/DD',
     format: alias('_format'),
-    shortDate: momentFormat('date', 'format')
+    shortDate: format('date', 'format')
+  });
+  assert.equal(subject.get('shortDate'), '12/31');
+  subject.set('_format', 'MM');
+  assert.equal(subject.get('shortDate'), '12');
+});
+
+test('composition with moment compouted: is computed handled', function(assert) {
+  assert.expect(2);
+  const subject = createSubject.call(this, {
+    _format: 'MM/DD',
+    format: alias('_format'),
+    shortDate: format(momentComputed('date'), 'format')
   });
   assert.equal(subject.get('shortDate'), '12/31');
   subject.set('_format', 'MM');
@@ -99,7 +123,7 @@ test('outputFormat  option is respected', function(assert) {
 
   const subject = createSubject.call(this, {
     date: '2013-01-01',
-    shortDate: momentFormat('date')
+    shortDate: format('date')
   });
 
   assert.equal(subject.get('shortDate'), '2013');
@@ -114,7 +138,7 @@ test('Observers trigger on date change', function(assert) {
   const subject = createSubject.call(this, {
     _format: 'MM/DD',
     format: alias('_format'),
-    shortDate: momentFormat('date', 'format'),
+    shortDate: format('date', 'format'),
     shortDateChanged: observer('shortDate', () => {
       observeFired = true;
     })
