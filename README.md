@@ -177,6 +177,28 @@ module.exports = function(environment) {
   };
 ```
 
+#### Write all the locales to a folder relative to `dist`
+
+Alternatively, you can copy all of moment's locale files into your `dist` directory.
+
+```js
+// config.environment.js
+module.exports = function(environment) {
+  return {
+    moment: {
+      // This will output _all_ locale scripts to assets/moment-locales
+      // this option does not respect includeLocales
+      localeOutputPath: 'assets/moment-locales'
+    }
+  };
+```
+
+This allows you to load them on demand when you need them:
+
+```js
+Ember.$.getScript('/assets/moment-locales/fr.js');
+```
+
 ### Configure default runtime locale/timeZone
 
 #### Globally set locale
