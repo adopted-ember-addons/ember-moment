@@ -1,0 +1,32 @@
+<div class="example">
+{{computedDate}}
+<br /><br />
+<code>
+  export default Ember.Controller.extend({<br />
+    date: new Date(), /* in the route I am looping this */ <br />
+    computedDate: moment('date', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+</div>
+
+<div class="example">
+{{computedOneHourAgo}}
+<br /><br />
+<code>
+  export default Ember.Controller.extend({<br />
+    lastHour: new Date(new Date().valueOf() - (60*60*1000)),<br />
+    computedOneHourAgo: ago('lastHour', 'MM/DD/YY hh:mm:ss')<br />
+  });
+</code>
+</div>
+
+<div class="example">
+{{computedNumHours}}
+<br /><br />
+<code>
+  export default Ember.Controller.extend({<br />
+    numHours: 822,<br />
+    computedNumHours: duration('numHours', 'hours'),<br />
+  });
+</code>
+</div>
