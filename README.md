@@ -1,4 +1,4 @@
-# Ember-moment
+# ember-moment
 [![npm Version][npm-badge]][npm]
 [![Build Status][travis-badge]][travis]
 
