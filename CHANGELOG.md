@@ -1,3 +1,6 @@
+### 6.0.0
+
+* [BREAKING] computed property macros can now support composition (https://github.com/stefanpenner/ember-moment/pull/139)
 
 ### 5.1.0
 
