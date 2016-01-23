@@ -1,3 +1,12 @@
+
+### 5.1.0
+
+* Helper support for `moment().calendar();` (https://github.com/stefanpenner/ember-moment/pull/143)
+
+### 5.0.2
+
+* Prevent moment 2.11.0 from being installed due to it being unsupported
+
 ### 5.0.1
 
 * Reduce size and complexity of computeds

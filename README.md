@@ -25,6 +25,7 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-from-now date}}
 {{moment-to-now date}}
 {{moment-duration ms}}
+{{moment-calendar date}}
 ```
 
 ### Computed Property Macros
@@ -72,6 +73,7 @@ export default Ember.Component.extend({
 {{moment-from-now date}}
 {{moment-to-now date}}
 {{moment-duration number units}}
+{{moment-calendar date referenceDate}}
 ```
 
 ### Live Updating of Displayed Time
@@ -183,6 +185,28 @@ module.exports = function(environment) {
       includeLocales: true
     }
   };
+```
+
+#### Write all the locales to a folder relative to `dist`
+
+Alternatively, you can copy all of moment's locale files into your `dist` directory.
+
+```js
+// config.environment.js
+module.exports = function(environment) {
+  return {
+    moment: {
+      // This will output _all_ locale scripts to assets/moment-locales
+      // this option does not respect includeLocales
+      localeOutputPath: 'assets/moment-locales'
+    }
+  };
+```
+
+This allows you to load them on demand when you need them:
+
+```js
+Ember.$.getScript('/assets/moment-locales/fr.js');
 ```
 
 ### Configure default runtime locale/timeZone
