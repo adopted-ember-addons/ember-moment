@@ -199,7 +199,7 @@ export default Ember.Route.extend({
 });
 ```
 
-#### Locally
+#### Inline Localization
 
 All helpers accept a `locale` and `timeZone` argument, which is a string.  This allows for overriding of the global locale.
 
