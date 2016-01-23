@@ -7,7 +7,7 @@ export default computedFactory(function calendarComputed(params) {
 		throw new TypeError('ember-moment: Invalid Number of arguments, at most 2');
 	}
 
-	const [date, referenceTime] = params;
+	const [ date, referenceTime ] = params;
 
   return moment(date).calendar(referenceTime);
 });

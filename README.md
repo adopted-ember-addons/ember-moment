@@ -18,7 +18,13 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 
 ## Usage
 
-### Helpers
+## Computed Property Macros
+
+Ships with the following computed property macros: `duration`, `humanize`, `locale`, `tz`, `format`, `calendar`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
+
+[Computed Property Macro Documentation](https://github.com/stefanpenner/ember-moment/wiki/Computed-Property-Macros)
+
+## Helpers
 
 ```hbs
 {{moment-format date}}
@@ -26,49 +32,7 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 {{moment-to-now date}}
 {{moment-duration ms}}
 {{moment-calendar date}}
-```
 
-### Computed Property Macros
-
-Ships with the following computed property macros: `duration`, `humanize`, `locale`, `format`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
-
-[Full API Documentation](https://github.com/stefanpenner/ember-moment/wiki/Computed-Property-Macros)
-
-#### Moment & Format Computed
-
-Behaves like `moment()` and will return a moment object.  All arguments of the underlying API are supported.
-
-```js
-import momentComputed from 'ember-moment/computeds/moment';
-import format from 'ember-moment/computeds/format';
-
-export default Ember.Component.extend({
-  createdOn: new Date('01/02/2016'),
-  createdOnFormatted: format(momentComputed('createdOn'), 'MMMM DD, YYYY')
-});
-```
-
-#### i18n/Locale
-
-Locale takes a moment object and apply a locale to that instance
-
-```js
-import momentComputed from 'ember-moment/computeds/moment';
-import format from 'ember-moment/computeds/format';
-import locale from 'ember-moment/computeds/locale';
-
-export default Ember.Component.extend({
-  moment: Ember.inject.service(),
-  createdOn: new Date('01/02/2016'),
-  createdOnFormatted: format(locale(momentComputed('createdOn'), 'moment.locale'), 'MMMM DD, YYYY')
-});
-```
-
-## Advanced Usage
-
-### Helpers
-
-```hbs
 {{moment-format date outputFormat inputFormat}}
 {{moment-from-now date}}
 {{moment-to-now date}}
