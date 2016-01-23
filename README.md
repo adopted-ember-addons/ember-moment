@@ -48,9 +48,6 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 
 Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for "live" updating as time elapses.
 
-*NOTE: This feature is only supported in Ember >= 1.13.0*
-
-
 ## ES6 Moment
 
 This addon provides the ability to import moment as an ES6 module.
