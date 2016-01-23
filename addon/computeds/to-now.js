@@ -5,7 +5,7 @@ import computedFactory from './-base';
 export default computedFactory(function toNowComputed(params) {
   let maybeHidePrefix;
 
-  if (params.length > 2) {
+  if (params.length > 1) {
     maybeHidePrefix = params.pop();
   }
 

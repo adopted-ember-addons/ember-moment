@@ -3,6 +3,8 @@ import Ember from 'ember';
 import getValue from '../utils/get-value';
 import getDependentKeys from '../utils/get-dependent-keys';
 
+const { computed } = Ember;
+
 export default function computedFactory(fn) {
   return function(...args) {
     const computedArgs = [].concat(getDependentKeys(args));
@@ -13,6 +15,6 @@ export default function computedFactory(fn) {
       return fn.call(this, params);
     });
 
-    return Ember.computed(...computedArgs);
+    return computed(...computedArgs);
   };
 }

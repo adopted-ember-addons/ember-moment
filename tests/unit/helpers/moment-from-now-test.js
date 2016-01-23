@@ -1,8 +1,8 @@
 import Ember from 'ember';
+import moment from 'moment';
 import { test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import moduleForHelper from '../../helpers/module-for-helper';
-import hoursFromNow from '../../helpers/hours-from-now';
 import { runAppend, runDestroy } from '../../helpers/run-append';
 
 moduleForHelper('moment-from-now',{
@@ -49,7 +49,7 @@ test('two args (date, inputFormat)', function(assert) {
 test('change date input and change is reflected by bound helper', function(assert) {
   assert.expect(2);
   const context = Ember.Object.create({
-    date: hoursFromNow(-1),
+    date: moment().subtract(1, 'hour'),
   });
 
   const view = this.createView({
@@ -62,7 +62,7 @@ test('change date input and change is reflected by bound helper', function(asser
   assert.equal(view.$().text(), 'an hour ago');
 
   Ember.run(function () {
-    context.set('date', hoursFromNow(-2));
+    context.set('date', moment().subtract(2, 'hours'));
   });
 
   assert.equal(view.$().text(), '2 hours ago');
@@ -75,7 +75,7 @@ test('can inline a locale instead of using global locale', function(assert) {
   const view = this.createView({
     template: hbs`{{moment-from-now date locale='es'}}`,
     context: {
-      date: hoursFromNow(-1),
+      date: moment().subtract(1, 'hour'),
     }
   });
 

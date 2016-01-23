@@ -5,27 +5,20 @@ import getOwner from 'ember-getowner-polyfill';
 import computedFactory from './-base';
 
 const CONFIG_KEY = 'config:environment';
+const { get } = Ember;
 
-const { get, assert } = Ember;
+export default computedFactory(function formatComtputed([value, optionalFormat]) {
+  if (!optionalFormat) {
+    const owner = getOwner(this);
 
-export default computedFactory(function formatComputed(params) {
-  assert('At least one datetime argument required for moment computed', params.length);
+    if (owner && owner.hasRegistration && owner.hasRegistration(CONFIG_KEY)) {
+      const config = owner.resolveRegistration(CONFIG_KEY);
 
-  const owner = getOwner(this);
-  const momentArgs = [params[0]];
-
-  let maybeOutputFormat = params[1];
-
-  if (params.length > 2) {
-    momentArgs.push(params[2]);
-  }
-  else if (owner && owner.hasRegistration && owner.hasRegistration(CONFIG_KEY)) {
-    const config = owner.resolveRegistration(CONFIG_KEY);
-
-    if (config) {
-      maybeOutputFormat = get(config, 'moment.outputFormat');
+      if (config) {
+        optionalFormat = get(config, 'moment.outputFormat');
+      }
     }
   }
 
-  return moment.apply(this, momentArgs).format(maybeOutputFormat);
+  return moment(value).format(optionalFormat);
 });
