@@ -12,7 +12,7 @@ test('exists', function(assert) {
 
 test('it returns multiple keys', function(assert) {
   const obj = Ember.Object.extend({
-		baz: 'bazz',
+    baz: 'bazz',
     bar: 'barr',
     foo: computed.alias('bar', 'baz')
   }).create();
@@ -22,8 +22,8 @@ test('it returns multiple keys', function(assert) {
 
 test('it will ignore literals', function(assert) {
   const obj = Ember.Object.extend({
-		outputFormat: 'MM/DD/YYYY',
-		inputFormat: 'LLLL',
+    outputFormat: 'MM/DD/YYYY',
+    inputFormat: 'LLLL',
     formattedTime: format(0, 'outputFormat', 'inputFormat')
   }).create();
 

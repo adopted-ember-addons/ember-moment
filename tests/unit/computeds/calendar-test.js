@@ -24,8 +24,8 @@ test('two args (date, referenceDate)', function(assert) {
   assert.expect(1);
 
   const subject = createSubject.call(this, {
-		date: tz(moment('2013-01-01T02:30:26Z'), 'America/New_York'),
-		referenceDate: moment('2013-01-01T12:00:00Z'),
+    date: tz(moment('2013-01-01T02:30:26Z'), 'America/New_York'),
+    referenceDate: moment('2013-01-01T12:00:00Z'),
     computedDate: calendar('date', 'referenceDate')
   });
 
