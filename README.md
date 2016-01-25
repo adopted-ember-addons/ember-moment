@@ -1,6 +1,8 @@
 # ember-moment
 [![npm Version][npm-badge]][npm]
 [![Build Status][travis-badge]][travis]
+[![Ember Observer Score](http://emberobserver.com/badges/ember-moment.svg)](http://emberobserver.com/addons/ember-moment)
+[![Ember badge][ember-badge]][embadge]
 
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
@@ -251,3 +253,5 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
 [travis]: https://travis-ci.org/stefanpenner/ember-moment
 [travis-badge]: https://img.shields.io/travis/stefanpenner/ember-moment.svg?branch=master&style=flat-square
+[embadge]: http://embadge.io/
+[ember-badge]: http://embadge.io/v1/badge.svg?start=1.13.0
