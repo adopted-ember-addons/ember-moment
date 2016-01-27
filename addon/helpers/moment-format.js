@@ -29,6 +29,10 @@ export default BaseHelper.extend({
 
     let format;
     const args = [];
+    
+    if(params[0] == 'now') {
+      params[0] = new Date();
+    }
 
     args.push(params[0]);
 
