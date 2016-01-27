@@ -1,3 +1,8 @@
+### Master
+
+* Upgrade ember-cli-moment-shim to 1.0.0
+  * Change installs moment and moment-timezone via npm deps instead of bower
+
 ### 6.0.0
 
 * [BREAKING] computed property macros can now support composition (https://github.com/stefanpenner/ember-moment/pull/139)
