@@ -5,6 +5,7 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 const { observer } = Ember;
+const { bind:runBind } = Ember.run;
 
 export default BaseHelper.extend({
   globalAllowEmpty: false,
@@ -13,15 +14,25 @@ export default BaseHelper.extend({
     this.recompute();
   }),
 
-  compute: computeFn(function(params, { locale, timeZone }) {
+  compute: computeFn(function(params, { locale, timeZone, interval }) {
+    this.clearTimer();
+
     const length = params.length;
 
-    if (length > 3) {
-      throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 3');
+    if (length > 4) {
+      throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 4');
+    }
+
+    if (interval) {
+      this.timer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
     }
 
     let format;
     const args = [];
+    
+    if(params[0] === 'now') {
+      params[0] = new Date();
+    }
 
     args.push(params[0]);
 
@@ -35,5 +46,12 @@ export default BaseHelper.extend({
     }
 
     return this.morphMoment(moment(...args), { locale, timeZone }).format(format);
-  })
+  }),
+  clearTimer() {
+    clearTimeout(this.timer);
+  },
+  destroy() {
+    this.clearTimer();
+    this._super(...arguments);
+  }
 });
