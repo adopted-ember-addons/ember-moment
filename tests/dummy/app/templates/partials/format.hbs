@@ -1,14 +1,21 @@
 <div class="example">
-{{moment-format now 'LLLL'}}
+{{moment-format currentTime 'LLLL'}}
 <code>
-  \{{moment-format now 'LLLL'}}
+  \{{moment-format currentTime 'LLLL'}}
 </code>
 </div>
 
 <div class="example">
-{{moment-format now}}
+{{moment-format (now interval=1000) 'MMMM Do YYYY, h:mm:ss a'}}
 <code>
-  \{{moment-format now}}
+  \{{moment-format (now interval=1000) 'MMMM Do YYYY, h:mm:ss a'}}
+</code>
+</div>
+
+<div class="example">
+{{moment-format currentTime}}
+<code>
+  \{{moment-format currentTime}}
 </code>
 </div>
 
@@ -27,8 +34,8 @@
 </div>
 
 <div class="example">
-{{moment-format now 'LL' 'LLLL'}}
+{{moment-format currentTime 'LL' 'LLLL'}}
 <code>
-  \{{moment-format now 'LL' 'LLLL'}}
+  \{{moment-format currentTime 'LL' 'LLLL'}}
 </code>
 </div>

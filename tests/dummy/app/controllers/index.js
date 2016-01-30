@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
     }
   },
   emptyDate: null,
-  now: new Date(),
+  currentTime: new Date(),
   lastHour: new Date(new Date().valueOf() - (60*60*1000)),
   date: new Date(),
   numHours: 822,
