@@ -29,17 +29,11 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 ## Helpers
 
 ```hbs
-{{moment-format date}}
-{{moment-from-now date}}
-{{moment-to-now date}}
-{{moment-duration ms}}
-{{moment-calendar date}}
-
-{{moment-format date outputFormat inputFormat}}
-{{moment-from-now date}}
-{{moment-to-now date}}
-{{moment-duration number units}}
-{{moment-calendar date referenceDate}}
+{{moment-format date outputFormat inputFormat}} {{!-- outputFormat and inputFormat is optional --}}
+{{moment-from-now date hideSuffix=true}} {{!-- hideSuffix is optional --}}
+{{moment-to-now date hidePrefix=true}} {{!-- hidePrefix is optional --}}
+{{moment-duration number units}} {{!-- units is optional --}}
+{{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
 ```
 
 ### Live Updating of Displayed Time
