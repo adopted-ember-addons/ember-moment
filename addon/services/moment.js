@@ -41,6 +41,10 @@ export default Ember.Service.extend({
   changeTimeZone(timeZone) {
     this.set('timeZone', timeZone);
   },
+  
+  isMoment(obj) {
+    return moment.isMoment(obj);
+  },
 
   moment() {
     let time = moment(...arguments);
