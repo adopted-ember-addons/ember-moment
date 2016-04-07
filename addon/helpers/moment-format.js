@@ -21,20 +21,20 @@ export default BaseHelper.extend({
       throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 4');
     }
 
-    let format;
     const args = [];
+    const formatArgs = [];
 
     args.push(params[0]);
 
-    if (length === 1) {
-      format = this.get('moment.defaultFormat');
+    if (length === 1 && this.get('moment.defaultFormat')) {
+      formatArgs.push(this.get('moment.defaultFormat'));
     } else if (length === 2) {
-      format = params[1];
+      formatArgs.push(params[1]);
     } else if (length > 2) {
       args.push(params[2]);
-      format = params[1];
+      formatArgs.push(params[1]);
     }
 
-    return this.morphMoment(moment(...args), { locale, timeZone }).format(format);
+    return this.morphMoment(moment(...args), { locale, timeZone }).format(...formatArgs);
   })
 });

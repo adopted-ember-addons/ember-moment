@@ -9,14 +9,6 @@ export default Ember.Service.extend({
   locale: null,
   defaultFormat: null,
 
-  init() {
-    this._super(...arguments);
-
-    if (!this.get('defaultFormat')) {
-      this.set('defaultFormat', 'LLLL');
-    }
-  },
-
   timeZone: computed('_timeZone', {
     get() {
       return this.get('_timeZone');
