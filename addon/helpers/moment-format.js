@@ -4,7 +4,7 @@ import moment from 'moment';
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
-const { observer } = Ember;
+const { observer, isEmpty, get } = Ember;
 
 export default BaseHelper.extend({
   globalAllowEmpty: false,
@@ -15,6 +15,7 @@ export default BaseHelper.extend({
 
   compute: computeFn(function(params, { locale, timeZone }) {
     this._super(...arguments);
+
     const { length } = params;
 
     if (length > 3) {
@@ -23,11 +24,12 @@ export default BaseHelper.extend({
 
     const args = [];
     const formatArgs = [];
+    const defaultFormat = get(this, 'moment.defaultFormat');
 
     args.push(params[0]);
 
-    if (length === 1 && this.get('moment.defaultFormat')) {
-      formatArgs.push(this.get('moment.defaultFormat'));
+    if (length === 1 && !isEmpty(defaultFormat)) {
+      formatArgs.push(defaultFormat);
     } else if (length === 2) {
       formatArgs.push(params[1]);
     } else if (length > 2) {
