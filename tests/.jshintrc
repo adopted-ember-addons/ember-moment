@@ -22,8 +22,8 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "module",
-    "test"
+    "test",
+    "module"
   ],
   "node": false,
   "browser": false,
