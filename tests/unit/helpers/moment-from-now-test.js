@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import moment from 'moment';
-import { test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import moduleForHelper from '../../helpers/module-for-helper';
-import { runAppend, runDestroy } from '../../helpers/run-append';
+import { moduleForComponent, test } from 'ember-qunit';
 
-moduleForHelper('moment-from-now',{
-  needs: ['service:moment']
+moduleForComponent('moment-from-now',{
+  integration: true,
+  beforeEach() {
+    moment.locale('en');
+  }
 });
 
 test('one arg (date)', function(assert) {
@@ -19,13 +20,10 @@ test('one arg (date)', function(assert) {
     date: threeDaysAgo
   });
 
-  const view = this.createView({
-    template: hbs`{{moment-from-now date}}`,
-    context: context
-  });
+  this.set('context', context);
 
-  runAppend(view);
-  assert.equal(view.$().text(), '3 days ago');
+  this.render(hbs`{{moment-from-now context.date}}`);
+  assert.equal(this.$().text(), '3 days ago');
 });
 
 test('two args (date, inputFormat)', function(assert) {
@@ -34,66 +32,46 @@ test('two args (date, inputFormat)', function(assert) {
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-  const view = this.createView({
-    template: hbs`{{moment-from-now date inputFormat}}`,
-    context: {
-      inputFormat: 'LLLL',
-      date: threeDaysAgo
-    }
+  this.setProperties({
+    inputFormat: 'LLLL',
+    date: threeDaysAgo
   });
 
-  runAppend(view);
-  assert.equal(view.$().text(), '3 days ago');
+  this.render(hbs`{{moment-from-now date inputFormat}}`);
+  assert.equal(this.$().text(), '3 days ago');
 });
 
 test('change date input and change is reflected by bound helper', function(assert) {
   assert.expect(2);
+
   const context = Ember.Object.create({
     date: moment().subtract(1, 'hour'),
   });
 
-  const view = this.createView({
-    template: hbs`{{moment-from-now date}}`,
-    context: context
-  });
+  this.set('context', context);
 
-  runAppend(view);
-
-  assert.equal(view.$().text(), 'an hour ago');
+  this.render(hbs`{{moment-from-now context.date}}`);
+  assert.equal(this.$().text(), 'an hour ago');
 
   Ember.run(function () {
     context.set('date', moment().subtract(2, 'hours'));
   });
 
-  assert.equal(view.$().text(), '2 hours ago');
-
-  runDestroy(view);
+  assert.equal(this.$().text(), '2 hours ago');
 });
 
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
-  const view = this.createView({
-    template: hbs`{{moment-from-now date locale='es'}}`,
-    context: {
-      date: moment().subtract(1, 'hour'),
-    }
-  });
 
-  runAppend(view);
-  assert.equal(view.$().text(), 'hace una hora');
-  runDestroy(view);
+  this.set('date', moment().subtract(1, 'hour'));
+  this.render(hbs`{{moment-from-now date locale='es'}}`);
+  assert.equal(this.$().text(), 'hace una hora');
 });
 
 test('can be called with null', function(assert) {
   assert.expect(1);
-  const view = this.createView({
-    template: hbs`{{moment-from-now date allow-empty=true}}`,
-    context: {
-      date: null
-    }
-  });
 
-  runAppend(view);
-  assert.equal(view.$().text(), '');
-  runDestroy(view);
+  this.set('date', null);
+  this.render(hbs`{{moment-from-now date allow-empty=true}}`);
+  assert.equal(this.$().text(), '');
 });
