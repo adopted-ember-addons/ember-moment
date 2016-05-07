@@ -1,7 +1,7 @@
 ### Master
 
-* Upgrade ember-cli-moment-shim to 1.0.0
-  * Change installs moment and moment-timezone via npm deps instead of bower
+* Upgrade ember-cli-moment-shim to 1.2.0
+* Add moment query helpers (is-between, is-same-or-after, is-same-or-before, is-same, is-after, is-before)
 
 ### 6.0.0
 
