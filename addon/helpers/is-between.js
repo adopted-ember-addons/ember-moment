@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import moment from 'moment';
 
 import computeFn from '../utils/helper-compute';
@@ -16,14 +17,13 @@ export default BaseHelper.extend({
     }
 
     const args = [];
-    const comparisonArgs = [];
+    const comparisonArgs = Ember.A();
 
     if (length > 2) {
       args.push(params.shift());
     }
-    params.forEach(function(param) {
-      comparisonArgs.push(param);
-    });
+
+    comparisonArgs.pushObjects(params);
 
     return this.morphMoment(moment(...args), { locale, timeZone }).isBetween(...comparisonArgs, precision, inclusivity);
   })
