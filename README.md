@@ -34,6 +34,12 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 {{moment-to-now date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}
 {{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
+{{is-before date comparison precision='year'}} {{!-- precision is optional --}}
+{{is-after date comparison precision='year'}} {{!-- precision is optional --}}
+{{is-same date comparison precision='year'}} {{!-- precision is optional --}}
+{{is-same-or-before date comparison precision='year'}} {{!-- precision is optional --}}
+{{is-same-or-after date comparison precision='year'}} {{!-- precision is optional --}}
+{{is-between date comparisonA comparisonB precision='year' inclusivity='[)'}} {{!-- precision is optional, inclusivity optional  --}}
 ```
 
 ### Live Updating of Displayed Time
