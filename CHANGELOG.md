@@ -1,7 +1,9 @@
 ### Master
 
 * Upgrade ember-cli-moment-shim to 1.2.0
-* Add moment query helpers (is-between, is-same-or-after, is-same-or-before, is-same, is-after, is-before)
+* Add moment query helpers (is-between, is-sae-or-after, is-same-or-before, is-same, is-after, is-before)
+* BREAKING: no longer defaults moment-format to LLLL and instead uses the moment default format (ISO 8601)
+  * Applications will need to specify the default format to LLLL if they want to keep this behavior: https://github.com/stefanpenner/ember-moment#global-default-output-format
 
 ### 6.0.0
 
