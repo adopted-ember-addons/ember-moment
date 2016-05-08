@@ -81,7 +81,7 @@ module.exports = function() {
 
 ### Global Default Output Format
 
-Your application may require a default format other than `LLLL`.  For example, you may want dates to fallback on the shorthand form `L` by default.
+Your application may require a default format other than the default, ISO 8601.  For example, you may want dates to fallback on the localized shorthand format `L` by default.
 
 ```js
 // config/environment.js
