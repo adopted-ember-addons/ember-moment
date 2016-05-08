@@ -1,4 +1,4 @@
-### Master
+### 7.0.0-beta.1
 
 * Upgrade ember-cli-moment-shim to 1.2.0
 * Add moment query helpers (is-between, is-sae-or-after, is-same-or-before, is-same, is-after, is-before)
