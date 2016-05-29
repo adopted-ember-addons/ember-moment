@@ -1,3 +1,5 @@
+### 7.0.0-beta.2
+* now helper returns `moment.now()` instead of `new Date()`
 ### 7.0.0-beta.1
 
 * Upgrade ember-cli-moment-shim to 1.2.0
