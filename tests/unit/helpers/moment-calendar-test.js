@@ -31,6 +31,57 @@ test('two args (date, referenceDate)', function(assert) {
   assert.equal(this.$().text(), 'Yesterday at 9:30 PM');
 });
 
+test('two args (date, referenceDate) with formats', function(assert) {
+  assert.expect(1);
+
+  this.setProperties({
+    date: moment('2013-01-01T02:30:26Z'),
+    referenceDate: moment('2013-01-01T12:00:00Z'),
+    formats:  {
+      sameDay: '[Today]',
+      nextDay: '[Tomorrow]',
+      nextWeek: 'dddd',
+      lastDay: '[Yesterday]',
+      lastWeek: '[Last] dddd',
+      sameElse: 'DD/MM/YYYY'
+    }
+  });
+
+  this.render(hbs`{{moment-calendar date referenceDate formats timeZone='America/New_York'}}`);
+  assert.equal(this.$().text(), 'Yesterday');
+});
+
+test('can pass individual formats', function(assert) {
+  assert.expect(1);
+
+  this.setProperties({
+    date: moment('2013-01-01T02:30:26Z'),
+    referenceDate: moment('2013-01-01T12:00:00Z'),
+    lastDay: '[Yesterday!]'
+  });
+
+  this.render(hbs`{{moment-calendar date referenceDate lastDay=lastDay timeZone='America/New_York'}}`);
+  assert.equal(this.$().text(), 'Yesterday!');
+});
+
+test('can use a combination of hash options and positional params', function(assert) {
+  assert.expect(2);
+
+  this.setProperties({
+    date: moment('2013-01-01T02:30:26Z'),
+    referenceDate: moment('2013-01-01T12:00:00Z'),
+    formats: {
+      sameDay: '[Today!]',
+      sameElse: 'DD/MM/YYYY'
+    }
+  });
+
+  this.render(hbs`{{moment-calendar date referenceDate formats lastDay='[YESTERDAY]' timeZone='America/New_York'}}`);
+
+  assert.equal(Object.keys(this.get('formats')).length, 2, 'formats object shape does not change');
+  assert.equal(this.$().text(), 'YESTERDAY');
+});
+
 test('with es locale', function(assert) {
   assert.expect(1);
 
