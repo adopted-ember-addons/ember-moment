@@ -150,6 +150,8 @@ module.exports = function(environment) {
   };
 ```
 
+*NOTE: English is bundled automatically, not need to add `en` in `includeLocales`*
+
 #### Write all the locales to a folder relative to `dist`
 
 Alternatively, you can copy all of moment's locale files into your `dist` directory.
