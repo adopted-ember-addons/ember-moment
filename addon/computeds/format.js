@@ -7,7 +7,7 @@ import computedFactory from './-base';
 const CONFIG_KEY = 'config:environment';
 const { get } = Ember;
 
-export default computedFactory(function formatComtputed([value, optionalFormat]) {
+export default computedFactory(function formatComputed([value, optionalFormat]) {
   if (!optionalFormat) {
     const owner = getOwner(this);
 
