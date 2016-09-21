@@ -30,8 +30,8 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 
 ```hbs
 {{moment-format date outputFormat inputFormat}} {{!-- outputFormat and inputFormat is optional --}}
-{{moment-from-now date hideSuffix=true}} {{!-- hideSuffix is optional --}}
-{{moment-to-now date hidePrefix=true}} {{!-- hidePrefix is optional --}}
+{{moment-from-now (now) date hideSuffix=true}} {{!-- hideSuffix is optional --}}
+{{moment-to-now (now) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}
 {{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
 {{is-before date comparison precision='year'}} {{!-- precision is optional --}}
@@ -206,8 +206,8 @@ All helpers accept a `locale` and `timeZone` argument, which is a string.  This 
 
 ```hbs
 {{moment-format date locale='es' timeZone='America/Los_Angeles'}}
-{{moment-duration date locale='es' timeZone='America/Los_Angeles' timeZone='America/Los_Angeles'}}
-{{moment-from-now date locale='es' timeZone='America/Los_Angeles'}}
+{{moment-duration (now) date locale='es' timeZone='America/Los_Angeles' timeZone='America/Los_Angeles'}}
+{{moment-from-now (now) date locale='es' timeZone='America/Los_Angeles'}}
 {{moment-to-now date locale='es' timeZone='America/Los_Angeles'}}
 ```
 
