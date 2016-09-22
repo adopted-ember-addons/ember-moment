@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-getowner-polyfill';
+import getOwner from 'ember-moment/utils/get-owner';
 import { moduleFor, test } from 'ember-qunit';
 import calendar from 'ember-moment/computeds/calendar';
 import tz from 'ember-moment/computeds/tz';

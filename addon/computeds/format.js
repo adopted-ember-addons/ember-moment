@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-getowner-polyfill';
+import getOwner from '../utils/get-owner';
 
 import computedFactory from './-base';
 

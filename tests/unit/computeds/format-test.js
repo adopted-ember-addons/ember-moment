@@ -1,14 +1,13 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-getowner-polyfill';
+import getOwner from 'ember-moment/utils/get-owner';
 import { moduleFor, test } from 'ember-qunit';
 import format from 'ember-moment/computeds/format';
 import momentComputed from 'ember-moment/computeds/moment';
 import date from '../../helpers/date';
 
-moduleFor('ember-moment@computed:format', {
+moduleFor('controller:test-subject', {
   setup() {
-    this.register('object:empty', Ember.Object.extend({}));
     moment.locale('en');
   }
 });
@@ -17,12 +16,15 @@ const { observer, computed } = Ember;
 const { alias } = computed;
 
 function createSubject(attrs) {
-  return getOwner(this).resolveRegistration('object:empty').extend(Ember.$.extend({
+  const owner = getOwner(this);
+  const assign = Ember.assign || Ember.merge;
+
+  owner.resolveRegistration('controller:test-subject').reopen(assign({
     date: date(0),
-    shortDate: format('date', 'MM/DD'),
-    container: this.container,
-    registry: this.registry
-  }, attrs)).create();
+    shortDate: format('date', 'MM/DD')
+  }, attrs));
+
+  return this.subject();
 }
 
 test('get value as dependent key, format as dependent key', function(assert) {
