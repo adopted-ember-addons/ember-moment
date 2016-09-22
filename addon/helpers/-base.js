@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { observer, inject, Helper } = Ember;
+const { observer, inject, get, Helper } = Ember;
 const { bind:runBind } = Ember.run;
 
 export default Helper.extend({
@@ -12,7 +12,7 @@ export default Helper.extend({
   }),
 
   compute(value, { interval }) {
-    if (this.get('disableInterval')) { return; }
+    if (get(this, 'disableInterval')) { return; }
 
     this.clearTimer();
 
@@ -22,13 +22,13 @@ export default Helper.extend({
   },
 
   morphMoment(time, { locale, timeZone }) {
-    locale = locale || this.get('moment.locale');
+    locale = locale || get(this, 'moment.locale');
 
     if (locale) {
       time = time.locale(locale);
     }
 
-    timeZone = timeZone || this.get('moment.timeZone');
+    timeZone = timeZone || get(this, 'moment.timeZone');
 
     if (timeZone && time.tz) {
       time = time.tz(timeZone);

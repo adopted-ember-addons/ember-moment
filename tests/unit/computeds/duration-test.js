@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-getowner-polyfill';
+import getOwner from 'ember-moment/utils/get-owner';
 import { moduleFor, test } from 'ember-qunit';
 import duration from 'ember-moment/computeds/duration';
 import humanize from 'ember-moment/computeds/humanize';

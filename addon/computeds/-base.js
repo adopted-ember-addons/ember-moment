@@ -11,7 +11,6 @@ export default function computedFactory(fn) {
 
     computedArgs.push(function() {
       const params = args.map((arg) => getValue.call(this, arg));
-
       return fn.call(this, params);
     });
 
