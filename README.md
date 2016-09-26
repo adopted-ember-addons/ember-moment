@@ -31,7 +31,7 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 ```hbs
 {{moment-format date outputFormat inputFormat}} {{!-- outputFormat and inputFormat is optional --}}
 {{moment-from-now (now) date hideSuffix=true}} {{!-- hideSuffix is optional --}}
-{{moment-to-now (now) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
+{{moment-to-now (unix timeStamp) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}
 {{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
 {{is-before date comparison precision='year'}} {{!-- precision is optional --}}
