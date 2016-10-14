@@ -17,13 +17,13 @@ export default BaseHelper.extend({
     }
 
     const args = [];
-    const comparisonArgs = Ember.A();
+    const comparisonArgs = [];
 
     if (length > 2) {
       args.push(params.shift());
     }
 
-    comparisonArgs.pushObjects(params);
+    comparisonArgs.push(params);
 
     return this.morphMoment(moment(...args), { locale, timeZone }).isBetween(...comparisonArgs, precision, inclusivity);
   })
