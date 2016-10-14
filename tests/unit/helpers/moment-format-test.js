@@ -63,6 +63,19 @@ test('three args (date, outputFormat, inputFormat)', function(assert) {
   assert.equal(this.$().text(), 'May 3, 2010');
 });
 
+test('moment and monent-format helper integration', function(assert) {
+  assert.expect(1);
+
+  this.setProperties({
+    inputFormat: 'M/D/YY',
+    outputFormat: 'MMMM D, YYYY',
+    date: '5/3/10'
+  });
+
+  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+  assert.equal(this.$().text(), 'May 3, 2010');
+});
+
 test('change date input and change is reflected by bound helper', function(assert) {
   assert.expect(2);
 

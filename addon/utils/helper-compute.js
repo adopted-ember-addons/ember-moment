@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { isBlank } = Ember;
+const { isBlank, get, Logger: { warn } } = Ember;
 
 export default function(cb) {
   return function(params, hash) {
@@ -13,14 +13,14 @@ export default function(cb) {
     let allowEmpty = hash.allowEmpty || hash['allow-empty'];
 
     if (allowEmpty === undefined || allowEmpty === null) {
-      allowEmpty = !!this.get('globalAllowEmpty');
+      allowEmpty = !!get(this, 'globalAllowEmpty');
     }
 
     if (isBlank(datetime)) {
       if (allowEmpty) {
         return;
       } else {
-        Ember.Logger.warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
+        warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
       }
     }
 
