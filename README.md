@@ -30,7 +30,7 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 
 ```hbs
 {{moment-format date outputFormat inputFormat}} {{!-- outputFormat and inputFormat is optional --}}
-{{moment-from-now (now) date hideSuffix=true}} {{!-- hideSuffix is optional --}}
+{{moment-from-now (now) hideSuffix=true}} {{!-- hideSuffix is optional --}}
 {{moment-to-now (unix timeStamp) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}
 {{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
@@ -45,7 +45,7 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 ### Live Updating of Displayed Time
 
 ```hbs
-{{moment-from-now (now) date interval=1000}} // interval is in ms
+{{moment-from-now (now) interval=1000}} // interval is in ms
 ```
 
 Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for "live" updating as time elapses.
