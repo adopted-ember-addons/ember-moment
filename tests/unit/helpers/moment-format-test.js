@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -8,7 +7,7 @@ import date from '../../helpers/date';
 moduleForComponent('moment-format', {
   integration: true,
   beforeEach() {
-    moment.locale('en');
+    this.container.lookup('service:moment').changeLocale('en');
   }
 });
 
@@ -60,19 +59,6 @@ test('three args (date, outputFormat, inputFormat)', function(assert) {
   });
 
   this.render(hbs`{{moment-format date outputFormat inputFormat}}`);
-  assert.equal(this.$().text(), 'May 3, 2010');
-});
-
-test('moment and monent-format helper integration', function(assert) {
-  assert.expect(1);
-
-  this.setProperties({
-    inputFormat: 'M/D/YY',
-    outputFormat: 'MMMM D, YYYY',
-    date: '5/3/10'
-  });
-
-  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
   assert.equal(this.$().text(), 'May 3, 2010');
 });
 

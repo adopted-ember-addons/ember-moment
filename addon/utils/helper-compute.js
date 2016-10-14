@@ -19,9 +19,9 @@ export default function(cb) {
     if (isBlank(datetime)) {
       if (allowEmpty) {
         return;
-      } else {
-        warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
       }
+
+      warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
     }
 
     return cb.apply(this, arguments);

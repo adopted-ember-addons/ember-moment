@@ -22,13 +22,14 @@ export default Helper.extend({
   },
 
   morphMoment(time, { locale, timeZone }) {
-    locale = locale || get(this, 'moment.locale');
+    const momentService = get(this, 'moment');
 
-    if (locale) {
+    locale = locale || get(momentService, 'locale');
+    timeZone = timeZone || get(momentService, 'timeZone');
+
+    if (locale && time.locale) {
       time = time.locale(locale);
     }
-
-    timeZone = timeZone || get(this, 'moment.timeZone');
 
     if (timeZone && time.tz) {
       time = time.tz(timeZone);
