@@ -29,7 +29,8 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 ## Helpers
 
 ```hbs
-{{moment-format date outputFormat inputFormat}} {{!-- outputFormat and inputFormat is optional --}}
+{{moment '12-25-1995' 'MM-DD-YYYY'}}
+{{moment-format '12-25-1995' 'MM/DD/YYYY' 'MM-DD-YYYY'}} {{!-- outputFormat and inputFormat are optional --}}
 {{moment-from-now (now) hideSuffix=true}} {{!-- hideSuffix is optional --}}
 {{moment-to-now (unix timeStamp) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}

@@ -7,7 +7,7 @@ import date from '../../helpers/date';
 moduleForComponent('moment-calendar', {
   integration: true,
   beforeEach() {
-    moment.locale('en');
+    this.container.lookup('service:moment').changeLocale('en');
   }
 });
 

@@ -1,11 +1,10 @@
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('moment-duration', {
   integration: true,
   beforeEach() {
-    moment.locale('en');
+    this.container.lookup('service:moment').changeLocale('en');
   }
 });
 

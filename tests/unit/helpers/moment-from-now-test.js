@@ -6,7 +6,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 moduleForComponent('moment-from-now',{
   integration: true,
   beforeEach() {
-    moment.locale('en');
+    this.container.lookup('service:moment').changeLocale('en');
   }
 });
 

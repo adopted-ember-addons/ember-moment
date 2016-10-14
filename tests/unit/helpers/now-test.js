@@ -7,7 +7,7 @@ let originalNow;
 moduleForComponent('now', {
   integration: true,
   beforeEach() {
-    moment.locale('en');
+    this.container.lookup('service:moment').changeLocale('en');
     originalNow = moment.now;
   },
   afterEach() {

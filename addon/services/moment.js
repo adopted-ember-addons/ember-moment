@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { computed, Logger:logger } = Ember;
+const { computed, get, set, Logger:logger } = Ember;
 
 export default Ember.Service.extend({
   _timeZone: null,
@@ -11,7 +11,7 @@ export default Ember.Service.extend({
 
   timeZone: computed('_timeZone', {
     get() {
-      return this.get('_timeZone');
+      return get(this, '_timeZone');
     },
 
     set(propertyKey, timeZone) {
@@ -20,37 +20,37 @@ export default Ember.Service.extend({
         return;
       }
 
-      this.set('_timeZone', timeZone);
+      set(this, '_timeZone', timeZone);
 
       return timeZone;
     }
   }),
 
   changeLocale(locale) {
-    this.set('locale', locale);
+    set(this, 'locale', locale);
   },
 
   changeTimeZone(timeZone) {
-    this.set('timeZone', timeZone);
+    set(this, 'timeZone', timeZone);
   },
-  
+
   isMoment(obj) {
     return moment.isMoment(obj);
   },
 
   moment() {
-    let time = moment(...arguments);
-    const locale = this.get('locale');
-    const timeZone = this.get('timeZone');
+    let momentObj = moment(...arguments);
+    const locale = get(this, 'locale');
+    const timeZone = get(this, 'timeZone');
 
-    if (locale) {
-      time = time.locale(locale);
+    if (locale && momentObj.locale) {
+      momentObj = momentObj.locale(locale);
     }
 
-    if (timeZone && time.tz) {
-      time = time.tz(timeZone);
+    if (timeZone && momentObj.tz) {
+      momentObj = momentObj.tz(timeZone);
     }
 
-    return time;
+    return momentObj;
   }
 });
