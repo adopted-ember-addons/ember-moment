@@ -207,7 +207,7 @@ All helpers accept a `locale` and `timeZone` argument, which is a string.  This 
 
 ```hbs
 {{moment-format date locale='es' timeZone='America/Los_Angeles'}}
-{{moment-duration (now) date locale='es' timeZone='America/Los_Angeles' timeZone='America/Los_Angeles'}}
+{{moment-duration (now) date locale='es' timeZone='America/Los_Angeles'}}
 {{moment-from-now (now) date locale='es' timeZone='America/Los_Angeles'}}
 {{moment-to-now date locale='es' timeZone='America/Los_Angeles'}}
 ```
