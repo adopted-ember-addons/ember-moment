@@ -24,6 +24,7 @@ matrix:
 
 before_install:
   - npm install -g bower yarn phantomjs-prebuilt
+  - echo "Yarn version $(yarn --version)"
   - bower --version
   - phantomjs --version
 
