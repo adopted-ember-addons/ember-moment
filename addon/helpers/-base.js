@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
-const { observer, inject, get, Helper } = Ember;
-const { bind:runBind } = Ember.run;
+const { observer, inject, get, Helper, run } = Ember;
 
 export default Helper.extend({
   moment: inject.service(),
@@ -17,7 +16,7 @@ export default Helper.extend({
     this.clearTimer();
 
     if (interval) {
-      this.intervalTimer = setTimeout(runBind(this, this.recompute), parseInt(interval, 10));
+      this.intervalTimer = run.later(this, 'recompute', parseInt(interval, 10));
     }
   },
 
@@ -39,7 +38,7 @@ export default Helper.extend({
   },
 
   clearTimer() {
-    clearTimeout(this.intervalTimer);
+    run.cancel(this.intervalTimer);
   },
 
   destroy() {

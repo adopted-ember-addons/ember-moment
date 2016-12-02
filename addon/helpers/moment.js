@@ -1,8 +1,10 @@
-import Ember from 'ember';
 import moment from 'moment';
+import BaseHelper from './-base';
 
-export default Ember.Helper.extend({
-  compute(params) {
-    return moment(...params);
+export default BaseHelper.extend({
+  compute(params, { locale, timeZone }) {
+    this._super(...arguments);
+
+    return this.morphMoment(moment(...params), { locale, timeZone });
   }
 });
