@@ -1,12 +1,17 @@
-### 7.0.0-beta.2
-* now helper returns `moment.now()` instead of `new Date()`
+### 7.0.0
 
-### 7.0.0-beta.1
-
-* Upgrade ember-cli-moment-shim to 1.2.0
+* Upgrade ember-cli-moment-shim to 1.3.0
+* `now` helper returns `moment.now()` instead of `new Date()`
+* Added `moment` helper
+* Added `moment-calendar` helper
+* @GarPit Added `moment-to-date` helper
+* @stavarotti added `unix` helper
+* @yads added `moment-subtract` `moment-add` helpers 
+* Removed `ember-getowner-polyfill` as a direct dep
 * Add moment query helpers (is-between, is-sae-or-after, is-same-or-before, is-same, is-after, is-before)
 * BREAKING: no longer defaults moment-format to LLLL and instead uses the moment default format (ISO 8601)
   * Applications will need to specify the default format to LLLL if they want to keep this behavior: https://github.com/stefanpenner/ember-moment#global-default-output-format
+* Adopted yarn
 
 ### 6.0.0
 
