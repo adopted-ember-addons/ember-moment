@@ -1,3 +1,7 @@
+### 7.0.1
+
+* Upgrade ember-cli-moment-shim to 2.2.1
+
 ### 7.0.0
 
 * Upgrade ember-cli-moment-shim to 1.3.0
