@@ -1,3 +1,7 @@
+### 7.0.2
+
+* Revert upgrade ember-cli-moment-shim to 2.2.1 (moment.now issue)
+
 ### 7.0.1
 
 * Upgrade ember-cli-moment-shim to 2.2.1
