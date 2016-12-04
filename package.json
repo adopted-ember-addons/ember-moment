@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/stefanpenner/ember-moment.git",
   "engines": {
     "node": ">= 0.10.0"
   },
