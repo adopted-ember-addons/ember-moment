@@ -9,8 +9,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each",
-    "test:foo": "echo works"
+    "test": "ember try:each"
   },
   "repository": "https://github.com/stefanpenner/ember-moment.git",
   "engines": {
