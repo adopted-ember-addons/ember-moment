@@ -1,7 +1,7 @@
 ### 7.0.3
 
 * Upgrade ember-cli-moment-shim to 3.0.0
-* helper recompute loop now inside of setTimeout so tests do not hang waiting on queue to clear #205
+* now helper now recomputes using setTimeout instead of run.later #205
 
 ### 7.0.2
 
