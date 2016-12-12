@@ -1,6 +1,6 @@
 ### 7.1.0
 
-* Use ember-macro-helpers for helper methods used in the construction of computed property macros @kellyselden
+* @kellyselden ported comptued macro factory to use computed macro utility methods from ember-macro-helpers
 
 ### 7.0.3
 
