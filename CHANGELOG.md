@@ -1,3 +1,7 @@
+### 7.1.0
+
+* Use ember-macro-helpers for helper methods used in the construction of computed property macros
+
 ### 7.0.3
 
 * Upgrade ember-cli-moment-shim to 3.0.0
