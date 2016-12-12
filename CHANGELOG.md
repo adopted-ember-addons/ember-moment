@@ -1,6 +1,6 @@
 ### 7.1.0
 
-* @kellyselden ported comptued macro factory to use computed macro utility methods from ember-macro-helpers
+* @kellyselden ported computed macro factory to use computed macro utility methods from ember-macro-helpers
 
 ### 7.0.3
 
