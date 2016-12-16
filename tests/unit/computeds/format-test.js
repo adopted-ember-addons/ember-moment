@@ -38,6 +38,16 @@ test('get value as dependent key, format as dependent key', function(assert) {
   assert.equal(subject.get('shortDate'), '12/31');
 });
 
+test('can contain spaces in the format argument', function(assert) {
+  assert.expect(1);
+
+  const subject = createSubject.call(this, {
+    shortDate: format('date', 'MM DD')
+  });
+
+  assert.equal(subject.get('shortDate'), '12 31');
+});
+
 test('composition with moment computed: get value as dependent key, format as dependent key', function(assert) {
   assert.expect(1);
 
