@@ -1,15 +1,17 @@
 import Ember from 'ember';
-import moment from 'moment';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
+  moment: Ember.inject.service(),
+
   globalAllowEmpty: false,
 
   compute: computeFn(function(params, { precision, locale, timeZone }) {
     this._super(...arguments);
 
+    const moment = this.get('moment');
     const { length } = params;
     const args = [];
     const additionArgs = [];
@@ -23,6 +25,6 @@ export default BaseHelper.extend({
       additionArgs.push(...params.slice(1));
     }
 
-    return this.morphMoment(moment(...args), { locale, timeZone }).add(...additionArgs, precision);
+    return this.morphMoment(moment.moment(...args), { locale, timeZone }).add(...additionArgs, precision);
   })
 });
