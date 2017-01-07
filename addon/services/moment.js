@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const { computed, get, getProperties, set, Logger:logger } = Ember;
 
-export default Ember.Service.extend({
+export default Ember.Service.extend(Ember.Evented, {
   _timeZone: null,
 
   locale: null,
@@ -33,6 +33,7 @@ export default Ember.Service.extend({
   changeLocale(locale) {
     set(this, 'locale', locale);
     moment.locale(locale);
+    this.trigger('localeChanged', locale);
   },
 
   setTimeZone(timeZone) {
@@ -41,6 +42,7 @@ export default Ember.Service.extend({
 
   changeTimeZone(timeZone) {
     set(this, 'timeZone', timeZone);
+    this.trigger('timeZoneChanged', timeZone);
   },
 
   isMoment(obj) {

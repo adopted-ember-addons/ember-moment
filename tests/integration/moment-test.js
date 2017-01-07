@@ -57,10 +57,27 @@ test('moment can use the service locale', function(assert) {
 });
 
 test('changing moment service locale changes global locale', function(assert) {
+  const done = assert.async();
   assert.expect(1);
 
+  this.service.on('localeChanged', function() {
+    assert.equal(moment.locale(), 'es');
+    done();
+  });
+
   this.service.setLocale('es');
-  assert.equal(moment.locale(), 'es');
+});
+
+test('changing timeZone triggers event', function(assert) {
+  const done = assert.async();
+  assert.expect(1);
+
+  this.service.on('timeZoneChanged', function() {
+    assert.ok(true);
+    done();
+  });
+
+  this.service.setTimeZone('PST');
 });
 
 test('moment can use the service locale (setLocale)', function(assert) {
