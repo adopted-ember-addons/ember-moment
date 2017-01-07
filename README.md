@@ -184,7 +184,7 @@ Ember.$.getScript('/assets/moment-locales/fr.js');
 export default Ember.Route.extend({
   moment: Ember.inject.service(),
   beforeModel() {
-    this.get('moment').changeLocale('es');
+    this.get('moment').setLocale('es');
   }
 });
 ```
@@ -196,7 +196,7 @@ export default Ember.Route.extend({
 export default Ember.Route.extend({
   moment: Ember.inject.service(),
   beforeModel() {
-    this.get('moment').changeTimeZone('America/Los_Angeles');
+    this.get('moment').setTimeZone('America/Los_Angeles');
   }
 });
 ```
