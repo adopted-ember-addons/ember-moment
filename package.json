@@ -1,6 +1,6 @@
 {
   "name": "ember-moment",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Moment.js template helpers and computed property macros for Ember",
   "directories": {
     "doc": "doc",
