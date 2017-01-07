@@ -1,3 +1,10 @@
+### 7.2.0
+
+* Setting locale now sets locale on global moment object
+* Added `setLocale` and `setTimeZone`.  Better naming.  Will continue to support `changeLocale` and `changeTimeZone` but have updated README to prefer new method names
+* Added `localeChanged` and `timeZoneChanged` events
+* @mfeltz scoped moment-subtract and moment-add to use the moment service `locale` property
+
 ### 7.1.0
 
 * @kellyselden ported computed macro factory to use computed macro utility methods from ember-macro-helpers
