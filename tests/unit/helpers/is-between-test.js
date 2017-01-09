@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -10,7 +9,8 @@ moduleForComponent('is-between',{
 test('two args (comparisonDate1, comparisonDate2)', function(assert) {
   assert.expect(1);
 
-  const today = moment();
+  const momentService = this.container.lookup('service:moment');
+  const today = momentService.moment();
   const threeDaysFromNow = today.add(3, 'days');
   const context = Ember.Object.create({
     date: threeDaysFromNow
@@ -24,7 +24,8 @@ test('two args (comparisonDate1, comparisonDate2)', function(assert) {
 test('two args (comparisonDate1, comparisonDate2, precision)', function(assert) {
   assert.expect(1);
 
-  const today = moment();
+  const momentService = this.container.lookup('service:moment');
+  const today = momentService.moment();
   const threeYearsFromNow = today.add(3, 'years');
   const context = Ember.Object.create({
     date: threeYearsFromNow
@@ -38,7 +39,8 @@ test('two args (comparisonDate1, comparisonDate2, precision)', function(assert) 
 test('two args (comparisonDate1, comparisonDate2, precision, inclusivity)', function(assert) {
   assert.expect(1);
 
-  const today = moment();
+  const momentService = this.container.lookup('service:moment');
+  const today = momentService.moment();
   const threeDaysFromNow = today.add(3, 'days');
   const context = Ember.Object.create({
     date: threeDaysFromNow

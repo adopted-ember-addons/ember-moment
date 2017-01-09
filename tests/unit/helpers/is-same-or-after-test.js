@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -10,7 +9,8 @@ moduleForComponent('is-same-or-after',{
 test('one arg (comparisonDate)', function(assert) {
   assert.expect(1);
 
-  const today = moment();
+  const momentService = this.container.lookup('service:moment');
+  const today = momentService.moment();
   const threeDaysFromNow = today.add(3, 'days');
   const context = Ember.Object.create({
     date: threeDaysFromNow
@@ -24,7 +24,8 @@ test('one arg (comparisonDate)', function(assert) {
 test('one arg with precision (comparisonDate, precision)', function(assert) {
   assert.expect(1);
 
-  const today = moment();
+  const momentService = this.container.lookup('service:moment');
+  const today = momentService.moment();
   const threeYearsAgo = today.subtract(3, 'years');
   const context = Ember.Object.create({
     date: threeYearsAgo

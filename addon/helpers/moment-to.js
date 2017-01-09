@@ -1,14 +1,18 @@
-import moment from 'moment';
+import Ember from 'ember';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
+	moment: Ember.inject.service(),
+
   globalAllowEmpty: false,
 
   compute: computeFn(function([ datetime, ...params ], { locale, timeZone }) {
     this._super(...arguments);
 
-    return this.morphMoment(moment(datetime), { locale, timeZone }).to(...params);
+    const moment = this.get('moment');
+
+    return this.morphMoment(moment.moment(datetime), { locale, timeZone }).to(...params);
   })
 });
