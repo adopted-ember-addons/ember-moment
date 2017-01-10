@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -38,8 +37,9 @@ test('two args (date, inputFormat)', function(assert) {
 test('change date input and change is reflected by bound helper', function(assert) {
   assert.expect(2);
 
+  const momentService = this.container.lookup('service:moment');
   const context = Ember.Object.create({
-    date: moment().subtract(1, 'hour'),
+    date: momentService.moment().subtract(1, 'hour'),
   });
 
   this.set('context', context);
@@ -47,7 +47,7 @@ test('change date input and change is reflected by bound helper', function(asser
   assert.equal(this.$().text(), 'in an hour');
 
   Ember.run(function () {
-    context.set('date', moment().subtract(2, 'hour'));
+    context.set('date', momentService.moment().subtract(2, 'hour'));
   });
 
   assert.equal(this.$().text(), 'in 2 hours');
@@ -56,7 +56,8 @@ test('change date input and change is reflected by bound helper', function(asser
 test('can inline a locale instead of using global locale', function(assert) {
   assert.expect(1);
 
-  this.set('date', moment().subtract(1, 'hour'));
+  const momentService = this.container.lookup('service:moment');
+  this.set('date', momentService.moment().subtract(1, 'hour'));
   this.render(hbs`{{moment-to-now date locale='es'}}`);
   assert.equal(this.$().text(), 'en una hora');
 });

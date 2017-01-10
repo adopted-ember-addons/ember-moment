@@ -19,7 +19,8 @@ moduleForComponent('now', {
 test('returns the result of moment.now', function(assert) {
   assert.expect(1);
 
-  const current = moment('20111031');
+  const momentService = this.container.lookup('service:moment');
+  const current = momentService.moment('20111031');
   moment.now = () => current;
   this.render(hbs`{{moment-format (now) 'YYYYMMDD'}}`);
   assert.equal(this.$().text(), '20111031');
@@ -28,7 +29,8 @@ test('returns the result of moment.now', function(assert) {
 test('returns the result of self.moment.now', function(assert) {
   assert.expect(1);
 
-  const current = moment('20011031');
+  const momentService = this.container.lookup('service:moment');
+  const current = momentService.moment('20011031');
   self.moment.now = () => current;
   this.render(hbs`{{moment-format (now) 'YYYYMMDD'}}`);
   assert.equal(this.$().text(), '20011031');

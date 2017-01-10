@@ -1,4 +1,3 @@
-import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -22,9 +21,10 @@ test('one arg (date)', function(assert) {
 test('two args (date, referenceDate)', function(assert) {
   assert.expect(1);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T02:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z')
+    date: momentService.moment('2013-01-01T02:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z')
   });
 
   this.render(hbs`{{moment-calendar date referenceDate timeZone='America/New_York'}}`);
@@ -34,9 +34,10 @@ test('two args (date, referenceDate)', function(assert) {
 test('two args (date, referenceDate) with formats', function(assert) {
   assert.expect(1);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T02:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z'),
+    date: momentService.moment('2013-01-01T02:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z'),
     formats:  {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -54,9 +55,10 @@ test('two args (date, referenceDate) with formats', function(assert) {
 test('can pass individual formats', function(assert) {
   assert.expect(1);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T02:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z'),
+    date: momentService.moment('2013-01-01T02:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z'),
     lastDay: '[Yesterday!]'
   });
 
@@ -67,9 +69,10 @@ test('can pass individual formats', function(assert) {
 test('can use a combination of hash options and positional params', function(assert) {
   assert.expect(2);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T02:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z'),
+    date: momentService.moment('2013-01-01T02:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z'),
     formats: {
       sameDay: '[Today!]',
       sameElse: 'DD/MM/YYYY'
@@ -85,9 +88,10 @@ test('can use a combination of hash options and positional params', function(ass
 test('with es locale', function(assert) {
   assert.expect(1);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T08:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z')
+    date: momentService.moment('2013-01-01T08:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z')
   });
 
   this.render(hbs`{{moment-calendar date referenceDate locale="es" timeZone='America/New_York'}}`);
@@ -97,9 +101,10 @@ test('with es locale', function(assert) {
 test('can inline timeZone (Sydney)', function(assert) {
   assert.expect(1);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    date: moment('2013-01-01T08:30:26Z'),
-    referenceDate: moment('2013-01-01T12:00:00Z'),
+    date: momentService.moment('2013-01-01T08:30:26Z'),
+    referenceDate: momentService.moment('2013-01-01T12:00:00Z'),
   });
 
   this.render(hbs`{{moment-calendar date referenceDate timeZone='Australia/Sydney'}}`);
