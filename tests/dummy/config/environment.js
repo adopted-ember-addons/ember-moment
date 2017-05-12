@@ -21,7 +21,7 @@ module.exports = function(environment) {
       allowEmpty: true,
       outputFormat: 'LLLL',
       includeTimezone: 'all',
-      includeLocales: ['es', 'fr-ca', 'fr']
+      includeLocales: ['es', 'fr-ca', 'fr', 'ar']
     }
   };
 

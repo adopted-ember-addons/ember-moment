@@ -77,3 +77,9 @@ test('can be called with null', function(assert) {
   this.render(hbs`{{moment-from-now date allow-empty=true}}`);
   assert.equal(this.$().text(), '');
 });
+
+test('localize arabic - issue 239', function(assert) {
+  this.set('date', new Date());
+  this.render(hbs`{{moment-from-now date locale='ar' hideSuffix=true}}`);
+  assert.equal(this.$().text(), 'ثانية واحدة');
+});
