@@ -35,6 +35,7 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 {{moment-to-now (unix timeStamp) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
 {{moment-duration number units}} {{!-- units is optional --}}
 {{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
+{{moment-diff dateA dateB precision='day' float=true}} {{!-- precision is optional, float is optional --}}
 {{is-before date comparison precision='year'}} {{!-- precision is optional --}}
 {{is-after date comparison precision='year'}} {{!-- precision is optional --}}
 {{is-same date comparison precision='year'}} {{!-- precision is optional --}}

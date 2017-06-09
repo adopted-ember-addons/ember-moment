@@ -20,6 +20,7 @@ export default Ember.Controller.extend({
   currentTime: new Date(),
   unixTimeStamp: 946684799,
   lastHour: new Date(new Date().valueOf() - (60*60*1000)),
+  inTwelveHours: new Date(new Date().valueOf() + (12*60*60*1000)),
   date: new Date(),
   numHours: 822,
   computedDate: format(locale(momentComputed('date'), 'moment.locale')),
