@@ -15,8 +15,8 @@ test('two args with (dateA, dateB)', function(assert) {
   assert.expect(1);
   const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().add(5, 'day')
+    dateA: momentService.moment('2017-01-10'),
+    dateB: momentService.moment('2017-01-15')
   });
 
   this.render(hbs `{{moment-diff dateA dateB}}`);
@@ -39,8 +39,8 @@ test('two args with (dateA, dateB) and expect a negative result', function(asser
   assert.expect(1);
   const momentService = this.container.lookup('service:moment');
   this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().subtract(5, 'day')
+    dateA: momentService.moment('2017-01-15'),
+    dateB: momentService.moment('2017-01-10')
   });
 
   this.render(hbs `{{moment-diff dateA dateB}}`);
