@@ -94,3 +94,12 @@ test('moment can use the service locale (setLocale)', function(assert) {
 
   assert.equal(this.$().text(), 'mai 3, 2010');
 });
+
+test('moment can update service locale (updateLocale)', function(assert) {
+  assert.expect(2);
+
+  this.service.updateLocale('en', { week: { dow: 3 } });
+  assert.equal(moment().weekday(0).format('dddd'), 'Wednesday');
+  this.service.updateLocale('en', { week: { dow: 0 } });
+  assert.equal(moment().weekday(0).format('dddd'), 'Sunday');
+});
