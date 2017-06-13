@@ -1,12 +1,20 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { computed, get, getProperties, set, Logger:logger } = Ember;
+const {
+  computed,
+  get,
+  getProperties,
+  set,
+  setProperties,
+  Logger:logger
+} = Ember;
 
 export default Ember.Service.extend(Ember.Evented, {
   _timeZone: null,
 
   locale: null,
+  localeOptions: {},
   defaultFormat: null,
 
   timeZone: computed('_timeZone', {
@@ -30,9 +38,16 @@ export default Ember.Service.extend(Ember.Evented, {
     this.changeLocale(locale);
   },
 
-  changeLocale(locale) {
-    set(this, 'locale', locale);
-    moment.locale(locale);
+  updateLocale(locale, localeOptions = {}) {
+    this.changeLocale(locale, localeOptions);
+  },
+
+  changeLocale(locale, localeOptions = {}) {
+    setProperties(this, {
+      locale,
+      localeOptions
+    });
+    moment.updateLocale(locale, localeOptions);
     this.trigger('localeChanged', locale);
   },
 
