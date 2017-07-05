@@ -48,7 +48,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
-    "ember-macro-helpers": "^0.14.1"
+    "ember-macro-helpers": "^0.15.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
