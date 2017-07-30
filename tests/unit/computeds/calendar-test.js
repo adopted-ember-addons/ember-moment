@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-moment/utils/get-owner';
 import { moduleFor, test } from 'ember-qunit';
 import calendar from 'ember-moment/computeds/calendar';
 import tz from 'ember-moment/computeds/tz';
 import locale from 'ember-moment/computeds/locale';
+
+const { getOwner } = Ember;
 
 moduleFor('ember-moment@computed:moment', {
   setup() {
