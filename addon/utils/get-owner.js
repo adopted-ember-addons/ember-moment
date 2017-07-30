@@ -1,3 +1,3 @@
 import Ember from 'ember';
 
-export default Ember.getOwner
+export default Ember.getOwner;
