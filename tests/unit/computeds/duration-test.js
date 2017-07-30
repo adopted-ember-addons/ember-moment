@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
-import getOwner from 'ember-moment/utils/get-owner';
 import { moduleFor, test } from 'ember-qunit';
 import duration from 'ember-moment/computeds/duration';
 import humanize from 'ember-moment/computeds/humanize';
 import locale from 'ember-moment/computeds/locale';
+
+const { getOwner } = Ember;
 
 moduleFor('ember-moment@computed:duration', {
   setup() {
