@@ -47,7 +47,7 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 ### Live Updating of Displayed Time
 
 ```hbs
-{{moment-from-now (now) interval=1000}} // interval is in ms
+{{moment-from-now (now interval=1000)}} // interval is in ms
 ```
 
 Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for "live" updating as time elapses.
