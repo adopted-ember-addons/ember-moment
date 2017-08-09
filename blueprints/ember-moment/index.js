@@ -1,3 +1,4 @@
+/* eslint-env node */
 'use strict';
 
 module.exports = {
@@ -8,6 +9,6 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addAddonToProject('ember-cli-moment-shim', '^3.0.0');
+    return this.addAddonToProject('ember-cli-moment-shim', '^3.4.0');
   }
 };
