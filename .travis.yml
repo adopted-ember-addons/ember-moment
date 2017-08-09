@@ -25,7 +25,7 @@ matrix:
 
 before_install:
   - npm install -g bower yarn phantomjs-prebuilt
-  - echo "Yarn version $(yarn --version)"
+  - yarn --version
   - bower --version
   - phantomjs --version
 
@@ -36,4 +36,4 @@ install:
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
