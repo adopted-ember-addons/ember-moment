@@ -1,7 +1,8 @@
-import Ember from 'ember';
-import config from '../config/environment';
+import { get } from '@ember/object';
 import IsBetweenHelper from 'ember-moment/helpers/is-between';
 
+import config from '../config/environment';
+
 export default IsBetweenHelper.extend({
-  globalAllowEmpty: !!Ember.get(config, 'moment.allowEmpty')
+  globalAllowEmpty: !!get(config, 'moment.allowEmpty')
 });
