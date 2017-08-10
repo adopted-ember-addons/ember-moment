@@ -5,8 +5,6 @@ import BaseHelper from './-base';
 
 export default BaseHelper.extend({
 
-  globalAllowEmpty: false,
-
   compute: computeFn(function(params, { precision, locale, timeZone }) {
     this._super(...arguments);
 

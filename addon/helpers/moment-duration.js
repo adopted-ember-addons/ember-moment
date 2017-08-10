@@ -5,8 +5,6 @@ import BaseHelper from './-base';
 
 export default BaseHelper.extend({
 
-  disableInterval: true,
-
   compute(params, { locale, timeZone }) {
     this._super(...arguments);
     const momentService = get(this, 'moment');

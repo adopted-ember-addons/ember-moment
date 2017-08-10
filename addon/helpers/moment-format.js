@@ -5,7 +5,6 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  globalAllowEmpty: false,
 
   defaultFormatDidChange: observer('moment.defaultFormat', function() {
     this.recompute();
