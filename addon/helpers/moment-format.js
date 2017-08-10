@@ -1,13 +1,10 @@
 import { get, observer } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { inject as service } from '@ember/service';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  moment: service(),
-
   globalAllowEmpty: false,
 
   defaultFormatDidChange: observer('moment.defaultFormat', function() {
