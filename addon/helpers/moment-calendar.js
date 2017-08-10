@@ -8,8 +8,6 @@ import BaseHelper from './-base';
 export default BaseHelper.extend({
   moment: service(),
 
-  globalAllowEmpty: false,
-
   compute: computeFn(function (params, formatHash = {}) {
     this._super(...arguments);
 

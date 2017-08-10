@@ -8,8 +8,6 @@ import BaseHelper from './-base';
 export default BaseHelper.extend({
   moment: service(),
 
-  globalAllowEmpty: false,
-
   defaultFormatDidChange: observer('moment.defaultFormat', function() {
     this.recompute();
   }),

@@ -7,8 +7,6 @@ import BaseHelper from './-base';
 export default BaseHelper.extend({
   moment: service(),
 
-  globalAllowEmpty: false,
-
   compute: computeFn(function(params, { precision, float, locale, timeZone }) {
     this._super(...arguments);
 
