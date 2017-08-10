@@ -1,11 +1,9 @@
 import { get } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-	moment: service(),
 
   compute: computeFn(function(params, { hideSuffix, locale, timeZone }) {
     this._super(...arguments);
