@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import duration from 'ember-moment/computeds/duration';
 import format from 'ember-moment/computeds/format';
 import fromNow from 'ember-moment/computeds/from-now';
@@ -6,14 +8,14 @@ import locale from 'ember-moment/computeds/locale';
 import humanize from 'ember-moment/computeds/humanize';
 import momentComputed from 'ember-moment/computeds/moment';
 
-export default Ember.Controller.extend({
-  moment: Ember.inject.service(),
+export default Controller.extend({
+  moment: service(),
   actions: {
     changeLocale(locale) {
-      this.get('moment').changeLocale(locale);
+      get(this, 'moment').changeLocale(locale);
     },
     changeDefaultFormat(defaultFormat) {
-      this.set('moment.defaultFormat', defaultFormat);
+      set(this, 'moment.defaultFormat', defaultFormat);
     }
   },
   emptyDate: null,

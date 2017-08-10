@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -12,7 +12,7 @@ test('two args (comparisonDate1, comparisonDate2)', function(assert) {
   const momentService = this.container.lookup('service:moment');
   const today = momentService.moment();
   const threeDaysFromNow = today.add(3, 'days');
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: threeDaysFromNow
   });
   this.set('context', context);
@@ -27,7 +27,7 @@ test('two args (comparisonDate1, comparisonDate2, precision)', function(assert) 
   const momentService = this.container.lookup('service:moment');
   const today = momentService.moment();
   const threeYearsFromNow = today.add(3, 'years');
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: threeYearsFromNow
   });
   this.set('context', context);
@@ -42,7 +42,7 @@ test('two args (comparisonDate1, comparisonDate2, precision, inclusivity)', func
   const momentService = this.container.lookup('service:moment');
   const today = momentService.moment();
   const threeDaysFromNow = today.add(3, 'days');
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: threeDaysFromNow
   });
   this.set('context', context);

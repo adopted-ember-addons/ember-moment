@@ -1,7 +1,8 @@
-import Ember from 'ember';
-import config from '../config/environment';
+import { get } from '@ember/object';
 import FromHelper from 'ember-moment/helpers/moment-from';
 
+import config from '../config/environment';
+
 export default FromHelper.extend({
-  globalAllowEmpty: !!Ember.get(config, 'moment.allowEmpty')
+  globalAllowEmpty: !!get(config, 'moment.allowEmpty')
 });

@@ -1,16 +1,13 @@
 import Ember from 'ember';
+import Service from '@ember/service';
+import Evented from '@ember/object/evented';
 import moment from 'moment';
+import { computed, get, set, getProperties, setProperties } from '@ember/object';
 
-const {
-  computed,
-  get,
-  getProperties,
-  set,
-  setProperties,
-  Logger:logger
-} = Ember;
+// question unresolved https://github.com/ember-cli/ember-rfc176-data/issues/12#issuecomment-318603308
+const { Logger: { warn }  } = Ember;
 
-export default Ember.Service.extend(Ember.Evented, {
+export default Service.extend(Evented, {
   _timeZone: null,
 
   locale: null,
@@ -24,7 +21,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     set(propertyKey, timeZone) {
       if (!moment.tz) {
-        logger.warn('[ember-moment] attempted to set timezone, but moment-timezone is not setup.');
+        warn('[ember-moment] attempted to set timezone, but moment-timezone is not setup.');
         return;
       }
 

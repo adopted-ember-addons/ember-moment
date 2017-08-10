@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { merge } from '@ember/polyfills';
 import moment from 'moment';
 
 import computedFactory from './-base';
@@ -10,7 +10,7 @@ export default computedFactory(function calendarComputed(params, formatHash = {}
 
   const [date, referenceTime, formats] = params;
   const clone = Object.create(formatHash);
-  const mergedFormats = Ember.merge(clone, formats);
+  const mergedFormats = merge(clone, formats);
 
   return moment(date).calendar(referenceTime, mergedFormats);
 });

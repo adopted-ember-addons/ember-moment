@@ -1,12 +1,12 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 
 function runAppend (view) {
-  Ember.run(view, 'appendTo', '#qunit-fixture');
+  run(view, 'appendTo', '#qunit-fixture');
 }
 
 function runDestroy (destroyed) {
   if (destroyed) {
-    Ember.run(destroyed, 'destroy');
+    run(destroyed, 'destroy');
   }
 }
 

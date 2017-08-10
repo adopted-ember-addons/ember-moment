@@ -1,7 +1,8 @@
-import Ember from 'ember';
-import config from '../config/environment';
+import { get } from '@ember/object';
 import IsBeforeHelper from 'ember-moment/helpers/is-before';
 
+import config from '../config/environment';
+
 export default IsBeforeHelper.extend({
-  globalAllowEmpty: !!Ember.get(config, 'moment.allowEmpty')
+  globalAllowEmpty: !!get(config, 'moment.allowEmpty')
 });

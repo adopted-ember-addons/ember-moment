@@ -1,17 +1,20 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { set } from '@ember/object';
+import { run } from '@ember/runloop';
 
-export default Ember.Route.extend({
-  moment: Ember.inject.service(),
+export default Route.extend({
+  moment: service(),
 
   beforeModel() {
-    this.set('moment.locale', 'en');
+    set(this, 'moment.locale', 'en');
   },
 
   setupController(controller, model) {
     this._super(controller, model);
 
     setInterval(function () {
-      Ember.run(function () {
+      run(function () {
         controller.set('date', new Date());
       });
     }, 1000);

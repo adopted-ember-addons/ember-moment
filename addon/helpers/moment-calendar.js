@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { merge } from '@ember/polyfills';
+import { inject as service } from '@ember/service';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  moment: Ember.inject.service(),
-  
+  moment: service(),
+
   globalAllowEmpty: false,
 
   compute: computeFn(function (params, formatHash = {}) {
@@ -15,7 +17,7 @@ export default BaseHelper.extend({
       throw new TypeError('ember-moment: Invalid Number of arguments, at most 3');
     }
 
-    const moment = this.get('moment');
+    const moment = get(this, 'moment');
     const { locale, timeZone } = formatHash;
     const [date, referenceTime, formats] = params;
     const clone = Object.create(formatHash);
@@ -23,7 +25,7 @@ export default BaseHelper.extend({
     delete clone.locale;
     delete clone.timeZone;
 
-    const mergedFormats = Ember.merge(clone, formats);
+    const mergedFormats = merge(clone, formats);
 
     return this.morphMoment(moment.moment(date), { locale, timeZone }).calendar(referenceTime, mergedFormats);
   })

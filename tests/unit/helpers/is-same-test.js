@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -18,7 +18,7 @@ test('one arg with precision (comparisonDate, precision)', function(assert) {
 
   const today = new Date();
   const date = `${today.getFullYear()}-10-19`;
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: date
   });
   this.set('context', context);

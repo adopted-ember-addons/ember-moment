@@ -1,20 +1,20 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { getOwner } from '@ember/application';
+import $ from 'jquery';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
 import fromNow from 'ember-moment/computeds/from-now';
 import momentComputed from 'ember-moment/computeds/moment';
 
-const { getOwner } = Ember;
-
 moduleFor('ember-moment@computed:from-now', {
   setup() {
-    this.register('object:empty', Ember.Object.extend({}));
+    this.register('object:empty', EmberObject.extend({}));
     moment.locale('en');
   }
 });
 
 function createSubject(attrs) {
-  return getOwner(this).resolveRegistration('object:empty').extend(Ember.$.extend(attrs, {
+  return getOwner(this).resolveRegistration('object:empty').extend($.extend(attrs, {
     container: this.container,
     registry: this.registry
   })).create();

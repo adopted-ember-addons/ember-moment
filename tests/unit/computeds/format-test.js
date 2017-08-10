@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
+import { merge } from '@ember/polyfills';
+import { observer } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import moment from 'moment';
 import { moduleFor, test } from 'ember-qunit';
 import format from 'ember-moment/computeds/format';
 import momentComputed from 'ember-moment/computeds/moment';
-import date from '../../helpers/date';
 
-const { getOwner } = Ember;
+import date from '../../helpers/date';
 
 moduleFor('controller:test-subject', {
   setup() {
@@ -13,14 +15,10 @@ moduleFor('controller:test-subject', {
   }
 });
 
-const { observer, computed } = Ember;
-const { alias } = computed;
-
 function createSubject(attrs) {
   const owner = getOwner(this);
-  const assign = Ember.assign || Ember.merge;
 
-  owner.resolveRegistration('controller:test-subject').reopen(assign({
+  owner.resolveRegistration('controller:test-subject').reopen(merge({
     date: date(0),
     shortDate: format('date', 'MM/DD')
   }, attrs));
