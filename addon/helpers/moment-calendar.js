@@ -1,13 +1,10 @@
 import { get } from '@ember/object';
 import { merge } from '@ember/polyfills';
-import { inject as service } from '@ember/service';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  moment: service(),
-
   globalAllowEmpty: false,
 
   compute: computeFn(function (params, formatHash = {}) {
