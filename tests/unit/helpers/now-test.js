@@ -1,4 +1,3 @@
-/* globals self */
 import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';

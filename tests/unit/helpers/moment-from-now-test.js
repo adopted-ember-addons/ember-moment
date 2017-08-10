@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -15,7 +16,7 @@ test('one arg (date)', function(assert) {
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: threeDaysAgo
   });
 
@@ -44,7 +45,7 @@ test('change date input and change is reflected by bound helper', function(asser
   assert.expect(2);
 
   const momentService = this.container.lookup('service:moment');
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: momentService.moment().subtract(1, 'hour'),
   });
 
@@ -53,7 +54,7 @@ test('change date input and change is reflected by bound helper', function(asser
   this.render(hbs`{{moment-from-now context.date}}`);
   assert.equal(this.$().text(), 'an hour ago');
 
-  Ember.run(function () {
+  run(function () {
     context.set('date', momentService.moment().subtract(2, 'hours'));
   });
 
