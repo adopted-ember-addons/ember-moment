@@ -46,10 +46,9 @@
     "momentjs"
   ],
   "dependencies": {
-    "bower": "^1.8.0",
     "ember-cli-babel": "^6.7.2",
-    "ember-macro-helpers": "^0.16.0",
-    "ember-getowner-polyfill": "^2.0.1"
+    "ember-getowner-polyfill": "^2.0.1",
+    "ember-macro-helpers": "^0.16.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

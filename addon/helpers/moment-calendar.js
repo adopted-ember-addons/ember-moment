@@ -5,7 +5,6 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-
   compute: computeFn(function (params, formatHash = {}) {
     this._super(...arguments);
 

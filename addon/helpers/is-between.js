@@ -4,7 +4,6 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-
   compute: computeFn(function(params, { precision, inclusivity, locale, timeZone }) {
     this._super(...arguments);
 
