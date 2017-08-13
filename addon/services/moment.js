@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import { getOwner } from '@ember/application';
 import moment from 'moment';
 import { computed, get, set, getProperties, setProperties } from '@ember/object';
 
@@ -13,6 +14,12 @@ export default Service.extend(Evented, {
   locale: null,
   localeOptions: {},
   defaultFormat: null,
+
+  __config__: computed(function() {
+    let config = getOwner(this).factoryFor('config:environment').class || {};
+
+    return get(config, 'moment') || {};
+  }).readOnly(),
 
   timeZone: computed('_timeZone', {
     get() {

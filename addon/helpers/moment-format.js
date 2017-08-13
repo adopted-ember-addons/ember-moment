@@ -1,5 +1,5 @@
-import { get, observer } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { get, observer } from '@ember/object';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';

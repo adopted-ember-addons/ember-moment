@@ -1,7 +1,6 @@
-import { get } from '@ember/object';
-
-import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
+import { get } from '@ember/object';
+import computeFn from '../utils/helper-compute';
 
 export default BaseHelper.extend({
   compute: computeFn(function(params, { precision, locale, timeZone }) {

@@ -16,7 +16,7 @@ export default function(cb) {
     let allowEmpty = hash.allowEmpty || hash['allow-empty'];
 
     if (allowEmpty === undefined || allowEmpty === null) {
-      allowEmpty = !!get(this, 'globalAllowEmpty');
+      allowEmpty = get(this, 'globalAllowEmpty');
     }
 
     if (isBlank(datetime)) {
@@ -24,7 +24,7 @@ export default function(cb) {
         return;
       }
 
-      warn('ember-moment: an empty value (null, undefined, or "") was passed to moment-format');
+      warn(`ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`);
     }
 
     return cb.apply(this, arguments);
