@@ -1,7 +1,8 @@
-import Ember from 'ember';
-import config from '../config/environment';
+import { get } from '@ember/object';
 import CalendarHelper from 'ember-moment/helpers/moment-calendar';
 
+import config from '../config/environment';
+
 export default CalendarHelper.extend({
-  globalAllowEmpty: !!Ember.get(config, 'moment.allowEmpty')
+  globalAllowEmpty: !!get(config, 'moment.allowEmpty')
 });

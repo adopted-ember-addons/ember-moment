@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { getOwner } from '@ember/application';
 import moment from 'moment';
 
 import computedFactory from './-base';
 
 const CONFIG_KEY = 'config:environment';
-const { get, getOwner } = Ember;
 
 export default computedFactory(function formatComputed([value, optionalFormat]) {
   if (!optionalFormat) {

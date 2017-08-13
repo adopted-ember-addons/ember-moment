@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import { get } from '@ember/object';
 
-const { isBlank, get, Logger: { warn } } = Ember;
+// question unresolved https://github.com/ember-cli/ember-rfc176-data/issues/12#issuecomment-318603308
+const { Logger: { warn } } = Ember;
 
 export default function(cb) {
   return function(params, hash) {

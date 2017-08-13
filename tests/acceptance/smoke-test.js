@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import { module } from 'qunit';
+import { run } from '@ember/runloop';
+import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
 let application;
@@ -10,7 +10,7 @@ module('Acceptance: Smoke', {
   },
   afterEach() {
     if (application) {
-      Ember.run(application, 'destroy');
+      run(application, 'destroy');
     }
   }
 });

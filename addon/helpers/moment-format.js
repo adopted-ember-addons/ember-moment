@@ -1,14 +1,10 @@
-import Ember from 'ember';
+import { get, observer } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
-const { observer, isEmpty, get } = Ember;
-
 export default BaseHelper.extend({
-  moment: Ember.inject.service(),
-
-  globalAllowEmpty: false,
 
   defaultFormatDidChange: observer('moment.defaultFormat', function() {
     this.recompute();
@@ -17,7 +13,7 @@ export default BaseHelper.extend({
   compute: computeFn(function(params, { locale, timeZone }) {
     this._super(...arguments);
 
-    const moment = this.get('moment');
+    const moment = get(this, 'moment');
     const { length } = params;
 
     if (length > 3) {

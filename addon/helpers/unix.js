@@ -1,14 +1,14 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 import moment from 'moment';
+
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-	moment: Ember.inject.service(),
 
   compute([unixTimeStamp]) {
     this._super(...arguments);
-    
-    const momentService = this.get('moment');
+
+    const momentService = get(this, 'moment');
     return momentService.moment(moment.unix(unixTimeStamp));
   }
 });

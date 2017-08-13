@@ -1,10 +1,12 @@
-import Ember from 'ember';
-
-const { observer, inject, get, Helper, run } = Ember;
+import { get, observer } from '@ember/object';
+import { run } from '@ember/runloop';
+import Helper from '@ember/component/helper';
+import { inject as service } from '@ember/service';
 
 export default Helper.extend({
-  moment: inject.service(),
+  moment: service(),
   disableInterval: false,
+  globalAllowEmpty: false,
 
   localeOrTimeZoneChanged: observer('moment.locale', 'moment.timeZone', function() {
     this.recompute();

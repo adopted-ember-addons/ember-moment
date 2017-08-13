@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { run } from '@ember/runloop';
+import { helper } from '@ember/component/helper';
 import hbs from 'htmlbars-inline-precompile';
 import { moduleForComponent, test } from 'ember-qunit';
 
@@ -29,9 +31,9 @@ test('updating default format recomputes moment-format', function(assert) {
 
   assert.equal(this.$().text(), 'Wednesday, December 31, 1969 7:00 PM');
 
-  Ember.run(() => {
+  run(() => {
     service.set('defaultFormat', 'DD.MM.YYYY');
-    Ember.run.scheduleOnce('afterRender', () => {
+    run.scheduleOnce('afterRender', () => {
       assert.equal(this.$().text(), '31.12.1969');
     });
   });
@@ -65,7 +67,7 @@ test('three args (date, outputFormat, inputFormat)', function(assert) {
 test('change date input and change is reflected by bound helper', function(assert) {
   assert.expect(2);
 
-  const context = Ember.Object.create({
+  const context = EmberObject.create({
     date: date(0)
   });
 
@@ -74,7 +76,7 @@ test('change date input and change is reflected by bound helper', function(asser
   this.render(hbs`{{moment-format context.date}}`);
   assert.equal(this.$().text(), 'Wednesday, December 31, 1969 7:00 PM');
 
-  Ember.run(function () {
+  run(function () {
     context.set('date', date(60*60*24));
   });
 
@@ -117,7 +119,7 @@ test('can be called with null when allow-empty is set to true', function(assert)
 test('can be called using subexpression', function(assert) {
   assert.expect(1);
 
-  this.registry.register('helper:get-format', Ember.Helper.helper(function() {
+  this.registry.register('helper:get-format', helper(function() {
     return 'L';
   }));
 

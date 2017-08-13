@@ -1,17 +1,14 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  moment: Ember.inject.service(),
-
-  globalAllowEmpty: false,
 
   compute: computeFn(function(params, { precision, locale, timeZone }) {
     this._super(...arguments);
 
-    const moment = this.get('moment');
+    const moment = get(this, 'moment');
     const { length } = params;
     const args = [];
     const comparisonArgs = [];
