@@ -1,1 +1,1 @@
-export { default, unix } from 'ember-moment/helpers/unix';
+export { default } from 'ember-moment/helpers/unix';
