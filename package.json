@@ -1,6 +1,6 @@
 {
   "name": "ember-moment",
-  "version": "7.5.0",
+  "version": "7.6.0",
   "description": "Moment.js template helpers and computed property macros for Ember",
   "keywords": [
     "ember-addon",
