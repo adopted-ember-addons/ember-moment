@@ -12,7 +12,7 @@ export default Service.extend(Evented, {
   _timeZone: null,
 
   locale: null,
-  localeOptions: {},
+  localeOptions: null,
   defaultFormat: null,
 
   __config__: computed(function() {
