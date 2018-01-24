@@ -1,3 +1,8 @@
+### 7.6.0
+
+* @kellyselden Fix invalid reexport for helpers/unix
+* Upgrade ember-cli and dependencies
+
 ### 7.3.0
 
 * Setting locale now sets locale on global moment object
