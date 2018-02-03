@@ -28,29 +28,308 @@ Ships with the following computed property macros: `duration`, `humanize`, `loca
 
 ## Helpers
 
-```hbs
-{{moment '12-25-1995' 'MM-DD-YYYY'}}
-{{moment-format '12-25-1995' 'MM/DD/YYYY' 'MM-DD-YYYY'}} {{!-- outputFormat and inputFormat are optional --}}
-{{moment-from-now (now) hideSuffix=true}} {{!-- hideSuffix is optional --}}
-{{moment-to-now (unix timeStamp) date hidePrefix=true}} {{!-- hidePrefix is optional --}}
-{{moment-duration number units}} {{!-- units is optional --}}
-{{moment-calendar date referenceDate}} {{!-- reference date is optional --}}
-{{moment-diff dateA dateB precision='day' float=true}} {{!-- precision is optional, float is optional --}}
-{{is-before date comparison precision='year'}} {{!-- precision is optional --}}
-{{is-after date comparison precision='year'}} {{!-- precision is optional --}}
-{{is-same date comparison precision='year'}} {{!-- precision is optional --}}
-{{is-same-or-before date comparison precision='year'}} {{!-- precision is optional --}}
-{{is-same-or-after date comparison precision='year'}} {{!-- precision is optional --}}
-{{is-between date comparisonA comparisonB precision='year' inclusivity='[)'}} {{!-- precision is optional, inclusivity optional  --}}
-```
-
-### Live Updating of Displayed Time
+### moment
 
 ```hbs
-{{moment-from-now (now interval=1000)}} // interval is in ms
+{{moment <date>}}
 ```
 
-Recomputes the time ago every 1-second (1000 milliseconds).  This is useful for "live" updating as time elapses.
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...)|
+
+Returns a Moment.
+
+**Example**
+
+```hbs
+{{moment '12-25-1995' 'MM-DD-YYYY'}} {{!-- Mon Dec 25 1995 00:00:00 GMT-0500 --}}
+```
+
+### moment-format
+
+```hbs
+{{moment-format <date> [outputFormat=moment.defaultFormat [<inputFormat>]]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `outputFormat` | An optional date/time `String` [output format](https://momentjs.com/docs/#/displaying/format/), defaults to `moment.defaultFormat` which you must [explicitly define](#global-default-output-format) |
+| `<inputFormat>` | An optional date/time `String` [input format](https://momentjs.com/docs/#/parsing/string) |
+
+Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`. If the `inputFormat` is not provided, the date `String` is parsed on a best effort basis. If the `outputFormat` is not given the global `moment.defaultFormat` is used. Typically, `outputFormat` and `inputFormat` are given. See [`momentjs#format`](https://momentjs.com/docs/#/displaying/format/). 
+
+*NOTE: for all other helpers, the input format string is the second argument.*
+
+**Example**
+
+```hbs
+{{moment-format '12-1995-25' 'MM/DD/YYYY' 'MM-YYYY-DD'}} {{!-- 12/25/1995 --}}
+```
+
+### moment-from-now
+
+```hbs
+{{moment-from-now <date> [hideSuffix=false]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `hideSuffix` | An optional `Boolean` to hide the relative suffix or not |
+
+Returns the time between `<date>` and now relative to now. See [`momentjs#fromNow`](https://momentjs.com/docs/#/displaying/fromnow/).
+
+**Examples**
+
+```hbs
+{{!-- in January 2018 at time of writing --}}
+{{moment-from-now '2995-12-25'}} {{!-- in 978 years --}}
+{{moment-from-now '1995-12-25' hideSuffix=true}} {{!-- 22 years --}}
+```
+
+### moment-from
+
+```hbs
+{{moment-from <dateA> [<dateB>]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...), defaults to now |
+
+Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>`. See [`momentjs#from`](https://momentjs.com/docs/#/displaying/from/).
+
+*Note that `moment-from-now` is just a special case of this helper with the additional ability to hide the suffix.* 
+
+**Examples**
+
+```hbs
+{{!-- in January 2018 at time of writing --}}
+{{moment-from '2995-12-25'}} {{!-- in 978 years --}}
+{{moment-from '1995-12-25' '2995-12-25'}} {{!-- 1000 years ago --}}
+```
+
+### moment-to-now
+
+```hbs
+{{moment-to-now <date> [hideSuffix=false]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `hideSuffix` | An optional `Boolean` to hide the relative suffix or not |
+
+Returns the time between `<date>` and now relative to `<date>`. See [`momentjs#toNow`](https://momentjs.com/docs/#/displaying/tonow/).
+
+**Examples**
+
+```hbs
+{{!-- in January 2018 at time of writing --}}
+{{moment-to-now '2995-12-25'}} {{!-- 978 years ago --}}
+{{moment-to-now '1995-12-25' hideSuffix=true}} {{!-- in 22 years --}}
+```
+
+### moment-to
+
+```hbs
+{{moment-to <dateA> [<dateB>]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...), defaults to now |
+
+Returns the time between `<dateA>` and `<dateB>` relative to `<dateA>`. See [`momentjs#to`](https://momentjs.com/docs/#/displaying/to/).
+
+*Note that `moment-to-now` is just a special case of this helper with the additional ability to hide the suffix.* 
+
+**Examples**
+
+```hbs
+{{!-- in January 2018 at time of writing --}}
+{{moment-to '2995-12-25'}} {{!-- 978 years ago --}}
+{{moment-to '1995-12-25' '2995-12-25'}} {{!-- in 1000 years --}}
+```
+
+### moment-duration
+
+```hbs
+{{moment-duration <number> [<units>]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<number>` | Any value(s) [interpretable as a duration](https://momentjs.com/docs/#/durations/creating) by `moment` (typically a `Number` in milliseconds)  |
+| `<units>` | An optional `String` to specify the units of `<number>` (typically `'seconds'`, `'minutes'`, `'hours'`...) |
+
+Returns a Duration automatically [humanized](https://momentjs.com/docs/#/durations/humanize). See [`momentjs#duration`](https://momentjs.com/docs/#/durations/creating/).
+
+**Examples**
+
+```hbs
+{{moment-duration 100}} {{!-- a few seconds --}}
+{{moment-duration 24 'hours'}} {{!-- a day --}}
+```
+
+### moment-calendar
+
+```hbs
+{{moment-calendar <dateA> [<dateB> [<formatHash>]]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) used as a reference, defaults to now |
+| `<formatHash>` | An optional [output format hash](https://momentjs.com/docs/#/displaying/calendar-time), defaults to `{}` |
+
+Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>` in a way that is different from `moment-from` and customizable via `<formatHash>`. See [`momentjs#calendar`](https://momentjs.com/docs/#/displaying/calendar-time/).
+
+**Examples**
+
+```hbs
+{{!-- in January 2018 at time of writing --}}
+{{moment-from-now '2018-01-25'}} {{!-- 2 days ago --}}
+{{moment-calendar '2018-01-25'}} {{!-- Yesterday at 12:00 AM --}}
+```
+
+### moment-diff
+
+```hbs
+{{moment-diff <dateA> <dateB> [precision='milliseconds' [float=false]]}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `precision` | An optional [unit of measurement](https://momentjs.com/docs/#/displaying/difference), defaults to `'milliseconds'` |
+| `float` | An optional `Boolean` to get the floating point result, rather than the integer value |
+
+Returns the difference in `precision` units between `<dateA>` and `<dateB>` with floating point accuracy if `float` is `true`. See [`momentjs#diff`](https://momentjs.com/docs/#/displaying/difference/).
+
+**Examples**
+
+```hbs
+{{moment-diff '2018-01-25' '2018-01-26'}} {{!-- 86400000 --}}
+{{moment-diff '2018-01-25' '2018-01-26' precision='years' float=true}} {{!-- 0.0026881720430107525 --}}
+```
+
+### is-before/after/same/same-or-before/same-or-after
+
+```hbs
+{{is-before <dateA> [<dateB>] [precision='milliseconds']}}
+{{is-after <dateA> [<dateB>] [precision='milliseconds']}}
+{{is-same <dateA> [<dateB>] [precision='milliseconds']}}
+{{is-same-or-before <dateA> [<dateB>] [precision='milliseconds']}} 
+{{is-same-or-after <dateA> [<dateB>] [precision='milliseconds']}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...). If not given, `<dateA>` becomes now and `<dateB>` becomes `<dateA>` |
+| `precision` | An optional `String` unit of comparison [precision](https://momentjs.com/docs/#/query/isBefore), defaults to `'milliseconds'` |
+
+Returns a `Boolean` that indicates if `<dateA>` is respectively before/after/the same/same or before/ same or after `<dateB>` to the `precision` level. See [`momentjs#queries`](https://momentjs.com/docs/#/query/).
+
+**Examples**
+
+```hbs
+{{is-before '2995-12-25'}} {{!-- false --}}
+{{is-before '2018-01-25' '2018-01-26' precision='years'}} {{!-- false --}}
+{{is-same-or-after '2018-01-25' '2018-01-26' precision='years'}} {{!-- true --}}
+```
+
+### is-between
+
+```hbs
+{{is-between <date> <dateA> [<dateB>] [precision='year' inclusivity='[)']}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateA>` | A boundary value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
+| `<dateB>` | An optional boundary value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...). If not given `<date>` is assigned now, `<dateA>` is assigned `<date>` and `<dateB>` is assigned `<dateA>`. |
+| `precision` | An optional `String` unit of comparison [precision](https://momentjs.com/docs/#/query/is-between), defaults to `'milliseconds'` |
+| `inclusivity` | An optional `String` indicating inclusivity of the boundaries, defaults to `()`|
+
+Returns a `Boolean` that indicates if `<date>` is between `<dateA>` and `<dateB>` to the `precision` level and with boundary inclusions specified by `inclusivity`. See [`momentjs#is-between`](https://momentjs.com/docs/#/query/is-between).
+
+**Examples**
+
+```hbs
+{{is-between '1995-12-25' '2995-12-25'}} {{!-- true --}}
+{{is-between '1995-12-25' '1995-12-25' '2995-12-25' precision='years' inclusivity='[)'}} {{!-- true --}}
+```
+
+### now
+
+```hbs
+{{now}}
+```
+
+Returns the present Moment.
+
+**Examples**
+
+```hbs
+{{!-- date at time of writing }}
+{{now}} {{!-- Sat Jan 27 2018 11:59:31 GMT-0500 --}}
+{{!-- interval is a common named parameter (see the corresponding section) }}
+{{now interval=1000}} {{!-- <current date and updating every 1-second (1000 milliseconds).> --}}
+```
+
+### unix
+
+```hbs
+{{unix <timestamp>}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<timestamp>` | An integer `Number` or `String` value representing the number of seconds since the Unix Epoch (January 1 1970 12AM UTC)|
+
+Returns a Moment corresponding to the `<timestamp>`.
+
+
+**Examples**
+
+```hbs
+{{unix '1516586508'}} {{!-- Sun Jan 21 2018 21:01:48 GMT-0500 --}}
+{{!-- Warning: Passing a literal integer value does not work --}}
+{{unix 1516586508}} {{!-- Invalid date --}}
+```
+
+### Common optional named arguments
+
+All helpers accept the following optional named arguments (even though they are not always applicable):
+
+| Parameters | Values |
+| ---------- | ------ |
+| `locale` | An optional `String` [locale](https://momentjs.com/docs/#/i18n/), to override the default global `moment.locale` |
+| `timeZone` | An optional `String` [time zone](https://momentjs.com/timezone/docs/), defaults to `moment.timeZone` (the default time zone) |
+| `interval` | An optional interval `Number` of milliseconds when the helper should be recomputed |
+| `allow-empty` | An optional `Boolean` to ignore the `Invalid date` output when knowingly passing `null`, `undefined`, or `''`, defaults to `false` |
+
+Note that `interval` does not recompute the value of the helper parameters, unless it is
+part of a helper that *is* a value in which case it is useful for "live" updating as time elapses.
+
+*Warning: `allow-empty` is currently inconsistent and should not always be trusted.*
+
+**Examples**
+
+```hbs
+{{now interval=1000}} {{!-- <current date and updating every 1-second (1000 milliseconds)> --}}
+{{is-before (now) '2018-01-26' interval=60000}} {{!-- if this was true initially, it will always be true despite interval --}}
+{{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
+```
 
 ## ES6 Moment
 
@@ -60,7 +339,9 @@ This addon provides the ability to import moment as an ES6 module.
 import moment from 'moment';
 ```
 
-## Include Moment Timezone
+## Configuration Options
+
+### Include Moment Timezone
 
 You can optionally include the Moment Timezone package in your `config/environment.js` like so:
 
@@ -78,8 +359,6 @@ module.exports = function() {
   }
 };
 ```
-
-## Configuration Options
 
 ### Global Default Output Format
 
@@ -109,6 +388,7 @@ export default Ember.Controller.extend({
   }
 })
 ```
+
 ### Global Allow Empty Dates
 
 If `null`, `undefined`, or an empty string are passed as a date to any of the moment helpers then you will get `Invalid Date` in the output.  To avoid this issue globally, you can set the option `allowEmpty` which all of the helpers respect and will result in nothing being rendered instead of `Invalid Date`.
@@ -152,7 +432,7 @@ module.exports = function(environment) {
   };
 ```
 
-*NOTE: English is bundled automatically, not need to add `en` in `includeLocales`*
+*NOTE: English is bundled automatically, no need to add `en` in `includeLocales`*
 
 #### Write all the locales to a folder relative to `dist`
 
@@ -202,36 +482,17 @@ export default Ember.Route.extend({
 });
 ```
 
-#### Inline Localization
-
-All helpers accept a `locale` and `timeZone` argument, which is a string.  This allows for overriding of the global locale.
-
-```hbs
-{{moment-format date locale='es' timeZone='America/Los_Angeles'}}
-{{moment-duration (now) date locale='es' timeZone='America/Los_Angeles'}}
-{{moment-from-now (now) date locale='es' timeZone='America/Los_Angeles'}}
-{{moment-to-now date locale='es' timeZone='America/Los_Angeles'}}
-```
-
-Documentation on i18n support within moment can be found here:  http://momentjs.com/docs/#/i18n/
-Documentation on timezone within moment can be found here: http://momentjs.com/timezone/docs/
-
 ## Frequently Asked Questions
 
 > `Invalid Date` is being rendered into the DOM, how do I avoid this?
 
-An invalid date string is being passed into momentjs and/or the [input string format](http://momentjs.com/docs/#/parsing/string-format/) was omitted.  For example, if you're using the `moment-format` you'll pass the input format as the 3rd argument:
-
-```hbs
-{{moment-format date outputFormat inputFormat}}
-```
-
-*NOTE: for all other helpers, the input format string is the second argument.*
+An invalid date string is being passed into momentjs and/or the [input string format](https://momentjs.com/docs/#/parsing/string-format/) was omitted.
 
 If you are knowingly passing null, undefined, or an empty string and want to ignore the output of `Invalid Date` then pass the option `allow-empty=true` to the helper (all helpers accept this property)
 
 ```hbs
-{{moment-format date allow-empty=true}}
+{{moment-format ''}}  {{!-- Invalid date --}}
+{{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
 ````
 
 ## Development

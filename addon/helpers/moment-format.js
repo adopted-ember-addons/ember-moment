@@ -16,7 +16,7 @@ export default BaseHelper.extend({
     const { length } = params;
 
     if (length > 3) {
-      throw new TypeError('ember-moment: Invalid Number of arguments, expected at most 4');
+      throw new TypeError('ember-moment: Invalid number of arguments, expected at most 3');
     }
 
     const args = [];
