@@ -26,6 +26,20 @@ test('one arg (date)', function(assert) {
   assert.equal(this.$().text(), '3 days ago');
 });
 
+test('one arg (dateA, hideAffix=boolean)', function(assert) {
+  assert.expect(2);
+
+  const momentService = this.container.lookup('service:moment');
+  this.setProperties({
+    dateA: momentService.moment().add(3, 'day'),
+  });
+
+  this.render(hbs`{{moment-to-now dateA hideAffix=true}}`);
+  assert.equal(this.$().text(), '3 days');
+  this.render(hbs`{{moment-to-now dateA hideAffix=false}}`);
+  assert.equal(this.$().text(), '3 days ago');
+});
+
 test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
 
