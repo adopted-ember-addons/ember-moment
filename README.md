@@ -7,12 +7,11 @@
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
 ## Requirements
-* Ember >= 1.13.0
-* Ember CLI
+* ember-cli ~= 2.18.1
 
 ## Installing
 
-* ember-cli >= 0.2.3 `ember install ember-moment`
+* `ember install ember-moment`
 
 ## Upgrading
 
@@ -68,85 +67,50 @@ Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`.
 {{moment-format '12-1995-25' 'MM/DD/YYYY' 'MM-YYYY-DD'}} {{!-- 12/25/1995 --}}
 ```
 
-### moment-from-now
+### moment-from / moment-from-now
 
 ```hbs
-{{moment-from-now <date> [hideSuffix=false]}}
-```
-
-| Parameters | Values |
-| ---------- | ------ |
-| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
-| `hideSuffix` | An optional `Boolean` to hide the relative suffix or not |
-
-Returns the time between `<date>` and now relative to now. See [`momentjs#fromNow`](https://momentjs.com/docs/#/displaying/fromnow/).
-
-**Examples**
-
-```hbs
-{{!-- in January 2018 at time of writing --}}
-{{moment-from-now '2995-12-25'}} {{!-- in 978 years --}}
-{{moment-from-now '1995-12-25' hideSuffix=true}} {{!-- 22 years --}}
-```
-
-### moment-from
-
-```hbs
-{{moment-from <dateA> [<dateB>]}}
+{{moment-from <dateA> [<dateB>] [hideAffix=false]}}
+{{moment-from-now <dateA> [hideAffix=false]}}
 ```
 
 | Parameters | Values |
 | ---------- | ------ |
 | `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
 | `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...), defaults to now |
+| `hideAffix` | An optional `Boolean` to hide the relative prefix/suffix or not.  |
+| `hideSuffix` | **Deprecated** An optional `Boolean` to hide the relative suffix or not. It was only available for `moment-from` and will be removed in `8.0.0`|
 
 Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>`. See [`momentjs#from`](https://momentjs.com/docs/#/displaying/from/).
 
-*Note that `moment-from-now` is just a special case of this helper with the additional ability to hide the suffix.* 
+*Note that `moment-from-now` is just a more verbose `moment-from` without `dateB`. You don't need to use it anymore.* 
 
 **Examples**
 
 ```hbs
 {{!-- in January 2018 at time of writing --}}
 {{moment-from '2995-12-25'}} {{!-- in 978 years --}}
-{{moment-from '1995-12-25' '2995-12-25'}} {{!-- 1000 years ago --}}
+{{moment-from-now '2995-12-25'}} {{!-- in 978 years --}}
+{{moment-from '1995-12-25' '2995-12-25' hideAffix=true}} {{!-- 1000 years --}}
 ```
 
-### moment-to-now
+### moment-to / moment-to-now
 
 ```hbs
-{{moment-to-now <date> [hideSuffix=false]}}
-```
-
-| Parameters | Values |
-| ---------- | ------ |
-| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
-| `hideSuffix` | An optional `Boolean` to hide the relative suffix or not |
-
-Returns the time between `<date>` and now relative to `<date>`. See [`momentjs#toNow`](https://momentjs.com/docs/#/displaying/tonow/).
-
-**Examples**
-
-```hbs
-{{!-- in January 2018 at time of writing --}}
-{{moment-to-now '2995-12-25'}} {{!-- 978 years ago --}}
-{{moment-to-now '1995-12-25' hideSuffix=true}} {{!-- in 22 years --}}
-```
-
-### moment-to
-
-```hbs
-{{moment-to <dateA> [<dateB>]}}
+{{moment-to <dateA> [<dateB>] [hideAffix=false]}}
+{{moment-to-now <dateA> [hideAffix=false]}}
 ```
 
 | Parameters | Values |
 | ---------- | ------ |
 | `<dateA>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...) |
 | `<dateB>` | An optional value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...), defaults to now |
+| `hideAffix` | An optional `Boolean` to hide the relative prefix/suffix or not.  |
+| `hidePrefix` | **Deprecated** An optional `Boolean` to hide the relative prefix or not. It was only available for `moment-to` and will be removed in `8.0.0` |
 
 Returns the time between `<dateA>` and `<dateB>` relative to `<dateA>`. See [`momentjs#to`](https://momentjs.com/docs/#/displaying/to/).
 
-*Note that `moment-to-now` is just a special case of this helper with the additional ability to hide the suffix.* 
+*Note that `moment-to-now` is just a more verbose `moment-to` without `dateB`. You don't need to use it anymore.* 
 
 **Examples**
 
@@ -154,6 +118,7 @@ Returns the time between `<dateA>` and `<dateB>` relative to `<dateA>`. See [`mo
 {{!-- in January 2018 at time of writing --}}
 {{moment-to '2995-12-25'}} {{!-- 978 years ago --}}
 {{moment-to '1995-12-25' '2995-12-25'}} {{!-- in 1000 years --}}
+{{moment-to-now '1995-12-25' hideAffix=true}} {{!-- 22 years --}}
 ```
 
 ### moment-duration
@@ -220,7 +185,7 @@ Returns the difference in `precision` units between `<dateA>` and `<dateB>` with
 {{moment-diff '2018-01-25' '2018-01-26' precision='years' float=true}} {{!-- 0.0026881720430107525 --}}
 ```
 
-### is-before/after/same/same-or-before/same-or-after
+### is-before / is-after / is-same / is-same-or-before / is-same-or-after
 
 ```hbs
 {{is-before <dateA> [<dateB>] [precision='milliseconds']}}

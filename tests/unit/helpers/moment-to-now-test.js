@@ -12,23 +12,37 @@ moduleForComponent('moment-to-now',{
 
 test('one arg (date)', function(assert) {
   assert.expect(1);
-  const addThreeDays = new Date();
-  addThreeDays.setDate(addThreeDays.getDate() - 3);
 
-  this.set('date', addThreeDays);
+  const momentService = this.container.lookup('service:moment');
+  this.setProperties({
+    dateA: momentService.moment().subtract(3, 'day'),
+  });
 
-  this.render(hbs`{{moment-to-now date}}`);
+  this.render(hbs`{{moment-to-now dateA}}`);
+  assert.equal(this.$().text(), 'in 3 days');
+});
+
+test('one arg (date, hideAffix=boolean)', function(assert) {
+  assert.expect(2);
+
+  const momentService = this.container.lookup('service:moment');
+  this.setProperties({
+    date: momentService.moment().subtract(3, 'day'),
+  });
+
+  this.render(hbs`{{moment-to-now date hideAffix=true}}`);
+  assert.equal(this.$().text(), '3 days');
+  this.render(hbs`{{moment-to-now date hideAffix=false}}`);
   assert.equal(this.$().text(), 'in 3 days');
 });
 
 test('two args (date, inputFormat)', function(assert) {
   assert.expect(1);
-  const addThreeDays = new Date();
-  addThreeDays.setDate(addThreeDays.getDate() - 3);
 
+  const momentService = this.container.lookup('service:moment');
   this.setProperties({
     format: 'LLLL',
-    date: addThreeDays
+    date: momentService.moment().subtract(3, 'day'),
   });
 
   this.render(hbs`{{moment-to-now date format}}`);
