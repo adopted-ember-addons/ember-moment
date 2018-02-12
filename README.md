@@ -45,6 +45,29 @@ Returns a Moment.
 {{moment '12-25-1995' 'MM-DD-YYYY'}} {{!-- Mon Dec 25 1995 00:00:00 GMT-0500 --}}
 ```
 
+### utc
+
+```hbs
+{{utc <date>}}
+{{utc}}
+```
+
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | Any value(s) [interpretable as a date/time](https://momentjs.com/docs/#/parsing/utc) by `moment` (a date `String` or a `Moment` or a `Date`...)|
+
+Returns a Moment with [utc mode](http://momentjs.com/docs/#/parsing/utc/) set.
+
+**Example**
+
+```hbs
+{{utc '2001-10-31T08:24:56'}} {{!-- Wed Oct 31 2001 08:24:56 GMT+0000 --}}
+{{utc}} {{!-- current time utc, like Mon Feb 12 2018 20:33:08 GMT+0000 --}}
+{{utc (moment '2018-01-01T00:00:00+01:00' 'YYYY-MM-DD HH:mm:ssZ')}}  {{!-- Sun Dec 31 2017 23:00:00 GMT+0000 --}}
+```
+
+
 ### moment-format
 
 ```hbs
@@ -57,7 +80,7 @@ Returns a Moment.
 | `outputFormat` | An optional date/time `String` [output format](https://momentjs.com/docs/#/displaying/format/), defaults to `moment.defaultFormat` which you must [explicitly define](#global-default-output-format) |
 | `<inputFormat>` | An optional date/time `String` [input format](https://momentjs.com/docs/#/parsing/string) |
 
-Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`. If the `inputFormat` is not provided, the date `String` is parsed on a best effort basis. If the `outputFormat` is not given the global `moment.defaultFormat` is used. Typically, `outputFormat` and `inputFormat` are given. See [`momentjs#format`](https://momentjs.com/docs/#/displaying/format/). 
+Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`. If the `inputFormat` is not provided, the date `String` is parsed on a best effort basis. If the `outputFormat` is not given the global `moment.defaultFormat` is used. Typically, `outputFormat` and `inputFormat` are given. See [`momentjs#format`](https://momentjs.com/docs/#/displaying/format/).
 
 *NOTE: for all other helpers, the input format string is the second argument.*
 
@@ -83,7 +106,7 @@ Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`.
 
 Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>`. See [`momentjs#from`](https://momentjs.com/docs/#/displaying/from/).
 
-*Note that `moment-from-now` is just a more verbose `moment-from` without `dateB`. You don't need to use it anymore.* 
+*Note that `moment-from-now` is just a more verbose `moment-from` without `dateB`. You don't need to use it anymore.*
 
 **Examples**
 
@@ -110,7 +133,7 @@ Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>`. See [`mo
 
 Returns the time between `<dateA>` and `<dateB>` relative to `<dateA>`. See [`momentjs#to`](https://momentjs.com/docs/#/displaying/to/).
 
-*Note that `moment-to-now` is just a more verbose `moment-to` without `dateB`. You don't need to use it anymore.* 
+*Note that `moment-to-now` is just a more verbose `moment-to` without `dateB`. You don't need to use it anymore.*
 
 **Examples**
 
@@ -191,7 +214,7 @@ Returns the difference in `precision` units between `<dateA>` and `<dateB>` with
 {{is-before <dateA> [<dateB>] [precision='milliseconds']}}
 {{is-after <dateA> [<dateB>] [precision='milliseconds']}}
 {{is-same <dateA> [<dateB>] [precision='milliseconds']}}
-{{is-same-or-before <dateA> [<dateB>] [precision='milliseconds']}} 
+{{is-same-or-before <dateA> [<dateB>] [precision='milliseconds']}}
 {{is-same-or-after <dateA> [<dateB>] [precision='milliseconds']}}
 ```
 
