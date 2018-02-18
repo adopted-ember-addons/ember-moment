@@ -81,5 +81,17 @@ export default Service.extend(Evented, {
     }
 
     return momentObj;
+  },
+
+  utc() {
+      let momentObj = moment.utc(...arguments);
+
+      let { locale } = getProperties(this, 'locale');
+
+      if (locale && momentObj.locale) {
+        momentObj = momentObj.locale(locale);
+      }
+
+      return momentObj;
   }
 });
