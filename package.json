@@ -45,7 +45,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3",
-    "moment": "^2.13.0",
+    "moment": "^2.19.3",
     "moment-timezone": "^0.5.0"
   },
   "engines": {
