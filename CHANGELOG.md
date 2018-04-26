@@ -1,3 +1,9 @@
+### 7.7.0
+
+* @fenekku deprecated hideSuffix/hidePrefix in favor of hideAffix
+* @crotwell added utc helper & macro
+* 
+
 ### 7.6.0
 
 * @kellyselden Fix invalid reexport for helpers/unix
