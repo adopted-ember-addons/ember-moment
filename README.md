@@ -5,9 +5,6 @@
 
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
-## Requirements
-* ember-cli ~= 2.18.1
-
 ## Installing
 
 * `ember install ember-moment`
