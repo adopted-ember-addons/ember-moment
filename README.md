@@ -7,7 +7,7 @@
 
 ## Installing
 
-* `ember install ember-moment`
+`ember install ember-moment`
 
 ## Upgrading
 
