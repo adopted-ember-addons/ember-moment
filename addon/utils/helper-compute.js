@@ -1,9 +1,5 @@
-import Ember from 'ember';
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
-
-// question unresolved https://github.com/ember-cli/ember-rfc176-data/issues/12#issuecomment-318603308
-const { Logger: { warn } } = Ember;
 
 export default function(cb) {
   return function(params, hash) {
@@ -24,7 +20,8 @@ export default function(cb) {
         return;
       }
 
-      warn(`ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`);
+      /* eslint-disable no-console */
+      console.warn(`ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`);
     }
 
     return cb.apply(this, arguments);
