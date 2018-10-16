@@ -38,7 +38,7 @@ Returns a Moment.
 **Example**
 
 ```hbs
-{{moment '12-25-1995' 'MM-DD-YYYY'}} {{!-- Mon Dec 25 1995 00:00:00 GMT-0500 --}}
+{{moment "12-25-1995" "MM-DD-YYYY"}} {{!-- Mon Dec 25 1995 00:00:00 GMT-0500 --}}
 ```
 
 ### utc
@@ -58,9 +58,9 @@ Returns a Moment with [utc mode](http://momentjs.com/docs/#/parsing/utc/) set.
 **Example**
 
 ```hbs
-{{utc '2001-10-31T08:24:56'}} {{!-- Wed Oct 31 2001 08:24:56 GMT+0000 --}}
+{{utc "2001-10-31T08:24:56"}} {{!-- Wed Oct 31 2001 08:24:56 GMT+0000 --}}
 {{utc}} {{!-- current time utc, like Mon Feb 12 2018 20:33:08 GMT+0000 --}}
-{{utc (moment '2018-01-01T00:00:00+01:00' 'YYYY-MM-DD HH:mm:ssZ')}}  {{!-- Sun Dec 31 2017 23:00:00 GMT+0000 --}}
+{{utc (moment "2018-01-01T00:00:00+01:00" "YYYY-MM-DD HH:mm:ssZ")}}  {{!-- Sun Dec 31 2017 23:00:00 GMT+0000 --}}
 ```
 
 
@@ -83,7 +83,7 @@ Formats a `<date>` to an optional `outputFormat` from an optional `inputFormat`.
 **Example**
 
 ```hbs
-{{moment-format '12-1995-25' 'MM/DD/YYYY' 'MM-YYYY-DD'}} {{!-- 12/25/1995 --}}
+{{moment-format "12-1995-25" "MM/DD/YYYY" "MM-YYYY-DD"}} {{!-- 12/25/1995 --}}
 ```
 
 ### moment-from / moment-from-now
@@ -108,9 +108,9 @@ Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>`. See [`mo
 
 ```hbs
 {{!-- in January 2018 at time of writing --}}
-{{moment-from '2995-12-25'}} {{!-- in 978 years --}}
-{{moment-from-now '2995-12-25'}} {{!-- in 978 years --}}
-{{moment-from '1995-12-25' '2995-12-25' hideAffix=true}} {{!-- 1000 years --}}
+{{moment-from "2995-12-25"}} {{!-- in 978 years --}}
+{{moment-from-now "2995-12-25"}} {{!-- in 978 years --}}
+{{moment-from "1995-12-25" "2995-12-25" hideAffix=true}} {{!-- 1000 years --}}
 ```
 
 ### moment-to / moment-to-now
@@ -135,9 +135,9 @@ Returns the time between `<dateA>` and `<dateB>` relative to `<dateA>`. See [`mo
 
 ```hbs
 {{!-- in January 2018 at time of writing --}}
-{{moment-to '2995-12-25'}} {{!-- 978 years ago --}}
-{{moment-to '1995-12-25' '2995-12-25'}} {{!-- in 1000 years --}}
-{{moment-to-now '1995-12-25' hideAffix=true}} {{!-- 22 years --}}
+{{moment-to "2995-12-25"}} {{!-- 978 years ago --}}
+{{moment-to "1995-12-25" "2995-12-25"}} {{!-- in 1000 years --}}
+{{moment-to-now "1995-12-25" hideAffix=true}} {{!-- 22 years --}}
 ```
 
 ### moment-duration
@@ -157,7 +157,7 @@ Returns a Duration automatically [humanized](https://momentjs.com/docs/#/duratio
 
 ```hbs
 {{moment-duration 100}} {{!-- a few seconds --}}
-{{moment-duration 24 'hours'}} {{!-- a day --}}
+{{moment-duration 24 "hours"}} {{!-- a day --}}
 ```
 
 ### moment-calendar
@@ -178,8 +178,8 @@ Returns the time between `<dateA>` and `<dateB>` relative to `<dateB>` in a way 
 
 ```hbs
 {{!-- in January 2018 at time of writing --}}
-{{moment-from-now '2018-01-25'}} {{!-- 2 days ago --}}
-{{moment-calendar '2018-01-25'}} {{!-- Yesterday at 12:00 AM --}}
+{{moment-from-now "2018-01-25"}} {{!-- 2 days ago --}}
+{{moment-calendar "2018-01-25"}} {{!-- Yesterday at 12:00 AM --}}
 ```
 
 ### moment-diff
@@ -200,18 +200,18 @@ Returns the difference in `precision` units between `<dateA>` and `<dateB>` with
 **Examples**
 
 ```hbs
-{{moment-diff '2018-01-25' '2018-01-26'}} {{!-- 86400000 --}}
-{{moment-diff '2018-01-25' '2018-01-26' precision='years' float=true}} {{!-- 0.0026881720430107525 --}}
+{{moment-diff "2018-01-25" "2018-01-26"}} {{!-- 86400000 --}}
+{{moment-diff "2018-01-25" "2018-01-26" precision="years" float=true}} {{!-- 0.0026881720430107525 --}}
 ```
 
 ### is-before / is-after / is-same / is-same-or-before / is-same-or-after
 
 ```hbs
-{{is-before <dateA> [<dateB>] [precision='milliseconds']}}
-{{is-after <dateA> [<dateB>] [precision='milliseconds']}}
-{{is-same <dateA> [<dateB>] [precision='milliseconds']}}
-{{is-same-or-before <dateA> [<dateB>] [precision='milliseconds']}}
-{{is-same-or-after <dateA> [<dateB>] [precision='milliseconds']}}
+{{is-before <dateA> [<dateB>] [precision="milliseconds"]}}
+{{is-after <dateA> [<dateB>] [precision="milliseconds"]}}
+{{is-same <dateA> [<dateB>] [precision="milliseconds"]}}
+{{is-same-or-before <dateA> [<dateB>] [precision="milliseconds"]}}
+{{is-same-or-after <dateA> [<dateB>] [precision="milliseconds"]}}
 ```
 
 | Parameters | Values |
@@ -225,15 +225,15 @@ Returns a `Boolean` that indicates if `<dateA>` is respectively before/after/the
 **Examples**
 
 ```hbs
-{{is-before '2995-12-25'}} {{!-- false --}}
-{{is-before '2018-01-25' '2018-01-26' precision='years'}} {{!-- false --}}
-{{is-same-or-after '2018-01-25' '2018-01-26' precision='years'}} {{!-- true --}}
+{{is-before "2995-12-25"}} {{!-- false --}}
+{{is-before "2018-01-25" "2018-01-26" precision="years"}} {{!-- false --}}
+{{is-same-or-after "2018-01-25" "2018-01-26" precision="years"}} {{!-- true --}}
 ```
 
 ### is-between
 
 ```hbs
-{{is-between <date> <dateA> [<dateB>] [precision='year' inclusivity='[)']}}
+{{is-between <date> <dateA> [<dateB>] [precision="year" inclusivity="[)"]}}
 ```
 
 | Parameters | Values |
@@ -249,8 +249,8 @@ Returns a `Boolean` that indicates if `<date>` is between `<dateA>` and `<dateB>
 **Examples**
 
 ```hbs
-{{is-between '1995-12-25' '2995-12-25'}} {{!-- true --}}
-{{is-between '1995-12-25' '1995-12-25' '2995-12-25' precision='years' inclusivity='[)'}} {{!-- true --}}
+{{is-between "1995-12-25" "2995-12-25"}} {{!-- true --}}
+{{is-between "1995-12-25" "1995-12-25" "2995-12-25" precision="years" inclusivity="[)"}} {{!-- true --}}
 ```
 
 ### now
@@ -286,7 +286,7 @@ Returns a Moment corresponding to the `<timestamp>`.
 **Examples**
 
 ```hbs
-{{unix '1516586508'}} {{!-- Sun Jan 21 2018 21:01:48 GMT-0500 --}}
+{{unix "1516586508"}} {{!-- Sun Jan 21 2018 21:01:48 GMT-0500 --}}
 {{!-- Warning: Passing a literal integer value does not work --}}
 {{unix 1516586508}} {{!-- Invalid date --}}
 ```
@@ -311,8 +311,8 @@ part of a helper that *is* a value in which case it is useful for "live" updatin
 
 ```hbs
 {{now interval=1000}} {{!-- <current date and updating every 1-second (1000 milliseconds)> --}}
-{{is-before (now) '2018-01-26' interval=60000}} {{!-- if this was true initially, it will always be true despite interval --}}
-{{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
+{{is-before (now) "2018-01-26" interval=60000}} {{!-- if this was true initially, it will always be true despite interval --}}
+{{moment-format "" allow-empty=true}}  {{!-- <nothing> --}}
 ```
 
 ## ES6 Moment
@@ -475,8 +475,8 @@ An invalid date string is being passed into momentjs and/or the [input string fo
 If you are knowingly passing null, undefined, or an empty string and want to ignore the output of `Invalid Date` then pass the option `allow-empty=true` to the helper (all helpers accept this property)
 
 ```hbs
-{{moment-format ''}}  {{!-- Invalid date --}}
-{{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
+{{moment-format ""}}  {{!-- Invalid date --}}
+{{moment-format "" allow-empty=true}}  {{!-- <nothing> --}}
 ````
 
 ## Development
