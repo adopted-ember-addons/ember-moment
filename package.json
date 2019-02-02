@@ -22,11 +22,10 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.7.2",
-    "ember-getowner-polyfill": "^2.0.1",
-    "ember-macro-helpers": "^2.0.1"
+    "ember-getowner-polyfill": "^2.2.0",
+    "ember-macro-helpers": "^2.1.0"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
     "ember-cli": "~2.18.1",
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars": "^2.0.1",
@@ -36,7 +35,6 @@
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^2.0.0",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
