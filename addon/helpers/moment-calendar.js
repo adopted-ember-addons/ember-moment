@@ -1,5 +1,5 @@
 import { get } from '@ember/object';
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
@@ -20,7 +20,7 @@ export default BaseHelper.extend({
     delete clone.locale;
     delete clone.timeZone;
 
-    const mergedFormats = merge(clone, formats);
+    const mergedFormats = assign(clone, formats);
 
     return this.morphMoment(moment.moment(date), { locale, timeZone }).calendar(referenceTime, mergedFormats);
   })
