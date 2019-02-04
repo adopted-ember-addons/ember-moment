@@ -1,3 +1,9 @@
+### 7.8.1
+* @puwelous Substitute merge() with assign() - Ember deprecation #296
+* @jasonmit ci: Bump Supported Node version from 4 to 6.
+* @kellyselden update ember-macro-helpers #285
+* @scottkidder Replace Logger with console #281
+
 ### 7.7.0
 
 * @fenekku deprecated hideSuffix/hidePrefix in favor of hideAffix
