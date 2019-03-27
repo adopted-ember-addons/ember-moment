@@ -21,9 +21,9 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.7.2",
+    "ember-cli-babel": "^7.6.0",
     "ember-getowner-polyfill": "^2.2.0",
-    "ember-macro-helpers": "^2.1.0"
+    "ember-macro-helpers": "^3.0.0"
   },
   "devDependencies": {
     "ember-cli": "~2.18.1",
