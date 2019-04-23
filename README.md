@@ -518,25 +518,6 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 {{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
 ````
 
-## Development
-
-* `git clone` this repository
-* `npm install`
-* `bower install`
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
-
 [npm]: https://www.npmjs.org/package/ember-moment
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
 [travis]: https://travis-ci.org/stefanpenner/ember-moment
