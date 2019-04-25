@@ -5,6 +5,45 @@
 
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
+## Table of Contents
+
+<!-- toc -->
+- [Installing](#installing)
+- [Upgrading](#upgrading)
+- [Usage](#usage)
+- [Computed Property Macros](#computed-property-macros)
+- [Helpers](#helpers)
+  * [moment](#moment)
+  * [utc](#utc)
+  * [moment-format](#moment-format)
+  * [moment-from / moment-from-now](#moment-from--moment-from-now)
+  * [moment-to / moment-to-now](#moment-to--moment-to-now)
+  * [moment-duration](#moment-duration)
+  * [moment-calendar](#moment-calendar)
+  * [moment-diff](#moment-diff)
+  * [is-before / is-after / is-same / is-same-or-before / is-same-or-after](#is-before--is-after--is-same--is-same-or-before--is-same-or-after)
+  * [is-between](#is-between)
+  * [now](#now)
+  * [unix](#unix)
+  * [Common optional named arguments](#common-optional-named-arguments)
+- [ES6 Moment](#es6-moment)
+- [Configuration Options](#configuration-options)
+  * [Include Moment Timezone](#include-moment-timezone)
+  * [Global Default Output Format](#global-default-output-format)
+  * [Global Allow Empty Dates](#global-allow-empty-dates)
+  * [i18n support](#i18n-support)
+    + [Cherry pick locales (optimal)](#cherry-pick-locales-optimal)
+    + [Include all locales into build](#include-all-locales-into-build)
+    + [Write all the locales to a folder relative to `dist`](#write-all-the-locales-to-a-folder-relative-to-dist)
+  * [Configure default runtime locale/timeZone](#configure-default-runtime-localetimezone)
+    + [Globally set locale](#globally-set-locale)
+    + [Globally set time zone](#globally-set-time-zone)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Development](#development)
+- [Running Tests](#running-tests)
+- [Building](#building)
+<!-- tocstop -->
+
 ## Installing
 
 `ember install ember-moment`
@@ -478,25 +517,6 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 {{moment-format ''}}  {{!-- Invalid date --}}
 {{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
 ````
-
-## Development
-
-* `git clone` this repository
-* `npm install`
-* `bower install`
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
 [npm]: https://www.npmjs.org/package/ember-moment
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
