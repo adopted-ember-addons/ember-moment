@@ -23,7 +23,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.7.2",
     "ember-getowner-polyfill": "^2.2.0",
-    "ember-macro-helpers": "^2.1.0"
+    "ember-macro-helpers": "^4.2.2"
   },
   "devDependencies": {
     "ember-cli": "~2.18.1",
