@@ -23,7 +23,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.7.2",
     "ember-getowner-polyfill": "^2.2.0",
-    "ember-macro-helpers": "^2.1.0"
+    "ember-macro-helpers": "^4.2.2"
   },
   "devDependencies": {
     "ember-cli": "~2.18.1",
@@ -47,7 +47,7 @@
     "moment-timezone": "^0.5.0"
   },
   "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
+    "node": "^8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
