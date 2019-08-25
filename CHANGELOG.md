@@ -1,4 +1,10 @@
+### 8.0.0
+
+* [BREAKING] drops Node 6 support
+* Updates ember-macro-helpers to 4.x
+
 ### 7.8.1
+
 * @puwelous Substitute merge() with assign() - Ember deprecation #296
 * @jasonmit ci: Bump Supported Node version from 4 to 6.
 * @kellyselden update ember-macro-helpers #285
