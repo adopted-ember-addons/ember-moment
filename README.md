@@ -13,35 +13,35 @@
 - [Usage](#usage)
 - [Computed Property Macros](#computed-property-macros)
 - [Helpers](#helpers)
-  * [moment](#moment)
-  * [utc](#utc)
-  * [moment-format](#moment-format)
-  * [moment-from / moment-from-now](#moment-from--moment-from-now)
-  * [moment-to / moment-to-now](#moment-to--moment-to-now)
-  * [moment-duration](#moment-duration)
-  * [moment-calendar](#moment-calendar)
-  * [moment-diff](#moment-diff)
-  * [is-before / is-after / is-same / is-same-or-before / is-same-or-after](#is-before--is-after--is-same--is-same-or-before--is-same-or-after)
-  * [is-between](#is-between)
-  * [now](#now)
-  * [unix](#unix)
-  * [Common optional named arguments](#common-optional-named-arguments)
+  - [moment](#moment)
+  - [utc](#utc)
+  - [moment-format](#moment-format)
+  - [moment-from / moment-from-now](#moment-from--moment-from-now)
+  - [moment-to / moment-to-now](#moment-to--moment-to-now)
+  - [moment-duration](#moment-duration)
+  - [moment-calendar](#moment-calendar)
+  - [moment-diff](#moment-diff)
+  - [moment-add](#moment-add)
+  - [moment-subtract](#moment-subtract)
+  - [is-before / is-after / is-same / is-same-or-before / is-same-or-after](#is-before--is-after--is-same--is-same-or-before--is-same-or-after)
+  - [is-between](#is-between)
+  - [now](#now)
+  - [unix](#unix)
+  - [Common optional named arguments](#common-optional-named-arguments)
 - [ES6 Moment](#es6-moment)
 - [Configuration Options](#configuration-options)
-  * [Include Moment Timezone](#include-moment-timezone)
-  * [Global Default Output Format](#global-default-output-format)
-  * [Global Allow Empty Dates](#global-allow-empty-dates)
-  * [i18n support](#i18n-support)
-    + [Cherry pick locales (optimal)](#cherry-pick-locales-optimal)
-    + [Include all locales into build](#include-all-locales-into-build)
-    + [Write all the locales to a folder relative to `dist`](#write-all-the-locales-to-a-folder-relative-to-dist)
-  * [Configure default runtime locale/timeZone](#configure-default-runtime-localetimezone)
-    + [Globally set locale](#globally-set-locale)
-    + [Globally set time zone](#globally-set-time-zone)
+  - [Include Moment Timezone](#include-moment-timezone)
+  - [Global Default Output Format](#global-default-output-format)
+  - [Global Allow Empty Dates](#global-allow-empty-dates)
+  - [i18n support](#i18n-support)
+    - [Cherry pick locales (optimal)](#cherry-pick-locales-optimal)
+    - [Include all locales into build](#include-all-locales-into-build)
+    - [Write all the locales to a folder relative to `dist`](#write-all-the-locales-to-a-folder-relative-to-dist)
+  - [Configure default runtime locale/timeZone](#configure-default-runtime-localetimezone)
+    - [Globally set locale](#globally-set-locale)
+    - [Globally set time zone](#globally-set-time-zone)
 - [Frequently Asked Questions](#frequently-asked-questions)
-- [Development](#development)
-- [Running Tests](#running-tests)
-- [Building](#building)
+- [Docs to add](#docs-to-add)
 <!-- tocstop -->
 
 ## Installing
@@ -241,6 +241,60 @@ Returns the difference in `precision` units between `<dateA>` and `<dateB>` with
 ```hbs
 {{moment-diff '2018-01-25' '2018-01-26'}} {{!-- 86400000 --}}
 {{moment-diff '2018-01-25' '2018-01-26' precision='years' float=true}} {{!-- 0.0026881720430107525 --}}
+```
+
+### moment-add
+```hbs
+{{moment-add <date> <number> [precision='milliseconds']}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | An optional value [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...). Defaults to value of `moment()` |
+| `<number>` | Any value(s) [interpretable as a duration](https://momentjs.com/docs/#/durations/creating) by `moment` that is the amount of the `precision` you want to `add` to the `date` provided |
+| `precision` | An optional [unit of measurement](https://momentjs.com/docs/#/displaying/difference), defaults to `'milliseconds'` |
+
+Mutates the original moment by adding time. See [`momentjs#add`](https://momentjs.com/docs/#/manipulating/add/).
+
+**Examples**
+
+```hbs
+{{!-- Add 6 days to a date --}}
+{{moment-add '10-19-2019' 6 precision='days'}}
+
+{{!-- Add 6 days to a date --}}
+const duration = { days: 6 }
+{{moment-add '10-19-2019' duration}}
+
+{{!-- Print a date 6 days from now --}}
+{{moment-add 6 precision='days'}}
+```
+
+### moment-subtract
+```hbs
+{{moment-subtract <date> <number> [precision='milliseconds']}}
+```
+
+| Parameters | Values |
+| ---------- | ------ |
+| `<date>` | An optional value [interpretable as a date/time](https://momentjs.com/docs/#/parsing/) by `moment` (a date `String` or a `Moment` or a `Date`...). Defaults to value of `moment()` |
+| `<number>` | Any value(s) [interpretable as a duration](https://momentjs.com/docs/#/durations/creating) by `moment` that is the amount of the `precision` you want to `subtract` from the `date` provided  |
+| `precision` | An optional [unit of measurement](https://momentjs.com/docs/#/displaying/difference), defaults to `'milliseconds'` |
+
+Mutates the original moment by removing time. See [`momentjs#subtract`](https://momentjs.com/docs/#/manipulating/subtract/).
+
+**Examples**
+
+```hbs
+{{!-- Remove 6 days from a date --}}
+{{moment-subtract '10-19-2019' 6 precision='days'}}
+
+{{!-- Remove 6 days from a date --}}
+const duration = { days: 6 }
+{{moment-subtract '10-19-2019' duration}}
+
+{{!-- Print a date 6 days earlier --}}
+{{moment-subtract 6 precision='days'}}
 ```
 
 ### is-before / is-after / is-same / is-same-or-before / is-same-or-after
@@ -522,3 +576,8 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
 [travis]: https://travis-ci.org/stefanpenner/ember-moment
 [travis-badge]: https://img.shields.io/travis/stefanpenner/ember-moment.svg?branch=master&style=flat-square
+
+## Docs to add
+- [Development](#development)
+- [Running Tests](#running-tests)
+- [Building](#building)
