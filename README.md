@@ -343,7 +343,7 @@ Returns a `Boolean` that indicates if `<date>` is between `<dateA>` and `<dateB>
 
 ```hbs
 {{is-between '1995-12-25' '2995-12-25'}} {{!-- true --}}
-{{is-between '1995-12-25' '1995-12-25' '2995-12-25' precision='years' inclusivity='[)'}} {{!-- true --}}
+{{is-between '1995-12-25' '1995-12-25' '2995-12-25' precision='years' inclusivity='()'}} {{!-- true --}}
 ```
 
 ### now
@@ -395,8 +395,8 @@ All helpers accept the following optional named arguments (even though they are 
 | `interval` | An optional interval `Number` of milliseconds when the helper should be recomputed |
 | `allow-empty` | An optional `Boolean` to ignore the `Invalid date` output when knowingly passing `null`, `undefined`, or `''`, defaults to `false` |
 
-Note that `interval` does not recompute the value of the helper parameters, unless it is
-part of a helper that *is* a value in which case it is useful for "live" updating as time elapses.
+**Note that `interval` does not recompute the value of the helper parameters, unless it is
+part of a helper that *is* a value in which case it is useful for "live" updating as time elapses.**
 
 *Warning: `allow-empty` is currently inconsistent and should not always be trusted.*
 
