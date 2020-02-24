@@ -429,7 +429,7 @@ module.exports = function() {
     moment: {
       // Options:
       // 'all' - all years, all timezones
-      // '2010-2020' - 2010-2020, all timezones
+      // 'subset' - 2012-2022, all timezones
       // 'none' - no data, just timezone API
       includeTimezone: 'all'
     }
