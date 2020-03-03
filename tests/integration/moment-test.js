@@ -103,3 +103,22 @@ test('moment can update service locale (updateLocale)', function(assert) {
   this.service.updateLocale('en', { week: { dow: 0 } });
   assert.equal(moment().weekday(0).format('dddd'), 'Sunday');
 });
+
+test('moment can define service locale (defineLocale)', function(assert) {
+  assert.expect(1);
+  
+  this.setProperties({
+    inputFormat: 'M/D/YY',
+    outputFormat: 'dddd, MMMM D, YYYY',
+    date: '4/19/20'
+  });
+
+  this.service.defineLocale('en-alt', {
+    parentLocale: 'en', 
+    months: ['Jan', 'Feb', 'Mar', 'TEST', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  });
+
+  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+
+  assert.equal(this.$().text(), 'Sunday, TEST 19, 2020');
+});

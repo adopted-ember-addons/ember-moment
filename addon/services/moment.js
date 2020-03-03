@@ -51,6 +51,15 @@ export default Service.extend(Evented, {
     moment.updateLocale(locale, localeOptions);
     this.trigger('localeChanged', locale);
   },
+  
+  defineLocale(locale, localeOptions = {}) {
+    setProperties(this, {
+      locale,
+      localeOptions
+    });
+    moment.defineLocale(locale, localeOptions);
+    this.trigger('localeChanged', locale);
+  },
 
   setTimeZone(timeZone) {
     this.changeTimeZone(timeZone);
