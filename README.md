@@ -350,6 +350,7 @@ Returns a `Boolean` that indicates if `<date>` is between `<dateA>` and `<dateB>
 
 ```hbs
 {{now}}
+{{moment-format (now) 'MM-DD-YYYY'}}
 ```
 
 Returns the present Moment.
