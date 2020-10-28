@@ -1,4 +1,3 @@
-import { deprecate } from '@ember/application/deprecations';
 import { get } from '@ember/object';
 
 import computeFn from '../utils/helper-compute';
