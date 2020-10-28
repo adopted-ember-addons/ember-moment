@@ -95,6 +95,6 @@ test('can be called with null', function(assert) {
 
 test('localize arabic - issue 239', function(assert) {
   this.set('date', new Date());
-  this.render(hbs`{{moment-from-now date locale='ar' hideSuffix=true}}`);
+  this.render(hbs`{{moment-from-now date locale='ar' hideAffix=true}}`);
   assert.equal(this.$().text(), 'ثانية واحدة');
 });
