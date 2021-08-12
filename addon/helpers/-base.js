@@ -6,7 +6,8 @@ import { inject as service } from '@ember/service';
 export default Helper.extend({
   moment: service(),
   disableInterval: false,
-  globalAllowEmpty: computed.bool('moment.__config__.allowEmpty'),
+  globalAllowEmpty: computed('moment.__config__.allowEmpty', function()
+    {return this.get('moment.__config__.allowEmpty'); }),
   supportsGlobalAllowEmpty: true,
   localeOrTimeZoneChanged: observer('moment.locale', 'moment.timeZone', function() {
     this.recompute();
