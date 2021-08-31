@@ -51,5 +51,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "volta": {
+    "node": "14.17.5",
+    "yarn": "1.22.11"
   }
 }
