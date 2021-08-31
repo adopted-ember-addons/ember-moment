@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    # filtering branches here prevents duplicate builds from pull_request and push
+    branches:
+      - main
+      - master
+
+env:
+  CI: true
+
+jobs:
+  source:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: Source
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+
+      - run: yarn install
+
+      - name: ESLint
+        run: npm run lint:js
+
+      # - name: Templates
+      #   run: npm run lint:hbs
+

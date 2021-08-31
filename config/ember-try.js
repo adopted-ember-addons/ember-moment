@@ -18,58 +18,40 @@ module.exports = {
       }
     },
     {
-      name: 'ember-release',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#release'
-        },
-        resolutions: {
-          'ember': 'release'
-        }
-      },
+      name: 'ember-lts-3.12',
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': '~3.12.0',
+          'ember-cli-babel': '^7.0.0',
         }
       }
     },
     {
-      name: 'ember-beta',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#beta'
-        },
-        resolutions: {
-          'ember': 'beta'
-        }
-      },
+      name: 'ember-lts-3.16',
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': '~3.16.0',
+          'ember-cli-babel': '^7.0.0',
         }
       }
     },
     {
-      name: 'ember-canary',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#canary'
-        },
-        resolutions: {
-          'ember': 'canary'
-        }
-      },
+      name: 'ember-lts-3.20',
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': '~3.20.0',
+          'ember-cli-babel': '^7.0.0',
         }
       }
     },
     {
-      name: 'ember-default',
+      name: 'ember-lts-3.24',
       npm: {
-        devDependencies: {}
+        devDependencies: {
+          'ember-source': '~3.24.0',
+          'ember-cli-babel': '^7.0.0',
+        }
       }
-    }
+    },
   ]
 };
