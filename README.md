@@ -58,7 +58,7 @@ It's advisable to run `ember g ember-moment` between upgrades as dependencies ma
 
 Ships with the following computed property macros: `duration`, `humanize`, `locale`, `tz`, `format`, `calendar`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
 
-[Computed Property Macro Documentation](https://github.com/stefanpenner/ember-moment/wiki/Computed-Property-Macros)
+[Computed Property Macro Documentation](https://github.com/adopted-ember-addons/ember-moment/wiki/Computed-Property-Macros)
 
 ## Helpers
 
@@ -575,8 +575,6 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 
 [npm]: https://www.npmjs.org/package/ember-moment
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
-[travis]: https://travis-ci.org/stefanpenner/ember-moment
-[travis-badge]: https://img.shields.io/travis/stefanpenner/ember-moment.svg?branch=master&style=flat-square
 
 ## Docs to add
 - [Development](#development)
