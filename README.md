@@ -1,6 +1,6 @@
 # ember-moment
 [![npm Version][npm-badge]][npm]
-[![Build Status][travis-badge]][travis]
+[![Build Status](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml/badge.svg)](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-moment.svg)](http://emberobserver.com/addons/ember-moment)
 
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
