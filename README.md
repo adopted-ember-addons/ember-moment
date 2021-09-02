@@ -5,7 +5,15 @@
 
 [moment.js](http://momentjs.com) template helpers and computed property macros for Ember
 
+
+## Compatibility
+
+* Ember.js v3.4 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
 ## Table of Contents
+
 
 <!-- toc -->
 - [Installing](#installing)
@@ -575,6 +583,10 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 
 [npm]: https://www.npmjs.org/package/ember-moment
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
+
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## Docs to add
 - [Development](#development)
