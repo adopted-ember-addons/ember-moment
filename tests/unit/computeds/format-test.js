@@ -14,7 +14,7 @@ module('controller:test-subject', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
-    this.setup = function() {
+    this.setup = () => {
       moment.locale('en');
     };
   });
