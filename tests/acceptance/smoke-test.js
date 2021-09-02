@@ -4,37 +4,38 @@ import startApp from '../helpers/start-app';
 
 let application;
 
-module('Acceptance: Smoke', {
-  beforeEach() {
+module('Acceptance: Smoke', function(hooks) {
+  hooks.beforeEach(function() {
     application = startApp();
-  },
-  afterEach() {
+  });
+
+  hooks.afterEach(function() {
     if (application) {
       run(application, 'destroy');
     }
-  }
-});
-
-test('moment', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.moment-independence-day').text(), 'Jul 04, 1776');
   });
-});
 
-test('ago', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.ago-now').text(), 'a few seconds ago');
+  test('moment', function(assert) {
+    assert.expect(1);
+    visit('/smoke');
+    andThen(function() {
+      assert.equal(find('.moment-independence-day').text(), 'Jul 04, 1776');
+    });
   });
-});
 
-test('duration', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.duration-seven-minutes').text(), '7 minutes');
+  test('ago', function(assert) {
+    assert.expect(1);
+    visit('/smoke');
+    andThen(function() {
+      assert.equal(find('.ago-now').text(), 'a few seconds ago');
+    });
+  });
+
+  test('duration', function(assert) {
+    assert.expect(1);
+    visit('/smoke');
+    andThen(function() {
+      assert.equal(find('.duration-seven-minutes').text(), '7 minutes');
+    });
   });
 });
