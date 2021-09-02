@@ -11,7 +11,7 @@ module('ember-moment@computed:to-now', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
-    this.setup = function() {
+    this.setup = () => {
       this.owner.register('object:empty', EmberObject.extend({}));
       moment.locale('en');
     };

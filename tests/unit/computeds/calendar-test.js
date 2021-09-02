@@ -12,23 +12,23 @@ module('ember-moment@computed:moment', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
-    this.setup = function() {
+    this.setup = () => {
       this.owner.register('object:empty', EmberObject.extend({}));
       moment.locale('en');
     };
-  });
-
-  function createSubject(attrs) {
+  this.createSubject = (attrs) => {
     return getOwner(this).resolveRegistration('object:empty').extend($.extend(attrs, {
       container: this.container,
       registry: this.registry
     })).create();
   }
+  });
+
 
   test('two args (date, referenceDate)', function(assert) {
     assert.expect(1);
 
-    const subject = createSubject.call(this, {
+    const subject = this.createSubject({
       date: tz(moment('2013-01-01T02:30:26Z'), 'America/New_York'),
       referenceDate: moment('2013-01-01T12:00:00Z'),
       computedDate: calendar('date', 'referenceDate')
@@ -40,7 +40,7 @@ module('ember-moment@computed:moment', function(hooks) {
   test('with es locale', function(assert) {
     assert.expect(1);
 
-    const subject = createSubject.call(this, {
+    const subject = this.createSubject({
       date: tz(locale(moment('2013-01-01T08:30:26Z'), 'es'), 'America/New_York'),
       referenceDate: locale(moment('2013-01-01T12:00:00Z'), 'es'),
       computedDate: calendar('date', 'referenceDate')
