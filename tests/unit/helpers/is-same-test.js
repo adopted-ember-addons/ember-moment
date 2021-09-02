@@ -1,50 +1,53 @@
 import EmberObject from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('is-same',{
-  integration: true
-});
+import { render } from '@ember/test-helpers';
 
-test('one arg (comparisonDate)', function(assert) {
-  assert.expect(1);
+module('is-same', function(hooks) {
+  setupRenderingTest(hooks);
 
-  this.render(hbs`{{is-same '2011-10-19'}}`);
-  assert.equal(this.$().text(), 'false');
-});
+  test('one arg (comparisonDate)', async function(assert) {
+    assert.expect(1);
 
-test('one arg with precision (comparisonDate, precision)', function(assert) {
-  assert.expect(1);
-
-  const today = new Date();
-  const date = `${today.getFullYear()}-10-19`;
-  const context = EmberObject.create({
-    date: date
+    await render(hbs`{{is-same '2011-10-19'}}`);
+    assert.equal(this.$().text(), 'false');
   });
-  this.set('context', context);
 
-  this.render(hbs`{{is-same context.date precision='year'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+  test('one arg with precision (comparisonDate, precision)', async function(assert) {
+    assert.expect(1);
 
-test('two args (evaluatedDate, comparisonDate)', function(assert) {
-  assert.expect(1);
+    const today = new Date();
+    const date = `${today.getFullYear()}-10-19`;
+    const context = EmberObject.create({
+      date: date
+    });
+    this.set('context', context);
 
-  this.render(hbs`{{is-same '2010-10-20' '2010-10-20'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+    await render(hbs`{{is-same context.date precision='year'}}`);
+    assert.equal(this.$().text(), 'true');
+  });
 
-test('two args with precision (evaluatedDate, comparisonDate, precision)', function(assert) {
-  assert.expect(1);
+  test('two args (evaluatedDate, comparisonDate)', async function(assert) {
+    assert.expect(1);
 
-  this.render(hbs`{{is-same '2010-10-20' '2010-12-19' precision='year'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+    await render(hbs`{{is-same '2010-10-20' '2010-10-20'}}`);
+    assert.equal(this.$().text(), 'true');
+  });
 
-test('can be called with null when allow-empty is set to true', function(assert) {
-  assert.expect(1);
+  test('two args with precision (evaluatedDate, comparisonDate, precision)', async function(assert) {
+    assert.expect(1);
 
-  this.set('date', null);
-  this.render(hbs`{{is-same null allow-empty=true}}`);
-  assert.equal(this.$().text(), '');
+    await render(hbs`{{is-same '2010-10-20' '2010-12-19' precision='year'}}`);
+    assert.equal(this.$().text(), 'true');
+  });
+
+  test('can be called with null when allow-empty is set to true', async function(assert) {
+    assert.expect(1);
+
+    this.set('date', null);
+    await render(hbs`{{is-same null allow-empty=true}}`);
+    assert.equal(this.$().text(), '');
+  });
 });

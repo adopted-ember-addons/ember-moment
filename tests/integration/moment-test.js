@@ -1,105 +1,109 @@
 import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('moment', {
-  integration: true,
-  beforeEach() {
-    this.service = this.container.lookup('service:moment');
+import { render } from '@ember/test-helpers';
+
+module('moment', function(hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
+    this.service = this.owner.lookup('service:moment');
     this.service.changeLocale('en');
-  }
-});
-
-test('moment-from and moment integration', function(assert) {
-  assert.expect(1);
-
-  this.set('tomorrow', moment().add(1, 'day'));
-  this.render(hbs`{{moment-from (moment) tomorrow}}`);
-
-  assert.equal(this.$().text(), 'a day ago');
-});
-
-test('moment-from and moment integration', function(assert) {
-  assert.expect(1);
-
-  this.set('tomorrow', moment().add(1, 'day'));
-  this.render(hbs`{{moment-to (moment) tomorrow}}`);
-
-  assert.equal(this.$().text(), 'in a day');
-});
-
-test('moment and monent-format helper integration #2', function(assert) {
-  assert.expect(1);
-
-  this.setProperties({
-    inputFormat: 'M/D/YY',
-    outputFormat: 'MMMM D, YYYY',
-    date: '5/3/10'
   });
 
-  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
-  assert.equal(this.$().text(), 'May 3, 2010');
-});
+  test('moment-from and moment integration', async function(assert) {
+    assert.expect(1);
 
-test('moment can use the service locale', function(assert) {
-  assert.expect(1);
+    this.set('tomorrow', moment().add(1, 'day'));
+    await render(hbs`{{moment-from (moment) tomorrow}}`);
 
-  this.setProperties({
-    inputFormat: 'M/D/YY',
-    outputFormat: 'MMMM D, YYYY',
-    date: '5/3/10'
+    assert.equal(this.$().text(), 'a day ago');
   });
 
-  this.service.changeLocale('fr');
-  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+  test('moment-from and moment integration', async function(assert) {
+    assert.expect(1);
 
-  assert.equal(this.$().text(), 'mai 3, 2010');
-});
+    this.set('tomorrow', moment().add(1, 'day'));
+    await render(hbs`{{moment-to (moment) tomorrow}}`);
 
-test('changing moment service locale changes global locale', function(assert) {
-  const done = assert.async();
-  assert.expect(1);
-
-  this.service.on('localeChanged', function() {
-    assert.equal(moment.locale(), 'es');
-    done();
+    assert.equal(this.$().text(), 'in a day');
   });
 
-  this.service.setLocale('es');
-});
+  test('moment and monent-format helper integration #2', async function(assert) {
+    assert.expect(1);
 
-test('changing timeZone triggers event', function(assert) {
-  const done = assert.async();
-  assert.expect(1);
+    this.setProperties({
+      inputFormat: 'M/D/YY',
+      outputFormat: 'MMMM D, YYYY',
+      date: '5/3/10'
+    });
 
-  this.service.on('timeZoneChanged', function() {
-    assert.ok(true);
-    done();
+    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+    assert.equal(this.$().text(), 'May 3, 2010');
   });
 
-  this.service.setTimeZone('PST');
-});
+  test('moment can use the service locale', async function(assert) {
+    assert.expect(1);
 
-test('moment can use the service locale (setLocale)', function(assert) {
-  assert.expect(1);
+    this.setProperties({
+      inputFormat: 'M/D/YY',
+      outputFormat: 'MMMM D, YYYY',
+      date: '5/3/10'
+    });
 
-  this.setProperties({
-    inputFormat: 'M/D/YY',
-    outputFormat: 'MMMM D, YYYY',
-    date: '5/3/10'
+    this.service.changeLocale('fr');
+    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+
+    assert.equal(this.$().text(), 'mai 3, 2010');
   });
 
-  this.service.setLocale('fr');
-  this.render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+  test('changing moment service locale changes global locale', function(assert) {
+    const done = assert.async();
+    assert.expect(1);
 
-  assert.equal(this.$().text(), 'mai 3, 2010');
-});
+    this.service.on('localeChanged', function() {
+      assert.equal(moment.locale(), 'es');
+      done();
+    });
 
-test('moment can update service locale (updateLocale)', function(assert) {
-  assert.expect(2);
+    this.service.setLocale('es');
+  });
 
-  this.service.updateLocale('en', { week: { dow: 3 } });
-  assert.equal(moment().weekday(0).format('dddd'), 'Wednesday');
-  this.service.updateLocale('en', { week: { dow: 0 } });
-  assert.equal(moment().weekday(0).format('dddd'), 'Sunday');
+  test('changing timeZone triggers event', function(assert) {
+    const done = assert.async();
+    assert.expect(1);
+
+    this.service.on('timeZoneChanged', function() {
+      assert.ok(true);
+      done();
+    });
+
+    this.service.setTimeZone('PST');
+  });
+
+  test('moment can use the service locale (setLocale)', async function(assert) {
+    assert.expect(1);
+
+    this.setProperties({
+      inputFormat: 'M/D/YY',
+      outputFormat: 'MMMM D, YYYY',
+      date: '5/3/10'
+    });
+
+    this.service.setLocale('fr');
+    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+
+    assert.equal(this.$().text(), 'mai 3, 2010');
+  });
+
+  test('moment can update service locale (updateLocale)', function(assert) {
+    assert.expect(2);
+
+    this.service.updateLocale('en', { week: { dow: 3 } });
+    assert.equal(moment().weekday(0).format('dddd'), 'Wednesday');
+    this.service.updateLocale('en', { week: { dow: 0 } });
+    assert.equal(moment().weekday(0).format('dddd'), 'Sunday');
+  });
 });
