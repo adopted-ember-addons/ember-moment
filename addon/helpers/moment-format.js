@@ -5,6 +5,7 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
+  // eslint-disable-next-line ember/no-observers
   defaultFormatDidChange: observer('moment.defaultFormat', function () {
     this.recompute();
   }),
@@ -23,6 +24,7 @@ export default BaseHelper.extend({
 
     const args = [];
     const formatArgs = [];
+    // eslint-disable-next-line ember/no-get
     const defaultFormat = get(this, 'moment.defaultFormat');
 
     args.push(params[0]);

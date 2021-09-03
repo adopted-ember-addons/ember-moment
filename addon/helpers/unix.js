@@ -1,4 +1,3 @@
-import { get } from '@ember/object';
 import moment from 'moment';
 
 import BaseHelper from './-base';

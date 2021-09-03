@@ -2,14 +2,9 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import moment from 'moment';
-import {
-  computed,
-  get,
-  set,
-  getProperties,
-  setProperties,
-} from '@ember/object';
+import { computed, set, setProperties } from '@ember/object';
 
+// eslint-disable-next-line ember/no-classic-classes
 export default Service.extend(Evented, {
   _timeZone: null,
 
@@ -75,7 +70,7 @@ export default Service.extend(Evented, {
 
   moment() {
     let momentObj = moment(...arguments);
-    let { locale, timeZone } = getProperties(this, 'locale', 'timeZone');
+    let { locale, timeZone } = this;
 
     if (locale && momentObj.locale) {
       momentObj = momentObj.locale(locale);
@@ -91,7 +86,7 @@ export default Service.extend(Evented, {
   utc() {
     let momentObj = moment.utc(...arguments);
 
-    let { locale } = getProperties(this, 'locale');
+    let { locale } = this;
 
     if (locale && momentObj.locale) {
       momentObj = momentObj.locale(locale);

@@ -1,5 +1,4 @@
 import BaseHelper from './-base';
-import { get } from '@ember/object';
 import computeFn from '../utils/helper-compute';
 
 export default BaseHelper.extend({

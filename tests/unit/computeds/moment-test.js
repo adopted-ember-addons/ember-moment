@@ -1,6 +1,3 @@
-import EmberObject from '@ember/object';
-import { getOwner } from '@ember/application';
-import $ from 'jquery';
 import moment from 'moment';
 import date from '../../helpers/date';
 import { module, test } from 'qunit';
@@ -12,7 +9,6 @@ module('ember-moment@computed:moment', function (hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function () {
-    this.owner.register('object:empty', EmberObject.extend({}));
     moment.locale('en');
   });
 
