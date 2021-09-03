@@ -16,7 +16,11 @@ module('utc', function (hooks) {
 
   hooks.afterEach(function () {
     moment.utc = utc;
-    self.moment.utc = utc;
+    this.setProperties({
+      moment: {
+        utc,
+      },
+    });
   });
 
   test('returns the result of moment.utc', async function (assert) {
@@ -31,14 +35,14 @@ module('utc', function (hooks) {
     assert.dom(this.element).hasText(timeStr);
   });
 
-  test('returns the result of self.moment.utc', async function (assert) {
+  test('returns the result of this.moment.utc', async function (assert) {
     assert.expect(1);
 
     const timeStr = '2001-10-31T13:24:56';
     const fmtStr = 'YYYY-MM-DDTHH:mm:ss';
     const momentService = this.owner.lookup('service:moment');
     const current = momentService.utc(timeStr, fmtStr);
-    self.moment.utc = () => current;
+    this.moment.utc = () => current;
     await render(hbs`{{moment-format (utc) 'YYYY-MM-DDTHH:mm:ss'}}`);
     assert.dom(this.element).hasText(timeStr);
   });
