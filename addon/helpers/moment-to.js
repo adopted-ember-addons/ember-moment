@@ -4,11 +4,17 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  compute: computeFn(function([ datetime, ...params ], { hideAffix, locale, timeZone }) {
+  compute: computeFn(function (
+    [datetime, ...params],
+    { hideAffix, locale, timeZone }
+  ) {
     this._super(...arguments);
 
-    const moment = get(this, 'moment');
+    const moment = this.moment;
 
-    return this.morphMoment(moment.moment(datetime), { locale, timeZone }).to(...params, hideAffix);
-  })
+    return this.morphMoment(moment.moment(datetime), { locale, timeZone }).to(
+      ...params,
+      hideAffix
+    );
+  }),
 });

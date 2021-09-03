@@ -1,6 +1,6 @@
 import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
 import { render } from '@ember/test-helpers';

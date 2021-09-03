@@ -6,6 +6,6 @@ export default Route.extend({
   moment: service(),
 
   beforeModel() {
-    get(this, 'moment').changeLocale('en');
-  }
+    this.moment.changeLocale('en');
+  },
 });

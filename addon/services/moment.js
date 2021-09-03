@@ -2,7 +2,13 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import moment from 'moment';
-import { computed, get, set, getProperties, setProperties } from '@ember/object';
+import {
+  computed,
+  get,
+  set,
+  getProperties,
+  setProperties,
+} from '@ember/object';
 
 export default Service.extend(Evented, {
   _timeZone: null,
@@ -11,28 +17,30 @@ export default Service.extend(Evented, {
   localeOptions: null,
   defaultFormat: null,
 
-  __config__: computed(function() {
+  __config__: computed(function () {
     let config = getOwner(this).factoryFor('config:environment').class || {};
 
-    return get(config, 'moment') || {};
+    return config.moment || {};
   }).readOnly(),
 
   timeZone: computed('_timeZone', {
     get() {
-      return get(this, '_timeZone');
+      return this._timeZone;
     },
 
     set(propertyKey, timeZone) {
       if (!moment.tz) {
         /* eslint-disable no-console */
-        console.warn('[ember-moment] attempted to set timezone, but moment-timezone is not setup.');
+        console.warn(
+          '[ember-moment] attempted to set timezone, but moment-timezone is not setup.'
+        );
         return;
       }
 
       set(this, '_timeZone', timeZone);
 
       return timeZone;
-    }
+    },
   }),
 
   setLocale(locale) {
@@ -46,7 +54,7 @@ export default Service.extend(Evented, {
   changeLocale(locale, localeOptions = {}) {
     setProperties(this, {
       locale,
-      localeOptions
+      localeOptions,
     });
     moment.updateLocale(locale, localeOptions);
     this.trigger('localeChanged', locale);
@@ -81,14 +89,14 @@ export default Service.extend(Evented, {
   },
 
   utc() {
-      let momentObj = moment.utc(...arguments);
+    let momentObj = moment.utc(...arguments);
 
-      let { locale } = getProperties(this, 'locale');
+    let { locale } = getProperties(this, 'locale');
 
-      if (locale && momentObj.locale) {
-        momentObj = momentObj.locale(locale);
-      }
+    if (locale && momentObj.locale) {
+      momentObj = momentObj.locale(locale);
+    }
 
-      return momentObj;
-  }
+    return momentObj;
+  },
 });

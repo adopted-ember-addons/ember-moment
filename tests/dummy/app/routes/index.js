@@ -18,5 +18,5 @@ export default Route.extend({
         controller.set('date', new Date());
       });
     }, 1000);
-  }
+  },
 });

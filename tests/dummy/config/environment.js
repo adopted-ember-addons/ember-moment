@@ -10,7 +10,7 @@ module.exports = function (environment) {
       allowEmpty: true,
       outputFormat: 'LLLL',
       includeTimezone: 'all',
-      includeLocales: ['es', 'fr-ca', 'fr', 'ar']
+      includeLocales: ['es', 'fr-ca', 'fr', 'ar'],
     },
     EmberENV: {
       FEATURES: {

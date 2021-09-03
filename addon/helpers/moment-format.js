@@ -5,18 +5,20 @@ import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({
-  defaultFormatDidChange: observer('moment.defaultFormat', function() {
+  defaultFormatDidChange: observer('moment.defaultFormat', function () {
     this.recompute();
   }),
 
-  compute: computeFn(function(params, { locale, timeZone }) {
+  compute: computeFn(function (params, { locale, timeZone }) {
     this._super(...arguments);
 
-    const moment = get(this, 'moment');
+    const moment = this.moment;
     const { length } = params;
 
     if (length > 3) {
-      throw new TypeError('ember-moment: Invalid number of arguments, expected at most 3');
+      throw new TypeError(
+        'ember-moment: Invalid number of arguments, expected at most 3'
+      );
     }
 
     const args = [];
@@ -34,6 +36,9 @@ export default BaseHelper.extend({
       formatArgs.push(params[1]);
     }
 
-    return this.morphMoment(moment.moment(...args), { locale, timeZone }).format(...formatArgs);
-  })
+    return this.morphMoment(moment.moment(...args), {
+      locale,
+      timeZone,
+    }).format(...formatArgs);
+  }),
 });
