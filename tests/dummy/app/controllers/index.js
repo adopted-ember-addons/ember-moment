@@ -12,21 +12,27 @@ export default Controller.extend({
   moment: service(),
   actions: {
     changeLocale(locale) {
-      get(this, 'moment').changeLocale(locale);
+      this.moment.changeLocale(locale);
     },
     changeDefaultFormat(defaultFormat) {
       set(this, 'moment.defaultFormat', defaultFormat);
-    }
+    },
   },
   emptyDate: null,
   numHours: 822,
   unixTimeStamp: 946684799,
   date: computed(() => new Date()),
   currentTime: computed(() => new Date()),
-  inTwelveHours: computed(() => new Date(new Date().valueOf() + (12*60*60*1000))),
-  lastHour: computed(() => new Date(new Date().valueOf() - (60*60*1000))),
+  inTwelveHours: computed(
+    () => new Date(new Date().valueOf() + 12 * 60 * 60 * 1000)
+  ),
+  lastHour: computed(() => new Date(new Date().valueOf() - 60 * 60 * 1000)),
   usIndependenceDay: computed(() => new Date(1776, 6, 4, 12, 0, 0)),
   computedDate: format(locale(momentComputed('date'), 'moment.locale')),
-  computedOneHourAgo: fromNow(locale(momentComputed('lastHour'), 'moment.locale')),
-  computedNumHours: humanize(locale(duration('numHours', 'hours'), 'moment.locale')),
+  computedOneHourAgo: fromNow(
+    locale(momentComputed('lastHour'), 'moment.locale')
+  ),
+  computedNumHours: humanize(
+    locale(duration('numHours', 'hours'), 'moment.locale')
+  ),
 });

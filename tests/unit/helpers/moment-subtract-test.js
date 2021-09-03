@@ -4,69 +4,84 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import { render } from '@ember/test-helpers';
 
-module('moment-subtract', function(hooks) {
+module('moment-subtract', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  test('one arg subtracts duration', async function(assert) {
+  test('one arg subtracts duration', async function (assert) {
     assert.expect(1);
     const momentService = this.owner.lookup('service:moment');
     const duration = { days: 3 };
     this.set('duration', duration);
-    const expectedString = momentService.moment().subtract(duration).format('ddd MMM DD YYYY');
+    const expectedString = momentService
+      .moment()
+      .subtract(duration)
+      .format('ddd MMM DD YYYY');
 
     await render(hbs`{{moment-subtract duration}}`);
-    assert.ok(this.$().text().match(new RegExp(expectedString)));
+    assert.dom().containsText(expectedString);
   });
 
-  test('two args with number and string', async function(assert) {
+  test('two args with number and string', async function (assert) {
     assert.expect(1);
     const momentService = this.owner.lookup('service:moment');
     const number = 3;
     const precision = 'days';
     this.setProperties({
       number,
-      precision
+      precision,
     });
-    const expectedString = momentService.moment().subtract(number, precision).format('ddd MMM DD YYYY');
+    const expectedString = momentService
+      .moment()
+      .subtract(number, precision)
+      .format('ddd MMM DD YYYY');
 
     await render(hbs`{{moment-subtract number precision}}`);
-    assert.ok(this.$().text().match(new RegExp(expectedString)));
+    assert.dom().containsText(expectedString);
   });
 
-  test('two args with date and duration', async function(assert) {
+  test('two args with date and duration', async function (assert) {
     assert.expect(1);
     const momentService = this.owner.lookup('service:moment');
     const duration = { days: 3 };
     this.set('duration', duration);
-    const expectedString = momentService.moment('2016-06-01').subtract(duration).format('ddd MMM DD YYYY');
+    const expectedString = momentService
+      .moment('2016-06-01')
+      .subtract(duration)
+      .format('ddd MMM DD YYYY');
 
     await render(hbs`{{moment-subtract '2016-06-01' duration}}`);
-    assert.ok(this.$().text().match(new RegExp(expectedString)));
+    assert.dom().containsText(expectedString);
   });
 
-  test('one arg with precision', async function(assert) {
+  test('one arg with precision', async function (assert) {
     assert.expect(1);
     const momentService = this.owner.lookup('service:moment');
     const number = 3;
     this.set('number', number);
-    const expectedString = momentService.moment().subtract(number, 'days').format('ddd MMM DD YYYY');
+    const expectedString = momentService
+      .moment()
+      .subtract(number, 'days')
+      .format('ddd MMM DD YYYY');
 
     await render(hbs`{{moment-subtract number precision='days'}}`);
-    assert.ok(this.$().text().match(new RegExp(expectedString)));
+    assert.dom().containsText(expectedString);
   });
 
-  test('two args with precision', async function(assert) {
+  test('two args with precision', async function (assert) {
     assert.expect(1);
     const momentService = this.owner.lookup('service:moment');
     const number = 3;
     this.set('number', number);
-    const expectedString = momentService.moment('2016-06-01').subtract(number, 'days').format('ddd MMM DD YYYY');
+    const expectedString = momentService
+      .moment('2016-06-01')
+      .subtract(number, 'days')
+      .format('ddd MMM DD YYYY');
 
     await render(hbs`{{moment-subtract '2016-06-01' number precision='days'}}`);
-    assert.ok(this.$().text().match(new RegExp(expectedString)));
+    assert.dom().containsText(expectedString);
   });
 });

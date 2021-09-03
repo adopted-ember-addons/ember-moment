@@ -6,6 +6,6 @@ export default BaseHelper.extend({
   compute([utcTime, format]) {
     this._super(...arguments);
 
-    return get(this, 'moment').utc(moment.utc(utcTime, format));
-  }
+    return this.moment.utc(moment.utc(utcTime, format));
+  },
 });

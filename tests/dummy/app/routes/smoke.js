@@ -5,5 +5,5 @@ export default Route.extend({
   setupController: function (controller, model) {
     moment.locale('en');
     return this._super(controller, model);
-  }
+  },
 });

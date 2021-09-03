@@ -6,6 +6,7 @@ import { alias } from '@ember/object/computed';
 import moment from 'moment';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import { settled } from '@ember/test-helpers';
 import format from 'ember-moment/computeds/format';
 import momentComputed from 'ember-moment/computeds/moment';
 
@@ -142,7 +143,7 @@ module('ember-moment@computed:format', function (hooks) {
     assert.equal(subject.get('shortDate'), '2014');
   });
 
-  test('Observers trigger on date change', function (assert) {
+  test('Observers trigger on date change (overrides)', async function (assert) {
     assert.expect(2);
     let observeFired = false;
 
@@ -157,10 +158,11 @@ module('ember-moment@computed:format', function (hooks) {
 
     assert.equal(subject.get('shortDate'), '12/31');
     subject.set('_format', 'MM');
+    await settled();
     assert.equal(observeFired, true);
   });
 
-  test('Observers trigger on date change', function (assert) {
+  test('Observers trigger on date change', async function (assert) {
     assert.expect(3);
     let observeFired = false;
 
@@ -172,6 +174,7 @@ module('ember-moment@computed:format', function (hooks) {
 
     assert.equal(subject.get('shortDate'), '12/31');
     subject.set('date', date('2013-02-08T09:30:26'));
+    await settled();
     assert.equal(subject.get('shortDate'), '02/08');
     assert.equal(observeFired, true);
   });

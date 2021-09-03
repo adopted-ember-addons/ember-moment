@@ -56,7 +56,7 @@ module('moment-diff', function (hooks) {
     });
 
     await render(hbs`{{moment-diff dateA dateB precision='day'}}`);
-    assert.ok(this.$().text(), '5');
+    assert.dom().hasText('5');
   });
 
   test('two args with precision and float (dateA, dateB, precision, float)', async function (assert) {
@@ -68,6 +68,6 @@ module('moment-diff', function (hooks) {
     });
 
     await render(hbs`{{moment-diff dateA dateB precision='year' float=true}}`);
-    assert.ok(this.$().text(), '.5');
+    assert.dom().containsText('.5'); // good ol' rounding error
   });
 });

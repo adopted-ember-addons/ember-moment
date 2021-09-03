@@ -93,7 +93,7 @@ module('moment-calendar', function (hooks) {
     );
 
     assert.equal(
-      Object.keys(this.get('formats')).length,
+      Object.keys(this.formats).length,
       2,
       'formats object shape does not change'
     );

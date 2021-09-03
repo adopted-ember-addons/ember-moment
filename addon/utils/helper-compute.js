@@ -1,10 +1,12 @@
 import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 
-export default function(cb) {
-  return function(params, hash) {
-    if (!params || params && params.length === 0) {
-      throw new TypeError('ember-moment: Invalid Number of arguments, expected at least 1');
+export default function (cb) {
+  return function (params, hash) {
+    if (!params || (params && params.length === 0)) {
+      throw new TypeError(
+        'ember-moment: Invalid Number of arguments, expected at least 1'
+      );
     }
 
     const datetime = params[0];
@@ -12,7 +14,7 @@ export default function(cb) {
     let allowEmpty = hash.allowEmpty || hash['allow-empty'];
 
     if (allowEmpty === undefined || allowEmpty === null) {
-      allowEmpty = get(this, 'globalAllowEmpty');
+      allowEmpty = this.globalAllowEmpty;
     }
 
     if (isBlank(datetime)) {
@@ -21,7 +23,9 @@ export default function(cb) {
       }
 
       /* eslint-disable no-console */
-      console.warn(`ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`);
+      console.warn(
+        `ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`
+      );
     }
 
     return cb.apply(this, arguments);
