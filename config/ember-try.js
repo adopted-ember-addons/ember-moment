@@ -1,11 +1,36 @@
 'use strict';
 
 const getChannelURL = require('ember-source-channel-url');
+const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
 module.exports = async function () {
   return {
     useYarn: true,
     scenarios: [
+      {
+        name: 'ember-lts-3.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.4.0',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-3.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.8.0',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-3.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.12.0',
+          },
+        },
+      },
       {
         name: 'ember-lts-3.16',
         npm: {
@@ -19,6 +44,14 @@ module.exports = async function () {
         npm: {
           devDependencies: {
             'ember-source': '~3.20.5',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-3.24',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.24.0',
           },
         },
       },
@@ -47,19 +80,6 @@ module.exports = async function () {
         },
       },
       {
-        name: 'ember-default-with-jquery',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'jquery-integration': true,
-          }),
-        },
-        npm: {
-          devDependencies: {
-            '@ember/jquery': '^1.1.0',
-          },
-        },
-      },
-      {
         name: 'ember-classic',
         env: {
           EMBER_OPTIONAL_FEATURES: JSON.stringify({
@@ -74,6 +94,8 @@ module.exports = async function () {
           },
         },
       },
+      embroiderSafe(),
+      embroiderOptimized(),
     ],
   };
 };
