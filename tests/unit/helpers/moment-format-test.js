@@ -1,6 +1,7 @@
 import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 import { helper } from '@ember/component/helper';
+import { settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -34,12 +35,10 @@ module('moment-format', function (hooks) {
 
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 7:00 PM');
 
-    run(() => {
-      service.set('defaultFormat', 'DD.MM.YYYY');
-      run.scheduleOnce('afterRender', () => {
-        assert.dom(this.element).hasText('31.12.1969');
-      });
-    });
+    service.set('defaultFormat', 'DD.MM.YYYY');
+    await settled();
+
+    assert.dom(this.element).hasText('31.12.1969');
   });
 
   test('two args (date, inputFormat)', async function (assert) {

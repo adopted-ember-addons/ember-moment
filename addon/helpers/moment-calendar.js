@@ -1,4 +1,3 @@
-import { get } from '@ember/object';
 import { assign } from '@ember/polyfills';
 
 import computeFn from '../utils/helper-compute';

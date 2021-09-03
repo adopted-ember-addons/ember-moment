@@ -17,6 +17,7 @@ export default computedFactory(function formatComputed([
       const config = owner.resolveRegistration(CONFIG_KEY);
 
       if (config) {
+        // eslint-disable-next-line ember/no-get
         optionalFormat = get(config, 'moment.outputFormat');
       }
     }

@@ -1,4 +1,3 @@
-import { get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 
 import computeFn from '../utils/helper-compute';

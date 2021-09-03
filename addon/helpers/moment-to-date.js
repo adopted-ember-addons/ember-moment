@@ -1,5 +1,3 @@
-import { get } from '@ember/object';
-
 import computeFn from '../utils/helper-compute';
 import BaseHelper from './-base';
 

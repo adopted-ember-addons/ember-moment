@@ -1,6 +1,4 @@
 import EmberObject from '@ember/object';
-import { getOwner } from '@ember/application';
-import { merge } from '@ember/polyfills';
 import { observer } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import moment from 'moment';
@@ -19,6 +17,7 @@ module('ember-moment@computed:format', function (hooks) {
   hooks.beforeEach(function () {
     this.owner.register(
       'object:empty',
+      // eslint-disable-next-line ember/no-classic-classes
       EmberObject.extend({
         date: date(0),
         shortDate: format('date', 'MM/DD'),
@@ -151,6 +150,7 @@ module('ember-moment@computed:format', function (hooks) {
       _format: 'MM/DD',
       format: alias('_format'),
       shortDate: format('date', 'format'),
+      // eslint-disable-next-line ember/no-observers
       shortDateChanged: observer('shortDate', () => {
         observeFired = true;
       }),
@@ -167,6 +167,7 @@ module('ember-moment@computed:format', function (hooks) {
     let observeFired = false;
 
     const subject = createSubject.call(this, {
+      // eslint-disable-next-line ember/no-observers
       shortDateChanged: observer('shortDate', () => {
         observeFired = true;
       }),

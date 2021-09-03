@@ -1,5 +1,4 @@
 import { isBlank } from '@ember/utils';
-import { get } from '@ember/object';
 
 export default function (cb) {
   return function (params, hash) {
