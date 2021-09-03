@@ -6,14 +6,14 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import { render } from '@ember/test-helpers';
 
-module('moment-to-now', function(hooks) {
+module('moment-to-now', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  test('one arg (date)', async function(assert) {
+  test('one arg (date)', async function (assert) {
     assert.expect(1);
 
     const momentService = this.owner.lookup('service:moment');
@@ -22,10 +22,10 @@ module('moment-to-now', function(hooks) {
     });
 
     await render(hbs`{{moment-to-now dateA}}`);
-    assert.equal(this.$().text(), 'in 3 days');
+    assert.dom(this.element).hasText('in 3 days');
   });
 
-  test('one arg (date, hideAffix=boolean)', async function(assert) {
+  test('one arg (date, hideAffix=boolean)', async function (assert) {
     assert.expect(2);
 
     const momentService = this.owner.lookup('service:moment');
@@ -34,12 +34,12 @@ module('moment-to-now', function(hooks) {
     });
 
     await render(hbs`{{moment-to-now date hideAffix=true}}`);
-    assert.equal(this.$().text(), '3 days');
+    assert.dom(this.element).hasText('3 days');
     await render(hbs`{{moment-to-now date hideAffix=false}}`);
-    assert.equal(this.$().text(), 'in 3 days');
+    assert.dom(this.element).hasText('in 3 days');
   });
 
-  test('two args (date, inputFormat)', async function(assert) {
+  test('two args (date, inputFormat)', async function (assert) {
     assert.expect(1);
 
     const momentService = this.owner.lookup('service:moment');
@@ -49,10 +49,10 @@ module('moment-to-now', function(hooks) {
     });
 
     await render(hbs`{{moment-to-now date format}}`);
-    assert.equal(this.$().text(), 'in 3 days');
+    assert.dom(this.element).hasText('in 3 days');
   });
 
-  test('change date input and change is reflected by bound helper', async function(assert) {
+  test('change date input and change is reflected by bound helper', async function (assert) {
     assert.expect(2);
 
     const momentService = this.owner.lookup('service:moment');
@@ -62,45 +62,45 @@ module('moment-to-now', function(hooks) {
 
     this.set('context', context);
     await render(hbs`{{moment-to-now context.date}}`);
-    assert.equal(this.$().text(), 'in an hour');
+    assert.dom(this.element).hasText('in an hour');
 
     run(function () {
       context.set('date', momentService.moment().subtract(2, 'hour'));
     });
 
-    assert.equal(this.$().text(), 'in 2 hours');
+    assert.dom(this.element).hasText('in 2 hours');
   });
 
-  test('can inline a locale instead of using global locale', async function(assert) {
+  test('can inline a locale instead of using global locale', async function (assert) {
     assert.expect(1);
 
     const momentService = this.owner.lookup('service:moment');
     this.set('date', momentService.moment().subtract(1, 'hour'));
     await render(hbs`{{moment-to-now date locale='es'}}`);
-    assert.equal(this.$().text(), 'en una hora');
+    assert.dom(this.element).hasText('en una hora');
   });
 
-  test('can be called with null', async function(assert) {
+  test('can be called with null', async function (assert) {
     assert.expect(1);
 
     this.set('date', null);
     await render(hbs`{{moment-to-now date allow-empty=true}}`);
-    assert.equal(this.$().text(), '');
+    assert.dom(this.element).hasText('');
   });
 
-  test('can be called with null using global config option', async function(assert) {
+  test('can be called with null using global config option', async function (assert) {
     assert.expect(1);
 
     this.set('date', null);
     await render(hbs`{{moment-to-now date}}`);
-    assert.equal(this.$().text(), '');
+    assert.dom(this.element).hasText('');
   });
 
-  test('unable to called with null overriding global config option', async function(assert) {
+  test('unable to called with null overriding global config option', async function (assert) {
     assert.expect(1);
 
     this.set('date', null);
     await render(hbs`{{moment-to-now date allow-empty=false}}`);
-    assert.equal(this.$().text(), 'Invalid date');
+    assert.dom(this.element).hasText('Invalid date');
   });
 });

@@ -7,19 +7,19 @@ import { render } from '@ember/test-helpers';
 
 let utc = moment.utc;
 
-module('utc', function(hooks) {
+module('utc', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  hooks.afterEach(function() {
+  hooks.afterEach(function () {
     moment.utc = utc;
     self.moment.utc = utc;
   });
 
-  test('returns the result of moment.utc', async function(assert) {
+  test('returns the result of moment.utc', async function (assert) {
     assert.expect(1);
 
     const timeStr = '2001-10-31T13:24:56';
@@ -28,10 +28,10 @@ module('utc', function(hooks) {
     const current = momentService.utc(timeStr, fmtStr);
     moment.utc = () => current;
     await render(hbs`{{moment-format (utc) 'YYYY-MM-DDTHH:mm:ss'}}`);
-    assert.equal(this.$().text(), timeStr);
+    assert.dom(this.element).hasText(timeStr);
   });
 
-  test('returns the result of self.moment.utc', async function(assert) {
+  test('returns the result of self.moment.utc', async function (assert) {
     assert.expect(1);
 
     const timeStr = '2001-10-31T13:24:56';
@@ -40,10 +40,10 @@ module('utc', function(hooks) {
     const current = momentService.utc(timeStr, fmtStr);
     self.moment.utc = () => current;
     await render(hbs`{{moment-format (utc) 'YYYY-MM-DDTHH:mm:ss'}}`);
-    assert.equal(this.$().text(), timeStr);
+    assert.dom(this.element).hasText(timeStr);
   });
 
-  test('utc of existing moment', async function(assert) {
+  test('utc of existing moment', async function (assert) {
     assert.expect(2);
 
     const utcTimeStr = '2001-10-31T13:24:56 +00:00';
@@ -55,9 +55,9 @@ module('utc', function(hooks) {
     const utcValue = momentService.utc(utcTimeStr, fmtStr);
     this.set('utcValue', utcValue);
     await render(hbs`{{moment-format (utc estValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`);
-    assert.equal(this.$().text(), utcTimeStr);
+    assert.dom(this.element).hasText(utcTimeStr);
 
     await render(hbs`{{moment-format (utc utcValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`);
-    assert.equal(this.$().text(), utcTimeStr);
+    assert.dom(this.element).hasText(utcTimeStr);
   });
 });
