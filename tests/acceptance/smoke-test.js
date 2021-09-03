@@ -19,7 +19,7 @@ module('Acceptance: Smoke', function (hooks) {
 
   test('duration', async function (assert) {
     assert.expect(1);
-    visit('/smoke');
+    await visit('/smoke');
     assert.dom('.duration-seven-minutes').hasText('7 minutes');
   });
 });

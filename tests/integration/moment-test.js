@@ -19,7 +19,7 @@ module('moment', function(hooks) {
     this.set('tomorrow', moment().add(1, 'day'));
     await render(hbs`{{moment-from (moment) tomorrow}}`);
 
-    assert.equal(this.element.textContent, 'a day ago');
+    assert.dom(this.element).hasText('a day ago');
   });
 
   test('moment-from and moment integration', async function(assert) {
@@ -28,7 +28,7 @@ module('moment', function(hooks) {
     this.set('tomorrow', moment().add(1, 'day'));
     await render(hbs`{{moment-to (moment) tomorrow}}`);
 
-    assert.equal(this.element.textContent, 'in a day');
+    assert.dom(this.element).hasText('in a day');
   });
 
   test('moment and monent-format helper integration #2', async function(assert) {
@@ -41,7 +41,7 @@ module('moment', function(hooks) {
     });
 
     await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
-    assert.equal(this.element.textContent, 'May 3, 2010');
+    assert.dom(this.element).hasText('May 3, 2010');
   });
 
   test('moment can use the service locale', async function(assert) {
@@ -56,7 +56,7 @@ module('moment', function(hooks) {
     this.service.changeLocale('fr');
     await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
 
-    assert.equal(this.element.textContent, 'mai 3, 2010');
+    assert.dom(this.element).hasText('mai 3, 2010');
   });
 
   test('changing moment service locale changes global locale', function(assert) {
@@ -95,7 +95,7 @@ module('moment', function(hooks) {
     this.service.setLocale('fr');
     await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
 
-    assert.equal(this.element.textContent, 'mai 3, 2010');
+    assert.dom(this.element).hasText('mai 3, 2010');
   });
 
   test('moment can update service locale (updateLocale)', function(assert) {
