@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import { setOwner } from '@ember/application';
+import {setOwner} from '@ember/application';
 
 // This is carry-over from the legacy testing suite
 // must be invoked with call or apply so that the right `this`
@@ -12,7 +12,7 @@ export function createSubject(attrs) {
     factory = EmberObject.extend({});
   }
 
-  let extendedFactory = factory.class.extend(attrs);
+  let extendedFactory = (factory.class || factory).extend(attrs);
   let subject = extendedFactory.create({});
 
   setOwner(subject, this.owner);
