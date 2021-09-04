@@ -54,9 +54,9 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar date referenceDate formats timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate this.formats timeZone='America/New_York'}}`
     );
-    assert.dom(this.element).hasText('Yesterday');
+    assert.dom().hasText('Yesterday');
   });
 
   test('can pass individual formats', async function (assert) {

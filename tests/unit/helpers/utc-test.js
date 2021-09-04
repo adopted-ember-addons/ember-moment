@@ -11,16 +11,13 @@ module('utc', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.owner.lookup('service:moment').changeLocale('en');
+    this.moment = this.owner.lookup('service:moment');
+    this.moment.changeLocale('en');
   });
 
   hooks.afterEach(function () {
     moment.utc = utc;
-    this.setProperties({
-      moment: {
-        utc,
-      },
-    });
+    this.moment.utc = utc;
   });
 
   test('returns the result of moment.utc', async function (assert) {
@@ -44,7 +41,7 @@ module('utc', function (hooks) {
     const current = momentService.utc(timeStr, fmtStr);
     this.moment.utc = () => current;
     await render(hbs`{{moment-format (utc) 'YYYY-MM-DDTHH:mm:ss'}}`);
-    assert.dom(this.element).hasText(timeStr);
+    assert.dom().hasText(timeStr);
   });
 
   test('utc of existing moment', async function (assert) {
