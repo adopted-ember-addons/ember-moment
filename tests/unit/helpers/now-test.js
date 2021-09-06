@@ -16,7 +16,7 @@ module('now', function (hooks) {
 
   hooks.afterEach(function () {
     moment.now = now;
-    // self.moment.now = now;
+    this.moment.now = now;
   });
 
   test('returns the result of moment.now', async function (assert) {
@@ -29,12 +29,12 @@ module('now', function (hooks) {
     assert.dom(this.element).hasText('20111031');
   });
 
-  skip('returns the result of self.moment.now', async function (assert) {
+  test('returns the result of this.moment.now', async function (assert) {
     assert.expect(1);
 
     const momentService = this.owner.lookup('service:moment');
     const current = momentService.moment('20011031');
-    self.moment.now = () => current;
+    this.moment.now = () => current;
     await render(hbs`{{moment-format (now) 'YYYYMMDD'}}`);
     assert.dom(this.element).hasText('20011031');
   });
