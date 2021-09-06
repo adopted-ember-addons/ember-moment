@@ -16,7 +16,7 @@ export default BaseHelper.extend({
     const moment = this.moment;
     const { locale, timeZone } = formatHash;
     const [date, referenceTime, formats] = params;
-    const clone = Object.create(formatHash);
+    const clone = { ...formatHash };
 
     delete clone.locale;
     delete clone.timeZone;

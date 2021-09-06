@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import {setOwner} from '@ember/application';
+import { setOwner } from '@ember/application';
 
 // This is carry-over from the legacy testing suite
 // must be invoked with call or apply so that the right `this`
