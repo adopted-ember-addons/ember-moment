@@ -1,22 +1,26 @@
 import moment from 'moment';
 import hbs from 'htmlbars-inline-precompile';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
 import { render } from '@ember/test-helpers';
 
 let now = moment.now;
+let momentFromService;
 
 module('now', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.owner.lookup('service:moment').changeLocale('en');
+    this.moment = this.owner.lookup('service:moment');
+    this.moment.changeLocale('en');
+    momentFromService = this.moment.moment;
   });
 
   hooks.afterEach(function () {
     moment.now = now;
     this.moment.now = now;
+    this.moment.moment = momentFromService;
   });
 
   test('returns the result of moment.now', async function (assert) {
@@ -34,8 +38,8 @@ module('now', function (hooks) {
 
     const momentService = this.owner.lookup('service:moment');
     const current = momentService.moment('20011031');
-    this.moment.now = () => current;
+    this.moment.moment = () => current;
     await render(hbs`{{moment-format (now) 'YYYYMMDD'}}`);
-    assert.dom(this.element).hasText('20011031');
+    assert.dom().hasText('20011031');
   });
 });
