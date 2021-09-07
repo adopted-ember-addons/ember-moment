@@ -1,3 +1,7 @@
+### 8.0.2
+
+* Work around an error on ember-source@3.27+ with `Ember.computed.bool` not being a function
+
 ### 8.0.0
 
 * [BREAKING] drops Node 6 support
@@ -14,7 +18,7 @@
 
 * @fenekku deprecated hideSuffix/hidePrefix in favor of hideAffix
 * @crotwell added utc helper & macro
-* 
+*
 
 ### 7.6.0
 
