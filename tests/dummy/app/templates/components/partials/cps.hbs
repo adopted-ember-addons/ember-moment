@@ -1,32 +1,33 @@
-<div class="example">
-{{computedDate}}
-<br /><br />
-<code>
-  export default Ember.Controller.extend({<br />
-    date: new Date(), /* in the route I am looping this */ <br />
+<div class='example'>
+  {{this.computedDate}}
+  <br /><br />
+  <code>
+    export default Ember.Controller.extend({<br />
+    date: new Date(), /* in the route I am looping this */
+    <br />
     computedDate: moment('date', 'MM/DD/YY hh:mm:ss')<br />
-  });
-</code>
+    });
+  </code>
 </div>
 
-<div class="example">
-{{computedOneHourAgo}}
-<br /><br />
-<code>
-  export default Ember.Controller.extend({<br />
+<div class='example'>
+  {{this.computedOneHourAgo}}
+  <br /><br />
+  <code>
+    export default Ember.Controller.extend({<br />
     lastHour: new Date(new Date().valueOf() - (60*60*1000)),<br />
     computedOneHourAgo: ago('lastHour', 'MM/DD/YY hh:mm:ss')<br />
-  });
-</code>
+    });
+  </code>
 </div>
 
-<div class="example">
-{{computedNumHours}}
-<br /><br />
-<code>
-  export default Ember.Controller.extend({<br />
+<div class='example'>
+  {{this.computedNumHours}}
+  <br /><br />
+  <code>
+    export default Ember.Controller.extend({<br />
     numHours: 822,<br />
     computedNumHours: duration('numHours', 'hours'),<br />
-  });
-</code>
+    });
+  </code>
 </div>

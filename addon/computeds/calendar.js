@@ -12,7 +12,7 @@ export default computedFactory(function calendarComputed(
   }
 
   const [date, referenceTime, formats] = params;
-  const clone = Object.create(formatHash);
+  const clone = { ...formatHash };
   const mergedFormats = assign(clone, formats);
 
   return moment(date).calendar(referenceTime, mergedFormats);
