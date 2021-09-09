@@ -1,13 +1,15 @@
 import { run } from '@ember/runloop';
 import Helper from '@ember/component/helper';
-import { observer, computed } from '@ember/object';
+import { observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 // eslint-disable-next-line ember/no-classic-classes
 export default Helper.extend({
   moment: service(),
   disableInterval: false,
-  globalAllowEmpty: computed.bool('moment.__config__.allowEmpty'),
+  get globalAllowEmpty() {
+    return this.moment.__config__.allowEmpty;
+  },
   supportsGlobalAllowEmpty: true,
   // eslint-disable-next-line ember/no-observers
   localeOrTimeZoneChanged: observer(

@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { computed, set, setProperties } from '@ember/object';
 
 // eslint-disable-next-line ember/no-classic-classes

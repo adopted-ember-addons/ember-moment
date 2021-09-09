@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml/badge.svg)](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-moment.svg)](http://emberobserver.com/addons/ember-moment)
 
-[moment.js](http://momentjs.com) template helpers and computed property macros for Ember
+[moment.js](http://momentjs.com) template helpers for Ember.js
 
 
 ## Compatibility
@@ -19,7 +19,6 @@
 - [Installing](#installing)
 - [Upgrading](#upgrading)
 - [Usage](#usage)
-- [Computed Property Macros](#computed-property-macros)
 - [Helpers](#helpers)
   - [moment](#moment)
   - [utc](#utc)
@@ -61,12 +60,6 @@
 It's advisable to run `ember g ember-moment` between upgrades as dependencies may have been added, removed, or upgraded between releases.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrading.
 
 ## Usage
-
-## Computed Property Macros
-
-Ships with the following computed property macros: `duration`, `humanize`, `locale`, `tz`, `format`, `calendar`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
-
-[Computed Property Macro Documentation](https://github.com/adopted-ember-addons/ember-moment/wiki/Computed-Property-Macros)
 
 ## Helpers
 

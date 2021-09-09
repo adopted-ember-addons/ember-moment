@@ -1,15 +1,18 @@
 Locale:
-<button type="button" {{action 'changeLocale' 'es'}}>ES</button>
-<button type="button" {{action 'changeLocale' 'fr'}}>FR</button>
-<button type="button" {{action 'changeLocale' 'en'}}>EN</button>
+<button type='button' {{action 'changeLocale' 'es'}}>ES</button>
+<button type='button' {{action 'changeLocale' 'fr'}}>FR</button>
+<button type='button' {{action 'changeLocale' 'en'}}>EN</button>
 
-<hr>
+<hr />
 Default Format:
-<button type="button" {{action 'changeDefaultFormat' 'LLLL'}}>LLLL</button>
-<button type="button" {{action 'changeDefaultFormat' 'DD.MM.YYYY'}}>DD.MM.YYYY</button>
-<button type="button" {{action 'changeDefaultFormat' 'LL'}}>LL</button>
+<button type='button' {{action 'changeDefaultFormat' 'LLLL'}}>LLLL</button>
+<button
+  type='button'
+  {{action 'changeDefaultFormat' 'DD.MM.YYYY'}}
+>DD.MM.YYYY</button>
+<button type='button' {{action 'changeDefaultFormat' 'LL'}}>LL</button>
 
-<hr>
+<hr />
 
 <h3>Moment</h3>
 
@@ -19,7 +22,7 @@ Default Format:
 
 {{partials/format}}
 
-<hr>
+<hr />
 
 <h3>From Now</h3>
 
@@ -29,26 +32,20 @@ Default Format:
 
 {{partials/to-now}}
 
-<hr>
+<hr />
 
 <h3>Calendar</h3>
 
 {{partials/calendar}}
 
-<hr>
+<hr />
 
 <h3>Duration</h3>
 
 {{partials/duration}}
 
-<hr>
+<hr />
 
 <h3>Difference</h3>
 
 {{partials/diff}}
-
-<hr>
-
-<h3>Computed Property Macros</h3>
-
-{{partials/cps}}
