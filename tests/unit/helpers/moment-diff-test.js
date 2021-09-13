@@ -1,72 +1,73 @@
 import hbs from 'htmlbars-inline-precompile';
-import {
-  moduleForComponent,
-  test
-} from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('moment-diff', {
-  integration: true,
-  beforeEach() {
-    this.container.lookup('service:moment').changeLocale('en');
-  }
-});
+import { render } from '@ember/test-helpers';
 
-test('two args with (dateA, dateB)', function(assert) {
-  assert.expect(1);
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: momentService.moment('2017-01-10'),
-    dateB: momentService.moment('2017-01-15')
+module('moment-diff', function (hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  this.render(hbs `{{moment-diff dateA dateB}}`);
-  assert.equal(this.$().text(), '432000000');
-});
+  test('two args with (dateA, dateB)', async function (assert) {
+    assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: momentService.moment('2017-01-10'),
+      dateB: momentService.moment('2017-01-15'),
+    });
 
-test('two args with a moment and a string (dateMoment, dateString)', function(assert) {
-  assert.expect(1);
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateMoment: momentService.moment('2017-01-10'),
-    dateString: '2017-01-15'
+    await render(hbs`{{moment-diff dateA dateB}}`);
+    assert.dom(this.element).hasText('432000000');
   });
 
-  this.render(hbs `{{moment-diff dateMoment dateString}}`);
-  assert.equal(this.$().text(), '432000000');
-});
+  test('two args with a moment and a string (dateMoment, dateString)', async function (assert) {
+    assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateMoment: momentService.moment('2017-01-10'),
+      dateString: '2017-01-15',
+    });
 
-test('two args with (dateA, dateB) and expect a negative result', function(assert) {
-  assert.expect(1);
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: momentService.moment('2017-01-15'),
-    dateB: momentService.moment('2017-01-10')
+    await render(hbs`{{moment-diff dateMoment dateString}}`);
+    assert.dom(this.element).hasText('432000000');
   });
 
-  this.render(hbs `{{moment-diff dateA dateB}}`);
-  assert.equal(this.$().text(), '-432000000');
-});
+  test('two args with (dateA, dateB) and expect a negative result', async function (assert) {
+    assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: momentService.moment('2017-01-15'),
+      dateB: momentService.moment('2017-01-10'),
+    });
 
-test('two args with precision (dateA, dateB, precision)', function(assert) {
-  assert.expect(1);
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().add(5, 'day')
+    await render(hbs`{{moment-diff dateA dateB}}`);
+    assert.dom(this.element).hasText('-432000000');
   });
 
-  this.render(hbs `{{moment-diff dateA dateB precision='day'}}`);
-  assert.ok(this.$().text(), '5');
-});
+  test('two args with precision (dateA, dateB, precision)', async function (assert) {
+    assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: new Date(),
+      dateB: momentService.moment().add(5, 'day'),
+    });
 
-test('two args with precision and float (dateA, dateB, precision, float)', function(assert) {
-  assert.expect(1);
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().add(6, 'month')
+    await render(hbs`{{moment-diff dateA dateB precision='day'}}`);
+    assert.dom().hasText('5');
   });
 
-  this.render(hbs `{{moment-diff dateA dateB precision='year' float=true}}`);
-  assert.ok(this.$().text(), '.5');
+  test('two args with precision and float (dateA, dateB, precision, float)', async function (assert) {
+    assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: new Date(),
+      dateB: momentService.moment().add(6, 'month'),
+    });
+
+    await render(hbs`{{moment-diff dateA dateB precision='year' float=true}}`);
+    assert.dom().containsText('.5'); // good ol' rounding error
+  });
 });

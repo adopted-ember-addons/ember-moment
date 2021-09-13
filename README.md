@@ -1,17 +1,24 @@
 # ember-moment
 [![npm Version][npm-badge]][npm]
-[![Build Status][travis-badge]][travis]
+[![Build Status](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml/badge.svg)](https://github.com/adopted-ember-addons/ember-moment/actions/workflows/ci.yml)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-moment.svg)](http://emberobserver.com/addons/ember-moment)
 
-[moment.js](http://momentjs.com) template helpers and computed property macros for Ember
+[moment.js](http://momentjs.com) template helpers for Ember.js
+
+
+## Compatibility
+
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
 
 ## Table of Contents
+
 
 <!-- toc -->
 - [Installing](#installing)
 - [Upgrading](#upgrading)
 - [Usage](#usage)
-- [Computed Property Macros](#computed-property-macros)
 - [Helpers](#helpers)
   - [moment](#moment)
   - [utc](#utc)
@@ -48,17 +55,17 @@
 
 `ember install ember-moment`
 
+Compatibility:
+  - Ember Classic : &lt; v9 // the [ember-classic](https://github.com/adopted-ember-addons/ember-moment/tree/ember-classic) branch.
+
+    the `ember-classic` branch is in maintenance mode, and will only receive bugfixes
+  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
+
 ## Upgrading
 
 It's advisable to run `ember g ember-moment` between upgrades as dependencies may have been added, removed, or upgraded between releases.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrading.
 
 ## Usage
-
-## Computed Property Macros
-
-Ships with the following computed property macros: `duration`, `humanize`, `locale`, `tz`, `format`, `calendar`, `moment`, `toNow`, `fromNow`.  They can be used individually or composed together.
-
-[Computed Property Macro Documentation](https://github.com/stefanpenner/ember-moment/wiki/Computed-Property-Macros)
 
 ## Helpers
 
@@ -573,8 +580,10 @@ If you are knowingly passing null, undefined, or an empty string and want to ign
 
 [npm]: https://www.npmjs.org/package/ember-moment
 [npm-badge]: https://img.shields.io/npm/v/ember-moment.svg?style=flat-square
-[travis]: https://travis-ci.org/stefanpenner/ember-moment
-[travis-badge]: https://img.shields.io/travis/stefanpenner/ember-moment.svg?branch=master&style=flat-square
+
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## Docs to add
 - [Development](#development)

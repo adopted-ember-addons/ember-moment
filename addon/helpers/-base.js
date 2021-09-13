@@ -1,19 +1,29 @@
 import { run } from '@ember/runloop';
 import Helper from '@ember/component/helper';
-import { get, observer, computed } from '@ember/object';
+import { observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 
+// eslint-disable-next-line ember/no-classic-classes
 export default Helper.extend({
   moment: service(),
   disableInterval: false,
-  globalAllowEmpty: computed.bool('moment.__config__.allowEmpty'),
+  get globalAllowEmpty() {
+    return this.moment.__config__.allowEmpty;
+  },
   supportsGlobalAllowEmpty: true,
-  localeOrTimeZoneChanged: observer('moment.locale', 'moment.timeZone', function() {
-    this.recompute();
-  }),
+  // eslint-disable-next-line ember/no-observers
+  localeOrTimeZoneChanged: observer(
+    'moment.locale',
+    'moment.timeZone',
+    function () {
+      this.recompute();
+    }
+  ),
 
   compute(value, { interval }) {
-    if (get(this, 'disableInterval')) { return; }
+    if (this.disableInterval) {
+      return;
+    }
 
     this.clearTimer();
 
@@ -30,10 +40,10 @@ export default Helper.extend({
   },
 
   morphMoment(time, { locale, timeZone }) {
-    const momentService = get(this, 'moment');
+    const momentService = this.moment;
 
-    locale = locale || get(momentService, 'locale');
-    timeZone = timeZone || get(momentService, 'timeZone');
+    locale = locale || momentService.locale;
+    timeZone = timeZone || momentService.timeZone;
 
     if (locale && time.locale) {
       time = time.locale(locale);
@@ -53,5 +63,5 @@ export default Helper.extend({
   destroy() {
     this.clearTimer();
     this._super(...arguments);
-  }
+  },
 });

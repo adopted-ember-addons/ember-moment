@@ -1,72 +1,76 @@
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('moment-from',{
-  integration: true,
-  beforeEach() {
-    this.container.lookup('service:moment').changeLocale('en');
-  }
-});
+import { render } from '@ember/test-helpers';
 
-test('one arg (date)', function(assert) {
-  assert.expect(1);
+module('moment-from', function (hooks) {
+  setupRenderingTest(hooks);
 
-  const momentService = this.container.lookup('service:moment');
-
-  this.set('date', momentService.moment().add(3, 'day'));
-
-  this.render(hbs`{{moment-from date}}`);
-  assert.equal(this.$().text(), 'in 3 days');
-});
-
-test('two args (dateA, dateB)', function(assert) {
-  assert.expect(1);
-
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().add(3, 'day')
+  hooks.beforeEach(function () {
+    this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  this.render(hbs`{{moment-from dateB dateA}}`);
-  assert.equal(this.$().text(), 'in 3 days');
-});
+  test('one arg (date)', async function (assert) {
+    assert.expect(1);
 
-test('two args (dateA, dateB, hideAffix=boolean)', function(assert) {
-  assert.expect(2);
+    const momentService = this.owner.lookup('service:moment');
 
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().add(3, 'day')
+    this.set('date', momentService.moment().add(3, 'day'));
+
+    await render(hbs`{{moment-from date}}`);
+    assert.dom(this.element).hasText('in 3 days');
   });
 
-  this.render(hbs`{{moment-from dateB dateA hideAffix=true}}`);
-  assert.equal(this.$().text(), '3 days');
-  this.render(hbs`{{moment-from dateB dateA hideAffix=false}}`);
-  assert.equal(this.$().text(), 'in 3 days');
-});
+  test('two args (dateA, dateB)', async function (assert) {
+    assert.expect(1);
 
-test('three args (dateA, dateB, boolean)', function(assert) {
-  assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: new Date(),
+      dateB: momentService.moment().add(3, 'day'),
+    });
 
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: new Date(),
-    dateB: momentService.moment().subtract(3, 'day')
+    await render(hbs`{{moment-from dateB dateA}}`);
+    assert.dom(this.element).hasText('in 3 days');
   });
 
-  this.render(hbs`{{moment-from dateA dateB true}}`);
-  assert.equal(this.$().text(), '3 days');
-});
+  test('two args (dateA, dateB, hideAffix=boolean)', async function (assert) {
+    assert.expect(2);
 
-test('can inline a locale', function(assert) {
-  assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: new Date(),
+      dateB: momentService.moment().add(3, 'day'),
+    });
 
-  const momentService = this.container.lookup('service:moment');
-  this.set('dateA', momentService.moment());
-  this.set('dateB', momentService.moment().subtract(2, 'day'));
+    await render(hbs`{{moment-from dateB dateA hideAffix=true}}`);
+    assert.dom(this.element).hasText('3 days');
+    await render(hbs`{{moment-from dateB dateA hideAffix=false}}`);
+    assert.dom(this.element).hasText('in 3 days');
+  });
 
-  this.render(hbs`{{moment-from dateA dateB locale='es'}}`);
-  assert.equal(this.$().text(), 'en 2 días');
+  test('three args (dateA, dateB, boolean)', async function (assert) {
+    assert.expect(1);
+
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: new Date(),
+      dateB: momentService.moment().subtract(3, 'day'),
+    });
+
+    await render(hbs`{{moment-from dateA dateB true}}`);
+    assert.dom(this.element).hasText('3 days');
+  });
+
+  test('can inline a locale', async function (assert) {
+    assert.expect(1);
+
+    const momentService = this.owner.lookup('service:moment');
+    this.set('dateA', momentService.moment());
+    this.set('dateB', momentService.moment().subtract(2, 'day'));
+
+    await render(hbs`{{moment-from dateA dateB locale='es'}}`);
+    assert.dom(this.element).hasText('en 2 días');
+  });
 });

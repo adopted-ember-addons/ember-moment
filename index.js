@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-moment'
+  name: require('./package').name,
 };

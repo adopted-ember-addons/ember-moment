@@ -1,59 +1,64 @@
 import EmberObject from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('is-same-or-after',{
-  integration: true
-});
+import { render } from '@ember/test-helpers';
 
-test('one arg (comparisonDate)', function(assert) {
-  assert.expect(1);
+module('is-same-or-after', function (hooks) {
+  setupRenderingTest(hooks);
 
-  const momentService = this.container.lookup('service:moment');
-  const today = momentService.moment();
-  const threeDaysFromNow = today.add(3, 'days');
-  const context = EmberObject.create({
-    date: threeDaysFromNow
+  test('one arg (comparisonDate)', async function (assert) {
+    assert.expect(1);
+
+    const momentService = this.owner.lookup('service:moment');
+    const today = momentService.moment();
+    const threeDaysFromNow = today.add(3, 'days');
+    const context = EmberObject.create({
+      date: threeDaysFromNow,
+    });
+    this.set('context', context);
+
+    await render(hbs`{{is-same-or-after context.date}}`);
+    assert.dom(this.element).hasText('false');
   });
-  this.set('context', context);
 
-  this.render(hbs`{{is-same-or-after context.date}}`);
-  assert.equal(this.$().text(), 'false');
-});
+  test('one arg with precision (comparisonDate, precision)', async function (assert) {
+    assert.expect(1);
 
-test('one arg with precision (comparisonDate, precision)', function(assert) {
-  assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    const today = momentService.moment();
+    const threeYearsAgo = today.subtract(3, 'years');
+    const context = EmberObject.create({
+      date: threeYearsAgo,
+    });
+    this.set('context', context);
 
-  const momentService = this.container.lookup('service:moment');
-  const today = momentService.moment();
-  const threeYearsAgo = today.subtract(3, 'years');
-  const context = EmberObject.create({
-    date: threeYearsAgo
+    await render(hbs`{{is-same-or-after context.date precision='year'}}`);
+    assert.dom(this.element).hasText('true');
   });
-  this.set('context', context);
 
-  this.render(hbs`{{is-same-or-after context.date precision='year'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+  test('two args (evaluatedDate, comparisonDate)', async function (assert) {
+    assert.expect(1);
 
-test('two args (evaluatedDate, comparisonDate)', function(assert) {
-  assert.expect(1);
+    await render(hbs`{{is-same-or-after '2010-10-20' '2010-10-20'}}`);
+    assert.dom(this.element).hasText('true');
+  });
 
-  this.render(hbs`{{is-same-or-after '2010-10-20' '2010-10-20'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+  test('two args with precision (evaluatedDate, comparisonDate, precision)', async function (assert) {
+    assert.expect(1);
 
-test('two args with precision (evaluatedDate, comparisonDate, precision)', function(assert) {
-  assert.expect(1);
+    await render(
+      hbs`{{is-same-or-after '2010-12-20' '2010-10-19' precision='year'}}`
+    );
+    assert.dom(this.element).hasText('true');
+  });
 
-  this.render(hbs`{{is-same-or-after '2010-12-20' '2010-10-19' precision='year'}}`);
-  assert.equal(this.$().text(), 'true');
-});
+  test('can be called with null when allow-empty is set to true', async function (assert) {
+    assert.expect(1);
 
-test('can be called with null when allow-empty is set to true', function(assert) {
-  assert.expect(1);
-
-  this.set('date', null);
-  this.render(hbs`{{is-same-or-after null allow-empty=true}}`);
-  assert.equal(this.$().text(), '');
+    this.set('date', null);
+    await render(hbs`{{is-same-or-after null allow-empty=true}}`);
+    assert.dom(this.element).hasText('');
+  });
 });
