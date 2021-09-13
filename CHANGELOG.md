@@ -1,3 +1,41 @@
+### 9.0.0
+
+* [BREAKING] drops support for Node 8 and 10
+* [BREAKING] drops support for ember-source < 3.16
+
+  If you need to use ember-moment with ember-source older than 3.16,
+  you can still use ember-moment@v8.x -- there is a branch on GitHub,
+  `ember-classic` that is still open for bugfixes and other updates, if
+  folks need them.
+
+  Currently supported ember-source versions (tested in CI) are:
+    - 3.16
+    - 3.20
+    - 3.24
+
+  Additionally, CI is also testing against ember-release/beta/canary
+  as well as embroider-safe and embroider-optimized builds.
+
+* [BREAKING] removed computed property macros
+
+  Octane prefers vanillaJS:tm: getters over computed macros.
+
+  For example, where you would previously have
+
+  ```js
+  @duration(...) myDuration
+  ```
+
+  you would now want:
+
+  ```js
+  get myDuration() {
+    return moment.duration(...);
+  }
+  ```
+
+* (internal): Migrate to GitHub Actions
+
 ### 8.0.0
 
 * [BREAKING] drops Node 6 support
@@ -14,7 +52,7 @@
 
 * @fenekku deprecated hideSuffix/hidePrefix in favor of hideAffix
 * @crotwell added utc helper & macro
-* 
+*
 
 ### 7.6.0
 
