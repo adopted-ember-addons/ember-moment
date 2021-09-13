@@ -55,6 +55,12 @@
 
 `ember install ember-moment`
 
+Compatibility:
+  - Ember Classic : &lt; v9 // the [ember-classic](https://github.com/adopted-ember-addons/ember-moment/tree/ember-classic) branch.
+
+    the `ember-classic` branch is in maintenance mode, and will only receive bugfixes
+  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
+
 ## Upgrading
 
 It's advisable to run `ember g ember-moment` between upgrades as dependencies may have been added, removed, or upgraded between releases.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrading.
