@@ -3,15 +3,15 @@ import { inject as service } from '@ember/service';
 import { set } from '@ember/object';
 import { run } from '@ember/runloop';
 
-export default Route.extend({
-  moment: service(),
+export default class Index extends Route {
+  @service moment;
 
   beforeModel() {
     set(this, 'moment.locale', 'en');
-  },
+  }
 
   setupController(controller, model) {
-    this._super(controller, model);
+    super.setupController(controller, model);
 
     setInterval(function () {
       run(function () {
@@ -19,4 +19,4 @@ export default Route.extend({
       });
     }, 1000);
   }
-});
+}

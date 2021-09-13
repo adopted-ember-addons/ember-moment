@@ -1,100 +1,104 @@
 import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('moment-from-now',{
-  integration: true,
-  beforeEach() {
-    this.container.lookup('service:moment').changeLocale('en');
-  }
-});
+import { render } from '@ember/test-helpers';
 
-test('one arg (date)', function(assert) {
-  assert.expect(1);
+module('moment-from-now', function (hooks) {
+  setupRenderingTest(hooks);
 
-  const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-
-  const context = EmberObject.create({
-    date: threeDaysAgo
+  hooks.beforeEach(function () {
+    this.owner.lookup('service:moment').changeLocale('en');
   });
 
-  this.set('context', context);
+  test('one arg (date)', async function (assert) {
+    assert.expect(1);
 
-  this.render(hbs`{{moment-from-now context.date}}`);
-  assert.equal(this.$().text(), '3 days ago');
-});
+    const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-test('one arg (dateA, hideAffix=boolean)', function(assert) {
-  assert.expect(2);
+    const context = EmberObject.create({
+      date: threeDaysAgo,
+    });
 
-  const momentService = this.container.lookup('service:moment');
-  this.setProperties({
-    dateA: momentService.moment().add(3, 'day'),
+    this.set('context', context);
+
+    await render(hbs`{{moment-from-now context.date}}`);
+    assert.dom(this.element).hasText('3 days ago');
   });
 
-  this.render(hbs`{{moment-to-now dateA hideAffix=true}}`);
-  assert.equal(this.$().text(), '3 days');
-  this.render(hbs`{{moment-to-now dateA hideAffix=false}}`);
-  assert.equal(this.$().text(), '3 days ago');
-});
+  test('one arg (dateA, hideAffix=boolean)', async function (assert) {
+    assert.expect(2);
 
-test('two args (date, inputFormat)', function(assert) {
-  assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
+    this.setProperties({
+      dateA: momentService.moment().add(3, 'day'),
+    });
 
-  const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-
-  this.setProperties({
-    inputFormat: 'LLLL',
-    date: threeDaysAgo
+    await render(hbs`{{moment-to-now dateA hideAffix=true}}`);
+    assert.dom(this.element).hasText('3 days');
+    await render(hbs`{{moment-to-now dateA hideAffix=false}}`);
+    assert.dom(this.element).hasText('3 days ago');
   });
 
-  this.render(hbs`{{moment-from-now date inputFormat}}`);
-  assert.equal(this.$().text(), '3 days ago');
-});
+  test('two args (date, inputFormat)', async function (assert) {
+    assert.expect(1);
 
-test('change date input and change is reflected by bound helper', function(assert) {
-  assert.expect(2);
+    const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-  const momentService = this.container.lookup('service:moment');
-  const context = EmberObject.create({
-    date: momentService.moment().subtract(1, 'hour'),
+    this.setProperties({
+      inputFormat: 'LLLL',
+      date: threeDaysAgo,
+    });
+
+    await render(hbs`{{moment-from-now date inputFormat}}`);
+    assert.dom(this.element).hasText('3 days ago');
   });
 
-  this.set('context', context);
+  test('change date input and change is reflected by bound helper', async function (assert) {
+    assert.expect(2);
 
-  this.render(hbs`{{moment-from-now context.date}}`);
-  assert.equal(this.$().text(), 'an hour ago');
+    const momentService = this.owner.lookup('service:moment');
+    const context = EmberObject.create({
+      date: momentService.moment().subtract(1, 'hour'),
+    });
 
-  run(function () {
-    context.set('date', momentService.moment().subtract(2, 'hours'));
+    this.set('context', context);
+
+    await render(hbs`{{moment-from-now context.date}}`);
+    assert.dom(this.element).hasText('an hour ago');
+
+    run(function () {
+      context.set('date', momentService.moment().subtract(2, 'hours'));
+    });
+
+    assert.dom(this.element).hasText('2 hours ago');
   });
 
-  assert.equal(this.$().text(), '2 hours ago');
-});
+  test('can inline a locale instead of using global locale', async function (assert) {
+    assert.expect(1);
 
-test('can inline a locale instead of using global locale', function(assert) {
-  assert.expect(1);
+    const momentService = this.owner.lookup('service:moment');
 
-  const momentService = this.container.lookup('service:moment');
+    this.set('date', momentService.moment().subtract(1, 'hour'));
+    await render(hbs`{{moment-from-now date locale='es'}}`);
+    assert.dom(this.element).hasText('hace una hora');
+  });
 
-  this.set('date', momentService.moment().subtract(1, 'hour'));
-  this.render(hbs`{{moment-from-now date locale='es'}}`);
-  assert.equal(this.$().text(), 'hace una hora');
-});
+  test('can be called with null', async function (assert) {
+    assert.expect(1);
 
-test('can be called with null', function(assert) {
-  assert.expect(1);
+    this.set('date', null);
+    await render(hbs`{{moment-from-now date allow-empty=true}}`);
+    assert.dom(this.element).hasText('');
+  });
 
-  this.set('date', null);
-  this.render(hbs`{{moment-from-now date allow-empty=true}}`);
-  assert.equal(this.$().text(), '');
-});
-
-test('localize arabic - issue 239', function(assert) {
-  this.set('date', new Date());
-  this.render(hbs`{{moment-from-now date locale='ar' hideAffix=true}}`);
-  assert.equal(this.$().text(), 'ثانية واحدة');
+  test('localize arabic - issue 239', async function (assert) {
+    this.set('date', new Date());
+    await render(hbs`{{moment-from-now date locale='ar' hideAffix=true}}`);
+    assert.dom(this.element).hasText('ثانية واحدة');
+  });
 });

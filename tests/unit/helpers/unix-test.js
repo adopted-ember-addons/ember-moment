@@ -1,16 +1,22 @@
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-moduleForComponent('unix', {
-  integration: true,
-  beforeEach() {
-    this.container.lookup('service:moment').changeLocale('en');
-  }
-});
+import { render } from '@ember/test-helpers';
 
-test('returns the result of moment.unix', function(assert) {
-  assert.expect(1);
+module('unix', function (hooks) {
+  setupRenderingTest(hooks);
 
-  this.render(hbs`{{moment-format (unix 946684799) 'YYYYMMDD' timeZone='America/Los_Angeles'}}`);
-  assert.equal(this.$().text(), '19991231');
+  hooks.beforeEach(function () {
+    this.owner.lookup('service:moment').changeLocale('en');
+  });
+
+  test('returns the result of moment.unix', async function (assert) {
+    assert.expect(1);
+
+    await render(
+      hbs`{{moment-format (unix 946684799) 'YYYYMMDD' timeZone='America/Los_Angeles'}}`
+    );
+    assert.dom(this.element).hasText('19991231');
+  });
 });

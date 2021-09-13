@@ -1,40 +1,25 @@
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
-import startApp from '../helpers/start-app';
+import { visit } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-let application;
-
-module('Acceptance: Smoke', {
-  beforeEach() {
-    application = startApp();
-  },
-  afterEach() {
-    if (application) {
-      run(application, 'destroy');
-    }
-  }
-});
-
-test('moment', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.moment-independence-day').text(), 'Jul 04, 1776');
+module('Acceptance: Smoke', function (hooks) {
+  setupApplicationTest(hooks);
+  test('moment', async function (assert) {
+    assert.expect(1);
+    await visit('/smoke');
+    assert.dom('.moment-independence-day').hasText('Jul 04, 1776');
   });
-});
 
-test('ago', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.ago-now').text(), 'a few seconds ago');
+  test('ago', async function (assert) {
+    assert.expect(1);
+    await visit('/smoke');
+
+    assert.dom('.ago-now').hasText('a few seconds ago');
   });
-});
 
-test('duration', function(assert) {
-  assert.expect(1);
-  visit('/smoke');
-  andThen(function() {
-    assert.equal(find('.duration-seven-minutes').text(), '7 minutes');
+  test('duration', async function (assert) {
+    assert.expect(1);
+    await visit('/smoke');
+    assert.dom('.duration-seven-minutes').hasText('7 minutes');
   });
 });

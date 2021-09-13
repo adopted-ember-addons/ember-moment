@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
 import moment from 'moment';
 
-export default Route.extend({
-  setupController: function (controller, model) {
+export default class Smoke extends Route {
+  setupController(controller, model) {
     moment.locale('en');
-    return this._super(controller, model);
+    return super.setupController(controller, model);
   }
-});
+}
