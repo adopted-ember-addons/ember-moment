@@ -1,3 +1,7 @@
+### 9.0.1
+
+* @jfdnc fix error related to not having `defaultFormat` configured #363
+
 ### 9.0.0
 
 * [BREAKING] drops support for Node 8 and 10
