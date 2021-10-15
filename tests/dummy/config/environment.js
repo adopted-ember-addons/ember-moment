@@ -9,8 +9,6 @@ module.exports = function (environment) {
     moment: {
       allowEmpty: true,
       outputFormat: 'LLLL',
-      includeTimezone: 'all',
-      includeLocales: ['es', 'fr-ca', 'fr', 'ar'],
     },
     EmberENV: {
       FEATURES: {

@@ -37,13 +37,8 @@
   - [Common optional named arguments](#common-optional-named-arguments)
 - [ES6 Moment](#es6-moment)
 - [Configuration Options](#configuration-options)
-  - [Include Moment Timezone](#include-moment-timezone)
   - [Global Default Output Format](#global-default-output-format)
   - [Global Allow Empty Dates](#global-allow-empty-dates)
-  - [i18n support](#i18n-support)
-    - [Cherry pick locales (optimal)](#cherry-pick-locales-optimal)
-    - [Include all locales into build](#include-all-locales-into-build)
-    - [Write all the locales to a folder relative to `dist`](#write-all-the-locales-to-a-folder-relative-to-dist)
   - [Configure default runtime locale/timeZone](#configure-default-runtime-localetimezone)
     - [Globally set locale](#globally-set-locale)
     - [Globally set time zone](#globally-set-time-zone)
@@ -424,25 +419,6 @@ import moment from 'moment';
 
 ## Configuration Options
 
-### Include Moment Timezone
-
-You can optionally include the Moment Timezone package in your `config/environment.js` like so:
-
-```js
-// config/environment.js
-module.exports = function() {
-  return {
-    moment: {
-      // Options:
-      // 'all' - all years, all timezones
-      // 'subset' - 2012-2022, all timezones
-      // 'none' - no data, just timezone API
-      includeTimezone: 'all'
-    }
-  }
-};
-```
-
 ### Global Default Output Format
 
 Your application may require a default format other than the default, ISO 8601.  For example, you may want dates to fallback on the localized shorthand format `L` by default.
@@ -485,58 +461,6 @@ module.exports = function() {
     }
   }
 };
-```
-
-### i18n support
-
-#### Cherry pick locales (optimal)
-
-```js
-// config/environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      // To cherry-pick specific locale support into your application.
-      // Full list of locales: https://github.com/moment/moment/tree/2.10.3/locale
-      includeLocales: ['es', 'fr-ca']
-    }
-  };
-```
-
-#### Include all locales into build
-
-```js
-// config/environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      includeLocales: true
-    }
-  };
-```
-
-*NOTE: English is bundled automatically, no need to add `en` in `includeLocales`*
-
-#### Write all the locales to a folder relative to `dist`
-
-Alternatively, you can copy all of moment's locale files into your `dist` directory.
-
-```js
-// config.environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      // This will output _all_ locale scripts to assets/moment-locales
-      // this option does not respect includeLocales
-      localeOutputPath: 'assets/moment-locales'
-    }
-  };
-```
-
-This allows you to load them on demand when you need them:
-
-```js
-Ember.$.getScript('/assets/moment-locales/fr.js');
 ```
 
 ### Configure default runtime locale/timeZone
