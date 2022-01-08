@@ -56,7 +56,6 @@ async function lts_3_24(project) {
   });
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
-    resolveName: 'ember-source-3.24',
   });
 }
 
@@ -103,14 +102,11 @@ async function canary(project) {
 async function embroider(project) {
   project.linkDevDependency('@embroider/core', {
     baseDir: __dirname,
-    resolveName: '@embroider/core-latest',
   });
   project.linkDevDependency('@embroider/compat', {
     baseDir: __dirname,
-    resolveName: '@embroider/compat-latest',
   });
   project.linkDevDependency('@embroider/webpack', {
     baseDir: __dirname,
-    resolveName: '@embroider/webpack-latest',
   });
 }
