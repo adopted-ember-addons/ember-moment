@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 'v*' # prior release branches (e.g. `v0.30.x` branch)
     tags:
       - 'v*'
   pull_request:
