@@ -1,11 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist/
-/tmp/
+/dist
+/test-app/dist/
+/test-app/tmp/
 
 # dependencies
-/bower_components/
 /node_modules/
 
 # misc
