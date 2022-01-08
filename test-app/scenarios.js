@@ -10,7 +10,7 @@ Scenarios.fromDir(__dirname)
     // release,
     // beta,
     // canary,
-    // embroider,
+    embroider,
   })
   .forEachScenario((scenario) => {
     Qmodule(scenario.name, function (hooks) {
@@ -99,14 +99,14 @@ async function lts_3_28(project) {
 //   });
 // }
 
-// async function embroider(project) {
-//   project.linkDevDependency('@embroider/core', {
-//     baseDir: __dirname,
-//   });
-//   project.linkDevDependency('@embroider/compat', {
-//     baseDir: __dirname,
-//   });
-//   project.linkDevDependency('@embroider/webpack', {
-//     baseDir: __dirname,
-//   });
-// }
+async function embroider(project) {
+  project.linkDevDependency('@embroider/core', {
+    baseDir: __dirname,
+  });
+  project.linkDevDependency('@embroider/compat', {
+    baseDir: __dirname,
+  });
+  project.linkDevDependency('@embroider/webpack', {
+    baseDir: __dirname,
+  });
+}
