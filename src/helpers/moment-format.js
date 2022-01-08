@@ -12,7 +12,6 @@ export default BaseHelper.extend({
 
   compute: computeFn(function (params, { locale, timeZone }) {
     this._super(...arguments);
-    debugger;
     const moment = this.moment;
     const { length } = params;
 

@@ -19,7 +19,10 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    // TODO: remove these
+    'ember/no-jquery': 0,
+  },
   overrides: [
     // node files
     {
@@ -28,8 +31,13 @@ module.exports = {
         '.prettierrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
-        'addon-main.js',
+        'index.js',
+        'testem.js',
+        'blueprints/*/index.js',
+        'config/**/*.js',
+        'scenarios.js',
       ],
+      excludedFiles: ['addon/**', 'addon-test-support/**', 'app/**'],
       parserOptions: {
         sourceType: 'script',
       },
