@@ -15,6 +15,12 @@ module.exports = function (defaults) {
       {
         package: 'qunit',
       },
+      {
+        package: 'moment',
+      },
+      {
+        package: 'moment-timezone',
+      },
     ],
   });
 };
