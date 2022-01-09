@@ -19,6 +19,7 @@
   ],
   "repository": "https://github.com/adopted-ember-addons/ember-moment.git",
   "scripts": {
+    "clean": "rm -rf dist node_modules test-app/node_modules",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
