@@ -8,8 +8,8 @@ Scenarios.fromDir(__dirname)
     lts_3_24,
     lts_3_28,
     release,
-    // beta,
-    // canary,
+    beta,
+    canary,
     embroider,
   })
   .forEachScenario((scenario) => {
@@ -80,23 +80,23 @@ async function release(project) {
   });
 }
 
-// async function beta(project) {
-//   project.linkDevDependency('ember-cli', {
-//     baseDir: __dirname,
-//     resolveName: 'ember-cli-beta',
-//   });
-//   project.linkDevDependency('ember-source', {
-//     baseDir: __dirname,
-//     resolveName: 'ember-source-beta',
-//   });
-// }
+async function beta(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-beta',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-beta',
+  });
+}
 
-// async function canary(project) {
-//   project.linkDevDependency('ember-source', {
-//     baseDir: __dirname,
-//     resolveName: 'ember-source-canary',
-//   });
-// }
+async function canary(project) {
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-canary',
+  });
+}
 
 async function embroider(project) {
   project.linkDevDependency('@embroider/core', {
