@@ -25,7 +25,7 @@ module('moment-from-now', function (hooks) {
 
     this.set('context', context);
 
-    await render(hbs`{{moment-from-now context.date}}`);
+    await render(hbs`{{moment-from-now this.context.date}}`);
     assert.dom(this.element).hasText('3 days ago');
   });
 
@@ -37,9 +37,9 @@ module('moment-from-now', function (hooks) {
       dateA: momentService.moment().add(3, 'day'),
     });
 
-    await render(hbs`{{moment-to-now dateA hideAffix=true}}`);
+    await render(hbs`{{moment-to-now this.dateA hideAffix=true}}`);
     assert.dom(this.element).hasText('3 days');
-    await render(hbs`{{moment-to-now dateA hideAffix=false}}`);
+    await render(hbs`{{moment-to-now this.dateA hideAffix=false}}`);
     assert.dom(this.element).hasText('3 days ago');
   });
 
@@ -54,7 +54,7 @@ module('moment-from-now', function (hooks) {
       date: threeDaysAgo,
     });
 
-    await render(hbs`{{moment-from-now date inputFormat}}`);
+    await render(hbs`{{moment-from-now this.date this.inputFormat}}`);
     assert.dom(this.element).hasText('3 days ago');
   });
 
@@ -68,7 +68,7 @@ module('moment-from-now', function (hooks) {
 
     this.set('context', context);
 
-    await render(hbs`{{moment-from-now context.date}}`);
+    await render(hbs`{{moment-from-now this.context.date}}`);
     assert.dom(this.element).hasText('an hour ago');
 
     run(function () {
@@ -84,7 +84,7 @@ module('moment-from-now', function (hooks) {
     const momentService = this.owner.lookup('service:moment');
 
     this.set('date', momentService.moment().subtract(1, 'hour'));
-    await render(hbs`{{moment-from-now date locale='es'}}`);
+    await render(hbs`{{moment-from-now this.date locale='es'}}`);
     assert.dom(this.element).hasText('hace una hora');
   });
 
@@ -92,13 +92,13 @@ module('moment-from-now', function (hooks) {
     assert.expect(1);
 
     this.set('date', null);
-    await render(hbs`{{moment-from-now date allow-empty=true}}`);
+    await render(hbs`{{moment-from-now this.date allow-empty=true}}`);
     assert.dom(this.element).hasText('');
   });
 
   test('localize arabic - issue 239', async function (assert) {
     this.set('date', new Date());
-    await render(hbs`{{moment-from-now date locale='ar' hideAffix=true}}`);
+    await render(hbs`{{moment-from-now this.date locale='ar' hideAffix=true}}`);
     assert.dom(this.element).hasText('ثانية واحدة');
   });
 });

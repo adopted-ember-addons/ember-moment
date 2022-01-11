@@ -21,7 +21,7 @@ module('moment-to-now', function (hooks) {
       dateA: momentService.moment().subtract(3, 'day'),
     });
 
-    await render(hbs`{{moment-to-now dateA}}`);
+    await render(hbs`{{moment-to-now this.dateA}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -33,9 +33,9 @@ module('moment-to-now', function (hooks) {
       date: momentService.moment().subtract(3, 'day'),
     });
 
-    await render(hbs`{{moment-to-now date hideAffix=true}}`);
+    await render(hbs`{{moment-to-now this.date hideAffix=true}}`);
     assert.dom(this.element).hasText('3 days');
-    await render(hbs`{{moment-to-now date hideAffix=false}}`);
+    await render(hbs`{{moment-to-now this.date hideAffix=false}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -48,7 +48,7 @@ module('moment-to-now', function (hooks) {
       date: momentService.moment().subtract(3, 'day'),
     });
 
-    await render(hbs`{{moment-to-now date format}}`);
+    await render(hbs`{{moment-to-now this.date this.format}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -61,7 +61,7 @@ module('moment-to-now', function (hooks) {
     });
 
     this.set('context', context);
-    await render(hbs`{{moment-to-now context.date}}`);
+    await render(hbs`{{moment-to-now this.context.date}}`);
     assert.dom(this.element).hasText('in an hour');
 
     run(function () {
@@ -76,7 +76,7 @@ module('moment-to-now', function (hooks) {
 
     const momentService = this.owner.lookup('service:moment');
     this.set('date', momentService.moment().subtract(1, 'hour'));
-    await render(hbs`{{moment-to-now date locale='es'}}`);
+    await render(hbs`{{moment-to-now this.date locale='es'}}`);
     assert.dom(this.element).hasText('en una hora');
   });
 
@@ -84,7 +84,7 @@ module('moment-to-now', function (hooks) {
     assert.expect(1);
 
     this.set('date', null);
-    await render(hbs`{{moment-to-now date allow-empty=true}}`);
+    await render(hbs`{{moment-to-now this.date allow-empty=true}}`);
     assert.dom(this.element).hasText('');
   });
 
@@ -92,7 +92,7 @@ module('moment-to-now', function (hooks) {
     assert.expect(1);
 
     this.set('date', null);
-    await render(hbs`{{moment-to-now date}}`);
+    await render(hbs`{{moment-to-now this.date}}`);
     assert.dom(this.element).hasText('');
   });
 
@@ -100,7 +100,7 @@ module('moment-to-now', function (hooks) {
     assert.expect(1);
 
     this.set('date', null);
-    await render(hbs`{{moment-to-now date allow-empty=false}}`);
+    await render(hbs`{{moment-to-now this.date allow-empty=false}}`);
     assert.dom(this.element).hasText('Invalid date');
   });
 });

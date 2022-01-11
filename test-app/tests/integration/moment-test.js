@@ -17,7 +17,7 @@ module('moment', function (hooks) {
     assert.expect(1);
 
     this.set('tomorrow', moment().add(1, 'day'));
-    await render(hbs`{{moment-from (moment) tomorrow}}`);
+    await render(hbs`{{moment-from (moment) this.tomorrow}}`);
 
     assert.dom(this.element).hasText('a day ago');
   });
@@ -26,7 +26,7 @@ module('moment', function (hooks) {
     assert.expect(1);
 
     this.set('tomorrow', moment().add(1, 'day'));
-    await render(hbs`{{moment-to (moment) tomorrow}}`);
+    await render(hbs`{{moment-to (moment) this.tomorrow}}`);
 
     assert.dom(this.element).hasText('in a day');
   });
@@ -40,7 +40,9 @@ module('moment', function (hooks) {
       date: '5/3/10',
     });
 
-    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+    await render(
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+    );
     assert.dom(this.element).hasText('May 3, 2010');
   });
 
@@ -54,7 +56,9 @@ module('moment', function (hooks) {
     });
 
     this.service.changeLocale('fr');
-    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+    await render(
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+    );
 
     assert.dom(this.element).hasText('mai 3, 2010');
   });
@@ -93,7 +97,9 @@ module('moment', function (hooks) {
     });
 
     this.service.setLocale('fr');
-    await render(hbs`{{moment-format (moment date inputFormat) outputFormat}}`);
+    await render(
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+    );
 
     assert.dom(this.element).hasText('mai 3, 2010');
   });

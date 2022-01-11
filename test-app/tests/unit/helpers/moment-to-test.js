@@ -17,7 +17,7 @@ module('moment-to', function (hooks) {
 
     this.set('date', momentService.moment().subtract(3, 'day'));
 
-    await render(hbs`{{moment-to date}}`);
+    await render(hbs`{{moment-to this.date}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -30,7 +30,7 @@ module('moment-to', function (hooks) {
       dateB: momentService.moment().subtract(3, 'day'),
     });
 
-    await render(hbs`{{moment-to dateB dateA}}`);
+    await render(hbs`{{moment-to this.dateB this.dateA}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -43,9 +43,9 @@ module('moment-to', function (hooks) {
       dateB: momentService.moment().add(3, 'day'),
     });
 
-    await render(hbs`{{moment-to dateA dateB hideAffix=true}}`);
+    await render(hbs`{{moment-to this.dateA this.dateB hideAffix=true}}`);
     assert.dom(this.element).hasText('3 days');
-    await render(hbs`{{moment-to dateA dateB hideAffix=false}}`);
+    await render(hbs`{{moment-to this.dateA this.dateB hideAffix=false}}`);
     assert.dom(this.element).hasText('in 3 days');
   });
 
@@ -58,7 +58,7 @@ module('moment-to', function (hooks) {
       dateB: momentService.moment().add(3, 'day'),
     });
 
-    await render(hbs`{{moment-to dateA dateB true}}`);
+    await render(hbs`{{moment-to this.dateA this.dateB true}}`);
     assert.dom(this.element).hasText('3 days');
   });
 
@@ -69,7 +69,7 @@ module('moment-to', function (hooks) {
     this.set('dateA', momentService.moment());
     this.set('dateB', momentService.moment().add(2, 'day'));
 
-    await render(hbs`{{moment-to dateA dateB locale='es'}}`);
+    await render(hbs`{{moment-to this.dateA this.dateB locale='es'}}`);
     assert.dom(this.element).hasText('en 2 días');
   });
 });

@@ -15,7 +15,7 @@ module('moment-duration', function (hooks) {
     assert.expect(1);
 
     this.set('date', 86400000);
-    await render(hbs`{{moment-duration date}}`);
+    await render(hbs`{{moment-duration this.date}}`);
     assert.dom(this.element).hasText('a day');
   });
 
@@ -23,7 +23,7 @@ module('moment-duration', function (hooks) {
     assert.expect(1);
 
     this.set('date', '');
-    await render(hbs`{{moment-duration date}}`);
+    await render(hbs`{{moment-duration this.date}}`);
     assert.dom(this.element).hasText('a few seconds');
   });
 
@@ -40,7 +40,7 @@ module('moment-duration', function (hooks) {
       years: 2,
     });
 
-    await render(hbs`{{moment-duration date}}`);
+    await render(hbs`{{moment-duration this.date}}`);
     assert.dom(this.element).hasText('2 years');
   });
 
@@ -48,7 +48,7 @@ module('moment-duration', function (hooks) {
     assert.expect(1);
 
     this.set('date', '23:59:59');
-    await render(hbs`{{moment-duration date}}`);
+    await render(hbs`{{moment-duration this.date}}`);
     assert.dom(this.element).hasText('a day');
   });
 
@@ -60,7 +60,7 @@ module('moment-duration', function (hooks) {
       date: 1,
     });
 
-    await render(hbs`{{moment-duration date unit}}`);
+    await render(hbs`{{moment-duration this.date this.unit}}`);
 
     assert.dom(this.element).hasText('a minute');
   });
@@ -73,7 +73,7 @@ module('moment-duration', function (hooks) {
       date: 1,
     });
 
-    await render(hbs`{{moment-duration date unit}}`);
+    await render(hbs`{{moment-duration this.date this.unit}}`);
     assert.dom(this.element).hasText('a day');
   });
 
@@ -85,7 +85,7 @@ module('moment-duration', function (hooks) {
       date: null,
     });
 
-    await render(hbs`{{moment-duration date unit}}`);
+    await render(hbs`{{moment-duration this.date this.unit}}`);
     assert.dom(this.element).hasText('a few seconds');
   });
 
@@ -93,7 +93,7 @@ module('moment-duration', function (hooks) {
     assert.expect(1);
 
     this.set('date', 86400000);
-    await render(hbs`{{moment-duration date locale='es'}}`);
+    await render(hbs`{{moment-duration this.date locale='es'}}`);
     assert.dom(this.element).hasText('un día'); // note: that's not an `i` in día
   });
 });

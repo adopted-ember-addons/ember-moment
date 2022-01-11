@@ -21,7 +21,7 @@ module('moment-format', function (hooks) {
     assert.expect(1);
 
     this.set('date', date(date(0)));
-    await render(hbs`{{moment-format date}}`);
+    await render(hbs`{{moment-format this.date}}`);
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 7:00 PM');
   });
 
@@ -29,7 +29,7 @@ module('moment-format', function (hooks) {
     assert.expect(2);
 
     this.set('date', date(date(0)));
-    await render(hbs`{{moment-format date}}`);
+    await render(hbs`{{moment-format this.date}}`);
 
     const service = this.owner.lookup('service:moment');
 
@@ -49,7 +49,7 @@ module('moment-format', function (hooks) {
       date: date(Date.parse('2011-10-10T14:48:00-05:00')),
     });
 
-    await render(hbs`{{moment-format date format}}`);
+    await render(hbs`{{moment-format this.date this.format}}`);
     assert.dom(this.element).hasText('October 10, 2011');
   });
 
@@ -62,7 +62,9 @@ module('moment-format', function (hooks) {
       date: '5/3/10',
     });
 
-    await render(hbs`{{moment-format date outputFormat inputFormat}}`);
+    await render(
+      hbs`{{moment-format this.date this.outputFormat this.inputFormat}}`
+    );
     assert.dom(this.element).hasText('May 3, 2010');
   });
 
@@ -75,7 +77,7 @@ module('moment-format', function (hooks) {
 
     this.set('context', context);
 
-    await render(hbs`{{moment-format context.date}}`);
+    await render(hbs`{{moment-format this.context.date}}`);
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 7:00 PM');
 
     run(function () {
@@ -89,7 +91,7 @@ module('moment-format', function (hooks) {
     assert.expect(1);
     this.set('date', date(date(0)));
 
-    await render(hbs`{{moment-format date 'LLLL' locale='es'}}`);
+    await render(hbs`{{moment-format this.date 'LLLL' locale='es'}}`);
     assert
       .dom(this.element)
       .hasText('miércoles, 31 de diciembre de 1969 19:00');
@@ -100,7 +102,7 @@ module('moment-format', function (hooks) {
 
     this.set('date', 0);
     await render(
-      hbs`{{moment-format date 'LLLL' timeZone='America/New_York'}}`
+      hbs`{{moment-format this.date 'LLLL' timeZone='America/New_York'}}`
     );
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 7:00 PM');
   });
@@ -110,7 +112,7 @@ module('moment-format', function (hooks) {
 
     this.set('date', 0);
     await render(
-      hbs`{{moment-format date 'LLLL' timeZone='America/Los_Angeles'}}`
+      hbs`{{moment-format this.date 'LLLL' timeZone='America/Los_Angeles'}}`
     );
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 4:00 PM');
   });
@@ -134,7 +136,7 @@ module('moment-format', function (hooks) {
     );
 
     this.set('date', date(0));
-    await render(hbs`{{moment-format date (get-format 'global-format')}}`);
+    await render(hbs`{{moment-format this.date (get-format 'global-format')}}`);
     assert.dom(this.element).hasText('12/31/1969');
   });
 });

@@ -21,7 +21,7 @@ module('moment-add', function (hooks) {
       .add(duration)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-add duration}}`);
+    await render(hbs`{{moment-add this.duration}}`);
     //assert.ok(this.$().text().match());
     assert.dom(this.element).hasText(new RegExp(expectedString));
   });
@@ -40,7 +40,7 @@ module('moment-add', function (hooks) {
       .add(number, precision)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-add number precision}}`);
+    await render(hbs`{{moment-add this.number this.precision}}`);
     assert.dom(this.element).hasText(new RegExp(expectedString));
   });
 
@@ -54,7 +54,7 @@ module('moment-add', function (hooks) {
       .add(duration)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-add '2016-06-01' duration}}`);
+    await render(hbs`{{moment-add '2016-06-01' this.duration}}`);
     assert.dom(this.element).hasText(new RegExp(expectedString));
   });
 
@@ -68,7 +68,7 @@ module('moment-add', function (hooks) {
       .add(number, 'days')
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-add number precision='days'}}`);
+    await render(hbs`{{moment-add this.number precision='days'}}`);
     assert.dom(this.element).hasText(new RegExp(expectedString));
   });
 
@@ -82,7 +82,7 @@ module('moment-add', function (hooks) {
       .add(number, 'days')
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-add '2016-06-01' number precision='days'}}`);
+    await render(hbs`{{moment-add '2016-06-01' this.number precision='days'}}`);
     assert.dom(this.element).hasText(new RegExp(expectedString));
   });
 });

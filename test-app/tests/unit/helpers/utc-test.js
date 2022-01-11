@@ -55,10 +55,14 @@ module('utc', function (hooks) {
     this.set('estValue', estValue);
     const utcValue = momentService.utc(utcTimeStr, fmtStr);
     this.set('utcValue', utcValue);
-    await render(hbs`{{moment-format (utc estValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`);
+    await render(
+      hbs`{{moment-format (utc this.estValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`
+    );
     assert.dom(this.element).hasText(utcTimeStr);
 
-    await render(hbs`{{moment-format (utc utcValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`);
+    await render(
+      hbs`{{moment-format (utc this.utcValue) 'YYYY-MM-DDTHH:mm:ss Z'}}`
+    );
     assert.dom(this.element).hasText(utcTimeStr);
   });
 });

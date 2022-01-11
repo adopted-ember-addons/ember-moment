@@ -25,7 +25,7 @@ module('is-same', function (hooks) {
     });
     this.set('context', context);
 
-    await render(hbs`{{is-same context.date precision='year'}}`);
+    await render(hbs`{{is-same this.context.date precision='year'}}`);
     assert.dom(this.element).hasText('true');
   });
 

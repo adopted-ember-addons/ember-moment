@@ -19,7 +19,7 @@ module('is-after', function (hooks) {
     });
     this.set('context', context);
 
-    await render(hbs`{{is-after context.date}}`);
+    await render(hbs`{{is-after this.context.date}}`);
     assert.dom(this.element).hasText('false');
   });
 
@@ -34,7 +34,7 @@ module('is-after', function (hooks) {
     });
     this.set('context', context);
 
-    await render(hbs`{{is-after context.date precision='year'}}`);
+    await render(hbs`{{is-after this.context.date precision='year'}}`);
     assert.dom(this.element).hasText('true');
   });
 

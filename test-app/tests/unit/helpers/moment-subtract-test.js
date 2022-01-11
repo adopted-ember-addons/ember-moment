@@ -21,7 +21,7 @@ module('moment-subtract', function (hooks) {
       .subtract(duration)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-subtract duration}}`);
+    await render(hbs`{{moment-subtract this.duration}}`);
     assert.dom().containsText(expectedString);
   });
 
@@ -39,7 +39,7 @@ module('moment-subtract', function (hooks) {
       .subtract(number, precision)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-subtract number precision}}`);
+    await render(hbs`{{moment-subtract this.number this.precision}}`);
     assert.dom().containsText(expectedString);
   });
 
@@ -53,7 +53,7 @@ module('moment-subtract', function (hooks) {
       .subtract(duration)
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-subtract '2016-06-01' duration}}`);
+    await render(hbs`{{moment-subtract '2016-06-01' this.duration}}`);
     assert.dom().containsText(expectedString);
   });
 
@@ -67,7 +67,7 @@ module('moment-subtract', function (hooks) {
       .subtract(number, 'days')
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-subtract number precision='days'}}`);
+    await render(hbs`{{moment-subtract this.number precision='days'}}`);
     assert.dom().containsText(expectedString);
   });
 
@@ -81,7 +81,9 @@ module('moment-subtract', function (hooks) {
       .subtract(number, 'days')
       .format('ddd MMM DD YYYY');
 
-    await render(hbs`{{moment-subtract '2016-06-01' number precision='days'}}`);
+    await render(
+      hbs`{{moment-subtract '2016-06-01' this.number precision='days'}}`
+    );
     assert.dom().containsText(expectedString);
   });
 });

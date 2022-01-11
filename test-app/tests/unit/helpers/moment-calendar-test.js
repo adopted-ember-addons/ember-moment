@@ -70,7 +70,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate lastDay=lastDay timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate lastDay=this.lastDay timeZone='America/New_York'}}`
     );
     assert.dom(this.element).hasText('Yesterday!');
   });

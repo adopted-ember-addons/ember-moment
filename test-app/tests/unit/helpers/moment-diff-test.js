@@ -19,7 +19,7 @@ module('moment-diff', function (hooks) {
       dateB: momentService.moment('2017-01-15'),
     });
 
-    await render(hbs`{{moment-diff dateA dateB}}`);
+    await render(hbs`{{moment-diff this.dateA this.dateB}}`);
     assert.dom(this.element).hasText('432000000');
   });
 
@@ -31,7 +31,7 @@ module('moment-diff', function (hooks) {
       dateString: '2017-01-15',
     });
 
-    await render(hbs`{{moment-diff dateMoment dateString}}`);
+    await render(hbs`{{moment-diff this.dateMoment this.dateString}}`);
     assert.dom(this.element).hasText('432000000');
   });
 
@@ -43,7 +43,7 @@ module('moment-diff', function (hooks) {
       dateB: momentService.moment('2017-01-10'),
     });
 
-    await render(hbs`{{moment-diff dateA dateB}}`);
+    await render(hbs`{{moment-diff this.dateA this.dateB}}`);
     assert.dom(this.element).hasText('-432000000');
   });
 
@@ -55,7 +55,7 @@ module('moment-diff', function (hooks) {
       dateB: momentService.moment().add(5, 'day'),
     });
 
-    await render(hbs`{{moment-diff dateA dateB precision='day'}}`);
+    await render(hbs`{{moment-diff this.dateA this.dateB precision='day'}}`);
     assert.dom().hasText('5');
   });
 
@@ -67,7 +67,9 @@ module('moment-diff', function (hooks) {
       dateB: momentService.moment().add(6, 'month'),
     });
 
-    await render(hbs`{{moment-diff dateA dateB precision='year' float=true}}`);
+    await render(
+      hbs`{{moment-diff this.dateA this.dateB precision='year' float=true}}`
+    );
     assert.dom().containsText('.5'); // good ol' rounding error
   });
 });
