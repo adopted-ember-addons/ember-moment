@@ -7,7 +7,7 @@ Scenarios.fromDir(__dirname)
     lts_3_20,
     lts_3_24,
     lts_3_28,
-    // release,
+    release,
     // beta,
     // canary,
     embroider,
@@ -69,16 +69,16 @@ async function lts_3_28(project) {
   });
 }
 
-// async function release(project) {
-//   project.linkDevDependency('ember-cli', {
-//     baseDir: __dirname,
-//     resolveName: 'ember-cli-latest',
-//   });
-//   project.linkDevDependency('ember-source', {
-//     baseDir: __dirname,
-//     resolveName: 'ember-source-latest',
-//   });
-// }
+async function release(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-latest',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-latest',
+  });
+}
 
 // async function beta(project) {
 //   project.linkDevDependency('ember-cli', {
