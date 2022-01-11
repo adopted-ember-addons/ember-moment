@@ -15,8 +15,9 @@
 <div class='example'>
   {{moment-diff this.currentTime this.inTwelveHours precision='day' float=true}}
   <code>
-    \{{moment-diff this.currentTime this.inTwelveHours precision='day'
-    float=true}}
+    {{! template linter bug: https://github.com/ember-template-lint/ember-template-lint/issues/2330 }}
+    {{! template-lint-disable no-unbalanced-curlies}}
+    \{{moment-diff this.currentTime this.inTwelveHours precision='day' float=true}}
   </code>
 </div>
 

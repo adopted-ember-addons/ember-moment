@@ -22,7 +22,7 @@ module('moment', function (hooks) {
     assert.dom(this.element).hasText('a day ago');
   });
 
-  test('moment-from and moment integration', async function (assert) {
+  test('moment-to and moment integration', async function (assert) {
     assert.expect(1);
 
     this.set('tomorrow', moment().add(1, 'day'));
