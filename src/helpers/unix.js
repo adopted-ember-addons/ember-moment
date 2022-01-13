@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+import { momentOrMomentTimezone as moment } from '../index';
 import BaseHelper from './-base';
 
 export default BaseHelper.extend({

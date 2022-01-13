@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export default class Smoke extends Route {
   setupController(controller, model) {

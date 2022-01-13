@@ -10,6 +10,7 @@
   "license": "MIT",
   "author": "",
   "exports": {
+    ".": "./dist/index.js",
     "./*": "./dist/*",
     "./addon-main.js": "./addon-main.js"
   },
@@ -92,7 +93,6 @@
     "jquery": "^3.6.0",
     "loader.js": "^4.7.0",
     "moment-timezone": "^0.5.33",
-    "moment": "^2.29.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "qunit-console-grouper": "^0.3.0",

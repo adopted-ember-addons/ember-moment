@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 import hbs from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
