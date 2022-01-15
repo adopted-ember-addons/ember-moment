@@ -5,49 +5,6 @@
 
 [moment.js](http://momentjs.com) template helpers for Ember.js
 
-## The State of Moment in Ember Apps & Addons
-
-Historically, multiple addons including `ember-moment` pushed their own copy of `moment` and/or `moment-timezone` into your app. This makes it hard to guarantee that an app won't get multiple copies and that the app will have control over the exact locale and timezone data included in those copies. Since moment is quite large, this can have an outsized negative impact.
-
-Instead, we now instruct apps to directly depend on `moment` (or `moment-timzeone`) and import it directly (via `ember-auto-import`, which is included in the default Ember app blueprint). Addons like `ember-moment` can use `peerDependencies` to guarantee that they are sharing the same `moment` (or `moment-timezone`) as the app. An addon that wants to depend on `ember-moment` should likewise declare a `peerDependency` on `moment` so the app's copy of `moment` is available to both the addon and `ember-moment`.
-
-Apps should configure their locale and timezone support (which can have a large impact on bundle size) by following Moment's documentation about Webpack:
-
- - https://momentjs.com/docs/#/use-it/webpack/
- - https://momentjs.com/timezone/docs/#/use-it/webpack/
-
-and passing the resulting webpack configuration to either ember-auto-import or Embroider.  For example:
-
-```js
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
-
-module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
-    autoImport: {
-      webpack: {
-        plugins: [
-          // This example config cuts 390kB of Javascript from the production build.
-
-          new MomentLocalesPlugin({
-            // 'en' is built into moment and cannot be removed. This strips the others.
-            localesToKeep: [], 
-          }),
-
-          new MomentTimezoneDataPlugin({
-            // Keep timezone data for the US, covering all possible years.
-            matchCountries: 'US',
-          }),
-        ],
-      },
-    },
-  });
-```
-
-You should make sure there are no copies of `ember-cli-moment-shim` in your dependencies, it will force a redundant copy into your app.
-
-Moment itself is no longer actively developed and new projects should not add it. You can look at alternative libraries like Luxon, or better yet keep an eye on [Temporal](https://github.com/tc39/proposal-temporal) which is likely to add moment-like capabilities directly to Javascript quite soon.
-
 ## Compatibility
 
 * Ember.js v3.16 or above
@@ -59,6 +16,7 @@ Moment itself is no longer actively developed and new projects should not add it
 
 
 <!-- toc -->
+- [Using Moment in Ember Apps](#using-moment)
 - [Installing](#installing)
 - [Usage](#usage)
 - [Helpers](#helpers)
@@ -93,15 +51,74 @@ Moment itself is no longer actively developed and new projects should not add it
 - [Docs to add](#docs-to-add)
 <!-- tocstop -->
 
-## Installing
+## Using Moment.js in Ember Apps & Addons
 
-`ember install ember-moment`
+This addon provides Ember-specific Helpers and a Service that make it convenient to use Moment.js in your templates. If you just want to call Moment.js directly from Javascript, you don't need this addon.
+
+The recommended way to use Moment.js in an Ember **app** is:
+
+1. Add *either* `moment` or `moment-timezone` to your dependencies.
+2. Make sure you have `ember-auto-import` in your dependencies.
+3. Make sure you *don't* have `ember-cli-moment-shim` in your dependencies (it would add a redundant copy).
+3. Use imports in your Javascript like `import moment from 'moment'` or `import moment from 'moment-timezone'`.
+4. *Optional but strongly recommended*: Configure which locales and timezones will be included in your app by following the instructions below in "Controlling Locale and Timezone Data".
+
+The recommended way to use Moment.js in an Ember **addon** is:
+
+1. Add either `moment` or `moment-timezone` to your `peerDependencies`. This ensures that your addon and the app must use the same copy.
+2. Also add it to your `devDependencies` so your own test suite satisfies the peerDep.
+3. Make sure you *don't* depend on `ember-cli-moment-shim`.
+4. Make sure you do depend on `ember-auto-import`.
+
+
+Moment itself is no longer actively developed and new projects should not add it. You can look at alternative libraries like Luxon, or better yet keep an eye on [Temporal](https://github.com/tc39/proposal-temporal) which is likely to add moment-like capabilities directly to Javascript quite soon.
+
+## Controlling Locale and Timezone Data
+
+Apps should configure their locale and timezone support (which can have a large impact on bundle size) by following Moment's documentation about Webpack:
+
+ - https://momentjs.com/docs/#/use-it/webpack/
+ - https://momentjs.com/timezone/docs/#/use-it/webpack/
+
+and passing the resulting webpack configuration to either ember-auto-import or Embroider.  For example:
+
+```js
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
+
+module.exports = function (defaults) {
+  let app = new EmberApp(defaults, {
+    autoImport: {
+      webpack: {
+        plugins: [
+          new MomentLocalesPlugin({
+            // 'en' is built into moment and cannot be removed. This strips the others.
+            localesToKeep: [], 
+          }),
+
+          new MomentTimezoneDataPlugin({
+            // Keep timezone data for the US, covering all possible years.
+            matchCountries: 'US',
+          }),
+        ],
+      },
+    },
+  });
+```
+
+
+
+## Installing or Upgrading ember-moment
+
+1. First, install Moment.js using the instructions above.
+2. Then you can install ember-moment: `ember install ember-moment`
 
 Compatibility:
+  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
   - Ember Classic : &lt; v9 // the [ember-classic](https://github.com/adopted-ember-addons/ember-moment/tree/ember-classic) branch.
 
     the `ember-classic` branch is in maintenance mode, and will only receive bugfixes
-  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
+
 
 ## Usage
 
