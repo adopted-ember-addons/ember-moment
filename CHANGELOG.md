@@ -1,3 +1,9 @@
+### master
+
+ * [BREAKING] This addon no longer provides the `moment` library itself. Apps should depend directly on *either* `moment` or `moment-timezone` and import it via `ember-auto-import`. Apps should make sure to remove any dependencies on `ember-cli-moment-shim`. See "Using Moment in Ember Apps & Addons" in the README.
+ * [BREAKING] This is a v2 addon so your app must have `ember-auto-import` >= 2.
+ * [BREAKING] `includeTimezone`, `includeLocales`, and `localeOutputPath` options in `config/environment.js` are removed, since this addon is no longer responsible for providing `moment`.
+
 ### 9.0.1
 
 * @jfdnc fix error related to not having `defaultFormat` configured #363

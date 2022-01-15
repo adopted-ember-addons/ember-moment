@@ -4,15 +4,18 @@
 
 # compiled output
 /dist/
-/tmp/
+/test-app/dist
+/test-app/tmp
 
 # dependencies
 /bower_components/
 /node_modules/
+/test-app/node_modules
 
 # misc
 /coverage/
 !.*
+.*/
 .eslintcache
 
 # ember-try

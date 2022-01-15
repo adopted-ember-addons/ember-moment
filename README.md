@@ -5,19 +5,19 @@
 
 [moment.js](http://momentjs.com) template helpers for Ember.js
 
-
 ## Compatibility
 
 * Ember.js v3.16 or above
 * Ember CLI v2.13 or above
 * Node.js v10 or above
+* ember-auto-import 2.0 or above
 
 ## Table of Contents
 
 
 <!-- toc -->
+- [Using Moment in Ember Apps](#using-moment)
 - [Installing](#installing)
-- [Upgrading](#upgrading)
 - [Usage](#usage)
 - [Helpers](#helpers)
   - [moment](#moment)
@@ -51,19 +51,74 @@
 - [Docs to add](#docs-to-add)
 <!-- tocstop -->
 
-## Installing
+## Using Moment.js in Ember Apps & Addons
 
-`ember install ember-moment`
+This addon provides Ember-specific Helpers and a Service that make it convenient to use Moment.js in your templates. If you just want to call Moment.js directly from Javascript, you don't need this addon.
+
+The recommended way to use Moment.js in an Ember **app** is:
+
+1. Add *either* `moment` or `moment-timezone` to your dependencies.
+2. Make sure you have `ember-auto-import` in your dependencies.
+3. Make sure you *don't* have `ember-cli-moment-shim` in your dependencies (it would add a redundant copy).
+3. Use imports in your Javascript like `import moment from 'moment'` or `import moment from 'moment-timezone'`.
+4. *Optional but strongly recommended*: Configure which locales and timezones will be included in your app by following the instructions below in "Controlling Locale and Timezone Data".
+
+The recommended way to use Moment.js in an Ember **addon** is:
+
+1. Add either `moment` or `moment-timezone` to your `peerDependencies`. This ensures that your addon and the app must use the same copy.
+2. Also add it to your `devDependencies` so your own test suite satisfies the peerDep.
+3. Make sure you *don't* depend on `ember-cli-moment-shim`.
+4. Make sure you do depend on `ember-auto-import`.
+
+
+Moment itself is no longer actively developed and new projects should not add it. You can look at alternative libraries like Luxon, or better yet keep an eye on [Temporal](https://github.com/tc39/proposal-temporal) which is likely to add moment-like capabilities directly to Javascript quite soon.
+
+## Controlling Locale and Timezone Data
+
+Apps should configure their locale and timezone support (which can have a large impact on bundle size) by following Moment's documentation about Webpack:
+
+ - https://momentjs.com/docs/#/use-it/webpack/
+ - https://momentjs.com/timezone/docs/#/use-it/webpack/
+
+and passing the resulting webpack configuration to either ember-auto-import or Embroider.  For example:
+
+```js
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
+
+module.exports = function (defaults) {
+  let app = new EmberApp(defaults, {
+    autoImport: {
+      webpack: {
+        plugins: [
+          new MomentLocalesPlugin({
+            // 'en' is built into moment and cannot be removed. This strips the others.
+            localesToKeep: [], 
+          }),
+
+          new MomentTimezoneDataPlugin({
+            // Keep timezone data for the US, covering all possible years.
+            matchCountries: 'US',
+          }),
+        ],
+      },
+    },
+  });
+```
+
+
+
+## Installing or Upgrading ember-moment
+
+1. First, install Moment.js using the instructions above.
+2. Then you can install ember-moment: `ember install ember-moment`
 
 Compatibility:
+  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
   - Ember Classic : &lt; v9 // the [ember-classic](https://github.com/adopted-ember-addons/ember-moment/tree/ember-classic) branch.
 
     the `ember-classic` branch is in maintenance mode, and will only receive bugfixes
-  - Ember Octane+ : >= v9 // the [default](https://github.com/adopted-ember-addons/ember-moment/tree/master) branch
 
-## Upgrading
-
-It's advisable to run `ember g ember-moment` between upgrades as dependencies may have been added, removed, or upgraded between releases.  Please try this, along with clearing `node_modules` and `bower_components` before reporting issues after upgrading.
 
 ## Usage
 
@@ -414,34 +469,7 @@ part of a helper that *is* a value in which case it is useful for "live" updatin
 {{moment-format '' allow-empty=true}}  {{!-- <nothing> --}}
 ```
 
-## ES6 Moment
-
-This addon provides the ability to import moment as an ES6 module.
-
-```js
-import moment from 'moment';
-```
-
 ## Configuration Options
-
-### Include Moment Timezone
-
-You can optionally include the Moment Timezone package in your `config/environment.js` like so:
-
-```js
-// config/environment.js
-module.exports = function() {
-  return {
-    moment: {
-      // Options:
-      // 'all' - all years, all timezones
-      // 'subset' - 2012-2022, all timezones
-      // 'none' - no data, just timezone API
-      includeTimezone: 'all'
-    }
-  }
-};
-```
 
 ### Global Default Output Format
 
@@ -487,57 +515,6 @@ module.exports = function() {
 };
 ```
 
-### i18n support
-
-#### Cherry pick locales (optimal)
-
-```js
-// config/environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      // To cherry-pick specific locale support into your application.
-      // Full list of locales: https://github.com/moment/moment/tree/2.10.3/locale
-      includeLocales: ['es', 'fr-ca']
-    }
-  };
-```
-
-#### Include all locales into build
-
-```js
-// config/environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      includeLocales: true
-    }
-  };
-```
-
-*NOTE: English is bundled automatically, no need to add `en` in `includeLocales`*
-
-#### Write all the locales to a folder relative to `dist`
-
-Alternatively, you can copy all of moment's locale files into your `dist` directory.
-
-```js
-// config.environment.js
-module.exports = function(environment) {
-  return {
-    moment: {
-      // This will output _all_ locale scripts to assets/moment-locales
-      // this option does not respect includeLocales
-      localeOutputPath: 'assets/moment-locales'
-    }
-  };
-```
-
-This allows you to load them on demand when you need them:
-
-```js
-Ember.$.getScript('/assets/moment-locales/fr.js');
-```
 
 ### Configure default runtime locale/timeZone
 
