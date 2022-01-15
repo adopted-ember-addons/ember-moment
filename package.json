@@ -40,22 +40,22 @@
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^0.50.0"
+    "@embroider/addon-shim": "^0.50.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
-    "@embroider/addon-dev": "^0.50.0",
+    "@embroider/addon-dev": "^0.50.2",
     "@embroider/compat": "npm:@embroider/compat@latest",
     "@embroider/core": "npm:@embroider/core@latest",
-    "@embroider/test-setup": "^0.50.0",
+    "@embroider/test-setup": "npm:@embroider/test-setup@latest",
     "@embroider/webpack": "npm:@embroider/webpack@latest",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "@rollup/plugin-babel": "^5.3.0",
     "babel-eslint": "^10.1.0",
-    "ember-auto-import": "^2.2.4",
+    "ember-auto-import": "^2.3.0",
     "ember-cli-3.16": "npm:ember-cli@~3.16.0",
     "ember-cli-3.20": "npm:ember-cli@~3.20.0",
     "ember-cli-3.24": "npm:ember-cli@~3.24.0",
