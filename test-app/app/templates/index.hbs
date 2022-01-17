@@ -1,51 +1,51 @@
 Locale:
-<button type='button' {{action 'changeLocale' 'es'}}>ES</button>
-<button type='button' {{action 'changeLocale' 'fr'}}>FR</button>
-<button type='button' {{action 'changeLocale' 'en'}}>EN</button>
+<button type='button' {{on 'click' (fn this.changeLocale 'es') }}>ES</button>
+<button type='button' {{on 'click' (fn this.changeLocale 'fr') }}>FR</button>
+<button type='button' {{on 'click' (fn this.changeLocale 'en') }}>EN</button>
 
 <hr />
 Default Format:
-<button type='button' {{action 'changeDefaultFormat' 'LLLL'}}>LLLL</button>
+<button type='button' {{on 'click' (fn this.changeDefaultFormat 'LLLL') }}>LLLL</button>
 <button
   type='button'
-  {{action 'changeDefaultFormat' 'DD.MM.YYYY'}}
+  {{on 'click' (fn this.changeDefaultFormat 'DD.MM.YYYY') }}
 >DD.MM.YYYY</button>
-<button type='button' {{action 'changeDefaultFormat' 'LL'}}>LL</button>
+<button type='button' {{on 'click' (fn this.changeDefaultFormat 'LL') }}>LL</button>
 
 <hr />
 
 <h3>Moment</h3>
 
-{{partials/moment}}
+<Partials::Moment/>
 
 <h3>Format</h3>
 
-{{partials/format}}
+<Partials::Format/>
 
 <hr />
 
 <h3>From Now</h3>
 
-{{partials/from-now}}
+<Partials::FromNow/>
 
 <h3>To Now</h3>
 
-{{partials/to-now}}
+<Partials::ToNow/>
 
 <hr />
 
 <h3>Calendar</h3>
 
-{{partials/calendar}}
+<Partials::Calendar/>
 
 <hr />
 
 <h3>Duration</h3>
 
-{{partials/duration}}
+<Partials::Duration/>
 
 <hr />
 
 <h3>Difference</h3>
 
-{{partials/diff}}
+<Partials::Diff/>
