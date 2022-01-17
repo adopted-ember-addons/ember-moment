@@ -11,7 +11,7 @@ import {
 //
 // An addon that depends on ember-moment and needs moment-timezone should
 // declare a peerDep on moment-timezone and import moment-timezone directly, and
-// there the addon should not need to use this.
+// therefore the addon should not need to use this.
 //
 // An addon that depends on ember-moment and doesn't care about timezone
 // features should declare optional peerDeps on both moment and moment-timezone,
