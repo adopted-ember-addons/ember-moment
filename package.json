@@ -1,6 +1,6 @@
 {
   "name": "ember-moment",
-  "version": "10.0.0-beta.1",
+  "version": "10.0.0",
   "description": "Moment.js template helpers Ember.js",
   "keywords": [
     "ember-addon",
