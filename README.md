@@ -16,7 +16,7 @@
 
 
 <!-- toc -->
-- [Using Moment in Ember Apps](#using-moment)
+- [Using Moment.js in Ember Apps & Addons](#using-momentjs-in-ember-apps--addons)
 - [Installing](#installing)
 - [Usage](#usage)
 - [Helpers](#helpers)
