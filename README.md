@@ -5,19 +5,11 @@
 
 [moment.js](http://momentjs.com) template helpers for Ember.js
 
-## Compatibility
-
-* Ember.js v3.16 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
-* ember-auto-import 2.0 or above
-
-## Table of Contents
-
-
 <!-- toc -->
+- [Compatibility](#compatibility)
 - [Using Moment.js in Ember Apps & Addons](#using-momentjs-in-ember-apps--addons)
-- [Installing](#installing)
+- [Controlling Locale and Timezone Data](#controlling-locale-and-timezone-data)
+- [Installing or Upgrading ember-moment](#installing-or-upgrading-ember-moment)
 - [Usage](#usage)
 - [Helpers](#helpers)
   - [moment](#moment)
@@ -35,21 +27,23 @@
   - [now](#now)
   - [unix](#unix)
   - [Common optional named arguments](#common-optional-named-arguments)
-- [ES6 Moment](#es6-moment)
 - [Configuration Options](#configuration-options)
-  - [Include Moment Timezone](#include-moment-timezone)
   - [Global Default Output Format](#global-default-output-format)
   - [Global Allow Empty Dates](#global-allow-empty-dates)
-  - [i18n support](#i18n-support)
-    - [Cherry pick locales (optimal)](#cherry-pick-locales-optimal)
-    - [Include all locales into build](#include-all-locales-into-build)
-    - [Write all the locales to a folder relative to `dist`](#write-all-the-locales-to-a-folder-relative-to-dist)
   - [Configure default runtime locale/timeZone](#configure-default-runtime-localetimezone)
     - [Globally set locale](#globally-set-locale)
     - [Globally set time zone](#globally-set-time-zone)
 - [Frequently Asked Questions](#frequently-asked-questions)
+- [Contributing](#contributing)
 - [Docs to add](#docs-to-add)
 <!-- tocstop -->
+
+## Compatibility
+
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+* ember-auto-import 2.0 or above
 
 ## Using Moment.js in Ember Apps & Addons
 
