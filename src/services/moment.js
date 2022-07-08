@@ -20,7 +20,7 @@ export default Service.extend(Evented, {
   __config__: computed(function () {
     let config = getOwner(this).factoryFor('config:environment').class || {};
 
-    return config['ember-moment'] || {};
+    return config['moment'] || {};
   }).readOnly(),
 
   timeZone: computed('_timeZone', {
