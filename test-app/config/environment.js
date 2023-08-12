@@ -6,7 +6,7 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    'ember-moment': {
+    moment: {
       allowEmpty: true,
       outputFormat: 'LLLL',
     },
