@@ -31,7 +31,7 @@ module('moment', function (hooks) {
     assert.dom(this.element).hasText('in a day');
   });
 
-  test('moment and monent-format helper integration #2', async function (assert) {
+  test('moment and moment-format helper integration #2', async function (assert) {
     assert.expect(1);
 
     this.setProperties({
