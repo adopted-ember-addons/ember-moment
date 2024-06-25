@@ -262,8 +262,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
       ember-qunit:
-        specifier: ^5.1.5
-        version: 5.1.5(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(qunit@2.21.0)
+        specifier: ^6.2.0
+        version: 6.2.0(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7))(qunit@2.21.0)(webpack@5.92.1)
       ember-resolver:
         specifier: ^8.0.3
         version: 8.1.0(@babel/core@7.24.7)
