@@ -111,6 +111,9 @@ importers:
       ember-qunit-5:
         specifier: npm:ember-qunit@^5.1.5
         version: ember-qunit@5.1.5(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(qunit@2.21.0)
+      ember-qunit-8:
+        specifier: npm:ember-qunit@^8.1.0
+        version: ember-qunit@8.1.0(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7))(qunit@2.21.0)
       ember-resolver:
         specifier: ^8.0.3
         version: 8.1.0(@babel/core@7.24.7)
@@ -1027,6 +1030,10 @@ packages:
 
   '@embroider/addon-shim@0.50.2':
     resolution: {integrity: sha512-a+pFlXZPovcCNFo05HxXBW9ole43mPyFZnkhvZlLF0f1sHEn9j0sD1Ld2BM/NCERmHcYz9eXQnX1FPNLCDoGEA==}
+    engines: {node: 12.* || 14.* || >= 16}
+
+  '@embroider/addon-shim@1.8.9':
+    resolution: {integrity: sha512-qyN64T1jMHZ99ihlk7VFHCWHYZHLE1DOdHi0J7lmn5waV1DoW7gD8JLi1i7FregzXtKhbDc7shyEmTmWPTs8MQ==}
     engines: {node: 12.* || 14.* || >= 16}
 
   '@embroider/babel-loader-9@3.1.1':
@@ -2781,6 +2788,9 @@ packages:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
 
+  common-ancestor-path@1.0.1:
+    resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
+
   common-path-prefix@3.0.0:
     resolution: {integrity: sha512-QE33hToZseCH3jS0qN96O/bSh3kaw/h+Tq7ngyY9eWDUnTlTNUyqfqvCXioLe5Na5jFsL78ra/wuBU4iuEgd4w==}
 
@@ -3496,6 +3506,13 @@ packages:
     peerDependencies:
       '@ember/test-helpers': ^2.9.3
       ember-source: '>=3.28'
+      qunit: ^2.13.0
+
+  ember-qunit@8.1.0:
+    resolution: {integrity: sha512-55/xqvVQwhiNcnh/tCzWyvlYzrYqwDY0/cIPyDQbAxGKtkUt9jCfRUGllfyOofC6LX0fL/0fIi+5e9sg1m6vXw==}
+    peerDependencies:
+      '@ember/test-helpers': '>=3.0.3'
+      ember-source: '>=4.0.0'
       qunit: ^2.13.0
 
   ember-resolver@8.1.0:
@@ -6240,6 +6257,9 @@ packages:
   qunit-dom@1.6.0:
     resolution: {integrity: sha512-YwSqcLjQcRI0fUFpaSWwU10KIJPFW5Qh+d3cT5DOgx81dypRuUSiPkKFmBY/CDs/R1KdHRadthkcXg2rqAon8Q==}
     engines: {node: 10.* || >= 12.*}
+
+  qunit-theme-ember@1.0.0:
+    resolution: {integrity: sha512-vdMVVo6ecdCkWttMTKeyq1ZTLGHcA6zdze2zhguNuc3ritlJMhOXY5RDseqazOwqZVfCg3rtlmL3fMUyIzUyFQ==}
 
   qunit@2.21.0:
     resolution: {integrity: sha512-kJJ+uzx5xDWk0oRrbOZ3zsm+imPULE58ZMIrNl+3POZl4a1k6VXj2E4OiqTmZ9j6hh9egE3kNgnAti9Q+BG6Yw==}
@@ -9273,6 +9293,15 @@ snapshots:
       '@embroider/shared-internals': 0.50.2
       semver: 7.6.2
 
+  '@embroider/addon-shim@1.8.9':
+    dependencies:
+      '@embroider/shared-internals': 2.6.2(supports-color@8.1.1)
+      broccoli-funnel: 3.0.8
+      common-ancestor-path: 1.0.1
+      semver: 7.6.2
+    transitivePeerDependencies:
+      - supports-color
+
   '@embroider/babel-loader-9@3.1.1(@embroider/core@3.4.14)(supports-color@8.1.1)(webpack@5.92.1)':
     dependencies:
       '@babel/core': 7.24.7(supports-color@8.1.1)
@@ -12114,6 +12143,8 @@ snapshots:
 
   commander@7.2.0: {}
 
+  common-ancestor-path@1.0.1: {}
+
   common-path-prefix@3.0.0: {}
 
   common-tags@1.8.2: {}
@@ -13830,6 +13861,19 @@ snapshots:
       - '@glint/template'
       - supports-color
       - webpack
+
+  ember-qunit@8.1.0(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7))(qunit@2.21.0):
+    dependencies:
+      '@ember/test-helpers': 2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7))
+      '@embroider/addon-shim': 1.8.9
+      '@embroider/macros': 1.16.5
+      ember-cli-test-loader: 3.1.0
+      ember-source: 3.28.12(@babel/core@7.24.7)
+      qunit: 2.21.0
+      qunit-theme-ember: 1.0.0
+    transitivePeerDependencies:
+      - '@glint/template'
+      - supports-color
 
   ember-resolver@8.1.0(@babel/core@7.24.7):
     dependencies:
@@ -17350,6 +17394,8 @@ snapshots:
       ember-cli-version-checker: 5.1.2
     transitivePeerDependencies:
       - supports-color
+
+  qunit-theme-ember@1.0.0: {}
 
   qunit@2.21.0:
     dependencies:

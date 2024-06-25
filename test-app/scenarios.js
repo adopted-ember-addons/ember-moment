@@ -90,6 +90,10 @@ async function release(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-latest',
   });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-8',
+  });
 }
 
 async function beta(project) {
@@ -101,12 +105,20 @@ async function beta(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-beta',
   });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-8',
+  });
 }
 
 async function canary(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-canary',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-8',
   });
 }
 
