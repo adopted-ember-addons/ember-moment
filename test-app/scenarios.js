@@ -94,7 +94,7 @@ async function release(project) {
     baseDir: __dirname,
     resolveName: 'ember-qunit-8',
   });
-  project.linkDevDependency('ember-qunit', {
+  project.linkDevDependency('@ember/test-helpers', {
     baseDir: __dirname,
     resolveName: '@ember-test-helper-3',
   });
@@ -113,7 +113,7 @@ async function beta(project) {
     baseDir: __dirname,
     resolveName: 'ember-qunit-8',
   });
-  project.linkDevDependency('ember-qunit', {
+  project.linkDevDependency('@ember/test-helpers', {
     baseDir: __dirname,
     resolveName: '@ember-test-helper-3',
   });
@@ -128,7 +128,7 @@ async function canary(project) {
     baseDir: __dirname,
     resolveName: 'ember-qunit-8',
   });
-  project.linkDevDependency('ember-qunit', {
+  project.linkDevDependency('@ember/test-helpers', {
     baseDir: __dirname,
     resolveName: '@ember-test-helper-3',
   });
