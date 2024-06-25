@@ -46,6 +46,7 @@
     "@babel/core": "^7.16.7",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
+    "@ember/string": "^3.1.1",
     "@embroider/addon-dev": "^0.50.2",
     "@embroider/compat": "npm:@embroider/compat@latest",
     "@embroider/core": "npm:@embroider/core@latest",
