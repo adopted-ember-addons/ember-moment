@@ -36,6 +36,10 @@ async function lts_3_16(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-3.16',
   });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
+  });
 }
 
 async function lts_3_20(project) {
@@ -47,6 +51,10 @@ async function lts_3_20(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-3.20',
   });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
+  });
 }
 
 async function lts_3_24(project) {
@@ -57,6 +65,10 @@ async function lts_3_24(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-3.24',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
   });
 }
 

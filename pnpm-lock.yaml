@@ -106,8 +106,11 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
       ember-qunit:
-        specifier: ^5.1.5
-        version: 5.1.5(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(qunit@2.21.0)
+        specifier: ^6.2.0
+        version: 6.2.0(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7))(qunit@2.21.0)(webpack@5.92.1)
+      ember-qunit-5:
+        specifier: npm:ember-source@^5.1.5
+        version: ember-source@5.9.0(@babel/core@7.24.7)(@glimmer/component@1.1.2(@babel/core@7.24.7))(rsvp@4.8.5)(webpack@5.92.1)
       ember-resolver:
         specifier: ^8.0.3
         version: 8.1.0(@babel/core@7.24.7)
@@ -3485,6 +3488,14 @@ packages:
     engines: {node: 10.* || 12.* || >= 14.*}
     peerDependencies:
       '@ember/test-helpers': ^2.4.0
+      qunit: ^2.13.0
+
+  ember-qunit@6.2.0:
+    resolution: {integrity: sha512-mC+0bp8DwWzJLn8SW3GS8KDZIkl4yLsNYwMi5Dw6+aFllq7FM2crd/dfY4MuOIHK7GKdjtmWJTMGnjSpeSayaw==}
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      '@ember/test-helpers': ^2.9.3
+      ember-source: '>=3.28'
       qunit: ^2.13.0
 
   ember-resolver@8.1.0:
@@ -7423,6 +7434,10 @@ packages:
 
   validate-peer-dependencies@1.2.0:
     resolution: {integrity: sha512-nd2HUpKc6RWblPZQ2GDuI65sxJ2n/UqZwSBVtj64xlWjMx0m7ZB2m9b2JS3v1f+n9VWH/dd1CMhkHfP6pIdckA==}
+
+  validate-peer-dependencies@2.2.0:
+    resolution: {integrity: sha512-8X1OWlERjiUY6P6tdeU9E0EwO8RA3bahoOVG7ulOZT5MqgNDUO/BQoVjYiHPcNe+v8glsboZRIw9iToMAA2zAA==}
+    engines: {node: '>= 12'}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -13797,6 +13812,25 @@ snapshots:
       - webpack-cli
       - webpack-command
 
+  ember-qunit@6.2.0(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7))(qunit@2.21.0)(webpack@5.92.1):
+    dependencies:
+      '@ember/test-helpers': 2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7))
+      broccoli-funnel: 3.0.8
+      broccoli-merge-trees: 3.0.2
+      common-tags: 1.8.2
+      ember-auto-import: 2.7.4(webpack@5.92.1)
+      ember-cli-babel: 7.26.11
+      ember-cli-test-loader: 3.1.0
+      ember-source: 3.28.12(@babel/core@7.24.7)
+      qunit: 2.21.0
+      resolve-package-path: 4.0.3
+      silent-error: 1.1.1
+      validate-peer-dependencies: 2.2.0
+    transitivePeerDependencies:
+      - '@glint/template'
+      - supports-color
+      - webpack
+
   ember-resolver@8.1.0(@babel/core@7.24.7):
     dependencies:
       babel-plugin-debug-macros: 0.3.4(@babel/core@7.24.7)
@@ -18771,6 +18805,11 @@ snapshots:
   validate-peer-dependencies@1.2.0:
     dependencies:
       resolve-package-path: 3.1.0
+      semver: 7.6.2
+
+  validate-peer-dependencies@2.2.0:
+    dependencies:
+      resolve-package-path: 4.0.3
       semver: 7.6.2
 
   vary@1.1.2: {}
