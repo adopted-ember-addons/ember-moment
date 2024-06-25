@@ -20,6 +20,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
+    "@ember/string": "^3.1.1",
     "@embroider/test-setup": "npm:@embroider/test-setup@latest",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
@@ -61,13 +62,13 @@
     "webpack": "^5.65.0"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": ">= 18"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.17.5",
-    "yarn": "1.22.11"
+    "node": "18.20.3",
+    "yarn": "1.22.22"
   }
 }
