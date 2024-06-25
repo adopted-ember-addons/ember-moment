@@ -35,8 +35,7 @@
     "test": "npm-run-all lint:* test:*",
     "test:ember": "cd test-app && ember test",
     "test:ember-compatibility": "cd test-app && qunit scenarios.js",
-    "prepare": "npm-run-all prepublishOnly link-test-app",
-    "link-test-app": "addon-dev link-test-app",
+    "prepare": "npm-run-all prepublishOnly",
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {

@@ -250,8 +250,8 @@ importers:
         specifier: 0.1.6
         version: 0.1.6(@babel/core@7.24.7)
       ember-moment:
-        specifier: file:..
-        version: file:(moment-timezone@0.5.45)(moment@2.30.1)
+        specifier: workspace:*
+        version: link:..
       ember-page-title:
         specifier: ^7.0.0
         version: 7.0.0
@@ -3315,18 +3315,6 @@ packages:
   ember-maybe-import-regenerator@0.1.6:
     resolution: {integrity: sha512-aX9UINiUXIjzsCNNna1ioASB/2lbnFgSHI63bBcd4MOVE9AqoLdOL7h+ocyylYXyYoBj2JDRwCzjWNf2Xbp5wg==}
     engines: {node: '>= 0.10.0'}
-
-  'ember-moment@file:':
-    resolution: {directory: '', type: directory}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      moment: ^2
-      moment-timezone: ^0.5.34
-    peerDependenciesMeta:
-      moment:
-        optional: true
-      moment-timezone:
-        optional: true
 
   ember-page-title@7.0.0:
     resolution: {integrity: sha512-oq6+HYbeVD/BnxIO5AkP4gWlsatdgW2HFO10F8+XQiJZrwa7cC7Wm54JNGqQkavkDQTgNSiy1Fe2NILJ14MmAg==}
@@ -13135,13 +13123,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  ember-moment@file:(moment-timezone@0.5.45)(moment@2.30.1):
-    dependencies:
-      '@embroider/addon-shim': 0.50.2
-    optionalDependencies:
-      moment: 2.30.1
-      moment-timezone: 0.5.45
 
   ember-page-title@7.0.0:
     dependencies:
