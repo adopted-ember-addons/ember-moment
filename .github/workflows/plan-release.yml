@@ -50,22 +50,15 @@ jobs:
         with:
           fetch-depth: 0
           ref: 'master'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
-      - run: pnpm install --frozen-lockfile
-      
+      - uses: wyvox/action-setup-pnpm@v3
+
       - name: "Generate Explanation and Prep Changelogs"
         id: explanation
         run: |
           set +e
-          
+
           pnpm release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
-          
+
 
           if [ $? -ne 0 ]; then
             echo 'text<<EOF' >> $GITHUB_OUTPUT
