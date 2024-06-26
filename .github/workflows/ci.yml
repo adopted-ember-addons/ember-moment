@@ -1,45 +1,115 @@
-name: Node CI
+name: CI
 
 on:
   push:
     branches:
       - main
-    tags:
-      - 'v*'
-  pull_request:
+      - master
+  pull_request: {}
+
+concurrency:
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
-      - run: pnpm lint
-
   test:
+    name: "Tests"
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    timeout-minutes: 10
+
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - run: pnpm test:ember
-      - id: set-matrix
-        run: echo "::set-output name=matrix::$(pnpm scenario-tester list --files ./scenarios.js --matrix 'pnpm qunit ./scenarios.js --filter %s:')"
-        working-directory: test-app
+      - name: Lint
+        run: pnpm lint
+      - name: Run Tests
+        run: pnpm test
 
-
-  compat-scenarios:
-    needs: test
-    name: ${{ matrix.name }}
+  floating:
+    name: "Floating Dependencies"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wyvox/action-setup-pnpm@v3
+      - name: Run Tests
+        run: pnpm test
+
+  try-scenarios-ember-3x:
+    name: ${{ matrix.try-scenario }}
+    runs-on: ubuntu-latest
+    needs: 'test'
+    timeout-minutes: 10
+
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.test.outputs.matrix)}}
+      matrix:
+        try-scenario:
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-lts-3.28
+          - embroider-safe
+          - embroider-optimized
+
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - run: ${{ matrix.command }}
-        working-directory: test-app
+        with:
+          args: "--no-lockfile"
+      - name: Run Tests
+        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
+        working-directory: test-app-3.x
+  
+  try-scenarios-ember-4x:
+    name: ${{ matrix.try-scenario }}
+    runs-on: ubuntu-latest
+    needs: 'test'
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        try-scenario:
+          - ember-lts-4.4
+          - ember-lts-4.8
+          - ember-lts-4.12
+          - embroider-safe
+          - embroider-optimized
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wyvox/action-setup-pnpm@v3
+        with:
+          args: "--no-lockfile"
+      - name: Run Tests
+        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
+        working-directory: test-app-4.x
+
+  try-scenarios-ember-5x:
+    name: ${{ matrix.try-scenario }}
+    runs-on: ubuntu-latest
+    needs: 'test'
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        try-scenario:
+          - ember-lts-5.4
+          - ember-lts-5.8
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - embroider-safe
+          - embroider-optimized
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wyvox/action-setup-pnpm@v3
+        with:
+          args: "--no-lockfile"
+      - name: Run Tests
+        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
+        working-directory: test-app-5.x
