@@ -183,6 +183,9 @@ importers:
       babel-eslint:
         specifier: ^10.1.0
         version: 10.1.0(eslint@7.32.0)
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       ember-auto-import:
         specifier: ^2.3.0
         version: 2.7.4(webpack@5.92.1)
