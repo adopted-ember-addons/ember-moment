@@ -1,13 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/test-app-3.x/dist/
-/test-app-3.x/tmp/
+dist/
+tmp/
 
 # dependencies
-/node_modules/
-/test-app-3.x/node_modules
+node_modules/
 
 # misc
 /.env*
