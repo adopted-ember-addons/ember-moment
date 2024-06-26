@@ -6,14 +6,16 @@
   "license": "MIT",
   "scripts": {
     "build": "ember build --environment=production",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
-    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:css:fix": "concurrently \"pnpm:lint:css -- --fix\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
-    "test": "npm-run-all lint test:*",
+    "test": "concurrently \"pnpm:lint\" \"pnpm:test:*\" --names \"lint,test:\"",
     "test:ember": "ember test --test-port 0"
   },
   "devDependencies": {
@@ -52,7 +54,6 @@
     "jquery": "^3.6.0",
     "loader.js": "^4.7.0",
     "moment-timezone": "^0.5.33",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-console-grouper": "^0.3.0",

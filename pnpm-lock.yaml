@@ -267,9 +267,6 @@ importers:
       moment-timezone:
         specifier: ^0.5.33
         version: 0.5.45
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
       prettier:
         specifier: ^2.5.1
         version: 2.8.8
