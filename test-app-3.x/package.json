@@ -59,6 +59,7 @@
     "qunit": "^2.17.2",
     "qunit-console-grouper": "^0.3.0",
     "qunit-dom": "^1.6.0",
+    "stylelint": "^16.6.1",
     "webpack": "^5.65.0"
   },
   "engines": {
