@@ -1,6 +1,5 @@
 import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
-import { helper } from '@ember/component/helper';
 import { settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
@@ -127,13 +126,6 @@ module('moment-format', function (hooks) {
 
   test('can be called using subexpression', async function (assert) {
     assert.expect(1);
-
-    this.owner.register(
-      'helper:get-format',
-      helper(function () {
-        return 'L';
-      }),
-    );
 
     this.set('date', date(0));
     await render(hbs`{{moment-format this.date (get-format 'global-format')}}`);

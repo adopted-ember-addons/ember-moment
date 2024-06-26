@@ -11,18 +11,6 @@ module.exports = function (defaults) {
 
   const { maybeEmbroider } = require('@embroider/test-setup');
   return maybeEmbroider(app, {
-    packageRules: [
-      {
-        package: 'test-app-4.x',
-        // Pre-strict mode, helpers and components are ambiguous
-        helpers: {
-          '{{get-format}}': { safeToIgnore: true },
-        },
-        components: {
-          '{{get-format}}': { safeToIgnore: true },
-        },
-      },
-    ],
     skipBabel: [
       {
         package: 'qunit',

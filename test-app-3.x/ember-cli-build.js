@@ -11,18 +11,6 @@ module.exports = function (defaults) {
   });
 
   return maybeEmbroider(app, {
-    packageRules: [
-      {
-        package: 'test-app-3.x',
-        // Pre-strict mode, helpers and components are ambiguous
-        helpers: {
-          '{{get-format}}': { safeToIgnore: true },
-        },
-        components: {
-          '{{get-format}}': { safeToIgnore: true },
-        },
-      },
-    ],
     skipBabel: [
       {
         package: 'qunit',
