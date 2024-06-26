@@ -1,6 +1,7 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 
-html, body {
+html,
+body {
   margin: 20px;
   font-family: Helvetica, sans-serif;
   font-size: 14px;
