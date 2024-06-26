@@ -2,7 +2,7 @@
   "name": "test-app-3.x",
   "private": true,
   "version": "1.0.0",
-  "description": "Test suite for ember-moment",
+  "description": "Test suite for ember-moment with ember-source 3.x",
   "license": "MIT",
   "scripts": {
     "build": "ember build --environment=production",

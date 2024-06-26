@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf dist node_modules test-app-3.x/node_modules",
+    "clean": "rm -rf dist node_modules test-app-3.x/node_modules test-app-4.x/node_modules test-app-5.x/node_modules",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
