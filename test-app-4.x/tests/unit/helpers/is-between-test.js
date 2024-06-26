@@ -35,7 +35,7 @@ module('is-between', function (hooks) {
     this.set('context', context);
 
     await render(
-      hbs`{{is-between '2010-10-19' this.context.date precision='year'}}`
+      hbs`{{is-between '2010-10-19' this.context.date precision='year'}}`,
     );
     assert.dom(this.element).hasText('true');
   });
@@ -52,7 +52,7 @@ module('is-between', function (hooks) {
     this.set('context', context);
 
     await render(
-      hbs`{{is-between '2010-10-19' this.context.date precision='year' inclusivity='()'}}`
+      hbs`{{is-between '2010-10-19' this.context.date precision='year' inclusivity='()'}}`,
     );
     assert.dom(this.element).hasText('false');
   });
@@ -68,7 +68,7 @@ module('is-between', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{is-between '2010-10-20' '2009-12-31' '2012-01-01' precision='year'}}`
+      hbs`{{is-between '2010-10-20' '2009-12-31' '2012-01-01' precision='year'}}`,
     );
     assert.dom(this.element).hasText('true');
   });
@@ -77,7 +77,7 @@ module('is-between', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{is-between '2016-10-30' '2016-10-30' '2016-12-30' inclusivity='[)'}}`
+      hbs`{{is-between '2016-10-30' '2016-10-30' '2016-12-30' inclusivity='[)'}}`,
     );
     assert.dom(this.element).hasText('true');
   });
@@ -86,7 +86,7 @@ module('is-between', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{is-between '2016-10-30' '2016-10-30' '2017-12-30' precision='year' inclusivity='[]'}}`
+      hbs`{{is-between '2016-10-30' '2016-10-30' '2017-12-30' precision='year' inclusivity='[]'}}`,
     );
     assert.dom(this.element).hasText('true');
   });

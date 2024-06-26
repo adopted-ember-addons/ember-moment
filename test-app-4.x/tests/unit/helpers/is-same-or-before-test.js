@@ -32,7 +32,7 @@ module('is-same-or-before', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{is-same-or-before '2010-12-20' '2010-12-19' precision='year'}}`
+      hbs`{{is-same-or-before '2010-12-20' '2010-12-19' precision='year'}}`,
     );
     assert.dom(this.element).hasText('true');
   });

@@ -63,7 +63,7 @@ module('moment-format', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-format this.date this.outputFormat this.inputFormat}}`
+      hbs`{{moment-format this.date this.outputFormat this.inputFormat}}`,
     );
     assert.dom(this.element).hasText('May 3, 2010');
   });
@@ -102,7 +102,7 @@ module('moment-format', function (hooks) {
 
     this.set('date', 0);
     await render(
-      hbs`{{moment-format this.date 'LLLL' timeZone='America/New_York'}}`
+      hbs`{{moment-format this.date 'LLLL' timeZone='America/New_York'}}`,
     );
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 7:00 PM');
   });
@@ -112,7 +112,7 @@ module('moment-format', function (hooks) {
 
     this.set('date', 0);
     await render(
-      hbs`{{moment-format this.date 'LLLL' timeZone='America/Los_Angeles'}}`
+      hbs`{{moment-format this.date 'LLLL' timeZone='America/Los_Angeles'}}`,
     );
     assert.dom(this.element).hasText('Wednesday, December 31, 1969 4:00 PM');
   });
@@ -132,7 +132,7 @@ module('moment-format', function (hooks) {
       'helper:get-format',
       helper(function () {
         return 'L';
-      })
+      }),
     );
 
     this.set('date', date(0));
