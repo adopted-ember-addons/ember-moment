@@ -18,6 +18,9 @@ module.exports = function (defaults) {
         helpers: {
           '{{get-format}}': { safeToIgnore: true },
         },
+        components: {
+          '{{get-format}}': { safeToIgnore: true },
+        },
       },
     ],
     skipBabel: [
