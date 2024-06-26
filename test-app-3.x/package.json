@@ -22,7 +22,7 @@
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
     "@ember/string": "^3.1.1",
-    "@embroider/test-setup": "npm:@embroider/test-setup@latest",
+    "@embroider/test-setup": "^4.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
