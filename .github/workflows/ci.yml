@@ -28,7 +28,7 @@ jobs:
       - run: pnpm test:ember
       - id: set-matrix
         run: echo "::set-output name=matrix::$(pnpm scenario-tester list --files ./scenarios.js --matrix 'pnpm qunit ./scenarios.js --filter %s:')"
-        working-directory: test-app
+        working-directory: test-app-3.x
 
 
   compat-scenarios:
@@ -42,4 +42,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
       - run: ${{ matrix.command }}
-        working-directory: test-app
+        working-directory: test-app-3.x

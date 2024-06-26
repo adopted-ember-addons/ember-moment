@@ -196,7 +196,7 @@ importers:
         specifier: ^5.65.0
         version: 5.92.1
 
-  test-app:
+  test-app-3.x:
     devDependencies:
       '@ember/optional-features':
         specifier: ^2.0.0

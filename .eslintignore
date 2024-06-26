@@ -4,13 +4,13 @@
 
 # compiled output
 /dist/
-/test-app/dist
-/test-app/tmp
+/test-app-3.x/dist
+/test-app-3.x/tmp
 
 # dependencies
 /bower_components/
 /node_modules/
-/test-app/node_modules
+/test-app-3.x/node_modules
 
 # misc
 /coverage/
