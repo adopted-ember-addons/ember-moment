@@ -1,3 +1,4 @@
 packages:
   - '.'
   - 'test-app-3.x'
+  - 'test-app-5.x'
