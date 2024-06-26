@@ -172,7 +172,7 @@ importers:
         specifier: ^2.6.0
         version: 2.9.4(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7))
       '@embroider/test-setup':
-        specifier: npm:@embroider/test-setup@latest
+        specifier: ^4.0.0
         version: 4.0.0(@embroider/compat@3.5.5(@embroider/core@3.4.14))(@embroider/core@3.4.14)(@embroider/webpack@4.0.4(@embroider/core@3.4.14)(webpack@5.92.1))
       '@glimmer/component':
         specifier: ^1.0.4

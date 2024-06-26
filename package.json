@@ -29,7 +29,7 @@
     "sync-dev-deps": "addon-dev sync-dev-deps",
     "test": "pnpm --filter '*' test",
     "test:ember": "pnpm --filter '*' test:ember",
-    "prepare": "npm-run-all prepublishOnly",
+    "prepare": "pnpm run prepublishOnly",
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {
