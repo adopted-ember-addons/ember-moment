@@ -471,7 +471,7 @@ Your application may require a default format other than the default, ISO 8601. 
 // config/environment.js
 module.exports = function() {
   return {
-    moment: {
+    'ember-moment': {
       outputFormat: 'L'
     }
   }
@@ -500,7 +500,7 @@ If `null`, `undefined`, or an empty string are passed as a date to any of the mo
 // config/environment.js
 module.exports = function() {
   return {
-    moment: {
+    'ember-moment': {
       allowEmpty: true // default: false
     }
   }
