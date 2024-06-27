@@ -29,9 +29,6 @@ importers:
       '@embroider/addon-shim':
         specifier: ^0.50.2 || ^1.8.9
         version: 1.8.9
-      decorator-transforms:
-        specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.24.7)
       moment:
         specifier: ^2
         version: 2.30.1
@@ -3598,9 +3595,6 @@ packages:
   decompress-response@3.3.0:
     resolution: {integrity: sha512-BzRPQuY1ip+qDonAOz42gRm/pg9F768C+npV/4JOsxRC2sq+Rlk+Q4ZCAsOhnIaMrgarILY+RMUIvMmmX1qAEA==}
     engines: {node: '>=4'}
-
-  decorator-transforms@2.0.0:
-    resolution: {integrity: sha512-ETfQccGcotK01YJsoB0AGTdUp7kS9jI93mBzrRY5Oyo+bOJfa2UKTSjCNf+iRNwAWBmBKlbiCcyL4tkY4C4dZQ==}
 
   deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
@@ -12471,13 +12465,6 @@ snapshots:
   decompress-response@3.3.0:
     dependencies:
       mimic-response: 1.0.1
-
-  decorator-transforms@2.0.0(@babel/core@7.24.7):
-    dependencies:
-      '@babel/plugin-syntax-decorators': 7.24.7(@babel/core@7.24.7)
-      babel-import-util: 3.0.0
-    transitivePeerDependencies:
-      - '@babel/core'
 
   deep-extend@0.6.0: {}
 

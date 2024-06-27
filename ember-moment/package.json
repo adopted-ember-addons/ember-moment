@@ -33,8 +33,7 @@
     "test": "echo 'A v2 addon does not have tests, run tests in test-app-4.x'"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^0.50.2 || ^1.8.9",
-    "decorator-transforms": "^2.0.0"
+    "@embroider/addon-shim": "^0.50.2 || ^1.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
