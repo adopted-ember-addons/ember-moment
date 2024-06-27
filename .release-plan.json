@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "ember-moment": {
+      "impact": "patch",
+      "oldVersion": "10.0.0",
+      "newVersion": "10.0.1",
+      "constraints": [
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
+        }
+      ],
+      "pkgJSONPath": "./ember-moment/package.json"
+    }
+  },
+  "description": "## Release (2024-06-27)\n\nember-moment 10.0.1 (patch)\n\n#### :memo: Documentation\n* [#397](https://github.com/adopted-ember-addons/ember-moment/pull/397) Replace moment with 'ember-moment' ([@fsmanuel](https://github.com/fsmanuel))\n* [#384](https://github.com/adopted-ember-addons/ember-moment/pull/384) Fix typo in moment-test ([@mayatron](https://github.com/mayatron))\n* [#380](https://github.com/adopted-ember-addons/ember-moment/pull/380) chore(readme): update TOC ([@GreatWizard](https://github.com/GreatWizard))\n* [#374](https://github.com/adopted-ember-addons/ember-moment/pull/374) Fix ToC link ([@ctjhoa](https://github.com/ctjhoa))\n\n#### :house: Internal\n* Other\n  * [#413](https://github.com/adopted-ember-addons/ember-moment/pull/413) Recover `CHANGELOG.md` ([@mkszepp](https://github.com/mkszepp))\n  * [#412](https://github.com/adopted-ember-addons/ember-moment/pull/412) Readd `repository` to root `package.json` ([@mkszepp](https://github.com/mkszepp))\n  * [#404](https://github.com/adopted-ember-addons/ember-moment/pull/404) Setup release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#405](https://github.com/adopted-ember-addons/ember-moment/pull/405) Switch to pnpm ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#403](https://github.com/adopted-ember-addons/ember-moment/pull/403) Add `@ember/string` to devDependency ([@mkszepp](https://github.com/mkszepp))\n  * [#402](https://github.com/adopted-ember-addons/ember-moment/pull/402) Update internally used node to 18.x ([@mkszepp](https://github.com/mkszepp))\n* `ember-moment`\n  * [#378](https://github.com/adopted-ember-addons/ember-moment/pull/378) Update dependency `@embroider/addon-shim` to `^1.8.9` ([@mkszepp](https://github.com/mkszepp))\n* `ember-moment`, `test-app-3.x`\n  * [#411](https://github.com/adopted-ember-addons/ember-moment/pull/411) Move to addon v2 blueprint ([@mkszepp](https://github.com/mkszepp))\n* `test-app-3.x`, `test-app-4.x`, `test-app-5.x`\n  * [#410](https://github.com/adopted-ember-addons/ember-moment/pull/410) Add `test-app` for each ember major version ([@mkszepp](https://github.com/mkszepp))\n\n#### Committers: 6\n- Camille TJHOA ([@ctjhoa](https://github.com/ctjhoa))\n- Guillaume Gérard ([@GreatWizard](https://github.com/GreatWizard))\n- Jeremy M. Taylor ([@mayatron](https://github.com/mayatron))\n- Manuel Wiedenmann ([@fsmanuel](https://github.com/fsmanuel))\n- Markus Sanin ([@mkszepp](https://github.com/mkszepp))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+}
