@@ -18,13 +18,13 @@
 
 ## Running tests
 
-- `cd test-app-4.x`
+- `cd test-app-5.x`
 - `pnpm test` – Runs the test suite on the current Ember version
 - `pnpm test:watch` – Runs the test suite in "watch mode"
 
 ## Running the test application
 
-- `cd test-app-4.x`
+- `cd test-app-5.x`
 - `pnpm start`
 - Visit the test application at [http://localhost:4200](http://localhost:4200).
 
