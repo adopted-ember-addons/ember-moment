@@ -82,7 +82,7 @@ module('moment-subtract', function (hooks) {
       .format('ddd MMM DD YYYY');
 
     await render(
-      hbs`{{moment-subtract '2016-06-01' this.number precision='days'}}`
+      hbs`{{moment-subtract '2016-06-01' this.number precision='days'}}`,
     );
     assert.dom().containsText(expectedString);
   });

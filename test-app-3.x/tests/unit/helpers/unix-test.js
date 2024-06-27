@@ -15,7 +15,7 @@ module('unix', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{moment-format (unix 946684799) 'YYYYMMDD' timeZone='America/Los_Angeles'}}`
+      hbs`{{moment-format (unix 946684799) 'YYYYMMDD' timeZone='America/Los_Angeles'}}`,
     );
     assert.dom(this.element).hasText('19991231');
   });

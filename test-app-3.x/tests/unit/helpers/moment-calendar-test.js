@@ -31,7 +31,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate timeZone='America/New_York'}}`,
     );
     assert.dom(this.element).hasText('Yesterday at 9:30 PM');
   });
@@ -54,7 +54,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate this.formats timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate this.formats timeZone='America/New_York'}}`,
     );
     assert.dom().hasText('Yesterday');
   });
@@ -70,7 +70,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate lastDay=this.lastDay timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate lastDay=this.lastDay timeZone='America/New_York'}}`,
     );
     assert.dom(this.element).hasText('Yesterday!');
   });
@@ -89,13 +89,13 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate this.formats lastDay='[YESTERDAY]' timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate this.formats lastDay='[YESTERDAY]' timeZone='America/New_York'}}`,
     );
 
-    assert.equal(
+    assert.strictEqual(
       Object.keys(this.formats).length,
       2,
-      'formats object shape does not change'
+      'formats object shape does not change',
     );
     assert.dom(this.element).hasText('YESTERDAY');
   });
@@ -110,7 +110,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate locale="es" timeZone='America/New_York'}}`
+      hbs`{{moment-calendar this.date this.referenceDate locale="es" timeZone='America/New_York'}}`,
     );
     assert.dom(this.element).hasText('hoy a las 3:30');
   });
@@ -125,7 +125,7 @@ module('moment-calendar', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-calendar this.date this.referenceDate timeZone='Australia/Sydney'}}`
+      hbs`{{moment-calendar this.date this.referenceDate timeZone='Australia/Sydney'}}`,
     );
 
     assert
