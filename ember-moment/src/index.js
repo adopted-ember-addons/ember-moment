@@ -24,7 +24,7 @@ export const momentOrMomentTimezone = (() => {
     return importSync('moment').default;
   } else {
     throw new Error(
-      `ember-moment was unable to detect either moment-timezone or moment. Please add one of those to your app.`
+      `ember-moment was unable to detect either moment-timezone or moment. Please add one of those to your app.`,
     );
   }
 })();

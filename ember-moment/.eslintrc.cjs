@@ -19,7 +19,9 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-runloop': 'off',
+  },
   overrides: [
     // require relative imports use full extensions
     {

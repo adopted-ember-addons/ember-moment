@@ -1,5 +1,5 @@
-import computeFn from '../utils/helper-compute';
-import BaseHelper from './-base';
+import computeFn from '../utils/helper-compute.js';
+import BaseHelper from './-base.js';
 
 export default BaseHelper.extend({
   compute: computeFn(function (params, formatHash = {}) {
@@ -7,7 +7,7 @@ export default BaseHelper.extend({
 
     if (!params || (params && params.length > 3)) {
       throw new TypeError(
-        'ember-moment: Invalid Number of arguments, at most 3'
+        'ember-moment: Invalid Number of arguments, at most 3',
       );
     }
 
@@ -23,7 +23,7 @@ export default BaseHelper.extend({
 
     return this.morphMoment(moment.moment(date), { locale, timeZone }).calendar(
       referenceTime,
-      mergedFormats
+      mergedFormats,
     );
   }),
 });

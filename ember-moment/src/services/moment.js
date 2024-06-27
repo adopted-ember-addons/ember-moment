@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
-import { momentOrMomentTimezone as moment } from '../index';
+import { momentOrMomentTimezone as moment } from '../index.js';
 import { computed, set, setProperties } from '@ember/object';
 
 // eslint-disable-next-line ember/no-classic-classes
@@ -32,7 +32,7 @@ export default Service.extend(Evented, {
       if (!moment.tz) {
         /* eslint-disable no-console */
         console.warn(
-          '[ember-moment] attempted to set timezone, but moment-timezone is not setup.'
+          '[ember-moment] attempted to set timezone, but moment-timezone is not setup.',
         );
         return;
       }

@@ -1,10 +1,10 @@
-import computeFn from '../utils/helper-compute';
-import BaseHelper from './-base';
+import computeFn from '../utils/helper-compute.js';
+import BaseHelper from './-base.js';
 
 export default BaseHelper.extend({
   compute: computeFn(function (
     [datetime, ...params],
-    { hideAffix, locale, timeZone }
+    { hideAffix, locale, timeZone },
   ) {
     this._super(...arguments);
 
@@ -12,7 +12,7 @@ export default BaseHelper.extend({
 
     return this.morphMoment(moment.moment(datetime), { locale, timeZone }).from(
       ...params,
-      hideAffix
+      hideAffix,
     );
   }),
 });

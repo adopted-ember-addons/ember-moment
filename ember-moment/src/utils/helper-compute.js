@@ -4,7 +4,7 @@ export default function (cb) {
   return function (params, hash) {
     if (!params || (params && params.length === 0)) {
       throw new TypeError(
-        'ember-moment: Invalid Number of arguments, expected at least 1'
+        'ember-moment: Invalid Number of arguments, expected at least 1',
       );
     }
 
@@ -23,7 +23,7 @@ export default function (cb) {
 
       /* eslint-disable no-console */
       console.warn(
-        `ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`
+        `ember-moment: an empty value (null, undefined, or "") was passed to ember-moment helper`,
       );
     }
 

@@ -1,5 +1,5 @@
-import BaseHelper from './-base';
-import { momentOrMomentTimezone as moment } from '../index';
+import BaseHelper from './-base.js';
+import { momentOrMomentTimezone as moment } from '../index.js';
 
 export default BaseHelper.extend({
   compute(params, { locale, timeZone }) {
@@ -8,7 +8,7 @@ export default BaseHelper.extend({
 
     if (!params || (params && params.length > 2)) {
       throw new TypeError(
-        'ember-moment: Invalid Number of arguments, at most 2'
+        'ember-moment: Invalid Number of arguments, at most 2',
       );
     }
 

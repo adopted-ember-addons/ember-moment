@@ -1,5 +1,5 @@
-import BaseHelper from './-base';
-import computeFn from '../utils/helper-compute';
+import BaseHelper from './-base.js';
+import computeFn from '../utils/helper-compute.js';
 
 export default BaseHelper.extend({
   compute: computeFn(function (params, { precision, locale, timeZone }) {

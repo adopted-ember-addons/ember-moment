@@ -1,8 +1,8 @@
 import { isEmpty } from '@ember/utils';
 import { get, observer } from '@ember/object';
 
-import computeFn from '../utils/helper-compute';
-import BaseHelper from './-base';
+import computeFn from '../utils/helper-compute.js';
+import BaseHelper from './-base.js';
 
 export default BaseHelper.extend({
   // eslint-disable-next-line ember/no-observers
@@ -17,7 +17,7 @@ export default BaseHelper.extend({
 
     if (length > 3) {
       throw new TypeError(
-        'ember-moment: Invalid number of arguments, expected at most 3'
+        'ember-moment: Invalid number of arguments, expected at most 3',
       );
     }
 

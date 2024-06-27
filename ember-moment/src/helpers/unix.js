@@ -1,5 +1,5 @@
-import { momentOrMomentTimezone as moment } from '../index';
-import BaseHelper from './-base';
+import { momentOrMomentTimezone as moment } from '../index.js';
+import BaseHelper from './-base.js';
 
 export default BaseHelper.extend({
   compute([unixTimeStamp]) {

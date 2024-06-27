@@ -1,7 +1,7 @@
 import { typeOf } from '@ember/utils';
 
-import computeFn from '../utils/helper-compute';
-import BaseHelper from './-base';
+import computeFn from '../utils/helper-compute.js';
+import BaseHelper from './-base.js';
 
 export default BaseHelper.extend({
   compute: computeFn(function (params, { precision, locale, timeZone }) {
@@ -27,7 +27,7 @@ export default BaseHelper.extend({
 
     return this.morphMoment(moment.moment(...args), { locale, timeZone }).add(
       ...additionArgs,
-      precision
+      precision,
     );
   }),
 });

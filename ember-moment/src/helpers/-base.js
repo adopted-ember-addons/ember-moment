@@ -17,7 +17,7 @@ export default Helper.extend({
     'moment.timeZone',
     function () {
       this.recompute();
-    }
+    },
   ),
 
   compute(value, { interval }) {
@@ -33,9 +33,12 @@ export default Helper.extend({
        * as the run loop queue is never clear so tests will stay locked waiting
        * for queue to clear.
        */
-      this.intervalTimer = setTimeout(() => {
-        run(() => this.recompute());
-      }, parseInt(interval, 10));
+      this.intervalTimer = setTimeout(
+        () => {
+          run(() => this.recompute());
+        },
+        parseInt(interval, 10),
+      );
     }
   },
 
