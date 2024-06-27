@@ -1,11 +1,13 @@
 {
   "name": "ember-moment",
-  "version": "0.0.0",
-  "description": "The default blueprint for Embroider v2 addons.",
+  "version": "10.0.0",
+  "description": "Moment.js template helpers Ember.js",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "moment",
+    "momentjs"
   ],
-  "repository": "",
+  "repository": "https://github.com/adopted-ember-addons/ember-moment.git",
   "license": "MIT",
   "author": "",
   "exports": {
