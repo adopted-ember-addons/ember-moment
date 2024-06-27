@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@embroider/addon-shim':
-        specifier: ^0.50.2
-        version: 0.50.2
+        specifier: ^0.50.2 || ^1.0.0
+        version: 1.8.9
       moment:
         specifier: ^2
         version: 2.30.1
@@ -1319,10 +1319,6 @@ packages:
     resolution: {integrity: sha512-RbdwcnQsda1pYNTf+qj6YueCuhidsaBcaqQSIFgaKyELPzM9xXFPYaoMvZgyLo1Pv+3YwuanAcR9EDzrMIijCg==}
     engines: {node: 12.* || 14.* || >= 16}
     hasBin: true
-
-  '@embroider/addon-shim@0.50.2':
-    resolution: {integrity: sha512-a+pFlXZPovcCNFo05HxXBW9ole43mPyFZnkhvZlLF0f1sHEn9j0sD1Ld2BM/NCERmHcYz9eXQnX1FPNLCDoGEA==}
-    engines: {node: 12.* || 14.* || >= 16}
 
   '@embroider/addon-shim@1.8.9':
     resolution: {integrity: sha512-qyN64T1jMHZ99ihlk7VFHCWHYZHLE1DOdHi0J7lmn5waV1DoW7gD8JLi1i7FregzXtKhbDc7shyEmTmWPTs8MQ==}
@@ -10075,11 +10071,6 @@ snapshots:
       yargs: 17.7.2
     transitivePeerDependencies:
       - rollup
-
-  '@embroider/addon-shim@0.50.2':
-    dependencies:
-      '@embroider/shared-internals': 0.50.2
-      semver: 7.6.2
 
   '@embroider/addon-shim@1.8.9':
     dependencies:
