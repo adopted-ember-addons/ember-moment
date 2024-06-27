@@ -1,6 +1,6 @@
 {
   "private": true,
-  "repository": "",
+  "repository": "https://github.com/adopted-ember-addons/ember-moment.git",
   "license": "MIT",
   "author": "",
   "scripts": {
