@@ -1,5 +1,38 @@
 # Changelog
 
+## Release (2024-06-27)
+
+ember-moment 10.0.1 (patch)
+
+#### :memo: Documentation
+* [#397](https://github.com/adopted-ember-addons/ember-moment/pull/397) Replace moment with 'ember-moment' ([@fsmanuel](https://github.com/fsmanuel))
+* [#384](https://github.com/adopted-ember-addons/ember-moment/pull/384) Fix typo in moment-test ([@mayatron](https://github.com/mayatron))
+* [#380](https://github.com/adopted-ember-addons/ember-moment/pull/380) chore(readme): update TOC ([@GreatWizard](https://github.com/GreatWizard))
+* [#374](https://github.com/adopted-ember-addons/ember-moment/pull/374) Fix ToC link ([@ctjhoa](https://github.com/ctjhoa))
+
+#### :house: Internal
+* Other
+  * [#413](https://github.com/adopted-ember-addons/ember-moment/pull/413) Recover `CHANGELOG.md` ([@mkszepp](https://github.com/mkszepp))
+  * [#412](https://github.com/adopted-ember-addons/ember-moment/pull/412) Readd `repository` to root `package.json` ([@mkszepp](https://github.com/mkszepp))
+  * [#404](https://github.com/adopted-ember-addons/ember-moment/pull/404) Setup release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#405](https://github.com/adopted-ember-addons/ember-moment/pull/405) Switch to pnpm ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#403](https://github.com/adopted-ember-addons/ember-moment/pull/403) Add `@ember/string` to devDependency ([@mkszepp](https://github.com/mkszepp))
+  * [#402](https://github.com/adopted-ember-addons/ember-moment/pull/402) Update internally used node to 18.x ([@mkszepp](https://github.com/mkszepp))
+* `ember-moment`
+  * [#378](https://github.com/adopted-ember-addons/ember-moment/pull/378) Update dependency `@embroider/addon-shim` to `^1.8.9` ([@mkszepp](https://github.com/mkszepp))
+* `ember-moment`, `test-app-3.x`
+  * [#411](https://github.com/adopted-ember-addons/ember-moment/pull/411) Move to addon v2 blueprint ([@mkszepp](https://github.com/mkszepp))
+* `test-app-3.x`, `test-app-4.x`, `test-app-5.x`
+  * [#410](https://github.com/adopted-ember-addons/ember-moment/pull/410) Add `test-app` for each ember major version ([@mkszepp](https://github.com/mkszepp))
+
+#### Committers: 6
+- Camille TJHOA ([@ctjhoa](https://github.com/ctjhoa))
+- Guillaume Gérard ([@GreatWizard](https://github.com/GreatWizard))
+- Jeremy M. Taylor ([@mayatron](https://github.com/mayatron))
+- Manuel Wiedenmann ([@fsmanuel](https://github.com/fsmanuel))
+- Markus Sanin ([@mkszepp](https://github.com/mkszepp))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ### 10.0.0
 
  * [BREAKING] This addon no longer provides the `moment` library itself. Apps should depend directly on *either* `moment` or `moment-timezone` and import it via `ember-auto-import`. Apps should make sure to remove any dependencies on `ember-cli-moment-shim`. See "Using Moment in Ember Apps & Addons" in the README.
