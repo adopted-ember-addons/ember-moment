@@ -41,7 +41,7 @@ module('moment', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`,
     );
     assert.dom(this.element).hasText('May 3, 2010');
   });
@@ -57,7 +57,7 @@ module('moment', function (hooks) {
 
     this.service.changeLocale('fr');
     await render(
-      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`,
     );
 
     assert.dom(this.element).hasText('mai 3, 2010');
@@ -68,7 +68,7 @@ module('moment', function (hooks) {
     assert.expect(1);
 
     this.service.on('localeChanged', function () {
-      assert.equal(moment.locale(), 'es');
+      assert.strictEqual(moment.locale(), 'es');
       done();
     });
 
@@ -98,7 +98,7 @@ module('moment', function (hooks) {
 
     this.service.setLocale('fr');
     await render(
-      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`
+      hbs`{{moment-format (moment this.date this.inputFormat) this.outputFormat}}`,
     );
 
     assert.dom(this.element).hasText('mai 3, 2010');
@@ -108,8 +108,8 @@ module('moment', function (hooks) {
     assert.expect(2);
 
     this.service.updateLocale('en', { week: { dow: 3 } });
-    assert.equal(moment().weekday(0).format('dddd'), 'Wednesday');
+    assert.strictEqual(moment().weekday(0).format('dddd'), 'Wednesday');
     this.service.updateLocale('en', { week: { dow: 0 } });
-    assert.equal(moment().weekday(0).format('dddd'), 'Sunday');
+    assert.strictEqual(moment().weekday(0).format('dddd'), 'Sunday');
   });
 });

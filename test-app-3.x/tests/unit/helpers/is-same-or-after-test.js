@@ -49,7 +49,7 @@ module('is-same-or-after', function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{is-same-or-after '2010-12-20' '2010-10-19' precision='year'}}`
+      hbs`{{is-same-or-after '2010-12-20' '2010-10-19' precision='year'}}`,
     );
     assert.dom(this.element).hasText('true');
   });

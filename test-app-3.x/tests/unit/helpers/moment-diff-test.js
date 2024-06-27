@@ -68,7 +68,7 @@ module('moment-diff', function (hooks) {
     });
 
     await render(
-      hbs`{{moment-diff this.dateA this.dateB precision='year' float=true}}`
+      hbs`{{moment-diff this.dateA this.dateB precision='year' float=true}}`,
     );
     assert.dom().containsText('.5'); // good ol' rounding error
   });

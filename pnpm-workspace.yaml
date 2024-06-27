@@ -1,5 +1,5 @@
 packages:
-  - '.'
+  - 'ember-moment'
   - 'test-app-3.x'
   - 'test-app-4.x'
   - 'test-app-5.x'
