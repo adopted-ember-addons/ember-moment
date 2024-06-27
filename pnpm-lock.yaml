@@ -27,7 +27,7 @@ importers:
   ember-moment:
     dependencies:
       '@embroider/addon-shim':
-        specifier: ^0.50.2 || ^1.8.9
+        specifier: ^1.8.9
         version: 1.8.9
       moment:
         specifier: ^2
@@ -1522,16 +1522,16 @@ packages:
     resolution: {integrity: sha512-F5z53uvRIF4dYfFfJP3a2Cqg+4P1dgJchJsFnsZE0eZp0LK8X7g2J0CsJHRgns+skpXOlM7n5vFGwkWCWj8qJg==}
     engines: {node: 12.* || >= 14}
 
-  '@manypkg/find-root@2.2.1':
-    resolution: {integrity: sha512-34NlypD5mmTY65cFAK7QPgY5Tzt0qXR4ZRXdg97xAlkiLuwXUPBEXy5Hsqzd+7S2acsLxUz6Cs50rlDZQr4xUA==}
+  '@manypkg/find-root@2.2.2':
+    resolution: {integrity: sha512-guhclSR8MCzjRHrFdhDBppjqofGbcv5St5PM4DITT9s0mEsxFbsAusp+L5UCsed+Pd6qTi73Sr7EdQS23nmBHA==}
     engines: {node: '>=14.18.0'}
 
-  '@manypkg/get-packages@2.2.1':
-    resolution: {integrity: sha512-TrJd86paBkKEx6InhObcUhuoJNcATlbO6+s1dQdLd4+Y1SLDKJUAMhU46kTZ1SOFbegTuhDbIF3j+Jy564BERA==}
+  '@manypkg/get-packages@2.2.2':
+    resolution: {integrity: sha512-3+Zd8kLZmsyJFmWTBtY0MAuCErI7yKB2cjMBlujvSVKZ2R/BMXi0kjCXu2dtRlSq/ML86t1FkumT0yreQ3n8OQ==}
     engines: {node: '>=14.18.0'}
 
-  '@manypkg/tools@1.1.0':
-    resolution: {integrity: sha512-SkAyKAByB9l93Slyg8AUHGuM2kjvWioUTCckT/03J09jYnfEzMO/wSXmEhnKGYs6qx9De8TH4yJCl0Y9lRgnyQ==}
+  '@manypkg/tools@1.1.1':
+    resolution: {integrity: sha512-lpqC/HVb/fWljyphkEdifkr7vSfxHURnwLwKbJma7KvAkX2dl6xTsKLxwt4EpfxxuHhX7gaFOCCcs9Gqj//lEA==}
     engines: {node: '>=14.18.0'}
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -7672,8 +7672,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  testem@3.14.0:
-    resolution: {integrity: sha512-hpybTZhio6DXUM7s0HsE8EOnN8zuA6LdNcz3EsTpQSnD56Cj6gSuFQx82wDKZQ6OmM1kvIBebxP+rEoOYBgCOA==}
+  testem@3.15.0:
+    resolution: {integrity: sha512-vI1oQsjJW4QdVaH6ZmfNErzH7nzs0KzHJluocnfvbz1XRYGJKkIMGKWfsbD8MGGJOg+uzXcEek0/2W7BmGR4ug==}
     engines: {node: '>= 7.*'}
     hasBin: true
 
@@ -9741,18 +9741,18 @@ snapshots:
       tslib: 2.6.3
       upath: 2.0.1
 
-  '@manypkg/find-root@2.2.1':
+  '@manypkg/find-root@2.2.2':
     dependencies:
-      '@manypkg/tools': 1.1.0
+      '@manypkg/tools': 1.1.1
       find-up: 4.1.0
       fs-extra: 8.1.0
 
-  '@manypkg/get-packages@2.2.1':
+  '@manypkg/get-packages@2.2.2':
     dependencies:
-      '@manypkg/find-root': 2.2.1
-      '@manypkg/tools': 1.1.0
+      '@manypkg/find-root': 2.2.2
+      '@manypkg/tools': 1.1.1
 
-  '@manypkg/tools@1.1.0':
+  '@manypkg/tools@1.1.1':
     dependencies:
       fs-extra: 8.1.0
       globby: 11.1.0
@@ -13085,7 +13085,7 @@ snapshots:
       sort-package-json: 1.57.0
       symlink-or-copy: 1.3.1
       temp: 0.9.4
-      testem: 3.14.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
+      testem: 3.15.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
       tiny-lr: 2.0.0
       tree-sync: 2.1.0
       uuid: 8.3.2
@@ -13239,7 +13239,7 @@ snapshots:
       sort-package-json: 1.57.0
       symlink-or-copy: 1.3.1
       temp: 0.9.4
-      testem: 3.14.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
+      testem: 3.15.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
       tiny-lr: 2.0.0
       tree-sync: 2.1.0
       uuid: 9.0.1
@@ -13383,7 +13383,7 @@ snapshots:
       sort-package-json: 1.57.0
       symlink-or-copy: 1.3.1
       temp: 0.9.4
-      testem: 3.14.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
+      testem: 3.15.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6)
       tiny-lr: 2.0.0
       tree-sync: 2.1.0
       walk-sync: 3.0.0
@@ -14929,7 +14929,7 @@ snapshots:
 
   github-changelog@1.0.2:
     dependencies:
-      '@manypkg/get-packages': 2.2.1
+      '@manypkg/get-packages': 2.2.2
       chalk: 4.1.2
       cli-highlight: 2.1.11
       execa: 5.1.1
@@ -17299,7 +17299,7 @@ snapshots:
 
   release-plan@0.9.0(encoding@0.1.13):
     dependencies:
-      '@manypkg/get-packages': 2.2.1
+      '@manypkg/get-packages': 2.2.2
       '@npmcli/package-json': 5.2.0
       '@octokit/rest': 19.0.13(encoding@0.1.13)
       '@types/fs-extra': 9.0.13
@@ -18265,7 +18265,7 @@ snapshots:
       commander: 2.20.3
       source-map-support: 0.5.21
 
-  testem@3.14.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6):
+  testem@3.15.0(babel-core@6.26.3)(handlebars@4.7.8)(lodash@4.17.21)(underscore@1.13.6):
     dependencies:
       '@xmldom/xmldom': 0.8.10
       backbone: 1.6.0
