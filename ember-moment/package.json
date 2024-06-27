@@ -1,0 +1,105 @@
+{
+  "name": "ember-moment",
+  "version": "0.0.0",
+  "description": "The default blueprint for Embroider v2 addons.",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*.js",
+    "./addon-main.js": "./addon-main.cjs"
+  },
+  "files": [
+    "addon-main.cjs",
+    "declarations",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --config",
+    "lint": "concurrently 'pnpm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently 'pnpm:lint:*:fix' --names 'fix:'",
+    "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
+    "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "prepack": "rollup --config",
+    "start": "rollup --config --watch",
+    "test": "echo 'A v2 addon does not have tests, run tests in test-app-4.x'"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^0.50.2 || ^1.8.9",
+    "decorator-transforms": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/eslint-parser": "^7.24.7",
+    "@babel/runtime": "^7.24.7",
+    "@embroider/addon-dev": "^4.3.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "babel-plugin-ember-template-compilation": "^2.2.5",
+    "concurrently": "^8.2.2",
+    "ember-template-lint": "^6.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-ember": "^12.1.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.9.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.3.2",
+    "prettier-plugin-ember-template-tag": "^2.0.2",
+    "rollup": "^4.18.0",
+    "rollup-plugin-copy": "^3.5.0"
+  },
+  "peerDependencies": {
+    "moment": "^2",
+    "moment-timezone": "^0.5.34"
+  },
+  "peerDependenciesMeta": {
+    "moment": {
+      "optional": true
+    },
+    "moment-timezone": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "version": 2,
+    "type": "addon",
+    "main": "addon-main.cjs",
+    "app-js": {
+      "./helpers/-base.js": "./dist/_app_/helpers/-base.js",
+      "./helpers/is-after.js": "./dist/_app_/helpers/is-after.js",
+      "./helpers/is-before.js": "./dist/_app_/helpers/is-before.js",
+      "./helpers/is-between.js": "./dist/_app_/helpers/is-between.js",
+      "./helpers/is-same-or-after.js": "./dist/_app_/helpers/is-same-or-after.js",
+      "./helpers/is-same-or-before.js": "./dist/_app_/helpers/is-same-or-before.js",
+      "./helpers/is-same.js": "./dist/_app_/helpers/is-same.js",
+      "./helpers/moment-add.js": "./dist/_app_/helpers/moment-add.js",
+      "./helpers/moment-calendar.js": "./dist/_app_/helpers/moment-calendar.js",
+      "./helpers/moment-diff.js": "./dist/_app_/helpers/moment-diff.js",
+      "./helpers/moment-duration.js": "./dist/_app_/helpers/moment-duration.js",
+      "./helpers/moment-format.js": "./dist/_app_/helpers/moment-format.js",
+      "./helpers/moment-from-now.js": "./dist/_app_/helpers/moment-from-now.js",
+      "./helpers/moment-from.js": "./dist/_app_/helpers/moment-from.js",
+      "./helpers/moment-subtract.js": "./dist/_app_/helpers/moment-subtract.js",
+      "./helpers/moment-to-date.js": "./dist/_app_/helpers/moment-to-date.js",
+      "./helpers/moment-to-now.js": "./dist/_app_/helpers/moment-to-now.js",
+      "./helpers/moment-to.js": "./dist/_app_/helpers/moment-to.js",
+      "./helpers/moment.js": "./dist/_app_/helpers/moment.js",
+      "./helpers/now.js": "./dist/_app_/helpers/now.js",
+      "./helpers/unix.js": "./dist/_app_/helpers/unix.js",
+      "./helpers/utc.js": "./dist/_app_/helpers/utc.js",
+      "./services/moment.js": "./dist/_app_/services/moment.js"
+    }
+  }
+}
