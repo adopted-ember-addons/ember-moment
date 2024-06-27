@@ -1,0 +1,51 @@
+Locale:
+<button type='button' {{on 'click' (fn this.changeLocale 'es') }}>ES</button>
+<button type='button' {{on 'click' (fn this.changeLocale 'fr') }}>FR</button>
+<button type='button' {{on 'click' (fn this.changeLocale 'en') }}>EN</button>
+
+<hr />
+Default Format:
+<button type='button' {{on 'click' (fn this.changeDefaultFormat 'LLLL') }}>LLLL</button>
+<button
+  type='button'
+  {{on 'click' (fn this.changeDefaultFormat 'DD.MM.YYYY') }}
+>DD.MM.YYYY</button>
+<button type='button' {{on 'click' (fn this.changeDefaultFormat 'LL') }}>LL</button>
+
+<hr />
+
+<h3>Moment</h3>
+
+<Partials::Moment/>
+
+<h3>Format</h3>
+
+<Partials::Format/>
+
+<hr />
+
+<h3>From Now</h3>
+
+<Partials::FromNow/>
+
+<h3>To Now</h3>
+
+<Partials::ToNow/>
+
+<hr />
+
+<h3>Calendar</h3>
+
+<Partials::Calendar/>
+
+<hr />
+
+<h3>Duration</h3>
+
+<Partials::Duration/>
+
+<hr />
+
+<h3>Difference</h3>
+
+<Partials::Diff/>

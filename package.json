@@ -7,6 +7,7 @@
     "moment",
     "momentjs"
   ],
+  "repository": "https://github.com/adopted-ember-addons/ember-moment.git",
   "license": "MIT",
   "author": "",
   "exports": {
@@ -18,25 +19,17 @@
     "addon-main.js",
     "dist"
   ],
-  "repository": "https://github.com/adopted-ember-addons/ember-moment.git",
   "scripts": {
-    "clean": "rm -rf dist node_modules test-app/node_modules",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
-    "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint .",
-    "lint:devdeps": "addon-dev sync-dev-deps --lint",
-    "scenario:list": "scenario-tester list --files test-app/scenarios.js",
-    "scenario:output": "scenario-tester output --files test-app/scenarios.js --outdir scenario --scenario ",
-    "scenario:run": "cd test-app && qunit scenarios.js --filter ",
-    "start": "npm-run-all --parallel start:*",
-    "start:test-app": "cd test-app && ember serve",
+    "clean": "rm -rf dist node_modules test-app-3.x/node_modules test-app-4.x/node_modules test-app-5.x/node_modules",
+    "lint": "pnpm --filter '*' lint",
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "start": "concurrently 'pnpm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
+    "start:test-app": "pnpm --filter test-app-5.x start",
     "start:build": "rollup --config --watch",
     "sync-dev-deps": "addon-dev sync-dev-deps",
-    "test": "npm-run-all lint:* test:*",
-    "test:ember": "cd test-app && ember test",
-    "test:ember-compatibility": "cd test-app && qunit scenarios.js",
-    "prepare": "npm-run-all prepublishOnly link-test-app",
-    "link-test-app": "addon-dev link-test-app",
+    "test": "pnpm --filter '*' test",
+    "test:ember": "pnpm --filter '*' test:ember",
+    "prepare": "pnpm run prepublishOnly",
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {
@@ -45,9 +38,9 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@ember/optional-features": "^2.0.0",
-    "@ember/test-helpers": "^2.6.0",
     "@ember/string": "^3.1.1",
-    "@embroider/addon-dev": "npm:@embroider/addon-dev@latest",
+    "@ember/test-helpers": "^2.6.0",
+    "@embroider/addon-dev": "^0.50.2",
     "@embroider/compat": "npm:@embroider/compat@latest",
     "@embroider/core": "npm:@embroider/core@latest",
     "@embroider/test-setup": "npm:@embroider/test-setup@latest",
@@ -58,14 +51,9 @@
     "babel-eslint": "^10.1.0",
     "ember-auto-import": "^2.3.0",
     "ember-cli": "~3.28.5",
-    "ember-cli-3.16": "npm:ember-cli@~3.16.0",
-    "ember-cli-3.20": "npm:ember-cli@~3.20.0",
-    "ember-cli-3.24": "npm:ember-cli@~3.24.0",
     "ember-cli-babel": "^7.26.10",
-    "ember-cli-beta": "npm:ember-cli@beta",
     "ember-cli-htmlbars": "^5.7.2",
     "ember-cli-inject-live-reload": "^2.1.0",
-    "ember-cli-latest": "npm:ember-cli@latest",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-disable-prototype-extensions": "^1.1.3",
@@ -76,13 +64,7 @@
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-source": "~3.28.8",
-    "ember-source-3.16": "npm:ember-source@~3.16.0",
-    "ember-source-3.20": "npm:ember-source@~3.20.0",
-    "ember-source-3.24": "npm:ember-source@~3.24.0",
-    "ember-source-beta": "npm:ember-source@beta",
-    "ember-source-canary": "npm:ember-source@alpha",
     "ember-source-channel-url": "^3.0.0",
-    "ember-source-latest": "npm:ember-source@latest",
     "ember-template-lint": "^3.15.0",
     "ember-try": "^1.4.0",
     "eslint": "^7.32.0",
@@ -94,13 +76,12 @@
     "jquery": "^3.6.0",
     "loader.js": "^4.7.0",
     "moment-timezone": "^0.5.33",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-console-grouper": "^0.3.0",
     "qunit-dom": "^1.6.0",
+    "release-plan": "^0.9.0",
     "rollup": "^2.63.0",
-    "scenario-tester": "^2.0.1",
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
@@ -115,8 +96,13 @@
       "optional": true
     }
   },
+  "packageManager": "pnpm@9.4.0",
   "engines": {
     "node": ">= 18"
+  },
+  "volta": {
+    "node": "18.20.3",
+    "pnpm": "9.4.0"
   },
   "ember-addon": {
     "version": 2,
@@ -147,10 +133,5 @@
       "./helpers/utc.js": "./dist/_app_/helpers/utc.js",
       "./services/moment.js": "./dist/_app_/services/moment.js"
     }
-  },
-  "volta": {
-    "node": "18.20.3",
-    "yarn": "1.22.22"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }
