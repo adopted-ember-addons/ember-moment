@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop';
 import Helper from '@ember/component/helper';
 import { observer } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 // eslint-disable-next-line ember/no-classic-classes
 export default Helper.extend({

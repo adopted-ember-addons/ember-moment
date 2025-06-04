@@ -1,7 +1,7 @@
 import { action, set } from '@ember/object';
 import { dependentKeyCompat } from '@ember/object/compat';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Controller from '@ember/controller';
 
 export default class Index extends Controller {
