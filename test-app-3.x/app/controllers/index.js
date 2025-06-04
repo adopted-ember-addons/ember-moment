@@ -1,8 +1,10 @@
 import { action, set } from '@ember/object';
 import { dependentKeyCompat } from '@ember/object/compat';
 import { tracked } from '@glimmer/tracking';
-import { service } from '@ember/service';
 import Controller from '@ember/controller';
+import * as emberService from '@ember/service';
+
+const service = emberService.service ?? emberService.inject;
 
 export default class Index extends Controller {
   @service moment;
