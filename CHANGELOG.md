@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-06-06)
+
+ember-moment 10.0.2 (patch)
+
+#### :bug: Bug Fix
+* `ember-moment`, `test-app-3.x`, `test-app-4.x`, `test-app-5.x`
+  * [#415](https://github.com/adopted-ember-addons/ember-moment/pull/415) import service instead of inject from '@ember/service' ([@ZacharyMohler](https://github.com/ZacharyMohler))
+
+#### Committers: 1
+- Zachary Mohler ([@ZacharyMohler](https://github.com/ZacharyMohler))
+
 ## Release (2024-06-27)
 
 ember-moment 10.0.1 (patch)
