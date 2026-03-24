@@ -4,8 +4,8 @@
   "license": "MIT",
   "author": "",
   "scripts": {
-    "clean": "rm -rf dist node_modules ember-moment/node_modules test-app-3.x/node_modules test-app-4.x/node_modules test-app-5.x/node_modules",
     "build": "pnpm --filter ember-moment build",
+    "clean": "rm -rf dist node_modules ember-moment/node_modules test-app-3.x/node_modules test-app-4.x/node_modules test-app-5.x/node_modules",
     "lint": "pnpm --filter '*' lint",
     "lint:fix": "pnpm --filter '*' lint:fix",
     "prepare": "pnpm build",
@@ -19,8 +19,9 @@
     "concurrently": "^8.2.2",
     "prettier": "^3.3.2",
     "prettier-plugin-ember-template-tag": "^2.0.2",
-    "release-plan": "^0.9.0"
+    "release-plan": "^0.17.4"
   },
+  "packageManager": "pnpm@9.4.0",
   "volta": {
     "node": "24.14.1",
     "pnpm": "9.4.0"
@@ -29,6 +30,5 @@
     "overrides": {
       "@types/eslint": "^7.0.0"
     }
-  },
-  "packageManager": "pnpm@9.4.0"
+  }
 }
