@@ -40,7 +40,7 @@
 
 ## Compatibility
 
-* Ember.js v3.16 or above
+* Ember.js v3.28 or above
 * Embroider or ember-auto-import 2.0
 
 ## Using Moment.js in Ember Apps & Addons
