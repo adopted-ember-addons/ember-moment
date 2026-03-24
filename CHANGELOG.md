@@ -1,5 +1,19 @@
 # Changelog
 
+## Release (2026-03-24)
+
+* ember-moment 10.0.3 (patch)
+
+#### :bug: Bug Fix
+* `ember-moment`
+  * [#418](https://github.com/adopted-ember-addons/ember-moment/pull/418) Revert "import service instead of inject from '@ember/service'" ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* [#420](https://github.com/adopted-ember-addons/ember-moment/pull/420) update release-plan ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
 ## Release (2025-06-06)
 
 ember-moment 10.0.2 (patch)
