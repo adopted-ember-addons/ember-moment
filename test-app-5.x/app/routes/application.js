@@ -1,7 +1,5 @@
 import Route from '@ember/routing/route';
-import * as emberService from '@ember/service';
-
-const service = emberService.service ?? emberService.inject;
+import { inject as service } from '@ember/service';
 
 export default class Application extends Route {
   @service moment;
