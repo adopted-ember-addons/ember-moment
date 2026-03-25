@@ -1,18 +1,18 @@
 {
   "solution": {
     "ember-moment": {
-      "impact": "major",
-      "oldVersion": "10.0.3",
-      "newVersion": "11.0.0",
+      "impact": "minor",
+      "oldVersion": "11.0.0",
+      "newVersion": "11.1.0",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./ember-moment/package.json"
     }
   },
-  "description": "## Release (2026-03-25)\n\n* ember-moment 11.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-moment`\n  * [#421](https://github.com/adopted-ember-addons/ember-moment/pull/421) Drop support for Ember < 3.28 and reapply \"import service instead of inject from '@ember/service'\" ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
+  "description": "## Release (2026-03-25)\n\n* ember-moment 11.1.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-moment`\n  * [#417](https://github.com/adopted-ember-addons/ember-moment/pull/417) start emitting declarations during the build - extracted from the JS files ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
 }
