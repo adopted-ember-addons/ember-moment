@@ -2,6 +2,17 @@
 
 ## Release (2026-03-25)
 
+* ember-moment 11.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-moment`
+  * [#417](https://github.com/adopted-ember-addons/ember-moment/pull/417) start emitting declarations during the build - extracted from the JS files ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
+## Release (2026-03-25)
+
 * ember-moment 11.0.0 (major)
 
 #### :boom: Breaking Change
