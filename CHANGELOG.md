@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-03-25)
+
+* ember-moment 11.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-moment`
+  * [#421](https://github.com/adopted-ember-addons/ember-moment/pull/421) Drop support for Ember < 3.28 and reapply "import service instead of inject from '@ember/service'" ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
 ## Release (2026-03-24)
 
 * ember-moment 10.0.3 (patch)
